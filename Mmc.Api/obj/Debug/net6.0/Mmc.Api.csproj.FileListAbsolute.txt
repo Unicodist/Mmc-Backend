@@ -1,0 +1,12 @@
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\bin\Debug\net6.0\Mmc.Api.deps.json
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\bin\Debug\net6.0\Mmc.Api.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\bin\Debug\net6.0\Mmc.Api.pdb
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\obj\Debug\net6.0\Mmc.Api.csproj.AssemblyReference.cache
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\obj\Debug\net6.0\Mmc.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\obj\Debug\net6.0\Mmc.Api.AssemblyInfoInputs.cache
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\obj\Debug\net6.0\Mmc.Api.AssemblyInfo.cs
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\obj\Debug\net6.0\Mmc.Api.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\obj\Debug\net6.0\Mmc.Api.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\obj\Debug\net6.0\refint\Mmc.Api.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\obj\Debug\net6.0\Mmc.Api.pdb
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\obj\Debug\net6.0\ref\Mmc.Api.dll
