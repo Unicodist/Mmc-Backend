@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using Mmc.Api.Entities.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<BaseDbContext>(options =>
+{
+    options.UseMySql(ServerVersion.Parse(builder.Configuration.GetConnectionString("DbApiConnection")));
+});
 
 var app = builder.Build();
 

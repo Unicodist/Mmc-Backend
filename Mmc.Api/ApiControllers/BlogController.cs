@@ -6,6 +6,7 @@ namespace Mmc.Api.ApiControllers;
 public class BlogController 
 {
     [HttpGet]
+    [Route("api/blog")]
     public async Task<string> Index()
     {
         return "Hello World";

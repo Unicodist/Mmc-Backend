@@ -6,10 +6,6 @@ C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Mechi.Blog
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Mechi.Blog.runtimeconfig.json
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Mechi.Blog.dll
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Mechi.Blog.pdb
-C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\System.Net.Http.Formatting.dll
-C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\System.Web.Http.dll
-C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Mmc.Api.dll
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Mmc.Api.pdb
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\obj\Debug\net6.0\Mechi.Blog.csproj.AssemblyReference.cache
@@ -31,3 +27,11 @@ C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\obj\Debug\net6.0\refint\Mec
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\obj\Debug\net6.0\Mechi.Blog.pdb
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\obj\Debug\net6.0\Mechi.Blog.genruntimeconfig.cache
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\obj\Debug\net6.0\ref\Mechi.Blog.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\MySqlConnector.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\obj\Debug\net6.0\Mechi.Blog.MvcApplicationPartsAssemblyInfo.cs
