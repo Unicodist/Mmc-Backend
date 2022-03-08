@@ -35,3 +35,6 @@ C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\MySqlConne
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\obj\Debug\net6.0\Mechi.Blog.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\System.Text.Json.dll
