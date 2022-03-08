@@ -1,11 +1,17 @@
 using Mechi.Backend.Models.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Mmc.Api.Entities.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v6", new OpenApiInfo() {Title="Mmc.Api",Version="v6"});
+});
 
 //Add DbContext to the solution
 builder.Services.AddDbContext<BlogDbContext>(options =>
@@ -32,6 +38,12 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v6/swagger.json","Mmc.Api");
+});
 
 app.UseRouting();
 

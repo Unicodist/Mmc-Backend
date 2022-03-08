@@ -8,6 +8,15 @@ public class BaseDbContext : DbContext
     {
     }
 
-    public DbSet<BlogEntity> Blogs { get; set; }
-    public DbSet<UserEntity> Users { get; set; }
+    public DbSet<BlogMaster> Blogs { get; set; }
+    public DbSet<UserMaster> Users { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            
+        }
+        base.OnConfiguring(optionsBuilder);
+    }
 }
