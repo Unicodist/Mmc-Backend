@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Mmc.Entities;
+using Microsoft.Extensions.Configuration;
 
-namespace Mmc.Api.Entities.Data;
+namespace Mmc.Data;
 
 public class BaseDbContext : DbContext
 {
@@ -8,14 +10,19 @@ public class BaseDbContext : DbContext
     {
     }
 
+    public BaseDbContext()
+    {
+        
+    }
+
     public DbSet<BlogMaster> Blogs { get; set; }
     public DbSet<UserMaster> Users { get; set; }
 
+    
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
         {
-            
         }
         base.OnConfiguring(optionsBuilder);
     }

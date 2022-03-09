@@ -1,7 +1,7 @@
 using Mechi.Backend.Models.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Mmc.Api.Entities.Data;
+using Mmc.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,10 +14,6 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 //Add DbContext to the solution
-builder.Services.AddDbContext<BlogDbContext>(options =>
-{
-    options.UseMySql(ServerVersion.Parse(builder.Configuration.GetConnectionString("DbApiConnection")));
-});
 
 builder.Services.AddDbContext<BaseDbContext>(options =>
 {

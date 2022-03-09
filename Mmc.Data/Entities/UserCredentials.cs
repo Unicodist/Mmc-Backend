@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Mmc.Data;
 
-namespace Mmc.Api.Entities;
+namespace Mmc.Entities;
 
-public class UserCredentials
+public class UserCredentials :BaseDbContext
 {
     [Key] public int Id { get; set; }
     [Column("email")] public string Email { get; set; }

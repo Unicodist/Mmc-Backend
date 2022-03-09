@@ -38,3 +38,5 @@ C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\obj\Debug\net6.0\Mechi.Blog
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Mmc.Data.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mechi.Blog\bin\Debug\net6.0\Mmc.Data.pdb

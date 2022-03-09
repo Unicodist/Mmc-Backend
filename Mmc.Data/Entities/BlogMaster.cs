@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Mmc.Data;
 
-namespace Mmc.Api.Entities;
+namespace Mmc.Entities;
 
-public class BlogMaster
+public class BlogMaster : BaseDbContext
 {
     [Key]
     public int id { get; set; }
