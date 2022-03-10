@@ -201,8 +201,14 @@
           "Mmc.Api.dll": {}
         }
       },
+      "Mmc.Core/1.0.0": {
+        "runtime": {
+          "Mmc.Core.dll": {}
+        }
+      },
       "Mmc.Data/1.0.0": {
         "dependencies": {
+          "Mmc.Core": "1.0.0",
           "Pomelo.EntityFrameworkCore.MySql": "6.0.1"
         },
         "runtime": {
@@ -386,6 +392,11 @@
       "hashPath": "system.text.json.6.0.2.nupkg.sha512"
     },
     "Mmc.Api/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Mmc.Core/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

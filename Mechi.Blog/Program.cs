@@ -1,4 +1,3 @@
-using Mechi.Backend.Models.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Mmc.Data;
@@ -10,7 +9,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v6", new OpenApiInfo() {Title="Mmc.Api",Version="v6"});
+    c.SwaggerDoc("v6", new OpenApiInfo() {Title="Mmc.Api",Version="v6-omega-plus"});
 });
 
 //Add DbContext to the solution

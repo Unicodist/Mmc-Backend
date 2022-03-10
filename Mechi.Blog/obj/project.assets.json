@@ -348,10 +348,21 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "Mmc.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Mmc.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Mmc.Core.dll": {}
+        }
+      },
       "Mmc.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Mmc.Core": "1.0.0",
           "Pomelo.EntityFrameworkCore.MySql": "6.0.1"
         },
         "compile": {
@@ -930,6 +941,11 @@
       "type": "project",
       "path": "../Mmc.Api/Mmc.Api.csproj",
       "msbuildProject": "../Mmc.Api/Mmc.Api.csproj"
+    },
+    "Mmc.Core/1.0.0": {
+      "type": "project",
+      "path": "../Mmc.Core/Mmc.Core.csproj",
+      "msbuildProject": "../Mmc.Core/Mmc.Core.csproj"
     },
     "Mmc.Data/1.0.0": {
       "type": "project",

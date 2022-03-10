@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using Mmc.Entities;
+using Mmc.Core.Entity;
 using Microsoft.Extensions.Configuration;
 
 namespace Mmc.Data;
 
 public class BaseDbContext : DbContext
 {
-    public BaseDbContext(DbContextOptions options) : base(options)
+    public BaseDbContext(IConfiguration config, DbContextOptions options) : base(options)
     {
     }
 

@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Mmc.Entities;
+using Mmc.Core.Entity;
 using Mmc.Data;
 
 namespace Mmc.Blog.Api;

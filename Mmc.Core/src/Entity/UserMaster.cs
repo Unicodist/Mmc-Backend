@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Mmc.Entities;
+namespace Mmc.Core.Entity;
 [Table("user_master")]
 public class UserMaster
 {

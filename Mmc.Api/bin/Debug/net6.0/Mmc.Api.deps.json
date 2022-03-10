@@ -193,8 +193,14 @@
           }
         }
       },
+      "Mmc.Core/1.0.0": {
+        "runtime": {
+          "Mmc.Core.dll": {}
+        }
+      },
       "Mmc.Data/1.0.0": {
         "dependencies": {
+          "Mmc.Core": "1.0.0",
           "Pomelo.EntityFrameworkCore.MySql": "6.0.1"
         },
         "runtime": {
@@ -376,6 +382,11 @@
       "sha512": "sha512-0nE2gwXLn3PTBOPwORLqwuYvWB+Beomt9ZBX+6LmogMNKUvfD1SoDb/ycB1vBntT94rGaB/SvxEyeLu14H6aEg==",
       "path": "system.text.json/6.0.2",
       "hashPath": "system.text.json.6.0.2.nupkg.sha512"
+    },
+    "Mmc.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Mmc.Data/1.0.0": {
       "type": "project",

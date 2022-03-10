@@ -239,6 +239,16 @@
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
         }
+      },
+      "Mmc.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Mmc.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Mmc.Core.dll": {}
+        }
       }
     }
   },
@@ -640,10 +650,16 @@
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Mmc.Core/1.0.0": {
+      "type": "project",
+      "path": "../Mmc.Core/Mmc.Core.csproj",
+      "msbuildProject": "../Mmc.Core/Mmc.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Mmc.Core >= 1.0.0",
       "Pomelo.EntityFrameworkCore.MySql >= 6.0.1"
     ]
   },
@@ -671,7 +687,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Core\\Mmc.Core.csproj": {
+              "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Core\\Mmc.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

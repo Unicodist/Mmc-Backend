@@ -328,10 +328,21 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "Mmc.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Mmc.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Mmc.Core.dll": {}
+        }
+      },
       "Mmc.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Mmc.Core": "1.0.0",
           "Pomelo.EntityFrameworkCore.MySql": "6.0.1"
         },
         "compile": {
@@ -905,6 +916,11 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Mmc.Core/1.0.0": {
+      "type": "project",
+      "path": "../Mmc.Core/Mmc.Core.csproj",
+      "msbuildProject": "../Mmc.Core/Mmc.Core.csproj"
     },
     "Mmc.Data/1.0.0": {
       "type": "project",

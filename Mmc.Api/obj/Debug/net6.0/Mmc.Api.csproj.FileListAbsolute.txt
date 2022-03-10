@@ -13,3 +13,5 @@ C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\obj\Debug\net6.0\ref\Mmc.Api.d
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\bin\Debug\net6.0\Mmc.Data.dll
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\bin\Debug\net6.0\Mmc.Data.pdb
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\obj\Debug\net6.0\Mmc.Api.csproj.CopyComplete
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\bin\Debug\net6.0\Mmc.Core.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Api\bin\Debug\net6.0\Mmc.Core.pdb

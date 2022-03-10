@@ -10,3 +10,6 @@ C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Debug\net6.0\Mmc.Data.dll
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Debug\net6.0\refint\Mmc.Data.dll
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Debug\net6.0\Mmc.Data.pdb
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Debug\net6.0\ref\Mmc.Data.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\bin\Debug\net6.0\Mmc.Core.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\bin\Debug\net6.0\Mmc.Core.pdb
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Debug\net6.0\Mmc.Data.csproj.CopyComplete
