@@ -10,14 +10,14 @@ public class BlogController
     private BaseDbContext _context = new();
     
     [HttpGet]
-    [Route("api/blog")]
-    public async Task<string> Get()
+    [Route("api/blog/getall")]
+    public async Task<string> GetAll()
     {
         return "Hello World";
     }
 
     [HttpGet]
-    [Route("api/blog{id}")]
+    [Route("api/blog/get{id}")]
     public async Task<BlogMaster> Get(int id)
     {
         return await _context.BlogMasters.FindAsync(id);

@@ -21,7 +21,7 @@ public class BaseDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-       optionsBuilder.UseMySql(_configuration.GetConnectionString("DbApiConnection"),new MySqlServerVersion(new Version(8,0,28)));
+       optionsBuilder.UseMySql(_configuration.GetConnectionString("Default"),new MySqlServerVersion(new Version(8,0,28)));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

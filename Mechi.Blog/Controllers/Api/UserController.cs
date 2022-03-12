@@ -16,7 +16,7 @@ public class UserController
     }
 
     [HttpPost]
-    [Route("api/user/create")]
+    [Route("api/user/create{model}")]
     public async Task Create(UserCreateDto model)
     {
         await new UserServices().Create(model);

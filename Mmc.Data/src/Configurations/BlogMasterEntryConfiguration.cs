@@ -17,6 +17,6 @@ public class BlogMasterEntryConfiguration : IEntityTypeConfiguration<BlogMaster>
         builder.Property(b => b.BlogMasterPostedDate).HasColumnType("DATE");
         builder.Property(b => b.BlogMasterAuthorName).HasColumnType("VARCHAR(30)");
 
-        builder.HasOne(b => b.BlogMasterAuthorAdmin).WithMany(u => u.Blogs);
+        builder.HasOne(b => b.BlogMasterAuthorAdmin).WithMany(u => u.Blogs).HasForeignKey("fk_blogmaster_adminid_usermaster");
     }
 }

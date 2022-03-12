@@ -9,12 +9,16 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v6", new OpenApiInfo() {Title="Mmc.Api",Version="v6-omega-plus"});
+    c.SwaggerDoc("Mechi Api", new OpenApiInfo() {Title="Mmc.Api",Version="v1"});
 });
 
 //Add DbContext to the solution
 
-builder.Services.AddDbContext<BaseDbContext>();
+builder.Services.AddDbContext<BaseDbContext>(option =>
+{
+    option.UseMySql(builder.Configuration.GetConnectionString("Default"),
+        new MySqlServerVersion(new Version(8, 0, 24)));
+});
 
 //End DbContext
 
