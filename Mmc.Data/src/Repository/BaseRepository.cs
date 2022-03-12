@@ -14,15 +14,33 @@ public class BaseRepository<T> : BaseRepositoryInterface<T> where T:class
         _dbSet = _dbContext.Set<T>();
     }
     
-    public void Create(T entity)
+    public Task Create(T entity)
     {
-        _dbContext.Add(entity);
+        return Task.FromResult(_dbContext.Add(entity));
     }
 
-    public void Update(T entity)
+    public async Task<T?> GetItem(long id)
     {
-        _dbContext.Update(entity);
+        return await _dbSet.FindAsync(id).ConfigureAwait(false);
     }
-    
-    public void SelectById()
+
+    public Task<T> GetItem(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task Delete(T entity)
+    {
+        return Task.FromResult(_dbSet.Remove(entity));
+    }
+
+    public IQueryable<T> GetQueryable()
+    {
+        return _dbSet;
+    }
+
+    public Task Update(T entity)
+    {
+        return Task.FromResult(_dbContext.Update(entity));
+    }
 }

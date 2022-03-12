@@ -5,10 +5,10 @@ namespace Mmc.Core.Entity;
 [Table("user_master")]
 public class UserMaster
 {
-    [Key]
-    public int Id { get; set; }
-    [Column("name")] public string Name { get; set; }
-    [Column("credentials")] private int CredId { get; set; }
-    
-    public UserCredentials UserCredentials { get; set; }
+    public long UserMasterId { get; set; }
+    public string UserMasterName { get; set; } = null!;
+    public int UserMasterCredentialId { get; set; }
+    public UserCredentials UserCredentials { get; set; } = null!;
+
+    public virtual IList<BlogMaster>? Blogs { get; set; }
 }

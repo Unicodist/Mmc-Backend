@@ -4,7 +4,9 @@ namespace Mmc.Core.Repository;
 
 public interface UserRepositoryInterface
 {
+    public Task<UserMaster> GetUserById(long id);
     public Task<Boolean> LoginUserWithCredentials(UserCredentials credentials);
-    public Task<UserMaster> GetUserById(int Id);
-    public Task<IList<UserMaster>> GetUsersByName(string Name);
+    public Task<ICollection<UserMaster>> GetUsersByName(string Name);
+
+    public Task RemoveUserById(long id);
 }
