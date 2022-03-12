@@ -13,3 +13,5 @@ C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Debug\net6.0\ref\Mmc.Data
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\bin\Debug\net6.0\Mmc.Core.dll
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\bin\Debug\net6.0\Mmc.Core.pdb
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Debug\net6.0\Mmc.Data.csproj.CopyComplete
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\bin\Debug\net6.0\Mmc.Data.runtimeconfig.json
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Debug\net6.0\Mmc.Data.genruntimeconfig.cache

@@ -1,17 +1,23 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Mmc.Blog.ViewModel;
 
 namespace Mmc.Core.Entity;
 
 public class UserCredentials
 {
-    [Key] public int Id { get; set; }
-    [Column("email")] public string Email { get; set; }
-    [Column("password")] private string Password { get; set; }
+    public int UserCredentialsId { get; set; }
+    public string UserCredentialsEmail { get; set; } = null!;
+    public string UserCredentialsPassword { get; private set; } = null!;
     
+    public virtual long UserCredentialsUserId { get; set; }
 
-    public bool MatchPassword(string password)
+    public virtual UserMaster UserCredentialsUser { get; set; } = null!;
+
+    public void SetPassword(string password)
     {
-        return Password.Equals(password);
+        UserCredentialsPassword = password;
+    }
+    public bool MatchCredentials(UserCredentialsViewModel model)
+    {
+        return UserCredentialsEmail.Equals(model.Email) && UserCredentialsPassword.Equals(model.Password);
     }
 }

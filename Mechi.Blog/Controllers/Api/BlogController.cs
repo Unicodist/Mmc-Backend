@@ -20,6 +20,6 @@ public class BlogController
     [Route("api/blog{id}")]
     public async Task<BlogMaster> Get(int id)
     {
-        return await _context.Blogs.FindAsync(id);
+        return await _context.BlogMasters.FindAsync(id);
     }
 }

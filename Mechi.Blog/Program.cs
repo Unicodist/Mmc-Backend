@@ -14,10 +14,7 @@ builder.Services.AddSwaggerGen(c =>
 
 //Add DbContext to the solution
 
-builder.Services.AddDbContext<BaseDbContext>(options =>
-{
-    options.UseMySql(ServerVersion.Parse(builder.Configuration.GetConnectionString("DbApiConnection")));
-});
+builder.Services.AddDbContext<BaseDbContext>();
 
 //End DbContext
 

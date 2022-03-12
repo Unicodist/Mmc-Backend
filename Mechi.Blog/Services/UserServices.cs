@@ -1,41 +1,45 @@
 using Mechi.Backend.Dto;
-using Mechi.Backend.Models.Data;
-using Mechi.Backend.Models.User;
+using Mmc.Core.Entity;
+using Mmc.Data;
+using Mmc.Data.Repository;
 
-namespace Mechi.Backend.Services;
+namespace Mmc.Blog.Services;
 
 public class UserServices
 {
-    private BlogDbContext _context;
-    public async Task<UserMaster> Create(UserCreateDto userCreateDto)
+    private BaseDbContext _context = new BaseDbContext();
+    public async Task<UserMaster?> Create(UserCreateDto userCreateDto)
     {
         UserCredentials createUserCredentials = new UserCredentials()
         {
-            Email = userCreateDto.Email,
-            Password = userCreateDto.Password
+            UserCredentialsEmail = userCreateDto.Email,
         };
+        createUserCredentials.SetPassword(userCreateDto.Password);
         _context.UserCredentials.Add(createUserCredentials);
         UserMaster createUserMaster = new()
         {
-            Credentials = createUserCredentials.Id,
-            FirstName = userCreateDto.FirstName,
-            LastName = userCreateDto.LastName
+            UserMasterCredentialId = createUserCredentials.UserCredentialsId,
+            UserMasterName = userCreateDto.FirstName+' '+userCreateDto.LastName
         };
         _context.UserMasters.Add(createUserMaster);
-        _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
 
-        return _context.UserMasters.Find(createUserMaster.Id);
+        return _context.UserMasters.Find(createUserMaster.UserMasterCredentialId);
     }
-
-    public async Task<UserMaster> Update(int user_id, UserUpdateDto userUpdateDto)
+    public Task<long> Update(int userId, UserUpdateDto userUpdateDto)
     {
-        UserMaster userMaster = _context.UserMasters.Find(user_id);
-        UserCredentials userCredentials = _context.UserCredentials.Find(userMaster.Credentials);
+        UserMaster? userMaster = _context.UserMasters.Find(userId);
+        UserCredentials? userCredentials = _context.UserCredentials.Find(userMaster?.UserMasterCredentialId);
 
         _context.UserCredentials.Update(userCredentials);
         _context.UserMasters.Update(userMaster);
         _context.SaveChanges();
 
-        return userMaster;
+        return Task.FromResult(userMaster.UserMasterId);
+    }
+
+    public async Task<UserMaster?> GetUserById(long id)
+    {
+        return await new UserRepository(_context).GetItem(id).ConfigureAwait(false);
     }
 }
