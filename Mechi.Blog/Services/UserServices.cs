@@ -8,23 +8,17 @@ namespace Mmc.Blog.Services;
 public class UserServices
 {
     private BaseDbContext _context = new BaseDbContext();
-    public async Task<UserMaster?> Create(UserCreateDto userCreateDto)
+    public async Task<long?> Create(UserCreateDto userCreateDto)
     {
-        UserCredentials createUserCredentials = new UserCredentials()
+        UserMaster createUserMaster = new UserMaster()
         {
-            UserCredentialsEmail = userCreateDto.Email,
+            UserMasterName = userCreateDto.FirstName + " " + userCreateDto.LastName,
+            UserMasterCredentials = new UserCredentials() { UserCredentialsEmail = userCreateDto.Email }
         };
-        createUserCredentials.SetPassword(userCreateDto.Password);
-        _context.UserCredentials.Add(createUserCredentials);
-        UserMaster createUserMaster = new()
-        {
-            UserMasterCredentialId = createUserCredentials.UserCredentialsId,
-            UserMasterName = userCreateDto.FirstName+' '+userCreateDto.LastName
-        };
-        _context.UserMasters.Add(createUserMaster);
-        await _context.SaveChangesAsync();
+        createUserMaster.UserMasterCredentials.SetPassword(userCreateDto.Password);
 
-        return _context.UserMasters.Find(createUserMaster.UserMasterCredentialId);
+        await _context.AddAsync(createUserMaster);
+        return createUserMaster.UserMasterId;
     }
     public Task<long> Update(int userId, UserUpdateDto userUpdateDto)
     {

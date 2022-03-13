@@ -1018,9 +1018,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mechi.Blog\\Mechi.Blog.csproj",
-      "projectName": "Mechi.Blog",
-      "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mechi.Blog\\Mechi.Blog.csproj",
+      "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mechi.Blog\\Mmc.Blog.csproj",
+      "projectName": "Mmc.Blog",
+      "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mechi.Blog\\Mmc.Blog.csproj",
       "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mechi.Blog\\obj\\",
       "projectStyle": "PackageReference",

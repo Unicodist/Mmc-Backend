@@ -8,10 +8,10 @@ namespace Mmc.Data;
 
 public class BaseDbContext : DbContext
 {
-    private IConfiguration _configuration;
-    public BaseDbContext(IConfiguration configuration, DbContextOptions<BaseDbContext> options) : base(options)
+    private string ConnectionString = "Server=localhost;Database=mmc_core;Uid=root;Pwd=(**)&^(()&Ashish;";
+    public BaseDbContext(DbContextOptions<BaseDbContext> options) : base(options)
     {
-        _configuration = configuration;
+        
     }
 
     public BaseDbContext()
@@ -21,7 +21,7 @@ public class BaseDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-       optionsBuilder.UseMySql(_configuration.GetConnectionString("Default"),new MySqlServerVersion(new Version(8,0,28)));
+       optionsBuilder.UseMySql(ConnectionString, new MySqlServerVersion(new Version(8,0,24)));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

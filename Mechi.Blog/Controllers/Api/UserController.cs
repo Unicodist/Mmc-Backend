@@ -9,14 +9,14 @@ namespace Mmc.Blog.Api;
 public class UserController
 {
     [HttpGet]
-    [Route("api/user/get{id}")]
+    [Route("api/user{id}")]
     public async Task<UserMaster?> Get(long id)
     {
         return await new UserServices().GetUserById(id).ConfigureAwait(false);
     }
 
     [HttpPost]
-    [Route("api/user/create{model}")]
+    [Route("api/user")]
     public async Task Create(UserCreateDto model)
     {
         await new UserServices().Create(model);

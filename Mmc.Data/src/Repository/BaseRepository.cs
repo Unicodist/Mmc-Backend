@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Mmc.Core.Entity;
 using Mmc.Core.Repository;
 
 namespace Mmc.Data.Repository;
@@ -14,9 +15,10 @@ public class BaseRepository<T> : BaseRepositoryInterface<T> where T:class
         _dbSet = _dbContext.Set<T>();
     }
     
-    public Task Create(T entity)
+    public async Task<T> Create(T entity)
     {
-        return Task.FromResult(_dbContext.Add(entity));
+        await _dbContext.AddAsync(entity);
+        return entity;
     }
 
     public async Task<T?> GetItem(long id)

@@ -11,6 +11,8 @@ public class UserRepository : BaseRepository<UserMaster>, UserRepositoryInterfac
     {
     }
 
+
+
     public Task<UserMaster?> GetUserById(long id)
     {
         return GetItem(id);
@@ -29,5 +31,10 @@ public class UserRepository : BaseRepository<UserMaster>, UserRepositoryInterfac
     public Task RemoveUserById(long id)
     {
         throw new NotImplementedException();
+    }
+
+    public Task<long> CreateUser(UserMaster user)
+    {
+        return base.Create(user);
     }
 }

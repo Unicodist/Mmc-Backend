@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v6", new OpenApiInfo() {Title="Mmc.Api",Version="v6"});
+    c.SwaggerDoc("Mechi Api", new OpenApiInfo() {Title="Mmc.Api",Version="v6"});
 });
 
 //Add DbContext to the solution
@@ -38,7 +38,7 @@ app.UseStaticFiles();
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
-    options.SwaggerEndpoint("/swagger/v6/swagger.json","Mmc.Api v6");
+    options.SwaggerEndpoint("/swagger/Mechi Api/swagger.json","Mmc.Api v6");
 });
 
 app.UseRouting();

@@ -1,3 +1,4 @@
+using Mechi.Backend.Services;
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Core.Entity;
 using Mmc.Data;
@@ -10,15 +11,15 @@ public class BlogController
     private BaseDbContext _context = new();
     
     [HttpGet]
-    [Route("api/blog/getall")]
-    public async Task<string> GetAll()
+    [Route("api/blog")]
+    public async Task<string> Get()
     {
-        return "Hello World";
+        return "Hello world";
     }
 
     [HttpGet]
-    [Route("api/blog/get{id}")]
-    public async Task<BlogMaster> Get(int id)
+    [Route("api/blog{id}")]
+    public async Task<BlogMaster?> Get(int id)
     {
         return await _context.BlogMasters.FindAsync(id);
     }
