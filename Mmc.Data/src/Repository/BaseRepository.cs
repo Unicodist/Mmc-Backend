@@ -33,7 +33,14 @@ public class BaseRepository<T> : BaseRepositoryInterface<T> where T:class
 
     public Task Delete(T entity)
     {
-        return Task.FromResult(_dbSet.Remove(entity));
+        _dbSet.Remove(entity);
+        return Task.CompletedTask;
+    }
+
+    public Task DeleteById(long id)
+    {
+        _dbSet.Remove(_dbSet.Find(id));
+        return Task.CompletedTask;
     }
 
     public IQueryable<T> GetQueryable()

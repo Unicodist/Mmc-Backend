@@ -14,6 +14,6 @@ public class UserMasterEntryConfiguration : IEntityTypeConfiguration<UserMaster>
         builder.Property(u => u.UserMasterName).HasColumnName("user_name");
         builder.Property(u => u.UserMasterCredentialId).HasColumnName("user_credentials");
 
-        builder.HasOne(u => u.UserCredentials).WithOne(uc => uc.UserCredentialsUser).HasForeignKey<UserCredentials>(uc=>uc.UserCredentialsUserId);
+        builder.HasOne(u => u.UserMasterCredential).WithOne(uc => uc.UserCredentialsUser).HasForeignKey<UserCredentials>(uc=>uc.UserCredentialsUserId);
     }
 }

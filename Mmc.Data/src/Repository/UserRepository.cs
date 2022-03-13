@@ -18,11 +18,6 @@ public class UserRepository : BaseRepository<UserMaster>, UserRepositoryInterfac
         return GetItem(id);
     }
 
-    public Task<bool> LoginUserWithCredentials(UserCredentials credentials)
-    {
-        throw new NotImplementedException();
-    }
-
     public async Task<ICollection<UserMaster>> GetUsersByName(string Name)
     {
         return await GetQueryable().ToListAsync();
@@ -30,11 +25,13 @@ public class UserRepository : BaseRepository<UserMaster>, UserRepositoryInterfac
 
     public Task RemoveUserById(long id)
     {
-        throw new NotImplementedException();
+        base.DeleteById(id);
+        return Task.CompletedTask;
     }
 
     public Task<long> CreateUser(UserMaster user)
     {
-        return base.Create(user);
+        Task<UserMaster> um = Create(user);
+        return Task.FromResult(um.Result.UserMasterId);
     }
 }

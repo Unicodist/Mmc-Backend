@@ -13,9 +13,9 @@ public class UserServices
         UserMaster createUserMaster = new UserMaster()
         {
             UserMasterName = userCreateDto.FirstName + " " + userCreateDto.LastName,
-            UserMasterCredentials = new UserCredentials() { UserCredentialsEmail = userCreateDto.Email }
+            UserMasterCredential = new UserCredentials() { UserCredentialsEmail = userCreateDto.Email }
         };
-        createUserMaster.UserMasterCredentials.SetPassword(userCreateDto.Password);
+        createUserMaster.UserMasterCredential.SetPassword(userCreateDto.Password);
 
         await _context.AddAsync(createUserMaster);
         return createUserMaster.UserMasterId;
