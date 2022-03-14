@@ -1,4 +1,4 @@
-using Mmc.Core.Entity;
+using Mmc.User.Entity;
 
 namespace Mmc.Core.Repository;
 

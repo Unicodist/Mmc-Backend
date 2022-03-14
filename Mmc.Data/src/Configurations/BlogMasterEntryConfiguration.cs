@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Mmc.Core.Entity;
+using Mmc.Blog.Entity;
 
 namespace Mmc.Data.Configurations;
 

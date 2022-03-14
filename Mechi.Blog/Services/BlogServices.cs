@@ -1,4 +1,4 @@
-using Mmc.Core.Entity;
+using Mmc.Blog.Entity;
 using Mmc.Data.Repository;
 using Mmc.Data;
 

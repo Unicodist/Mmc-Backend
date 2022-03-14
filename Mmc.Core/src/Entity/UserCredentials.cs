@@ -1,6 +1,6 @@
 using Mmc.Blog.ViewModel;
 
-namespace Mmc.Core.Entity;
+namespace Mmc.User.Entity;
 
 public class UserCredentials
 {

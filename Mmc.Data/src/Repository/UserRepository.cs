@@ -1,7 +1,6 @@
-using System.Collections.Immutable;
 using Microsoft.EntityFrameworkCore;
-using Mmc.Core.Entity;
 using Mmc.Core.Repository;
+using Mmc.User.Entity;
 
 namespace Mmc.Data.Repository;
 

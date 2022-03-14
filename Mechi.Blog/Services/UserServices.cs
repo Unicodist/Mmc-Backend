@@ -1,5 +1,5 @@
 using Mechi.Backend.Dto;
-using Mmc.Core.Entity;
+using Mmc.User.Entity;
 using Mmc.Data;
 using Mmc.Data.Repository;
 

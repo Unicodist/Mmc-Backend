@@ -1,11 +1,10 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Mmc.User.Entity;
 
-namespace Mmc.Core.Entity;
+namespace Mmc.Blog.Entity;
 
 public class BlogMaster
 {
-    public int BlogMasterId { get; set; }
+    public int BlogMasterId { get; private set; }
     public string BlogMasterTitle { get; set; } = null!;
     public long BlogMasterAuthorAdminId { get; set; }
     public string BlogMasterBody { get; set; } = null!;

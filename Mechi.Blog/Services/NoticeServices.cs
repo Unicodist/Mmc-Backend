@@ -1,4 +1,4 @@
-using Mmc.Core.Entity;
+using Mmc.Notice.Entity;
 using Mmc.Data;
 using Mmc.Data.Repository;
 

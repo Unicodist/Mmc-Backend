@@ -1,8 +1,8 @@
-using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
-using Mmc.Core.Entity;
-using Microsoft.Extensions.Configuration;
+using Mmc.Blog.Entity;
 using Mmc.Data.Configurations;
+using Mmc.Notice.Entity;
+using Mmc.User.Entity;
 
 namespace Mmc.Data;
 

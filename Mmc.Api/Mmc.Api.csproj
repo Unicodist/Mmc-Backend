@@ -14,10 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Services" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Mmc.Data\Mmc.Data.csproj" />
     </ItemGroup>
 

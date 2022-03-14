@@ -1,5 +1,5 @@
-using Mmc.Core.Entity;
 using Mmc.Core.Repository;
+using Mmc.Notice.Entity;
 
 namespace Mmc.Data.Repository;
 

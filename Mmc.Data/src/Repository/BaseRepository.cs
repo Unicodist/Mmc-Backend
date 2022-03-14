@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Mmc.Core.Entity;
 using Mmc.Core.Repository;
 
 namespace Mmc.Data.Repository;

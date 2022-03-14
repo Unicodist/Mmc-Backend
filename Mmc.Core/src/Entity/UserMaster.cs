@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Mmc.Blog.Entity;
+using Mmc.Notice.Entity;
 
-namespace Mmc.Core.Entity;
-[Table("user_master")]
+namespace Mmc.User.Entity;
 public class UserMaster
 {
     public long UserMasterId { get; set; }

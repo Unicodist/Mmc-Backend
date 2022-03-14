@@ -368,7 +368,10 @@
         },
         "runtime": {
           "bin/placeholder/Mmc.Api.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Mmc.Core/1.0.0": {
         "type": "project",
