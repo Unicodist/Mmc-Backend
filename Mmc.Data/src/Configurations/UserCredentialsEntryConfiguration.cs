@@ -10,8 +10,10 @@ public class UserCredentialsEntryConfiguration : IEntityTypeConfiguration<UserCr
     {
         builder.ToTable("User_Credentials");
         builder.HasKey(u => u.UserCredentialsId);
-        builder.Property(u => u.UserCredentialsId).HasColumnType("INT(11)");
-        builder.Property(u => u.UserCredentialsEmail).HasColumnType("TEXT").IsRequired();
-        builder.Property(u => u.UserCredentialsPassword).HasColumnType("TEXT").IsRequired();
+        builder.Property(u => u.UserCredentialsId).HasColumnName("user_credentials_id");
+        builder.Property(u => u.UserCredentialsEmail).HasColumnName("user_credentials_email").IsRequired();
+        builder.Property(u => u.UserCredentialsPassword).HasColumnName("user_credentials_password").IsRequired();
+
+        builder.HasOne(uc => uc.UserCredentialsUser).WithOne(u => u.UserMasterCredential);
     }
 }

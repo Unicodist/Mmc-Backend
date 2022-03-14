@@ -21,7 +21,7 @@ namespace Mmc.Data.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     user_name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    UserMasterCredentialId = table.Column<int>(type: "int", nullable: false)
+                    user_credentials = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,23 +33,49 @@ namespace Mmc.Data.Migrations
                 name: "blog_master",
                 columns: table => new
                 {
-                    BlogMasterId = table.Column<int>(type: "INT(11)", nullable: false)
+                    blog_master_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    BlogMasterTitle = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                    blog_master_title = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BlogMasterAuthorAdminId = table.Column<long>(type: "bigint", nullable: false),
-                    BlogMasterBody = table.Column<string>(type: "TEXT", nullable: false)
+                    blog_master_author_id = table.Column<long>(type: "bigint", nullable: false),
+                    blog_master_body = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BlogMasterPostedDate = table.Column<DateTime>(type: "DATE", nullable: false),
-                    BlogMasterAuthorName = table.Column<string>(type: "VARCHAR(30)", nullable: false)
+                    blog_master_posted_date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    blog_master_author_name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_blog_master", x => x.BlogMasterId);
+                    table.PrimaryKey("PK_blog_master", x => x.blog_master_id);
                     table.ForeignKey(
-                        name: "FK_blog_master_User_Master_BlogMasterAuthorAdminId",
-                        column: x => x.BlogMasterAuthorAdminId,
+                        name: "FK_blog_master_User_Master_blog_master_author_id",
+                        column: x => x.blog_master_author_id,
+                        principalTable: "User_Master",
+                        principalColumn: "user_id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "notice_master",
+                columns: table => new
+                {
+                    notice_master_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    notice_master_title = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    notice_master_body = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    notice_master_picture = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    NoticeMasterAuthorUserMasterId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_notice_master", x => x.notice_master_id);
+                    table.ForeignKey(
+                        name: "FK_notice_master_User_Master_NoticeMasterAuthorUserMasterId",
+                        column: x => x.NoticeMasterAuthorUserMasterId,
                         principalTable: "User_Master",
                         principalColumn: "user_id",
                         onDelete: ReferentialAction.Cascade);
@@ -60,17 +86,17 @@ namespace Mmc.Data.Migrations
                 name: "User_Credentials",
                 columns: table => new
                 {
-                    UserCredentialsId = table.Column<int>(type: "INT(11)", nullable: false)
+                    user_credentials_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UserCredentialsEmail = table.Column<string>(type: "TEXT", nullable: false)
+                    user_credentials_email = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    UserCredentialsPassword = table.Column<string>(type: "TEXT", nullable: false)
+                    user_credentials_password = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     UserCredentialsUserId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User_Credentials", x => x.UserCredentialsId);
+                    table.PrimaryKey("PK_User_Credentials", x => x.user_credentials_id);
                     table.ForeignKey(
                         name: "FK_User_Credentials_User_Master_UserCredentialsUserId",
                         column: x => x.UserCredentialsUserId,
@@ -81,9 +107,14 @@ namespace Mmc.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_blog_master_BlogMasterAuthorAdminId",
+                name: "IX_blog_master_blog_master_author_id",
                 table: "blog_master",
-                column: "BlogMasterAuthorAdminId");
+                column: "blog_master_author_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_notice_master_NoticeMasterAuthorUserMasterId",
+                table: "notice_master",
+                column: "NoticeMasterAuthorUserMasterId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_Credentials_UserCredentialsUserId",
@@ -96,6 +127,9 @@ namespace Mmc.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "blog_master");
+
+            migrationBuilder.DropTable(
+                name: "notice_master");
 
             migrationBuilder.DropTable(
                 name: "User_Credentials");

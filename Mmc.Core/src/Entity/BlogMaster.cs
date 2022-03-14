@@ -7,7 +7,7 @@ public class BlogMaster
 {
     public int BlogMasterId { get; set; }
     public string BlogMasterTitle { get; set; } = null!;
-    public int BlogMasterAuthorAdminId { get; set; }
+    public long BlogMasterAuthorAdminId { get; set; }
     public string BlogMasterBody { get; set; } = null!;
     public DateTime BlogMasterPostedDate { get; set; }
     public string BlogMasterAuthorName { get; set; } = null!;

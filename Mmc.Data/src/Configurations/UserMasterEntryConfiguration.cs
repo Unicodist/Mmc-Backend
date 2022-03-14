@@ -15,5 +15,6 @@ public class UserMasterEntryConfiguration : IEntityTypeConfiguration<UserMaster>
         builder.Property(u => u.UserMasterCredentialId).HasColumnName("user_credentials");
 
         builder.HasOne(u => u.UserMasterCredential).WithOne(uc => uc.UserCredentialsUser).HasForeignKey<UserCredentials>(uc=>uc.UserCredentialsUserId);
+        builder.HasMany(u => u.Blogs).WithOne(b => b.BlogMasterAuthorAdmin);
     }
 }

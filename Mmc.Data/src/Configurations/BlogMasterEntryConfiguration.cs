@@ -10,13 +10,13 @@ public class BlogMasterEntryConfiguration : IEntityTypeConfiguration<BlogMaster>
     {
         builder.ToTable("blog_master");
         builder.HasKey(b => b.BlogMasterId);
-        builder.Property(b => b.BlogMasterId).HasColumnType("INT(11)");
-        builder.Property(b => b.BlogMasterTitle).HasColumnType("varchar").HasMaxLength(40);
-        builder.Property(b => b.BlogMasterBody).HasColumnType("TEXT");
-        builder.Property(b => b.BlogMasterAuthorAdminId).HasColumnType("INT(11)");
-        builder.Property(b => b.BlogMasterPostedDate).HasColumnType("DATE");
-        builder.Property(b => b.BlogMasterAuthorName).HasColumnType("VARCHAR(30)");
+        builder.Property(b => b.BlogMasterId).HasColumnName("blog_master_id");
+        builder.Property(b => b.BlogMasterTitle).HasColumnName("blog_master_title").HasMaxLength(40);
+        builder.Property(b => b.BlogMasterBody).HasColumnName("blog_master_body");
+        builder.Property(b => b.BlogMasterAuthorAdminId).HasColumnName("blog_master_author_id");
+        builder.Property(b => b.BlogMasterPostedDate).HasColumnName("blog_master_posted_date");
+        builder.Property(b => b.BlogMasterAuthorName).HasColumnName("blog_master_author_name");
 
-        builder.HasOne(b => b.BlogMasterAuthorAdmin).WithMany(u => u.Blogs).HasForeignKey("fk_blogmaster_adminid_usermaster");
+        builder.HasOne(b => b.BlogMasterAuthorAdmin).WithMany(u=>u.Blogs).HasForeignKey(b=>b.BlogMasterAuthorAdminId);
     }
 }

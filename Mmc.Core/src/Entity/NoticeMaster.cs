@@ -8,9 +8,11 @@ namespace Mmc.Core.Entity
 {
     public class NoticeMaster
     {
-        public long Id { get; set; }
-        public string Title { get; set; } = null!;
-        public string? Body { get; set; }
-        public string? NoticePicture { get; set; }
+        public long NoticeMasterId { get; set; }
+        public string NoticeMasterTitle { get; set; } = null!;
+        public string? NoticeMasterBody { get; set; }
+        public string? NoticeMasterNoticePicture { get; set; }
+        
+        public virtual UserMaster NoticeMasterAuthor { get; set; }
     }
 }

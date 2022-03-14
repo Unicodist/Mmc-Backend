@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\mmc.data\\Mmc.Data.csproj": {}
+    "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Data\\Mmc.Data.csproj": {}
   },
   "projects": {
     "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Core\\Mmc.Core.csproj": {
@@ -58,14 +58,14 @@
         }
       }
     },
-    "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\mmc.data\\Mmc.Data.csproj": {
+    "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Data\\Mmc.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\mmc.data\\Mmc.Data.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Data\\Mmc.Data.csproj",
         "projectName": "Mmc.Data",
-        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\mmc.data\\Mmc.Data.csproj",
+        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Data\\Mmc.Data.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\mmc.data\\obj\\",
+        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",

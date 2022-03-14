@@ -10,5 +10,6 @@ public class UserMaster
     public int UserMasterCredentialId { get; set; }
     public UserCredentials UserMasterCredential { get; set; } = null!;
 
-    public virtual IList<BlogMaster>? Blogs { get; set; }
+    public virtual IList<BlogMaster?> Blogs { get; set; } = new List<BlogMaster?>();
+    public virtual IList<NoticeMaster?> Notices { get; set; } = new List<NoticeMaster?>();
 }
