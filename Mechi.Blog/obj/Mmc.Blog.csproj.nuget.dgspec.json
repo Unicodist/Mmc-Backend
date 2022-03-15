@@ -47,6 +47,10 @@
             "bootstrap": {
               "target": "Package",
               "version": "[5.1.3, )"
+            },
+            "ckeditor-basic": {
+              "target": "Package",
+              "version": "[4.17.2, )"
             }
           },
           "imports": [

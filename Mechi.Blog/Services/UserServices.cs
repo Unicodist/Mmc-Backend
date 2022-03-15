@@ -1,4 +1,4 @@
-using Mechi.Backend.Dto;
+using Mechi.Blog.ViewModel;
 using Mmc.User.Entity;
 using Mmc.Data;
 using Mmc.Data.Repository;

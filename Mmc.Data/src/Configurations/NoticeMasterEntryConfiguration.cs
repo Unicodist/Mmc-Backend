@@ -14,9 +14,10 @@ namespace Mmc.Data.Configurations
             builder.Property(n => n.NoticeMasterTitle).HasColumnName("notice_master_title");
             builder.Property(n => n.NoticeMasterBody).HasColumnName("notice_master_body");
             builder.Property(n => n.PostedOn).HasColumnName("notice_master_posted_date");
+            builder.Property(n => n.NoticeMasterAuthor).HasColumnName("notice_master_author_id");
             builder.Property(n => n.NoticeMasterNoticePicture).HasColumnName("notice_master_picture");
 
-            builder.HasOne(n => n.NoticeMasterAuthor).WithMany(u => u.Notices);
+            builder.HasOne(n => n.NoticeMasterAuthor).WithMany(u => u.Notices).HasForeignKey(n=>n.NoticeMasterAuthor);
         }
     }
 }
