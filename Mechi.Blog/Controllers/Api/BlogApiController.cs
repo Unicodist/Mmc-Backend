@@ -1,14 +1,15 @@
-using Mechi.Backend.Services;
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Api.Dto;
+using Mmc.Core.Repository;
 using Mmc.Data;
 
 namespace Mmc.Blog.Api;
 
 [ApiController]
+[Route("api/[controller]")]
 public class BlogApiController
 {
-    private BaseDbContext _context = new();
+    private BlogPostRepositoryInterface _blogPostRepository;
     
     [HttpGet]
     [Route("api/blog")]
@@ -21,7 +22,7 @@ public class BlogApiController
     [Route("api/blog{id}")]
     public async Task<BlogMasterListResponseApiModel?> Get(int id)
     {
-        var blogMaster = await _context.BlogMasters.FindAsync(id);
+        var blogMaster = await _blogPostRepository.GetById(id);
         BlogMasterListResponseApiModel dto = new BlogMasterListResponseApiModel()
         {
             Title = blogMaster.BlogMasterTitle,

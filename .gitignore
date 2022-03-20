@@ -5,3 +5,11 @@ Mechi.Blog/Views/Home/Index.cshtml
 Mechi.Blog/obj/staticwebassets.pack.sentinel
 Mechi.Blog/obj/Debug/net6.0/Mmc.Blog.pdb
 Mechi.Blog/obj/Debug/net6.0/Mmc.Blog.dll
+Mechi.Blog/Models/ViewModels/User/UserSignupViewModel.cs
+Mechi.Blog/Models/ViewModels/User/UserUpdateDto.cs
+Mechi.Blog/obj/Debug/net6.0/Mmc.Blog.assets.cache
+Mechi.Blog/obj/Debug/net6.0/Mmc.Blog.csproj.AssemblyReference.cache
+Mechi.Blog/obj/Debug/net6.0/Mmc.Blog.csproj.CoreCompileInputs.cache
+Mechi.Blog/obj/Debug/net6.0/Mmc.Blog.csproj.FileListAbsolute.txt
+*.dll
+*.pdb

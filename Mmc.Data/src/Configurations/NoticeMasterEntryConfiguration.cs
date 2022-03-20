@@ -1,23 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Mmc.Notice.Entity;
+using Mmc.User.Entity;
 
 namespace Mmc.Data.Configurations
 {
-    internal class NoticeMasterEntryConfiguration : IEntityTypeConfiguration<NoticeMaster>
+    internal class NoticeMasterEntryConfiguration : IEntityTypeConfiguration<NoticeMasterEntity>
     {
-        public void Configure(EntityTypeBuilder<NoticeMaster> builder)
+        public void Configure(EntityTypeBuilder<NoticeMasterEntity> builder)
         {
             builder.ToTable("notice_master");
             builder.HasKey(n => n.NoticeMasterId);
-            builder.Property(n => n.NoticeMasterId).HasColumnName("notice_master_id");
-            builder.Property(n => n.NoticeMasterTitle).HasColumnName("notice_master_title");
-            builder.Property(n => n.NoticeMasterBody).HasColumnName("notice_master_body");
-            builder.Property(n => n.PostedOn).HasColumnName("notice_master_posted_date");
-            builder.Property(n => n.NoticeMasterAuthor).HasColumnName("notice_master_author_id");
-            builder.Property(n => n.NoticeMasterNoticePicture).HasColumnName("notice_master_picture");
+            builder.Property(n => n.NoticeMasterTitle).IsRequired();
+            builder.Property(n => n.NoticeMasterBody).IsRequired();
+            builder.Property(n => n.PostedOn).HasDefaultValue(DateTime.Now);
+            builder.Property(n => n.NoticeMasterNoticePicture);
 
-            builder.HasOne(n => n.NoticeMasterAuthor).WithMany(u => u.Notices).HasForeignKey(n=>n.NoticeMasterAuthor);
+            builder.HasOne(n => n.NoticeMasterEntityAuthor)
+                .WithMany(u => u.Notices)
+                .HasForeignKey(n=>n.NoticeMasterAuthorId);
         }
     }
 }

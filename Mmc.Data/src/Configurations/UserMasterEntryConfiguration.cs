@@ -1,20 +1,20 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Mmc.Data.Configurations.TypeMapping;
 using Mmc.User.Entity;
 
 namespace Mmc.Data.Configurations;
 
-public class UserMasterEntryConfiguration : IEntityTypeConfiguration<UserMaster>
+public class UserMasterEntryConfiguration : IEntityTypeConfiguration<UserMasterEntity>
 {
-    public void Configure(EntityTypeBuilder<UserMaster> builder)
+    public void Configure(EntityTypeBuilder<UserMasterEntity> builder)
     {
         builder.ToTable("User_Master");
         builder.HasKey(u => u.UserMasterId);
-        builder.Property(u => u.UserMasterId).HasColumnName("user_id");
-        builder.Property(u => u.UserMasterName).HasColumnName("user_name");
-        builder.Property(u => u.UserMasterCredentialId).HasColumnName("user_credentials");
-
-        builder.HasOne(u => u.UserMasterCredential).WithOne(uc => uc.UserCredentialsUser).HasForeignKey<UserCredentials>(uc=>uc.UserCredentialsUserId);
-        builder.HasMany(u => u.Blogs).WithOne(b => b.BlogMasterAuthorAdmin).HasForeignKey(a => a.BlogMasterId);
+        builder.Property(u => u.UserMasterId).HasColumnType("bigint");
+        builder.Property(u => u.UserMasterName).IsRequired();
+        builder.Property(u => u.Email).IsRequired();
+        builder.Property(u => u.Password).IsRequired();
+        builder.Property(u => u.UserType).HasConversion(new UserTypeMapping());
     }
 }

@@ -1,0 +1,12 @@
+@model Mmc.Blog.ViewModel.UserSignupViewModel
+
+@Html.BeginForm("Login","Login"){
+    @Html.LabelFor(m=>m.FirstName)
+    @Html.TextBoxFor(m=>m.FirstName)
+    @Html.ValidationMessageFor(m=>m.FirstName)
+    
+    @Html.LabelFor(m=>m.LastName)
+    @Html.TextBoxFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Password)
+    @Html.TextBoxFor(m => m.Confirm)
+}

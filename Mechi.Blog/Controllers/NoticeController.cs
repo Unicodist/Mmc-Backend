@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Mechi.Backend.Controllers;
+namespace Mmc.Backend.Controllers;
 
 public class NoticeController : Controller
 {

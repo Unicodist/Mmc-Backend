@@ -1,4 +1,4 @@
-namespace Mechi.Blog.ViewModel;
+namespace Mmc.Blog.ViewModel;
 
 public class ReadModel
 {

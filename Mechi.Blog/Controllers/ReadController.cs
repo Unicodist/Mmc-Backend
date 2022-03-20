@@ -1,7 +1,7 @@
-﻿using Mechi.Blog.ViewModel;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Mmc.Blog.ViewModel;
 
-namespace Mechi.Backend.Controllers
+namespace Mmc.Backend.Controllers
 {
     public class ReadController : Controller
     {

@@ -1,3 +1,4 @@
+using Mmc.Backend;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Mmc.Data;
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -20,6 +22,9 @@ builder.Services.AddDbContext<BaseDbContext>(option =>
         new MySqlServerVersion(new Version(8, 0, 24)));
 });
 
+builder.Services.ConfWeb();
+builder.Services.ConfData();
+
 //End DbContext
 
 var app = builder.Build();
@@ -33,6 +38,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseSession();
 app.UseStaticFiles();
 
 app.UseSwagger();

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Mechi.Backend
+namespace Mmc.Backend
 {
     public class HomeController : Controller
     {

@@ -1,11 +1,11 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Mechi.Blog.ViewModel;
+namespace Mmc.Blog.ViewModel;
 
-public class UserCreateDto
+public class UserSignupViewModel
 {
-    public UserCreateDto(string? firstName, string? lastName, string? email, string? password, string? confirm)
+    public UserSignupViewModel(string? firstName, string? lastName, string? email, string? password, string? confirm)
     {
         FirstName = firstName;
         LastName = lastName;

@@ -26,14 +26,12 @@ public class BaseDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new UserCredentialsEntryConfiguration());
         modelBuilder.ApplyConfiguration(new UserMasterEntryConfiguration());
         modelBuilder.ApplyConfiguration(new BlogMasterEntryConfiguration());
         modelBuilder.ApplyConfiguration(new NoticeMasterEntryConfiguration());
     }
 
-    public DbSet<UserCredentials> UserCredentials { get; set; }
-    public DbSet<UserMaster> UserMasters { get; set; }
-    public DbSet<BlogMaster> BlogMasters { get; set; }
-    public DbSet<NoticeMaster> NoticeMasters { get; set; }
+    public DbSet<UserMasterEntity> UserMasters { get; set; }
+    public DbSet<BlogMasterEntity> BlogMasters { get; set; }
+    public DbSet<NoticeMasterEntity> NoticeMasters { get; set; }
 }

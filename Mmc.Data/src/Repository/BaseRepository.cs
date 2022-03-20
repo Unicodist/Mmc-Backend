@@ -1,45 +1,27 @@
+using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using Mmc.Core.Repository;
-
 namespace Mmc.Data.Repository;
 
 public class BaseRepository<T> : BaseRepositoryInterface<T> where T:class
 {
     private readonly BaseDbContext _dbContext;
     private readonly DbSet<T> _dbSet;
-    
-    public BaseRepository(BaseDbContext dbContext)
+
+
+    public BaseRepository(BaseDbContext context)
     {
-        _dbContext = dbContext;
+        _dbContext = context;
         _dbSet = _dbContext.Set<T>();
     }
-    
-    public async Task<T> Create(T entity)
+
+    public async Task<List<T>> GetAll()
     {
-        await _dbContext.AddAsync(entity);
-        return entity;
+        return await _dbSet.ToListAsync().ConfigureAwait(false)??new List<T>();
     }
 
-    public async Task<T?> GetItem(long id)
+    public async Task<T?> GetById(long id)
     {
         return await _dbSet.FindAsync(id).ConfigureAwait(false);
-    }
-
-    public Task<T> GetItem(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task Delete(T entity)
-    {
-        _dbSet.Remove(entity);
-        return Task.CompletedTask;
-    }
-
-    public Task DeleteById(long id)
-    {
-        _dbSet.Remove(_dbSet.Find(id));
-        return Task.CompletedTask;
     }
 
     public IQueryable<T> GetQueryable()
@@ -47,8 +29,40 @@ public class BaseRepository<T> : BaseRepositoryInterface<T> where T:class
         return _dbSet;
     }
 
-    public Task Update(T entity)
+    public async Task Insert(T t)
     {
-        return Task.FromResult(_dbContext.Update(entity));
+        await _dbSet.AddAsync(t).ConfigureAwait(false);
+        await _dbContext.SaveChangesAsync().ConfigureAwait(false);
+    }
+
+    public void Update(T t)
+    {
+        _dbSet.Update(t);
+    }
+
+    public void Delete(T entity)
+    {
+        _dbSet.Remove(entity);
+        _dbContext.SaveChanges();
+    }
+
+    public async Task<int> SaveChangesAsync()
+    {
+        return await _dbContext.SaveChangesAsync().ConfigureAwait(false);
+    }
+
+    public async Task<ICollection<T>> FindBy(Expression<Func<T, bool>> predicate)
+    {
+        return await _dbSet.Where(predicate).ToListAsync().ConfigureAwait(false);
+    }
+
+    public Task<ICollection<T>> FindAll(Expression<Func<T, bool>> match)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<int> Count()
+    {
+        return await _dbSet.CountAsync().ConfigureAwait(false);
     }
 }
