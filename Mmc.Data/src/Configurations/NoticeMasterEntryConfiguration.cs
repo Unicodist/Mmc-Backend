@@ -13,6 +13,7 @@ namespace Mmc.Data.Configurations
             builder.HasKey(n => n.NoticeMasterId);
             builder.Property(n => n.NoticeMasterTitle).IsRequired();
             builder.Property(n => n.NoticeMasterBody).IsRequired();
+            builder.Property(n => n.NoticeMasterAuthorId).IsRequired();
             builder.Property(n => n.PostedOn).HasDefaultValue(DateTime.Now);
             builder.Property(n => n.NoticeMasterNoticePicture);
 

@@ -21,7 +21,6 @@ namespace Mmc.Data.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     UserMasterName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    UserMasterCredentialId = table.Column<int>(type: "int", nullable: false),
                     UserType = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Email = table.Column<string>(type: "longtext", nullable: false)
@@ -46,17 +45,16 @@ namespace Mmc.Data.Migrations
                     BlogMasterAuthorAdminId = table.Column<long>(type: "bigint", nullable: false),
                     BlogMasterBody = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BlogMasterPostedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2022, 3, 21, 3, 41, 39, 243, DateTimeKind.Local).AddTicks(1684)),
+                    BlogMasterPostedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2022, 3, 22, 9, 7, 7, 415, DateTimeKind.Local).AddTicks(6112)),
                     BlogMasterAuthorName = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    BlogMasterEntityAuthorAdminUserMasterId = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_blog_master", x => x.BlogMasterId);
                     table.ForeignKey(
-                        name: "FK_blog_master_User_Master_BlogMasterEntityAuthorAdminUserMaste~",
-                        column: x => x.BlogMasterEntityAuthorAdminUserMasterId,
+                        name: "FK_blog_master_User_Master_BlogMasterAuthorAdminId",
+                        column: x => x.BlogMasterAuthorAdminId,
                         principalTable: "User_Master",
                         principalColumn: "UserMasterId",
                         onDelete: ReferentialAction.Cascade);
@@ -73,18 +71,17 @@ namespace Mmc.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     NoticeMasterBody = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PostedOn = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2022, 3, 21, 3, 41, 39, 243, DateTimeKind.Local).AddTicks(3578)),
+                    PostedOn = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2022, 3, 22, 9, 7, 7, 416, DateTimeKind.Local).AddTicks(1595)),
                     NoticeMasterNoticePicture = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    NoticeMasterAuthorId = table.Column<long>(type: "bigint", nullable: false),
-                    NoticeMasterEntityAuthorUserMasterId = table.Column<long>(type: "bigint", nullable: false)
+                    NoticeMasterAuthorId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_notice_master", x => x.NoticeMasterId);
                     table.ForeignKey(
-                        name: "FK_notice_master_User_Master_NoticeMasterEntityAuthorUserMaster~",
-                        column: x => x.NoticeMasterEntityAuthorUserMasterId,
+                        name: "FK_notice_master_User_Master_NoticeMasterAuthorId",
+                        column: x => x.NoticeMasterAuthorId,
                         principalTable: "User_Master",
                         principalColumn: "UserMasterId",
                         onDelete: ReferentialAction.Cascade);
@@ -92,14 +89,14 @@ namespace Mmc.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_blog_master_BlogMasterEntityAuthorAdminUserMasterId",
+                name: "IX_blog_master_BlogMasterAuthorAdminId",
                 table: "blog_master",
-                column: "BlogMasterEntityAuthorAdminUserMasterId");
+                column: "BlogMasterAuthorAdminId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_notice_master_NoticeMasterEntityAuthorUserMasterId",
+                name: "IX_notice_master_NoticeMasterAuthorId",
                 table: "notice_master",
-                column: "NoticeMasterEntityAuthorUserMasterId");
+                column: "NoticeMasterAuthorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

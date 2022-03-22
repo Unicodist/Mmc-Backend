@@ -13,3 +13,14 @@ Mechi.Blog/obj/Debug/net6.0/Mmc.Blog.csproj.CoreCompileInputs.cache
 Mechi.Blog/obj/Debug/net6.0/Mmc.Blog.csproj.FileListAbsolute.txt
 *.dll
 *.pdb
+Mechi.Backend.sln.DotSettings.user
+Mechi.Blog/obj/rider.project.restore.info
+Mechi.Backend.sln.DotSettings.user
+*.dll
+*.pdb
+Mechi.Blog/obj/Mmc.Blog.csproj.nuget.dgspec.json
+Mechi.Blog/obj/Debug/net6.0/staticwebassets.build.json
+Mechi.Blog/obj/project.assets.json
+*.cache
+Mechi.Blog/obj/rider.project.restore.info
+*.sentinel

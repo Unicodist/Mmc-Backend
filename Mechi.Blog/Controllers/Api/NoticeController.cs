@@ -11,6 +11,11 @@ namespace Mmc.Blog.Api;
 public class NoticeController : ControllerBase
 {
     private NoticeRepositoryInterface _noticeRepository;
+
+    public NoticeController(NoticeRepositoryInterface noticeRepository)
+    {
+        _noticeRepository = noticeRepository;
+    }
     [HttpGet]
     public async Task<IActionResult> Get()
     {

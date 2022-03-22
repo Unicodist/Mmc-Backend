@@ -6,8 +6,8 @@ namespace Mmc.Core.Repository;
 
 public interface NoticeRepositoryInterface
 {
-    public Task<List<NoticeMasterEntity>> GetAll();
-    public Task<NoticeMasterEntity> GetById(long id);
-    public Task Insert(NoticeMasterEntity noticeCreateDto);
-    public void Update(NoticeMasterEntity noticeUpdateDto);
+     Task<List<NoticeMasterEntity>> GetAll();
+     Task<NoticeMasterEntity> GetById(long id);
+     Task Insert(NoticeMasterEntity noticeCreateDto);
+     Task Update(NoticeMasterEntity noticeUpdateDto);
 }

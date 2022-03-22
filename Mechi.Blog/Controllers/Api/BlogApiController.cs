@@ -2,34 +2,41 @@ using Microsoft.AspNetCore.Mvc;
 using Mmc.Api.Dto;
 using Mmc.Core.Repository;
 using Mmc.Data;
+using Mmc.Data.Repository;
 
 namespace Mmc.Blog.Api;
 
 [ApiController]
 [Route("api/[controller]")]
-public class BlogApiController
+public class BlogApiController : ControllerBase
 {
     private BlogPostRepositoryInterface _blogPostRepository;
     
     [HttpGet]
-    [Route("api/blog")]
-    public async Task<string> Get()
+    public async Task<IActionResult> Get()
     {
-        return "Hello world";
+        var blogItems =await _blogPostRepository.GetAll();
+        var result = blogItems.Select(x => new BlogMasterResponseApiModel()
+        {
+            Title = x.BlogMasterTitle,
+            Body = x.BlogMasterBody,
+            Author = x.BlogMasterAuthorName,
+            Date = x.BlogMasterPostedDate.ToString()
+        });
+        return Ok(result);
     }
 
-    [HttpGet]
-    [Route("api/blog{id}")]
-    public async Task<BlogMasterListResponseApiModel?> Get(int id)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(int id)
     {
         var blogMaster = await _blogPostRepository.GetById(id);
-        BlogMasterListResponseApiModel dto = new BlogMasterListResponseApiModel()
+        BlogMasterResponseApiModel dto = new BlogMasterResponseApiModel()
         {
             Title = blogMaster.BlogMasterTitle,
             Body = blogMaster.BlogMasterBody,
             Author = blogMaster.BlogMasterAuthorName,
             Date = blogMaster.BlogMasterPostedDate.ToString()
         };
-        return dto;
+        return Ok(dto);
     }
 }

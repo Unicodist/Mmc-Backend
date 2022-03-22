@@ -11,7 +11,7 @@ using Mmc.Data;
 namespace Mmc.Data.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20220320215639_Initial")]
+    [Migration("20220322032207_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,13 +38,10 @@ namespace Mmc.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<long>("BlogMasterEntityAuthorAdminUserMasterId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("BlogMasterPostedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 3, 21, 3, 41, 39, 243, DateTimeKind.Local).AddTicks(1684));
+                        .HasDefaultValue(new DateTime(2022, 3, 22, 9, 7, 7, 415, DateTimeKind.Local).AddTicks(6112));
 
                     b.Property<string>("BlogMasterTitle")
                         .IsRequired()
@@ -53,7 +50,7 @@ namespace Mmc.Data.Migrations
 
                     b.HasKey("BlogMasterId");
 
-                    b.HasIndex("BlogMasterEntityAuthorAdminUserMasterId");
+                    b.HasIndex("BlogMasterAuthorAdminId");
 
                     b.ToTable("blog_master", (string)null);
                 });
@@ -71,9 +68,6 @@ namespace Mmc.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<long>("NoticeMasterEntityAuthorUserMasterId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("NoticeMasterNoticePicture")
                         .HasColumnType("longtext");
 
@@ -84,11 +78,11 @@ namespace Mmc.Data.Migrations
                     b.Property<DateTime>("PostedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 3, 21, 3, 41, 39, 243, DateTimeKind.Local).AddTicks(3578));
+                        .HasDefaultValue(new DateTime(2022, 3, 22, 9, 7, 7, 416, DateTimeKind.Local).AddTicks(1595));
 
                     b.HasKey("NoticeMasterId");
 
-                    b.HasIndex("NoticeMasterEntityAuthorUserMasterId");
+                    b.HasIndex("NoticeMasterAuthorId");
 
                     b.ToTable("notice_master", (string)null);
                 });
@@ -107,9 +101,6 @@ namespace Mmc.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("UserMasterCredentialId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserMasterName")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -127,7 +118,7 @@ namespace Mmc.Data.Migrations
                 {
                     b.HasOne("Mmc.User.Entity.UserMasterEntity", "BlogMasterEntityAuthorAdmin")
                         .WithMany("Blogs")
-                        .HasForeignKey("BlogMasterEntityAuthorAdminUserMasterId")
+                        .HasForeignKey("BlogMasterAuthorAdminId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -138,7 +129,7 @@ namespace Mmc.Data.Migrations
                 {
                     b.HasOne("Mmc.User.Entity.UserMasterEntity", "NoticeMasterEntityAuthor")
                         .WithMany("Notices")
-                        .HasForeignKey("NoticeMasterEntityAuthorUserMasterId")
+                        .HasForeignKey("NoticeMasterAuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

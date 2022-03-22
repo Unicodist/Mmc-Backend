@@ -4,23 +4,23 @@ namespace Mmc.Data.Repository;
 
 public interface BaseRepositoryInterface<T> where T : class
 {
-    public Task<List<T>> GetAll();
+    Task<List<T>> GetAll();
 
-    public Task<T?> GetById(long id);
+    Task<T?> GetById(long id);
 
-    public IQueryable<T> GetQueryable();
+    IQueryable<T> GetQueryable();
 
-    public Task Insert(T t);
+     Task Insert(T t);
 
-    public void Update(T t);
+    Task Update(T t);
         
-    public void Delete(T entity);
+     void Delete(T entity);
         
-    public Task<int> SaveChangesAsync();
+     Task<int> SaveChangesAsync();
 
-    public Task<ICollection<T>> FindBy(Expression<Func<T, bool>> predicate);
+     Task<ICollection<T>> FindBy(Expression<Func<T, bool>> predicate);
         
-    public Task<ICollection<T>> FindAll(Expression<Func<T, bool>> match);
+     Task<ICollection<T>> FindAll(Expression<Func<T, bool>> match);
 
-    public Task<int> Count();
+     Task<int> Count();
 }

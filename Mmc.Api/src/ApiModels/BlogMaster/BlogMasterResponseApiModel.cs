@@ -1,7 +1,7 @@
 using Mmc.Blog.Entity;
 namespace Mmc.Api.Dto;
 
-public class BlogMasterListResponseApiModel
+public class BlogMasterResponseApiModel
 {
     public string Title { get; set; }
     public string Body { get; set; }

@@ -8,4 +8,5 @@ public interface BlogPostRepositoryInterface
 {
     public Task<BlogMasterEntity> GetById(long id);
     public Task Insert(BlogMasterEntity blogMasterEntity);
+    public Task<List<BlogMasterEntity>> GetAll();
 }

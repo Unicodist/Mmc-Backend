@@ -35,9 +35,10 @@ public class BaseRepository<T> : BaseRepositoryInterface<T> where T:class
         await _dbContext.SaveChangesAsync().ConfigureAwait(false);
     }
 
-    public void Update(T t)
+    public async Task Update(T t)
     {
         _dbSet.Update(t);
+        await _dbContext.SaveChangesAsync().ConfigureAwait(false);
     }
 
     public void Delete(T entity)

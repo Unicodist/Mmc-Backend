@@ -9,9 +9,4 @@ public class BlogPostRepository : BaseRepository<BlogMasterEntity>, BlogPostRepo
     {
         
     }
-
-    public Task<BlogMasterEntity> GetById(long id)
-    {
-        throw new NotImplementedException();
-    }
 }

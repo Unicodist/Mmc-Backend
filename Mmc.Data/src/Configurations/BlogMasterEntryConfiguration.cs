@@ -12,8 +12,9 @@ public class BlogMasterEntryConfiguration : IEntityTypeConfiguration<BlogMasterE
         builder.HasKey(b => b.BlogMasterId);
         builder.Property(b => b.BlogMasterTitle).HasMaxLength(40);
         builder.Property(b => b.BlogMasterPostedDate).HasDefaultValue(DateTime.Now);
+        builder.Property(b => b.BlogMasterAuthorAdminId);
         builder.Property(b => b.BlogMasterAuthorName).IsRequired();
 
-        builder.HasOne(b => b.BlogMasterEntityAuthorAdmin).WithMany(u=>u.Blogs);
+        builder.HasOne(b => b.BlogMasterEntityAuthorAdmin).WithMany(u=>u.Blogs).HasForeignKey(b=>b.BlogMasterAuthorAdminId);
     }
 }
