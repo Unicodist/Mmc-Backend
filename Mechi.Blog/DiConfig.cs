@@ -1,7 +1,7 @@
 using Mmc.Core.Services;
 using Mmc.Core.Services.Interface;
 
-namespace Mmc.Backend;
+namespace Mmc.Blog;
 
 public static class DiConfig
 {

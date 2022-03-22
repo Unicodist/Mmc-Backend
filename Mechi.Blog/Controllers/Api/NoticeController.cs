@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Mmc.Api.Dto;
 using Mmc.Core.Repository;
-using Mmc.Notice.Entity;
 
 namespace Mmc.Blog.Api;
 

@@ -1,17 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Api.Dto;
 using Mmc.Core.Repository;
-using Mmc.Data;
-using Mmc.Data.Repository;
 
 namespace Mmc.Blog.Api;
 
 [ApiController]
 [Route("api/[controller]")]
-public class BlogApiController : ControllerBase
+public class BlogController : ControllerBase
 {
     private BlogPostRepositoryInterface _blogPostRepository;
-    
+
+    public BlogController(BlogPostRepositoryInterface blogPostRepository)
+    {
+        _blogPostRepository = blogPostRepository;
+    }
     [HttpGet]
     public async Task<IActionResult> Get()
     {
