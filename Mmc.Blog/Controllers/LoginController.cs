@@ -18,7 +18,11 @@ public class LoginController : Controller
         return View();
     }
 
-    public Task Login(UserSignUpModel model)
+    public IActionResult Register()
+    {
+        return View();
+    }
+    public Task CreateAction(UserSignUpModel model)
     {
         UserCreateDto userCreateDto = new()
         {
@@ -31,5 +35,10 @@ public class LoginController : Controller
         _userServices.Create(userCreateDto);
 
         return Task.CompletedTask;
+    }
+
+    public IActionResult LoginAction()
+    {
+        return Ok();
     }
 }

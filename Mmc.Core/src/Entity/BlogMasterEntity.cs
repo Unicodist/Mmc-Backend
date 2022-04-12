@@ -4,7 +4,7 @@ namespace Mmc.Blog.Entity;
 
 public class BlogMasterEntity
 {
-    public int BlogMasterId { get; private set; }
+    public long BlogMasterId { get; private set; }
     public string BlogMasterTitle { get; set; } = null!;
     public long BlogMasterAuthorAdminId { get; set; }
     public string BlogMasterBody { get; set; } = null!;

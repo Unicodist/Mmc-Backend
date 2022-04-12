@@ -8,7 +8,7 @@ namespace Mmc.Data;
 
 public class BaseDbContext : DbContext
 {
-    private string ConnectionString = "Server=localhost;Database=mmc_core;Uid=root;Pwd=(**)&^(()&Ashish;";
+    private string ConnectionString = "Server=localhost;Database=mmc_core;Uid=root;Pwd=";
     public BaseDbContext(DbContextOptions<BaseDbContext> options) : base(options)
     {
         

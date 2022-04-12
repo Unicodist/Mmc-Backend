@@ -41,6 +41,9 @@ app.UseHttpsRedirection();
 app.UseSession();
 app.UseStaticFiles();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
