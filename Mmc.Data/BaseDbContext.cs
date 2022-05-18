@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Mmc.Blog.Entity;
 using Mmc.Data.Configurations;
+using Mmc.Data.Model;
 using Mmc.Notice.Entity;
 using Mmc.User.Entity;
 
@@ -30,8 +31,4 @@ public class BaseDbContext : DbContext
         modelBuilder.ApplyConfiguration(new BlogMasterEntryConfiguration());
         modelBuilder.ApplyConfiguration(new NoticeMasterEntryConfiguration());
     }
-
-    public DbSet<UserMasterEntity> UserMasters { get; set; }
-    public DbSet<BlogMasterEntity> BlogMasters { get; set; }
-    public DbSet<NoticeMasterEntity> NoticeMasters { get; set; }
 }

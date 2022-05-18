@@ -1,0 +1,12 @@
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Blog\bin\Debug\net6.0\Mmc.Blog.deps.json
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Blog\bin\Debug\net6.0\Mmc.Blog.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Blog\bin\Debug\net6.0\Mmc.Blog.pdb
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Blog\obj\Debug\net6.0\Mmc.Blog.csproj.AssemblyReference.cache
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Blog\obj\Debug\net6.0\Mmc.Blog.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Blog\obj\Debug\net6.0\Mmc.Blog.AssemblyInfoInputs.cache
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Blog\obj\Debug\net6.0\Mmc.Blog.AssemblyInfo.cs
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Blog\obj\Debug\net6.0\Mmc.Blog.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Blog\obj\Debug\net6.0\Mmc.Blog.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Blog\obj\Debug\net6.0\refint\Mmc.Blog.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Blog\obj\Debug\net6.0\Mmc.Blog.pdb
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Blog\obj\Debug\net6.0\ref\Mmc.Blog.dll

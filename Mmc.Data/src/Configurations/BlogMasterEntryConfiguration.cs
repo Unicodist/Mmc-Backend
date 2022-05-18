@@ -1,20 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Mmc.Blog.Entity;
+using Mmc.Data.Model.Blog;
 
 namespace Mmc.Data.Configurations;
 
-public class BlogMasterEntryConfiguration : IEntityTypeConfiguration<BlogMasterEntity>
+public class BlogMasterEntryConfiguration : IEntityTypeConfiguration<BlogPostModel>
 {
-    public void Configure(EntityTypeBuilder<BlogMasterEntity> builder)
+    public void Configure(EntityTypeBuilder<BlogPostModel> builder)
     {
-        builder.ToTable("blog_master");
-        builder.HasKey(b => b.BlogMasterId);
-        builder.Property(b => b.BlogMasterTitle).HasMaxLength(40);
-        builder.Property(b => b.BlogMasterPostedDate).HasDefaultValue(DateTime.Now);
-        builder.Property(b => b.BlogMasterAuthorAdminId);
-        builder.Property(b => b.BlogMasterAuthorName).IsRequired();
+        builder.ToTable("blog_posts");
+        builder.HasKey(b => b.Id);
+        builder.Property(b => b.Title).HasMaxLength(40);
+        builder.Property(b => b.PostedDate).HasDefaultValue(DateTime.Now);
+        builder.Property(b => b.AdminId);
+        builder.Property(b => b.AuthorName).IsRequired();
 
-        builder.HasOne(b => b.BlogMasterEntityAuthorAdmin).WithMany(u=>u.Blogs).HasForeignKey(b=>b.BlogMasterAuthorAdminId);
+        builder.HasOne(b => b.AuthorAdmin).WithMany(u=>u.BlogPosts).HasForeignKey(b=>b.AdminId);
     }
 }

@@ -1,0 +1,17 @@
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\bin\Release\net6.0\Mmc.Data.deps.json
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\bin\Release\net6.0\Mmc.Data.runtimeconfig.json
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\bin\Release\net6.0\Mmc.Data.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\bin\Release\net6.0\Mmc.Data.pdb
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\bin\Release\net6.0\Mmc.Core.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\bin\Release\net6.0\Mmc.Core.pdb
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Release\net6.0\Mmc.Data.csproj.AssemblyReference.cache
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Release\net6.0\Mmc.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Release\net6.0\Mmc.Data.AssemblyInfoInputs.cache
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Release\net6.0\Mmc.Data.AssemblyInfo.cs
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Release\net6.0\Mmc.Data.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Release\net6.0\Mmc.Data.csproj.CopyComplete
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Release\net6.0\Mmc.Data.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Release\net6.0\refint\Mmc.Data.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Release\net6.0\Mmc.Data.pdb
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Release\net6.0\Mmc.Data.genruntimeconfig.cache
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Data\obj\Release\net6.0\ref\Mmc.Data.dll

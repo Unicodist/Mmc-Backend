@@ -1,0 +1,12 @@
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Notice\bin\Debug\net6.0\Mmc.Notice.deps.json
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Notice\bin\Debug\net6.0\Mmc.Notice.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Notice\bin\Debug\net6.0\Mmc.Notice.pdb
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Notice\obj\Debug\net6.0\Mmc.Notice.csproj.AssemblyReference.cache
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Notice\obj\Debug\net6.0\Mmc.Notice.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Notice\obj\Debug\net6.0\Mmc.Notice.AssemblyInfoInputs.cache
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Notice\obj\Debug\net6.0\Mmc.Notice.AssemblyInfo.cs
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Notice\obj\Debug\net6.0\Mmc.Notice.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Notice\obj\Debug\net6.0\Mmc.Notice.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Notice\obj\Debug\net6.0\refint\Mmc.Notice.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Notice\obj\Debug\net6.0\Mmc.Notice.pdb
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Notice\obj\Debug\net6.0\ref\Mmc.Notice.dll

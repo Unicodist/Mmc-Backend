@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="src\Mmc.Api" />
       <Folder Include="src\Mmc.Blog" />
       <Folder Include="src\Mmc.Data" />
     </ItemGroup>
@@ -18,7 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Mmc.Core\Mmc.Core.csproj" />
+      <ProjectReference Include="..\Mmc.Web\Mmc.Web.csproj" />
     </ItemGroup>
 
 </Project>

@@ -10,3 +10,10 @@ C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Core\obj\Debug\net6.0\Mmc.Core.dll
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Core\obj\Debug\net6.0\refint\Mmc.Core.dll
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Core\obj\Debug\net6.0\Mmc.Core.pdb
 C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Core\obj\Debug\net6.0\ref\Mmc.Core.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Core\bin\Debug\net6.0\Mmc.Blog.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Core\bin\Debug\net6.0\Mmc.Notice.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Core\bin\Debug\net6.0\Mmc.User.dll
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Core\bin\Debug\net6.0\Mmc.Blog.pdb
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Core\bin\Debug\net6.0\Mmc.Notice.pdb
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Core\bin\Debug\net6.0\Mmc.User.pdb
+C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Core\obj\Debug\net6.0\Mmc.Core.csproj.CopyComplete

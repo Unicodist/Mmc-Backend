@@ -550,17 +550,50 @@
           "lib/netstandard2.0/System.Text.Encodings.Web.dll": {}
         }
       },
+      "Mmc.Blog/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Mmc.Blog.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Mmc.Blog.dll": {}
+        }
+      },
       "Mmc.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Microsoft.AspNetCore.Session": "2.2.0"
+          "Microsoft.AspNetCore.Session": "2.2.0",
+          "Mmc.Blog": "1.0.0",
+          "Mmc.Notice": "1.0.0",
+          "Mmc.User": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Mmc.Core.dll": {}
         },
         "runtime": {
           "bin/placeholder/Mmc.Core.dll": {}
+        }
+      },
+      "Mmc.Notice/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Mmc.Notice.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Mmc.Notice.dll": {}
+        }
+      },
+      "Mmc.User/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Mmc.User.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Mmc.User.dll": {}
         }
       }
     }
@@ -1448,10 +1481,25 @@
         "version.txt"
       ]
     },
+    "Mmc.Blog/1.0.0": {
+      "type": "project",
+      "path": "../Mmc.Blog/Mmc.Blog.csproj",
+      "msbuildProject": "../Mmc.Blog/Mmc.Blog.csproj"
+    },
     "Mmc.Core/1.0.0": {
       "type": "project",
       "path": "../Mmc.Core/Mmc.Core.csproj",
       "msbuildProject": "../Mmc.Core/Mmc.Core.csproj"
+    },
+    "Mmc.Notice/1.0.0": {
+      "type": "project",
+      "path": "../Mmc.Notice/Mmc.Notice.csproj",
+      "msbuildProject": "../Mmc.Notice/Mmc.Notice.csproj"
+    },
+    "Mmc.User/1.0.0": {
+      "type": "project",
+      "path": "../Mmc.User/Mmc.User.csproj",
+      "msbuildProject": "../Mmc.User/Mmc.User.csproj"
     }
   },
   "projectFileDependencyGroups": {

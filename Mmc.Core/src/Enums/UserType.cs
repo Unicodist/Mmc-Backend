@@ -2,15 +2,15 @@ namespace Mmc.Core.Enum;
 
 public class UserType : BaseEnum
 {
-    private const string Sadmin = "SuperAdmin";
-    private const string Admin = "Admin";
-    private const string Mod = "Mod";
-    private const string User = "User";
+    private const string _superAdmin = "SuperAdmin";
+    private const string _admin = "Admin";
+    private const string _mod = "Mod";
+    private const string _user = "User";
 
-    public static UserType SUPERADMIN { get; set; } = new UserType(1,Sadmin);
-    public static UserType ADMIN { get; set; } = new UserType(2,Admin);
-    public static UserType MOD { get; set; } = new UserType(3,Mod);
-    public static UserType USER { get; set; } = new UserType(4, User);
+    public static UserType SuperAdmin { get; set; } = new UserType(1,_superAdmin);
+    public static UserType Admin { get; set; } = new UserType(2,_admin);
+    public static UserType Mod { get; set; } = new UserType(3,_mod);
+    public static UserType User { get; set; } = new UserType(4, _user);
 
     public UserType(int id, string name) : base(id, name)
     {

@@ -7,18 +7,11 @@ namespace Mmc.Core.Services;
 
 public class BlogServices : BlogServiceInterface
 {
-    private BlogPostRepositoryInterface _blogPostRepository;
+    private IBlogPostRepository _blogPostRepository;
     public async Task Create(BlogCreateDto blogCreateDto)
     {
-        BlogMasterEntity blog = new()
-        {
-            BlogMasterTitle = blogCreateDto.Title,
-            BlogMasterAuthorAdminId = 1,
-            BlogMasterAuthorName = blogCreateDto.AuthorName,
-            BlogMasterBody = blogCreateDto.Body,
-            BlogMasterPostedDate = blogCreateDto.PostedDate
-        };
-        await _blogPostRepository.Insert(blog);
+        var blogpost = _blogPostRepository.CreateInstance(blogCreateDto.Title,blogCreateDto.AuthorName,blogCreateDto.Body,blogCreateDto.PostedDate);
+        await _blogPostRepository.Insert(blogpost);
     }
 
     public Task Update(BlogUpdateDto blogUpdateDto)

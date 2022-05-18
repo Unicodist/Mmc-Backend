@@ -10,7 +10,7 @@ public static class DiConfig
     {
         services.AddScoped<UserRepositoryInterface, UserRepository>();
         services.AddScoped<UserRepository, UserRepository>();
-        services.AddScoped<BlogPostRepositoryInterface, BlogPostRepository>();
+        services.AddScoped<IBlogPostRepository, BlogPostRepository>();
         services.AddScoped<BlogPostRepository, BlogPostRepository>();
         services.AddScoped<NoticeRepositoryInterface, NoticeRepository>();
         services.AddScoped<NoticeRepository, NoticeRepository>();

@@ -19,41 +19,41 @@ namespace Mmc.Data.Migrations
                 .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Mmc.Blog.Entity.BlogMasterEntity", b =>
+            modelBuilder.Entity("Mmc.Data.Model.Blog.BlogPostModel", b =>
                 {
-                    b.Property<int>("BlogMasterId")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<long>("BlogMasterAuthorAdminId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("BlogMasterAuthorName")
+                    b.Property<long>("AdminId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("AuthorName")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("BlogMasterBody")
+                    b.Property<string>("Body")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("BlogMasterPostedDate")
+                    b.Property<DateTime>("PostedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 3, 26, 23, 15, 13, 44, DateTimeKind.Local).AddTicks(866));
+                        .HasDefaultValue(new DateTime(2022, 5, 19, 4, 10, 53, 846, DateTimeKind.Local).AddTicks(5462));
 
-                    b.Property<string>("BlogMasterTitle")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
 
-                    b.HasKey("BlogMasterId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("BlogMasterAuthorAdminId");
+                    b.HasIndex("AdminId");
 
-                    b.ToTable("blog_master", (string)null);
+                    b.ToTable("blog_posts", (string)null);
                 });
 
-            modelBuilder.Entity("Mmc.Notice.Entity.NoticeMasterEntity", b =>
+            modelBuilder.Entity("Mmc.Data.Model.Notice.NoticeModel", b =>
                 {
                     b.Property<long>("NoticeMasterId")
                         .ValueGeneratedOnAdd()
@@ -76,56 +76,64 @@ namespace Mmc.Data.Migrations
                     b.Property<DateTime>("PostedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 3, 26, 23, 15, 13, 44, DateTimeKind.Local).AddTicks(4335));
+                        .HasDefaultValue(new DateTime(2022, 5, 19, 4, 10, 53, 846, DateTimeKind.Local).AddTicks(8762));
 
                     b.HasKey("NoticeMasterId");
 
                     b.HasIndex("NoticeMasterAuthorId");
 
-                    b.ToTable("notice_master", (string)null);
+                    b.ToTable("notice", (string)null);
                 });
 
-            modelBuilder.Entity("Mmc.User.Entity.UserMasterEntity", b =>
+            modelBuilder.Entity("Mmc.Data.Model.User.UserModel", b =>
                 {
-                    b.Property<long>("UserMasterId")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("email");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("name");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("password");
 
-                    b.Property<string>("UserMasterName")
+                    b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("UserType")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("user_type");
 
-                    b.HasKey("UserMasterId");
+                    b.HasKey("Id");
 
-                    b.ToTable("User_Master", (string)null);
+                    b.ToTable("user", (string)null);
                 });
 
-            modelBuilder.Entity("Mmc.Blog.Entity.BlogMasterEntity", b =>
+            modelBuilder.Entity("Mmc.Data.Model.Blog.BlogPostModel", b =>
                 {
-                    b.HasOne("Mmc.User.Entity.UserMasterEntity", "BlogMasterEntityAuthorAdmin")
-                        .WithMany("Blogs")
-                        .HasForeignKey("BlogMasterAuthorAdminId")
+                    b.HasOne("Mmc.Data.Model.User.UserModel", "AuthorAdmin")
+                        .WithMany("BlogPosts")
+                        .HasForeignKey("AdminId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BlogMasterEntityAuthorAdmin");
+                    b.Navigation("AuthorAdmin");
                 });
 
-            modelBuilder.Entity("Mmc.Notice.Entity.NoticeMasterEntity", b =>
+            modelBuilder.Entity("Mmc.Data.Model.Notice.NoticeModel", b =>
                 {
-                    b.HasOne("Mmc.User.Entity.UserMasterEntity", "NoticeMasterEntityAuthor")
+                    b.HasOne("Mmc.Data.Model.User.UserModel", "NoticeMasterEntityAuthor")
                         .WithMany("Notices")
                         .HasForeignKey("NoticeMasterAuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -134,9 +142,9 @@ namespace Mmc.Data.Migrations
                     b.Navigation("NoticeMasterEntityAuthor");
                 });
 
-            modelBuilder.Entity("Mmc.User.Entity.UserMasterEntity", b =>
+            modelBuilder.Entity("Mmc.Data.Model.User.UserModel", b =>
                 {
-                    b.Navigation("Blogs");
+                    b.Navigation("BlogPosts");
 
                     b.Navigation("Notices");
                 });

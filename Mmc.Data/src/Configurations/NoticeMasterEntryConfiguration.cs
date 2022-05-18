@@ -1,15 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Mmc.Data.Model;
+using Mmc.Data.Model.Notice;
 using Mmc.Notice.Entity;
 using Mmc.User.Entity;
 
 namespace Mmc.Data.Configurations
 {
-    internal class NoticeMasterEntryConfiguration : IEntityTypeConfiguration<NoticeMasterEntity>
+    internal class NoticeMasterEntryConfiguration : IEntityTypeConfiguration<NoticeModel>
     {
-        public void Configure(EntityTypeBuilder<NoticeMasterEntity> builder)
+        public void Configure(EntityTypeBuilder<NoticeModel> builder)
         {
-            builder.ToTable("notice_master");
+            builder.ToTable("notice");
             builder.HasKey(n => n.NoticeMasterId);
             builder.Property(n => n.NoticeMasterTitle).IsRequired();
             builder.Property(n => n.NoticeMasterBody).IsRequired();

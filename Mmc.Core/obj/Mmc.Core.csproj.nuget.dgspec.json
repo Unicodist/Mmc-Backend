@@ -4,14 +4,14 @@
     "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Core\\Mmc.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Core\\Mmc.Core.csproj": {
+    "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Blog\\Mmc.Blog.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Core\\Mmc.Core.csproj",
-        "projectName": "Mmc.Core",
-        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Core\\Mmc.Core.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Blog\\Mmc.Blog.csproj",
+        "projectName": "Mmc.Blog",
+        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Blog\\Mmc.Blog.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Core\\obj\\",
+        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Blog\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,12 +39,184 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Core\\Mmc.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Core\\Mmc.Core.csproj",
+        "projectName": "Mmc.Core",
+        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Core\\Mmc.Core.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Blog\\Mmc.Blog.csproj": {
+                "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Blog\\Mmc.Blog.csproj"
+              },
+              "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Notice\\Mmc.Notice.csproj": {
+                "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Notice\\Mmc.Notice.csproj"
+              },
+              "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.User\\Mmc.User.csproj": {
+                "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.User\\Mmc.User.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.AspNetCore.Session": {
               "target": "Package",
               "version": "[2.2.0, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Notice\\Mmc.Notice.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Notice\\Mmc.Notice.csproj",
+        "projectName": "Mmc.Notice",
+        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Notice\\Mmc.Notice.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.Notice\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.User\\Mmc.User.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.User\\Mmc.User.csproj",
+        "projectName": "Mmc.User",
+        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.User\\Mmc.User.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\Mechi.Backend\\Mmc.User\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
           "imports": [
             "net461",
             "net462",

@@ -7,16 +7,10 @@ namespace Mmc.Core.Services;
 
 public class UserServices : UserServiceInterface
 {
-    private UserRepositoryInterface _userRepositoryInterface;
+    private UserRepositoryInterface _userRepo;
     public async Task Create(UserCreateDto userCreateDto)
     {
-        UserMasterEntity user = new UserMasterEntity()
-        {
-            UserMasterName = userCreateDto.Name,
-            Email = userCreateDto.Email,
-            Password = userCreateDto.Password,
-            UserType = userCreateDto.UserType
-        };
-        await _userRepositoryInterface.Insert(user);
+        var user = _userRepo.CreateInstance(userCreateDto.Name,userCreateDto.Email,userCreateDto.Password, userCreateDto.Username);
+        await _userRepo.Insert(user);
     }
 }
