@@ -7,4 +7,5 @@ public interface IState
     long CountryId { get; }
     string Description { get; }
     ICountry Country { get; }
+    ICollection<IVdc> Vdcs { get; }
 }

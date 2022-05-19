@@ -10,4 +10,6 @@ public class StateModel : IState
     public string Description { get; set; }
     public CountryModel Country { get; }
     ICountry IState.Country => Country;
+    public ICollection<VdcModel> Vdcs { get; }
+    ICollection<IVdc> IState.Vdcs => Vdcs.Cast<IVdc>().ToList();
 }
