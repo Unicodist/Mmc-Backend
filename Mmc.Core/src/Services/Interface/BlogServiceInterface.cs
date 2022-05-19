@@ -1,3 +1,4 @@
+using Mmc.Blog.Dto;
 using Mmc.Core.Dto;
 
 namespace Mmc.Core.Services.Interface;

@@ -16,5 +16,6 @@ public class BlogPostConfiguration : IEntityTypeConfiguration<BlogPostModel>
         builder.Property(b => b.AuthorName).IsRequired();
 
         builder.HasOne(b => b.AuthorAdmin).WithMany(u=>u.BlogPosts).HasForeignKey(b=>b.AdminId);
+        builder.HasOne(b => b.Category).WithMany(u=>u.BlogPosts).HasForeignKey(b=>b.CategoryId);
     }
 }

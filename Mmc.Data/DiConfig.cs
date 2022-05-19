@@ -1,6 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Mmc.Core.Repository;
 using Mmc.Data.Repository;
+using Mmc.Data.Repository.Blog;
+using Mmc.Data.Repository.Notice;
+using Mmc.Data.Repository.User;
 
 namespace Mmc.Data;
 

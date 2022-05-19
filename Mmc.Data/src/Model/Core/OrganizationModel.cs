@@ -1,6 +1,6 @@
 using Mmc.Data.Model.Address;
 
-namespace Mmc.Core.Entity;
+namespace Mmc.Data.Model.Core;
 
 public class OrganizationModel
 

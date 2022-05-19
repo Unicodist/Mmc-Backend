@@ -1,4 +1,4 @@
-namespace Mmc.Core.Dto;
+namespace Mmc.Blog.Dto;
 
 public class BlogUpdateDto
 {

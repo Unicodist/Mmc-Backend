@@ -1,6 +1,7 @@
 using Mmc.Core.Dto;
 using Mmc.Core.Repository;
 using Mmc.Core.Services.Interface;
+using Mmc.Notice.Dto;
 using Mmc.Notice.Entity;
 
 namespace Mmc.Core.Services;

@@ -1,4 +1,5 @@
 using Mmc.Core.Dto;
+using Mmc.Notice.Dto;
 
 namespace Mmc.Core.Services.Interface;
 

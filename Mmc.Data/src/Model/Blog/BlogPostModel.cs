@@ -12,6 +12,9 @@ public class BlogPostModel : IBlogPost
     public string Body { get; set; } = null!;
     public DateTime PostedDate { get; set; }
     public string AuthorName { get; set; } = null!;
+    public long? CategoryId { get; set; }
     public virtual UserModel AuthorAdmin { get; set; } = null!;
     IUser IBlogPost.AuthorAdmin => AuthorAdmin;
+    public CategoryModel Category { get; set; }
+    ICategory IBlogPost.Category => Category;
 }

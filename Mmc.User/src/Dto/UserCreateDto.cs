@@ -1,5 +1,3 @@
-using Mmc.Core.Enum;
-
 namespace Mmc.Core.Dto;
 
 public class UserCreateDto

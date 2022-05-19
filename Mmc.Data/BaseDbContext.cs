@@ -1,11 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using Mmc.Blog.Entity;
 using Mmc.Data.Configurations;
+using Mmc.Data.Configurations.Address;
 using Mmc.Data.Configurations.Blog;
 using Mmc.Data.Configurations.User;
-using Mmc.Data.Model;
-using Mmc.Notice.Entity;
-using Mmc.User.Entity;
 
 namespace Mmc.Data;
 
@@ -29,8 +26,32 @@ public class BaseDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new UserConfiguration());
+        #region Blog
+
         modelBuilder.ApplyConfiguration(new BlogPostConfiguration());
+        modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+
+        #endregion
+
+        #region Notice
+
         modelBuilder.ApplyConfiguration(new NoticeConfiguration());
+
+        #endregion
+
+        #region User
+
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
+
+        #endregion
+
+        #region Address
+
+        modelBuilder.ApplyConfiguration(new CountryConfiguration());
+        modelBuilder.ApplyConfiguration(new StateConfiguration());
+        modelBuilder.ApplyConfiguration(new VdcConfiguration());
+
+        #endregion
+        
     }
 }

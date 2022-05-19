@@ -4,4 +4,6 @@ public class ColumnTypes
 {
     public const string VARCHAR = "varchar";
     public const string BIGINT = "bigint";
+
+    public const string? TEXT = "text";
 }

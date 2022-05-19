@@ -1,6 +1,6 @@
 using Mmc.Address.Entity.Interface;
 
-namespace Mmc.Core.Entity;
+namespace Mmc.Core.Entity.Interface;
 
 public interface IOrganization
 {

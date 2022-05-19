@@ -1,11 +1,8 @@
-using Mmc.Core.Dto;
 using Mmc.Core.Repository;
-using Mmc.Data.Model;
 using Mmc.Data.Model.Notice;
-using Mmc.Notice.Entity;
 using Mmc.Notice.Entity.Interface;
 
-namespace Mmc.Data.Repository;
+namespace Mmc.Data.Repository.Notice;
 
 public class NoticeRepository : BaseRepository<NoticeModel>, NoticeRepositoryInterface
 {

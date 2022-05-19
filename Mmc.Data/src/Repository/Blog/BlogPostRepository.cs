@@ -2,7 +2,7 @@ using Mmc.Blog.Entity;
 using Mmc.Core.Repository;
 using Mmc.Data.Model.Blog;
 
-namespace Mmc.Data.Repository;
+namespace Mmc.Data.Repository.Blog;
 
 public class BlogPostRepository : BaseRepository<BlogPostModel>, IBlogPostRepository
 {

@@ -1,6 +1,5 @@
+using Mechi.Backend;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using Mmc.Blog;
 using Mmc.Data;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,12 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Mmc.Core.Repository;
 using Mmc.Data.Model.User;
-using Mmc.User.Entity;
 using Mmc.User.Entity.Interface;
 using Mmc.User.Enum;
 using Mmc.User.Exception;
 
-namespace Mmc.Data.Repository;
+namespace Mmc.Data.Repository.User;
 
 public class UserRepository : BaseRepository<UserModel>, UserRepositoryInterface
 {

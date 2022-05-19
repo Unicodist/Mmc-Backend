@@ -11,4 +11,5 @@ public interface IBlogPost
     DateTime PostedDate { get; }
     string AuthorName { get; }
     IUser AuthorAdmin { get; }
+    ICategory Category { get; }
 }

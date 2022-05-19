@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Mmc.Blog.ViewModel;
 using Mmc.Data.Repository;
+using Mmc.Data.Repository.Blog;
 
 namespace Mmc.Backend.Controllers
 {
