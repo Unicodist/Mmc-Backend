@@ -7,8 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="src\Dto" />
-      <Folder Include="src\Service" />
+      <Folder Include="src\Enum" />
+      <Folder Include="src\Repository" />
     </ItemGroup>
 
 </Project>

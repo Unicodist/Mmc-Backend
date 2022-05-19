@@ -11,6 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Mmc.Address\Mmc.Address.csproj" />
       <ProjectReference Include="..\Mmc.Blog\Mmc.Blog.csproj" />
       <ProjectReference Include="..\Mmc.Notice\Mmc.Notice.csproj" />
       <ProjectReference Include="..\Mmc.User\Mmc.User.csproj" />

@@ -22,4 +22,8 @@
       <ProjectReference Include="..\Mmc.Core\Mmc.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="src\Configurations\Core" />
+    </ItemGroup>
+
 </Project>

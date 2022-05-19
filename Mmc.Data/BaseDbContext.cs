@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Mmc.Blog.Entity;
 using Mmc.Data.Configurations;
+using Mmc.Data.Configurations.Blog;
+using Mmc.Data.Configurations.User;
 using Mmc.Data.Model;
 using Mmc.Notice.Entity;
 using Mmc.User.Entity;
@@ -27,8 +29,8 @@ public class BaseDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new UserMasterEntryConfiguration());
-        modelBuilder.ApplyConfiguration(new BlogMasterEntryConfiguration());
-        modelBuilder.ApplyConfiguration(new NoticeMasterEntryConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
+        modelBuilder.ApplyConfiguration(new BlogPostConfiguration());
+        modelBuilder.ApplyConfiguration(new NoticeConfiguration());
     }
 }
