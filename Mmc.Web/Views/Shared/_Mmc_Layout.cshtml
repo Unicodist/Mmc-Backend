@@ -1,18 +1,22 @@
+@using Mmc.Blog.Repository
+@inject ICategoryRepository _categoryRepo;
+@{
+    ViewData["Title"] = "Home";
+}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="Blog website for Mechi Multiple campus" />
-        <meta name="author" content="Mechi Multiple Campus, Bhadrapur" />
-        <title>Mechi Multiple Campus</title>
+        <meta name="author" content="Ashish And Pramisa" />
+        <title>Mmc - @ViewData["Title"]</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <script src="lib/jquery/dist/jquery.min.js" ></script>
         <link rel="stylesheet" href="datatables/css/jquery.dataTables.css">
-        <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -31,16 +35,16 @@
             </div>
         </nav>
 
-@RenderBody()
+        @RenderBody()
 
 <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Ashish&Pramisa</p></div>
         </footer>
         <!-- Bootstrap core JS-->
-        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <!-- Core theme JS-->
-    <script src="~/js/mmc-temp-scripts.js"></script>
-    <script src="datatables/js/jquery.dataTables.min.js"></script>
+        <script src="~/js/mmc-temp-scripts.js"></script>
+        <script src="datatables/js/jquery.dataTables.min.js"></script>
     </body>
 </html>

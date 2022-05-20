@@ -4,6 +4,16 @@ namespace Mmc.Blog.ViewModel;
 
 public class UserSignUpModel
 {
+    public UserSignUpModel(string firstName, string lastName, string email, string password, string confirm, bool rememberMe)
+    {
+        FirstName = firstName;
+        LastName = lastName;
+        Email = email;
+        Password = password;
+        Confirm = confirm;
+        RememberMe = rememberMe;
+    }
+
     [Required]
     public string FirstName { get; set; }
     

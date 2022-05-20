@@ -17,4 +17,8 @@
       <ProjectReference Include="..\Mmc.User\Mmc.User.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="src\Services\Interface" />
+    </ItemGroup>
+
 </Project>

@@ -4,13 +4,10 @@ namespace Mmc.Core.Entity.Interface;
 
 public interface IOrganization
 {
-    public string Name { get; set; }
-    public string BlogSlogan { get; set; }
-    public string OrgDistrict { get; set; }
-    public string OrgCity { get; set; }
-    public string OrgAddress { get; set; }
-    public IState State { get; set; }
-    public ICountry Country { get; set; }
-    public IVdc Vdc { get; set; }
-    public int ward { get; set; }
+    public string OrganizationName { get; set; }
+    public string OrganizationSubtitle { get; set; }
+    public string OrganizationState { get; set; }
+    public string OrganizationCountry { get; set; }
+    public string OrganizationVdc { get; set; }
+    public string OrganizationWard { get; set; }
 }

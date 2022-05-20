@@ -23,7 +23,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="src\Configurations\Core" />
       <Folder Include="src\Repository\Address" />
     </ItemGroup>
 

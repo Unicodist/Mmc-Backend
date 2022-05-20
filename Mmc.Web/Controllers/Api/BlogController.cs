@@ -1,8 +1,9 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Blog.ApiResponseModel.Blog;
-using Mmc.Core.Repository;
+using Mmc.Blog.Repository;
 
-namespace Mmc.Blog.Api;
+namespace Mmc.Web.Api;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -18,13 +19,8 @@ public class BlogController : ControllerBase
     public async Task<IActionResult> Get()
     {
         var blogItems =await _blogPostRepository.GetAll();
-        var result = blogItems.Select(x => new BlogPostResponseApiModel()
-        {
-            Title = x.Title,
-            Body = x.Body,
-            Author = x.AuthorName,
-            Date = x.PostedDate.ToString()
-        });
+        var result = blogItems.Select(x =>
+            new BlogPostResponseApiModel(x.Title, x.Body, x.AuthorName, x.PostedDate.ToString(CultureInfo.CurrentCulture)));
         return Ok(result);
     }
 
@@ -32,13 +28,9 @@ public class BlogController : ControllerBase
     public async Task<IActionResult> Get(int id)
     {
         var blogMaster = await _blogPostRepository.GetById(id);
-        var dto = new BlogPostResponseApiModel()
-        {
-            Title = blogMaster.Title,
-            Body = blogMaster.Body,
-            Author = blogMaster.AuthorName,
-            Date = blogMaster.PostedDate.ToString()
-        };
+        var dto = new BlogPostResponseApiModel(blogMaster.Title, blogMaster.Body, blogMaster.AuthorName,
+            blogMaster.PostedDate.ToString(CultureInfo.CurrentCulture));
+        
         return Ok(dto);
     }
 }

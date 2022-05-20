@@ -19,6 +19,98 @@ namespace Mmc.Data.Migrations
                 .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("Mmc.Data.Model.Address.CountryModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("country_id");
+
+                    b.Property<string>("Abr")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("abr");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("name");
+
+                    b.Property<string>("PhoneCode")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("phone_code");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("country", (string)null);
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.Address.StateModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("state_id");
+
+                    b.Property<long>("CountryId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("country_id");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("state", (string)null);
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.Address.VdcModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("vdc_id");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("name");
+
+                    b.Property<long>("StateId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("state_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StateId");
+
+                    b.ToTable("vdc", (string)null);
+                });
+
             modelBuilder.Entity("Mmc.Data.Model.Blog.BlogPostModel", b =>
                 {
                     b.Property<long>("Id")
@@ -36,10 +128,14 @@ namespace Mmc.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<long?>("CategoryId")
+                        .IsRequired()
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("PostedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 5, 19, 4, 10, 53, 846, DateTimeKind.Local).AddTicks(5462));
+                        .HasDefaultValue(new DateTime(2022, 5, 19, 19, 24, 24, 927, DateTimeKind.Local).AddTicks(1851));
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -50,7 +146,38 @@ namespace Mmc.Data.Migrations
 
                     b.HasIndex("AdminId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("blog_posts", (string)null);
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.Blog.CategoryModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("category_id");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)")
+                        .HasColumnName("status");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("category", (string)null);
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Notice.NoticeModel", b =>
@@ -76,7 +203,7 @@ namespace Mmc.Data.Migrations
                     b.Property<DateTime>("PostedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 5, 19, 4, 10, 53, 846, DateTimeKind.Local).AddTicks(8762));
+                        .HasDefaultValue(new DateTime(2022, 5, 19, 19, 24, 24, 930, DateTimeKind.Local).AddTicks(2489));
 
                     b.HasKey("NoticeMasterId");
 
@@ -120,6 +247,28 @@ namespace Mmc.Data.Migrations
                     b.ToTable("user", (string)null);
                 });
 
+            modelBuilder.Entity("Mmc.Data.Model.Address.StateModel", b =>
+                {
+                    b.HasOne("Mmc.Data.Model.Address.CountryModel", "Country")
+                        .WithMany("States")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.Address.VdcModel", b =>
+                {
+                    b.HasOne("Mmc.Data.Model.Address.StateModel", "State")
+                        .WithMany("Vdcs")
+                        .HasForeignKey("StateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("State");
+                });
+
             modelBuilder.Entity("Mmc.Data.Model.Blog.BlogPostModel", b =>
                 {
                     b.HasOne("Mmc.Data.Model.User.UserModel", "AuthorAdmin")
@@ -128,7 +277,15 @@ namespace Mmc.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Mmc.Data.Model.Blog.CategoryModel", "Category")
+                        .WithMany("BlogPosts")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AuthorAdmin");
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Notice.NoticeModel", b =>
@@ -140,6 +297,21 @@ namespace Mmc.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("NoticeMasterEntityAuthor");
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.Address.CountryModel", b =>
+                {
+                    b.Navigation("States");
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.Address.StateModel", b =>
+                {
+                    b.Navigation("Vdcs");
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.Blog.CategoryModel", b =>
+                {
+                    b.Navigation("BlogPosts");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.User.UserModel", b =>

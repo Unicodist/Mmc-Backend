@@ -17,7 +17,7 @@ public class NoticeGridController : ControllerBase
     public async Task<IActionResult> Read()
     {
         var noticeMasters = await _noticeRepository.GetAll();
-        var result = noticeMasters.Select(x => new NoticeReponseApiModel()
+        var result = noticeMasters.Select(x => new NoticeResponseApiModel()
         {
             Title = x.NoticeMasterTitle,
             Body = x.NoticeMasterBody,
