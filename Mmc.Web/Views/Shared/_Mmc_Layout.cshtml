@@ -27,17 +27,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new {@class = "nav-link"})</li>
+                        <li class="nav-item">@Html.ActionLink("Blog", "Index", "Blog", null, new {@class = "nav-link"})</li>
                         <li class="nav-item">@Html.ActionLink("Notices", "Index", "Notice", null, new {@class = "nav-link"})</li>
                         <li class="nav-item">@Html.ActionLink("Login", "Index", "Login", null, new {@class = "nav-link"})</li>
-                        <li class="nav-item">@Html.ActionLink("Sign Up", "Register", "Login", null, new {@class = "nav-link"})</li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <!-- Page content-->
+        <div class="container mt-5">
+            @RenderBody()
+        </div>
 
-        @RenderBody()
-
-<!-- Footer-->
+        <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Ashish&Pramisa</p></div>
         </footer>

@@ -25,8 +25,4 @@
       <_ContentIncludedByDefault Remove="wwwroot\datatables.net\jquery.dataTables.min.js" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="ViewModels" />
-    </ItemGroup>
-
 </Project>
