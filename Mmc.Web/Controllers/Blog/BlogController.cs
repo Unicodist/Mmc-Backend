@@ -1,4 +1,5 @@
 using System.Globalization;
+using Mechi.Backend.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Blog.Dto;
@@ -8,7 +9,6 @@ using Mmc.Blog.Service.Interface;
 using Mmc.Blog.ViewModel;
 
 namespace Mechi.Backend.Controllers.Blog;
-[Route("/[controller]")]
 public class BlogController : Controller
 {
     private readonly IArticleRepository _blogRepo;
@@ -19,12 +19,25 @@ public class BlogController : Controller
         this._blogRepo = blogRepo;
         _blogService = blogService;
     }
-
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
+        var articles = await _blogRepo.GetAllBlogAsync().ConfigureAwait(false);
+        var modelArticles = articles.Select(x => new ArticleViewModel()
+            {BlogId = x.Id, Body = x.Body, DateTime = x.PostedDate, Image = "abc", Title = x.Title});
+        var pinned = modelArticles.First();
+        var model = new BlogHomeViewModel()
+        {
+            Articles = modelArticles,
+            PageCount = 1,
+            Pinned = modelArticles.First()
+        };
+        return View(model);
+    }
+    public IActionResult Index(int page)
+    {
+        ViewData["PageCount"] = page;
         return View();
     }
-    [HttpGet("/Read/{id}")]
     public async Task<IActionResult> Read(int id)
     {
         var blog = await _blogRepo.GetArticleByIdAsync(id)??throw new ArticleNotFoundException();
@@ -41,12 +54,12 @@ public class BlogController : Controller
 
     public IActionResult Read() => RedirectToAction("Index");
     [Authorize]
-    [HttpGet]
     public IActionResult Write()
     {
         return View();
     }
     [Authorize]
+    [HttpPost]
     public async Task<IActionResult> Write(ArticleCreateViewModel model)
     {
         var articleDto = new ArticleCreateDto()
@@ -59,5 +72,17 @@ public class BlogController : Controller
         };
         await _blogService.Create(articleDto);
         return Ok();
+    }
+    public async Task<IActionResult> GetDynamicPartialView(int page)
+    {
+        var blogPage = _blogRepo.GetBlogQueryable().Count()/5;
+        var model = new BlogPaginationViewModel()
+        {
+            CurrentPage = page,
+            TotalPageCount = blogPage,
+            FirstPage = page==1,
+            LastPage = page==blogPage
+        };
+        return PartialView("_Partial_Blog_Pagination",model);
     }
 }
