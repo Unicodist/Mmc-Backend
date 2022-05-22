@@ -1,4 +1,3 @@
-using Mmc.Blog.Entity;
 using Mmc.Blog.Entity.Interface;
 using Mmc.Data.Model.User;
 
@@ -6,15 +5,36 @@ namespace Mmc.Data.Model.Blog;
 
 public class ArticleModel : IArticle
 {
-    public long Id { get; private set; }
-    public string Title { get; set; } = null!;
-    public long AdminId { get; set; }
-    public string Body { get; set; } = null!;
-    public DateTime PostedDate { get; set; }
-    public string AuthorName { get; set; } = null!;
-    public long? CategoryId { get; set; }
-    public virtual UserModel AuthorAdmin { get; set; } = null!;
-    IUser IArticle.AuthorAdmin => AuthorAdmin;
-    public CategoryModel Category { get; set; }
+    public ArticleModel(long id)
+    {
+        Id = id;
+    }
+
+    public ArticleModel(string title, string authorName, string body, DateTime postedDate, Mmc.User.Entity.Interface.IUser authorAdmin, CategoryModel category)
+    {
+        Title = title;
+        AuthorName = authorName;
+        Body = body;
+        PostedDate = postedDate;
+        AuthorAdmin = (BlogNoticeUserModel)authorAdmin;
+        Category = category;
+
+    }
+
+    public long Id { get; }
+    public string Title { get; } = null!;
+    public long AdminId
+    {
+        get;
+        set;
+    }
+
+    public string Body { get; } = null!;
+    public DateTime PostedDate { get; }
+    public string AuthorName { get; } = null!;
+    public long CategoryId { get; set; }
+    public BlogNoticeUserModel AuthorAdmin { get; } = null!;
+    IBlogUser IArticle.AuthorAdmin => AuthorAdmin;
+    public CategoryModel Category { get; set; } = null!;
     ICategory IArticle.Category => Category;
 }

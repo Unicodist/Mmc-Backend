@@ -14,12 +14,12 @@ public class BaseRepository<T> : IBaseRepository<T> where T:class
         _dbSet = _dbContext.Set<T>();
     }
 
-    public async Task<ICollection<T>> GetAll()
+    public async Task<ICollection<T>> GetAllAsync()
     {
         return await _dbSet.ToListAsync().ConfigureAwait(false);
     }
 
-    public async Task<T?> GetById(long id)
+    public async Task<T?> GetByIdAsync(long id)
     {
         return await _dbSet.FindAsync(id).ConfigureAwait(false);
     }

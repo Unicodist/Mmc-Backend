@@ -2,11 +2,11 @@ using Mmc.User.Entity.Interface;
 
 namespace Mmc.User.Repository;
 
-public interface IUserRepository
+public interface IUserUserRepository
 {
-    public Task<IUser> GetById(long id);
-    public Task<IUser> InsertAsync(IUser user);
-    public Task<ICollection<IUser>> GetByName(string name);
+    Task<IUser> GetUserUserById(long id);
+    Task<IUser> InsertAsync(IUser user);
+    Task<ICollection<IUser>> GetByName(string name);
     IUser CreateInstance(string name, string email, string password, string username);
     Task<IUser?> GetByUsername(string username);
 }

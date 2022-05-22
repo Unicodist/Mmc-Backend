@@ -2,6 +2,7 @@ using Mechi.Backend;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Mmc.Core;
 using Mmc.Data;
 using Mmc.Data.Model.User;
 
@@ -26,8 +27,10 @@ builder.Services.AddDbContext<BaseDbContext>(option =>
         new MySqlServerVersion(new Version(8, 0, 24)));
 });
 
-builder.Services.ConfWeb();
+builder.Services.ConfBlog();
 builder.Services.ConfData();
+builder.Services.ConfNotice();
+builder.Services.ConfUser();
 
 //End DbContext
 

@@ -1,34 +1,40 @@
-using Mmc.Blog.Entity;
+using Mmc.Blog.Entity.Interface;
+using Mmc.Blog.Exception;
 using Mmc.Blog.Repository;
-using Mmc.Core.Repository;
 using Mmc.Data.Model.Blog;
+using Mmc.Data.Model.User;
 
 namespace Mmc.Data.Repository.Blog;
 
-public class BlogPostRepository : BaseRepository<ArticleModel>, IBlogPostRepository
+public class ArticleRepository : BaseRepository<ArticleModel>, IArticleRepository
 {
-    public BlogPostRepository(BaseDbContext _dbContext) : base(_dbContext)
+    public ArticleRepository(BaseDbContext dbContext) : base(dbContext)
     {
         
     }
 
-    public Task<IArticle> GetById(long id)
+    public async Task<IArticle> GetArticleByIdAsync(long id)
     {
-        throw new NotImplementedException();
+        return await GetByIdAsync(id).ConfigureAwait(false)??throw new ArticleNotFoundException();
     }
 
-    public Task Insert(IArticle article)
+    public Task InsertAsync(IArticle article)
     {
-        throw new NotImplementedException();
+        return base.InsertAsync((ArticleModel)article);
     }
 
-    public Task<ICollection<IArticle>> GetAll()
+    public async Task<ICollection<IArticle>> GetAllBlogAsync()
     {
-        throw new NotImplementedException();
+        return (await GetAllAsync().ConfigureAwait(false)).Cast<IArticle>().ToList();
     }
 
-    public IArticle CreateInstance(string title, string authorName, string body, DateTime postedDate)
+    public IArticle CreateInstance(string title, string authorName, string body, DateTime postedDate, IBlogUser authorAdmin, ICategory category)
     {
-        throw new NotImplementedException();
+        return new ArticleModel(title, authorName, body, postedDate, (BlogNoticeUserModel)authorAdmin, (CategoryModel)category);
+    }
+
+    public IQueryable<IArticle> GetBlogQueryable()
+    {
+        return GetQueryable();
     }
 }

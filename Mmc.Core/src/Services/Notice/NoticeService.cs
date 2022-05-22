@@ -1,13 +1,13 @@
 using Mmc.Core.Repository;
-using Mmc.Core.Services.Interface;
 using Mmc.Notice.Dto;
+using Mmc.Notice.Service.Interface;
 
-namespace Mmc.Notice.Service;
+namespace Mmc.Core.Services.Notice;
 
-public class NoticeServices : NoticeServiceInterface
+public class NoticeService : INoticeService
 {
     private NoticeRepositoryInterface _noticeRepository;
-    public NoticeServices(NoticeRepositoryInterface noticeRepository)
+    public NoticeService(NoticeRepositoryInterface noticeRepository)
     {
         _noticeRepository = noticeRepository;
     }

@@ -13,12 +13,12 @@ public class NoticeRepository : BaseRepository<NoticeModel>, NoticeRepositoryInt
 
     public new async Task<ICollection<INotice>> GetAll()
     {
-        return (await base.GetAll().ConfigureAwait(false)).Cast<INotice>().ToList();
+        return (await base.GetAllAsync().ConfigureAwait(false)).Cast<INotice>().ToList();
     }
 
     public async Task<INotice> GetById(long id)
     {
-        return await base.GetById(id).ConfigureAwait(false);
+        return await base.GetByIdAsync(id).ConfigureAwait(false);
     }
 
     public Task Insert(INotice noticeCreateDto)

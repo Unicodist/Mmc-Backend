@@ -1,8 +1,8 @@
 using Mmc.Notice.Dto;
 
-namespace Mmc.Core.Services.Interface;
+namespace Mmc.Notice.Service.Interface;
 
-public interface NoticeServiceInterface
+public interface INoticeService
 {
     public Task Create(NoticeCreateDto noticeCreateDto);
     public Task Update(NoticeUpdateDto noticeUpdateDto);

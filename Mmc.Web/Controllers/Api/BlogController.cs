@@ -9,16 +9,16 @@ namespace Mmc.Web.Api;
 [Route("api/[controller]")]
 public class BlogController : ControllerBase
 {
-    private IBlogPostRepository _blogPostRepository;
+    private IArticleRepository _articleRepository;
 
-    public BlogController(IBlogPostRepository blogPostRepository)
+    public BlogController(IArticleRepository articleRepository)
     {
-        _blogPostRepository = blogPostRepository;
+        _articleRepository = articleRepository;
     }
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var blogItems =await _blogPostRepository.GetAll();
+        var blogItems =await _articleRepository.GetAllBlogAsync();
         var result = blogItems.Select(x =>
             new BlogPostResponseApiModel(x.Title, x.Body, x.AuthorName, x.PostedDate.ToString(CultureInfo.CurrentCulture)));
         return Ok(result);
@@ -27,7 +27,7 @@ public class BlogController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
-        var blogMaster = await _blogPostRepository.GetById(id);
+        var blogMaster = await _articleRepository.GetArticleByIdAsync(id);
         var dto = new BlogPostResponseApiModel(blogMaster.Title, blogMaster.Body, blogMaster.AuthorName,
             blogMaster.PostedDate.ToString(CultureInfo.CurrentCulture));
         

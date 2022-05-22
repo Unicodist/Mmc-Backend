@@ -5,6 +5,7 @@ using Mmc.Data.Repository;
 using Mmc.Data.Repository.Blog;
 using Mmc.Data.Repository.Notice;
 using Mmc.Data.Repository.User;
+using Mmc.Notice.Repository;
 using Mmc.User.Repository;
 
 namespace Mmc.Data;
@@ -16,19 +17,21 @@ public static class DiConfig
         #region Blog
 
         services.AddScoped<ICategoryRepository, CategoryRepository>();
-        services.AddScoped<IBlogPostRepository, BlogPostRepository>();
+        services.AddScoped<IArticleRepository, ArticleRepository>();
+        services.AddScoped<IBlogUserRepository, UserRepository>();
 
         #endregion
 
         #region Notice
         
         services.AddScoped<NoticeRepositoryInterface, NoticeRepository>();
+        services.AddScoped<INoticeUserRepository, UserRepository>();
 
         #endregion
  
         #region User
         
-        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUserUserRepository, UserRepository>();
 
         #endregion
     }

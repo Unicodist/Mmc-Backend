@@ -11,7 +11,7 @@ namespace Mmc.Data.Model.Notice
         public DateTime PostedOn { get; set; }
         public string? Picture { get; set; }
         public long AdminId { get; set; }
-        public virtual UserModel Author { get; set; }
-        IUser INotice.Author => Author;
+        public virtual BlogNoticeUserModel Author { get; set; }
+        INoticeUser INotice.Author => Author;
     }
 }

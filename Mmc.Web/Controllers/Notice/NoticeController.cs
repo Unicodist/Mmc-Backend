@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace Mechi.Backend.Controllers.Notice;
-
 public class NoticeController : Controller
 {
     public IActionResult Index()

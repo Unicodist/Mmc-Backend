@@ -1,31 +1,30 @@
-using System.Security.Claims;
-using Mmc.Blog.ViewModel;
 using Mmc.Core.Dto;
 using Mmc.User.Dto;
 using Mmc.User.Entity.Interface;
-using Mmc.User.UserException;
 using Mmc.User.Repository;
+using Mmc.User.Service;
+using Mmc.User.UserException;
 
-namespace Mmc.User.Service;
+namespace Mmc.Core.Services.User;
 
 public class UserServices : IUserService
 {
-    private readonly IUserRepository _userRepo;
+    private readonly IUserUserRepository _userUserRepo;
 
-    public UserServices(IUserRepository userRepo)
+    public UserServices(IUserUserRepository userUserRepo)
     {
-        _userRepo = userRepo;
+        _userUserRepo = userUserRepo;
     }
 
     public async Task<IUser> Create(UserCreateDto userCreateDto)
     {
-        var user = _userRepo.CreateInstance(userCreateDto.Name,userCreateDto.Email,userCreateDto.Password, userCreateDto.Username);
-        return await _userRepo.InsertAsync(user);
+        var user = _userUserRepo.CreateInstance(userCreateDto.Name,userCreateDto.Email,userCreateDto.Password, userCreateDto.Username);
+        return await _userUserRepo.InsertAsync(user);
     }
 
     public async Task<IUser> ValidateUser(UserLoginDto userCreateDto)
     {
-        var user = await _userRepo.GetByUsername(userCreateDto.Username)??throw new UserNotFoundException();
+        var user = await _userUserRepo.GetByUsername(userCreateDto.Username)??throw new UserNotFoundException();
         if (BCrypt.Net.BCrypt.Verify(userCreateDto.Password,user.Password))
         {
             return user;

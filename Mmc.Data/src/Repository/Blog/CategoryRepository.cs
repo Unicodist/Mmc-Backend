@@ -12,7 +12,7 @@ public class CategoryRepository :BaseRepository<CategoryModel>, ICategoryReposit
     
     public async Task<ICategory?> GetById(long id)
     {
-        return await base.GetById(id).ConfigureAwait(false);
+        return await base.GetByIdAsync(id).ConfigureAwait(false);
     }
 
     public Task Insert(ICategory category)
@@ -22,7 +22,7 @@ public class CategoryRepository :BaseRepository<CategoryModel>, ICategoryReposit
 
     public async Task<ICollection<ICategory>?> GetAll()
     {
-        return (await base.GetAll().ConfigureAwait(false)).Cast<ICategory>().ToList();
+        return (await base.GetAllAsync().ConfigureAwait(false)).Cast<ICategory>().ToList();
     }
 
     public ICategory CreateInstance(string name, string description)

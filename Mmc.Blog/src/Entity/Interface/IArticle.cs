@@ -1,6 +1,4 @@
-using Mmc.Blog.Entity.Interface;
-
-namespace Mmc.Blog.Entity;
+namespace Mmc.Blog.Entity.Interface;
 
 public interface IArticle
 {
@@ -10,6 +8,6 @@ public interface IArticle
     string Body { get; }
     DateTime PostedDate { get; }
     string AuthorName { get; }
-    IUser AuthorAdmin { get; }
+    IBlogUser AuthorAdmin { get; }
     ICategory Category { get; }
 }

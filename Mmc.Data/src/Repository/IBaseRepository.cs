@@ -4,9 +4,9 @@ namespace Mmc.Data.Repository;
 
 public interface IBaseRepository<T> where T : class
 {
-    Task<ICollection<T>> GetAll();
+    Task<ICollection<T>> GetAllAsync();
 
-    Task<T?> GetById(long id);
+    Task<T?> GetByIdAsync(long id);
 
     IQueryable<T> GetQueryable();
 

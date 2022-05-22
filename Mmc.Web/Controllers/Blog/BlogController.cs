@@ -8,13 +8,13 @@ using Mmc.Blog.Service.Interface;
 using Mmc.Blog.ViewModel;
 
 namespace Mechi.Backend.Controllers.Blog;
-
+[Route("/[controller]")]
 public class BlogController : Controller
 {
-    private readonly IBlogPostRepository _blogRepo;
+    private readonly IArticleRepository _blogRepo;
     private readonly IBlogService _blogService;
     // GET
-    public BlogController(IBlogPostRepository blogRepo, IBlogService blogService)
+    public BlogController(IArticleRepository blogRepo, IBlogService blogService)
     {
         this._blogRepo = blogRepo;
         _blogService = blogService;
@@ -24,10 +24,10 @@ public class BlogController : Controller
     {
         return View();
     }
-    [HttpGet("/{id}")]
+    [HttpGet("/Read/{id}")]
     public async Task<IActionResult> Read(int id)
     {
-        var blog = await _blogRepo.GetById(id)??throw new ArticleNotFoundException();
+        var blog = await _blogRepo.GetArticleByIdAsync(id)??throw new ArticleNotFoundException();
         var model = new ArticleReadViewModel()
         {
             Title = blog.Title,

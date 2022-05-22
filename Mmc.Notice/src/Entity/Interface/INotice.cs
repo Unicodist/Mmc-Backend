@@ -9,6 +9,6 @@
         string? Picture { get; }
         long AdminId { get; }
         
-        IUser Author { get; }
+        INoticeUser Author { get; }
     }
 }
