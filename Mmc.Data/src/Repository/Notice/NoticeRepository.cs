@@ -11,14 +11,14 @@ public class NoticeRepository : BaseRepository<NoticeModel>, NoticeRepositoryInt
         
     }
 
-    public Task<List<INotice>> GetAll()
+    public new async Task<ICollection<INotice>> GetAll()
     {
-        throw new NotImplementedException();
+        return (await base.GetAll().ConfigureAwait(false)).Cast<INotice>().ToList();
     }
 
-    public Task<INotice> GetById(long id)
+    public async Task<INotice> GetById(long id)
     {
-        throw new NotImplementedException();
+        return await base.GetById(id).ConfigureAwait(false);
     }
 
     public Task Insert(INotice noticeCreateDto)

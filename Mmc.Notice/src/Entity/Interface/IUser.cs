@@ -1,6 +1,7 @@
 namespace Mmc.Notice.Entity.Interface;
 
-public class IUser
+public interface IUser
 {
-    
+    public long Id { get; set; }
+    public string Name { get; set; }
 }

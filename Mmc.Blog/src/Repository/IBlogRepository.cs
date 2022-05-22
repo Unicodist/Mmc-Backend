@@ -4,8 +4,8 @@ namespace Mmc.Blog.Repository;
 
 public interface IBlogPostRepository
 {
-    public Task<IBlogPost> GetById(long id);
-    public Task Insert(IBlogPost blogPost);
-    public Task<ICollection<IBlogPost>> GetAll();
-    IBlogPost CreateInstance(string title, string authorName, string body, DateTime postedDate);
+    public Task<IArticle> GetById(long id);
+    public Task Insert(IArticle article);
+    public Task<ICollection<IArticle>> GetAll();
+    IArticle CreateInstance(string title, string authorName, string body, DateTime postedDate);
 }

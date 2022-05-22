@@ -9,5 +9,5 @@ public interface ICategory
     public string Description { get; }
     public Status Status { get; }
 
-    public ICollection<IBlogPost> BlogPosts { get; }
+    public ICollection<IArticle> BlogPosts { get; }
 }

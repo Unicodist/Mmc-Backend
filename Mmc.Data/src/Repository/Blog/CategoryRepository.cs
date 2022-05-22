@@ -17,7 +17,7 @@ public class CategoryRepository :BaseRepository<CategoryModel>, ICategoryReposit
 
     public Task Insert(ICategory category)
     {
-        return base.Insert((CategoryModel) category);
+        return base.InsertAsync((CategoryModel) category);
     }
 
     public async Task<ICollection<ICategory>?> GetAll()

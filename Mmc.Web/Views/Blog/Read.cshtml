@@ -1,28 +1,25 @@
-﻿@using Mmc.Web.ViewModel
-@*
+﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-    
-}
+@model Mmc.Blog.ViewModel.ArticleReadViewModel;
 <article>
     <!-- Post header-->
     <header class="mb-4">
         <!-- Post title-->
-        <h1 class="fw-bolder mb-1">Some Title</h1>
+        <h1 class="fw-bolder mb-1">@Model.Title</h1>
         <!-- Post meta content-->
-        <div class="text-muted fst-italic mb-2">2022-02-03 by Ashish Neupane</div>
+        <div class="text-muted fst-italic mb-2">@Model.Date by @Model.AuthorName</div>
         <!-- Post categories-->
-            <a class="badge bg-secondary text-decoration-none link-light" href="#">QQQQ</a>
-            <a class="badge bg-secondary text-decoration-none link-light" href="#">QQQQ</a>
-            <a class="badge bg-secondary text-decoration-none link-light" href="#">QQQQ</a>
-            <a class="badge bg-secondary text-decoration-none link-light" href="#">QQQQ</a>
+            @foreach (var item in Model.Categories)
+            {
+                <a class="badge bg-secondary text-decoration-none link-light" href="#">item</a>
+            }
     </header>
     <!-- Preview image figure-->
     <figure class="mb-4"><img class="img-fluid rounded" src="~/Assets/Home/Images/mechi5.jpg" alt="..." /></figure>
     <!-- Post content-->
     <section class="mb-5 fs-5">
-        MEWOMEWOEWMEWEOWEMWEOWEMWEOWEMWEOWMEWOEWMEWOEWMEWOEWMEOWEM
+        @Model.Body
     </section>
 </article>
 @* <!-- Comments section--> *@

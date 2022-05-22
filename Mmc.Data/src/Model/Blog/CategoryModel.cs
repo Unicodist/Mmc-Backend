@@ -16,6 +16,6 @@ public class CategoryModel : ICategory
     public string Name { get; set; }
     public string Description { get; set; }
     public Status Status { get; set; }
-    public ICollection<BlogPostModel> BlogPosts { get; set; }
-    ICollection<IBlogPost> ICategory.BlogPosts => BlogPosts.Cast<IBlogPost>().ToList();
+    public ICollection<ArticleModel> BlogPosts { get; set; }
+    ICollection<IArticle> ICategory.BlogPosts => BlogPosts.Cast<IArticle>().ToList();
 }

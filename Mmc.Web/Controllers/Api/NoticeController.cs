@@ -20,10 +20,10 @@ public class NoticeController : ControllerBase
         var noticeMasters = await _noticeRepository.GetAll();
         var result = noticeMasters.Select(x => new NoticeResponseApiModel()
         {
-            Title = x.NoticeMasterTitle,
-            Body = x.NoticeMasterBody,
+            Title = x.Title,
+            Body = x.Body,
             Date = x.PostedOn.ToString(),
-            Picture = x.NoticeMasterNoticePicture
+            Picture = x.Picture
         });
         return Ok(result);
     }
@@ -34,10 +34,10 @@ public class NoticeController : ControllerBase
         var noticeMaster = await _noticeRepository.GetById(id);
         var result = new NoticeResponseApiModel()
         {
-            Title = noticeMaster.NoticeMasterTitle,
-            Body = noticeMaster.NoticeMasterBody,
+            Title = noticeMaster.Title,
+            Body = noticeMaster.Body,
             Date = noticeMaster.PostedOn.ToString(),
-            Picture = noticeMaster.NoticeMasterNoticePicture
+            Picture = noticeMaster.Picture
         };
         return Ok(result);
     }

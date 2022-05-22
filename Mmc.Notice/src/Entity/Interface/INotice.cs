@@ -2,13 +2,13 @@
 {
     public interface INotice
     {
-        long NoticeMasterId { get; }
-        string NoticeMasterTitle { get; }
-        string? NoticeMasterBody { get; }
+        long Id { get; }
+        string Title { get; }
+        string? Body { get; }
         DateTime PostedOn { get; }
-        string? NoticeMasterNoticePicture { get; }
-        long NoticeMasterAuthorId { get; }
+        string? Picture { get; }
+        long AdminId { get; }
         
-        IUser NoticeMasterEntityAuthor { get; }
+        IUser Author { get; }
     }
 }

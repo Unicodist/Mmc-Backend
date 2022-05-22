@@ -16,7 +16,7 @@ namespace Mmc.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Mmc.Data.Model.Address.CountryModel", b =>
@@ -115,10 +115,12 @@ namespace Mmc.Data.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("blog_id");
 
                     b.Property<long>("AdminId")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("admin_id");
 
                     b.Property<string>("AuthorName")
                         .IsRequired()
@@ -135,12 +137,14 @@ namespace Mmc.Data.Migrations
                     b.Property<DateTime>("PostedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 5, 19, 19, 24, 24, 927, DateTimeKind.Local).AddTicks(1851));
+                        .HasDefaultValue(new DateTime(2022, 5, 21, 22, 56, 25, 327, DateTimeKind.Local).AddTicks(1830))
+                        .HasColumnName("posted_date");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(40)
-                        .HasColumnType("varchar(40)");
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("title");
 
                     b.HasKey("Id");
 
@@ -182,32 +186,32 @@ namespace Mmc.Data.Migrations
 
             modelBuilder.Entity("Mmc.Data.Model.Notice.NoticeModel", b =>
                 {
-                    b.Property<long>("NoticeMasterId")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<long>("NoticeMasterAuthorId")
+                    b.Property<long>("AdminId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("NoticeMasterBody")
+                    b.Property<string>("Body")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("NoticeMasterNoticePicture")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("NoticeMasterTitle")
-                        .IsRequired()
+                    b.Property<string>("Picture")
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("PostedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 5, 19, 19, 24, 24, 930, DateTimeKind.Local).AddTicks(2489));
+                        .HasDefaultValue(new DateTime(2022, 5, 21, 22, 56, 25, 327, DateTimeKind.Local).AddTicks(7518));
 
-                    b.HasKey("NoticeMasterId");
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
-                    b.HasIndex("NoticeMasterAuthorId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdminId");
 
                     b.ToTable("notice", (string)null);
                 });
@@ -216,35 +220,52 @@ namespace Mmc.Data.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("user_id");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("longtext")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
                         .HasColumnName("email");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
                         .HasColumnName("name");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("longtext")
+                        .HasColumnType("text")
                         .HasColumnName("password");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("user_name");
 
                     b.Property<string>("UserType")
                         .IsRequired()
-                        .HasColumnType("longtext")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
                         .HasColumnName("user_type");
 
                     b.HasKey("Id");
 
                     b.ToTable("user", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Email = "ashishneupane999@gmail.com",
+                            Name = "Ashish Neupane",
+                            Password = "$2a$11$bR2IuGJGPljyO0ux5eCdG.Ua8ks4iQ42MhxbCsgzNhsfAzPuF6me6",
+                            UserName = "AshuraNep",
+                            UserType = "Superuser"
+                        });
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Address.StateModel", b =>
@@ -290,13 +311,13 @@ namespace Mmc.Data.Migrations
 
             modelBuilder.Entity("Mmc.Data.Model.Notice.NoticeModel", b =>
                 {
-                    b.HasOne("Mmc.Data.Model.User.UserModel", "NoticeMasterEntityAuthor")
+                    b.HasOne("Mmc.Data.Model.User.UserModel", "Author")
                         .WithMany("Notices")
-                        .HasForeignKey("NoticeMasterAuthorId")
+                        .HasForeignKey("AdminId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("NoticeMasterEntityAuthor");
+                    b.Navigation("Author");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Address.CountryModel", b =>

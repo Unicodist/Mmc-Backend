@@ -8,7 +8,6 @@ namespace Mmc.Data;
 
 public class BaseDbContext : DbContext
 {
-    private string ConnectionString = "Server=localhost;Database=mmc_core;Uid=root;Pwd=";
     public BaseDbContext(DbContextOptions<BaseDbContext> options) : base(options)
     {
         
@@ -19,16 +18,11 @@ public class BaseDbContext : DbContext
         
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-       optionsBuilder.UseMySql(ConnectionString, new MySqlServerVersion(new Version(8,0,24)));
-    }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         #region Blog
 
-        modelBuilder.ApplyConfiguration(new BlogPostConfiguration());
+        modelBuilder.ApplyConfiguration(new ArticleConfiguration());
         modelBuilder.ApplyConfiguration(new CategoryConfiguration());
 
         #endregion

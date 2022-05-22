@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mmc.Blog.ApiModel.Notice;
 using Mmc.Core.Repository;
 
-namespace Mechi.Blog.GridControllers;
+namespace Mechi.Backend.Controllers.GridControllers;
 [ApiController]
 [Route("/grid/[controller]")]
 public class NoticeGridController : ControllerBase
@@ -19,10 +19,10 @@ public class NoticeGridController : ControllerBase
         var noticeMasters = await _noticeRepository.GetAll();
         var result = noticeMasters.Select(x => new NoticeResponseApiModel()
         {
-            Title = x.NoticeMasterTitle,
-            Body = x.NoticeMasterBody,
+            Title = x.Title,
+            Body = x.Body,
             Date = x.PostedOn.ToString(),
-            Picture = x.NoticeMasterNoticePicture
+            Picture = x.Picture
         });
         return Ok(result);
     }

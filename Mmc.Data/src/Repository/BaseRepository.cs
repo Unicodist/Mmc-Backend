@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 namespace Mmc.Data.Repository;
 
-public class BaseRepository<T> : BaseRepositoryInterface<T> where T:class
+public class BaseRepository<T> : IBaseRepository<T> where T:class
 {
     private readonly BaseDbContext _dbContext;
     private readonly DbSet<T> _dbSet;
@@ -14,9 +14,9 @@ public class BaseRepository<T> : BaseRepositoryInterface<T> where T:class
         _dbSet = _dbContext.Set<T>();
     }
 
-    public async Task<List<T>> GetAll()
+    public async Task<ICollection<T>> GetAll()
     {
-        return await _dbSet.ToListAsync().ConfigureAwait(false)??new List<T>();
+        return await _dbSet.ToListAsync().ConfigureAwait(false);
     }
 
     public async Task<T?> GetById(long id)
@@ -29,10 +29,11 @@ public class BaseRepository<T> : BaseRepositoryInterface<T> where T:class
         return _dbSet;
     }
 
-    public async Task Insert(T t)
+    public async Task<T> InsertAsync(T t)
     {
         await _dbSet.AddAsync(t).ConfigureAwait(false);
         await _dbContext.SaveChangesAsync().ConfigureAwait(false);
+        return t;
     }
 
     public async Task Update(T t)

@@ -5,6 +5,7 @@ using Mmc.Data.Repository;
 using Mmc.Data.Repository.Blog;
 using Mmc.Data.Repository.Notice;
 using Mmc.Data.Repository.User;
+using Mmc.User.Repository;
 
 namespace Mmc.Data;
 
@@ -27,7 +28,7 @@ public static class DiConfig
  
         #region User
         
-        services.AddScoped<UserRepositoryInterface, UserRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         #endregion
     }

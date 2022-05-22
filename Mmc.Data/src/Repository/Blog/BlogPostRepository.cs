@@ -5,29 +5,29 @@ using Mmc.Data.Model.Blog;
 
 namespace Mmc.Data.Repository.Blog;
 
-public class BlogPostRepository : BaseRepository<BlogPostModel>, IBlogPostRepository
+public class BlogPostRepository : BaseRepository<ArticleModel>, IBlogPostRepository
 {
     public BlogPostRepository(BaseDbContext _dbContext) : base(_dbContext)
     {
         
     }
 
-    public Task<IBlogPost> GetById(long id)
+    public Task<IArticle> GetById(long id)
     {
         throw new NotImplementedException();
     }
 
-    public Task Insert(IBlogPost blogPost)
+    public Task Insert(IArticle article)
     {
         throw new NotImplementedException();
     }
 
-    public Task<ICollection<IBlogPost>> GetAll()
+    public Task<ICollection<IArticle>> GetAll()
     {
         throw new NotImplementedException();
     }
 
-    public IBlogPost CreateInstance(string title, string authorName, string body, DateTime postedDate)
+    public IArticle CreateInstance(string title, string authorName, string body, DateTime postedDate)
     {
         throw new NotImplementedException();
     }

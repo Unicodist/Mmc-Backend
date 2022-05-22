@@ -19,7 +19,7 @@
         $('#noticeTable').DataTable( {
             "processing": true,
             "serverSide": true,
-            "ajax": '/api/notice'
+            "ajax": '@Url.Action("Read","NoticeGrid")'
         } );
     } );
 </script>

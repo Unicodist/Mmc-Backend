@@ -12,16 +12,16 @@ namespace Mmc.Data.Configurations
         public void Configure(EntityTypeBuilder<NoticeModel> builder)
         {
             builder.ToTable("notice");
-            builder.HasKey(n => n.NoticeMasterId);
-            builder.Property(n => n.NoticeMasterTitle).IsRequired();
-            builder.Property(n => n.NoticeMasterBody).IsRequired();
-            builder.Property(n => n.NoticeMasterAuthorId).IsRequired();
+            builder.HasKey(n => n.Id);
+            builder.Property(n => n.Title).IsRequired();
+            builder.Property(n => n.Body).IsRequired();
+            builder.Property(n => n.AdminId).IsRequired();
             builder.Property(n => n.PostedOn).HasDefaultValue(DateTime.Now);
-            builder.Property(n => n.NoticeMasterNoticePicture);
+            builder.Property(n => n.Picture);
 
-            builder.HasOne(n => n.NoticeMasterEntityAuthor)
+            builder.HasOne(n => n.Author)
                 .WithMany(u => u.Notices)
-                .HasForeignKey(n=>n.NoticeMasterAuthorId);
+                .HasForeignKey(n=>n.AdminId);
         }
     }
 }

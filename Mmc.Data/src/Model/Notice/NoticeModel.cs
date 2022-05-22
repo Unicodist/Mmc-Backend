@@ -1,15 +1,17 @@
 ﻿using Mmc.Data.Model.User;
+using Mmc.Notice.Entity.Interface;
 
 namespace Mmc.Data.Model.Notice
 {
-    public class NoticeModel
+    public class NoticeModel : INotice
     {
-        public long NoticeMasterId { get; set; }
-        public string NoticeMasterTitle { get; set; } = null!;
-        public string? NoticeMasterBody { get; set; }
+        public long Id { get; set; }
+        public string Title { get; set; } = null!;
+        public string? Body { get; set; }
         public DateTime PostedOn { get; set; }
-        public string? NoticeMasterNoticePicture { get; set; }
-        public long NoticeMasterAuthorId { get; set; }
-        public virtual UserModel NoticeMasterEntityAuthor { get; set; }
+        public string? Picture { get; set; }
+        public long AdminId { get; set; }
+        public virtual UserModel Author { get; set; }
+        IUser INotice.Author => Author;
     }
 }

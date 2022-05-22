@@ -1,5 +1,7 @@
 @using Mmc.Blog.Repository
+@using Mmc.User.Service
 @inject ICategoryRepository _categoryRepo;
+@inject IUserService _userService;
 @{
     ViewData["Title"] = "Home";
 }
@@ -14,8 +16,8 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <script src="lib/jquery/dist/jquery.min.js" ></script>
-        <link rel="stylesheet" href="datatables/css/jquery.dataTables.css">
+        <script src="~/lib/jquery/dist/jquery.min.js" ></script>
+        <link rel="stylesheet" href="~/datatables/css/jquery.dataTables.css">
         <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     </head>
     <body>
@@ -25,11 +27,8 @@
                 @Html.ActionLink("Mmc Blog","Index","Home",null,new{@class="navbar-brand"})
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new {@class = "nav-link"})</li>
-                        <li class="nav-item">@Html.ActionLink("Blog", "Index", "Blog", null, new {@class = "nav-link"})</li>
-                        <li class="nav-item">@Html.ActionLink("Notices", "Index", "Notice", null, new {@class = "nav-link"})</li>
-                        <li class="nav-item">@Html.ActionLink("Login", "Index", "Login", null, new {@class = "nav-link"})</li>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="navbar_item_container">
+                        
                     </ul>
                 </div>
             </div>
@@ -47,6 +46,14 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <!-- Core theme JS-->
         <script src="~/js/mmc-temp-scripts.js"></script>
-        <script src="datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.get('@Url.Action("GetDynamicPartialView","Home")', function(data) {
+                  $("#navbar_item_container").append(data);
+                }
+            );
+        });
+    </script>
     </body>
 </html>

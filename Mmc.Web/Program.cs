@@ -1,8 +1,18 @@
 using Mechi.Backend;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Mmc.Data;
+using Mmc.Data.Model.User;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option =>
+{
+    option.LoginPath = "/Account/Login/";
+    option.AccessDeniedPath = "/Account/Unauthorized/";
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -23,6 +33,8 @@ builder.Services.ConfData();
 
 var app = builder.Build();
 
+app.UseAuthentication();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -34,12 +46,11 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseSession();
 app.UseStaticFiles();
+app.UseCookiePolicy();
 
 app.UseAuthentication();
-app.UseAuthorization();
 
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapControllerRoute(
