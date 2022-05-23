@@ -32,6 +32,7 @@ public static class DiConfig
         #region User
         
         services.AddScoped<IUserUserRepository, UserRepository>();
+        services.AddScoped<UserRepository, UserRepository>();
 
         #endregion
     }

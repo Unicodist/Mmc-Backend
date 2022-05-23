@@ -16,7 +16,7 @@ public class ArticleModel : IArticle
         AuthorName = authorName;
         Body = body;
         PostedDate = postedDate;
-        AuthorAdmin = (BlogNoticeUserModel)authorAdmin;
+        AuthorAdmin = (UserModel)authorAdmin;
         Category = category;
 
     }
@@ -33,7 +33,7 @@ public class ArticleModel : IArticle
     public DateTime PostedDate { get; }
     public string AuthorName { get; } = null!;
     public long CategoryId { get; set; }
-    public BlogNoticeUserModel AuthorAdmin { get; } = null!;
+    public UserModel AuthorAdmin { get; } = null!;
     IBlogUser IArticle.AuthorAdmin => AuthorAdmin;
     public CategoryModel Category { get; set; } = null!;
     ICategory IArticle.Category => Category;

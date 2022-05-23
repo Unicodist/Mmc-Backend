@@ -10,7 +10,7 @@ using Mmc.Data;
 
 namespace Mmc.Data.Migrations
 {
-    [DbContext(typeof(BaseDbContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20220521171125_initial")]
     partial class initial
     {

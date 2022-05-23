@@ -8,7 +8,7 @@ namespace Mmc.Data.Repository.Blog;
 
 public class ArticleRepository : BaseRepository<ArticleModel>, IArticleRepository
 {
-    public ArticleRepository(BaseDbContext dbContext) : base(dbContext)
+    public ArticleRepository(AppDbContext dbContext) : base(dbContext)
     {
         
     }
@@ -30,7 +30,7 @@ public class ArticleRepository : BaseRepository<ArticleModel>, IArticleRepositor
 
     public IArticle CreateInstance(string title, string authorName, string body, DateTime postedDate, IBlogUser authorAdmin, ICategory category)
     {
-        return new ArticleModel(title, authorName, body, postedDate, (BlogNoticeUserModel)authorAdmin, (CategoryModel)category);
+        return new ArticleModel(title, authorName, body, postedDate, (UserModel)authorAdmin, (CategoryModel)category);
     }
 
     public IQueryable<IArticle> GetBlogQueryable()

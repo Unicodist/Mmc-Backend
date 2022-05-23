@@ -6,7 +6,7 @@ namespace Mmc.Data.Repository.Blog;
 
 public class CategoryRepository :BaseRepository<CategoryModel>, ICategoryRepository
 {
-    public CategoryRepository(BaseDbContext context) : base(context)
+    public CategoryRepository(AppDbContext context) : base(context)
     {
     }
     

@@ -9,7 +9,7 @@ using Mmc.Data;
 
 namespace Mmc.Data.Migrations
 {
-    [DbContext(typeof(BaseDbContext))]
+    [DbContext(typeof(AppDbContext))]
     partial class BaseDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

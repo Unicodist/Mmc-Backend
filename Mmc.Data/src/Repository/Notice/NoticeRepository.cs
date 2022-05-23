@@ -6,7 +6,7 @@ namespace Mmc.Data.Repository.Notice;
 
 public class NoticeRepository : BaseRepository<NoticeModel>, NoticeRepositoryInterface
 {
-    public NoticeRepository(BaseDbContext dbContext) : base(dbContext)
+    public NoticeRepository(AppDbContext dbContext) : base(dbContext)
     {
         
     }

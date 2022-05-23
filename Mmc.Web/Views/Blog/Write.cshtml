@@ -2,10 +2,12 @@
 @{
     Layout = "_Blog_Layout";
 }
+<form asp-action="Create">
 @Html.TextBoxFor(m=>m.Title,null,new {@class="form-control mb-3",@placeholder="Title"})
 @Html.TextBoxFor(m=>m.Author,null,new {@class="form-control mb-3",@placeholder="Optional - Author's name"})
 @Html.TextAreaFor(m=>m.CkEditorBody,new{@placeholder="Start Writing"})
 <button type="submit" class="btn btn-outline-primary mt-3">Post</button>
+</form>
 <script src="~/ckeditor5/ckeditor.js"></script>
 <script>
 var wineditor;

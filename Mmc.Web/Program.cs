@@ -21,7 +21,7 @@ builder.Services.AddSession();
 
 //Add DbContext to the solution
 
-builder.Services.AddDbContext<BaseDbContext>(option =>
+builder.Services.AddDbContext<AppDbContext>(option =>
 {
     option.UseMySql(builder.Configuration.GetConnectionString("Default"),
         new MySqlServerVersion(new Version(8, 0, 24)));

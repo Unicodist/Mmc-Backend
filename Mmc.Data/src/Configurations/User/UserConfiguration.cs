@@ -6,9 +6,9 @@ using Mmc.User.Enum;
 
 namespace Mmc.Data.Configurations.User;
 
-public class UserConfiguration : IEntityTypeConfiguration<BlogNoticeUserModel>
+public class UserConfiguration : IEntityTypeConfiguration<UserModel>
 {
-    public void Configure(EntityTypeBuilder<BlogNoticeUserModel> builder)
+    public void Configure(EntityTypeBuilder<UserModel> builder)
     {
         builder.ToTable("user");
         builder.HasKey(u => u.Id);
@@ -19,7 +19,7 @@ public class UserConfiguration : IEntityTypeConfiguration<BlogNoticeUserModel>
         builder.Property(u => u.UserType).HasColumnName("user_type").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50);
         builder.Property(u => u.UserName).HasColumnName("user_name").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50).IsRequired();
 
-        builder.HasData(new BlogNoticeUserModel(){
+        builder.HasData(new UserModel(){
             Id = 1,
             Name = "Ashish Neupane",
             Email = "ashishneupane999@gmail.com",

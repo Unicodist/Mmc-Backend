@@ -4,7 +4,7 @@ using Mmc.User.Entity.Interface;
 using Mmc.User.Enum;
 
 namespace Mmc.Data.Model.User;
-public class BlogNoticeUserModel: IUser, Mmc.Blog.Entity.Interface.IBlogUser,Mmc.Notice.Entity.Interface.INoticeUser
+public class UserModel: IUser, Mmc.Blog.Entity.Interface.IBlogUser,Mmc.Notice.Entity.Interface.INoticeUser
 {
     public long Id { get; set; }
     public string Name { get; set; } = null!;

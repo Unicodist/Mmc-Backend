@@ -11,9 +11,9 @@ using Mmc.User.Repository;
 
 namespace Mmc.Data.Repository.User;
 
-public class UserRepository : BaseRepository<BlogNoticeUserModel>, IUserUserRepository, IBlogUserRepository, INoticeUserRepository
+public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IBlogUserRepository, INoticeUserRepository
 {
-    public UserRepository(BaseDbContext dbContext) : base(dbContext)
+    public UserRepository(AppDbContext dbContext) : base(dbContext)
     {
     }
 
@@ -25,11 +25,11 @@ public class UserRepository : BaseRepository<BlogNoticeUserModel>, IUserUserRepo
     }
     public async Task<IUser> InsertAsync(IUser user)
     {
-        return await base.InsertAsync((BlogNoticeUserModel) user);
+        return await base.InsertAsync((UserModel) user);
     }
     public IUser CreateInstance(string name, string email, string password, string username)
     {
-        return new BlogNoticeUserModel()
+        return new UserModel()
         {
             Email = email,
             UserName = username,

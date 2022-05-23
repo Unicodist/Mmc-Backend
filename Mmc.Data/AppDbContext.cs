@@ -6,14 +6,14 @@ using Mmc.Data.Configurations.User;
 
 namespace Mmc.Data;
 
-public class BaseDbContext : DbContext
+public class AppDbContext : DbContext
 {
-    public BaseDbContext(DbContextOptions<BaseDbContext> options) : base(options)
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
         
     }
 
-    public BaseDbContext()
+    public AppDbContext()
     {
         
     }

@@ -4,11 +4,11 @@ namespace Mmc.Data.Repository;
 
 public class BaseRepository<T> : IBaseRepository<T> where T:class
 {
-    private readonly BaseDbContext _dbContext;
+    private readonly AppDbContext _dbContext;
     private readonly DbSet<T> _dbSet;
 
 
-    public BaseRepository(BaseDbContext context)
+    public BaseRepository(AppDbContext context)
     {
         _dbContext = context;
         _dbSet = _dbContext.Set<T>();

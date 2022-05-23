@@ -1,4 +1,5 @@
 using System.Globalization;
+using Mechi.Backend.Helper;
 using Mechi.Backend.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ using Mmc.Blog.Service.Interface;
 using Mmc.Blog.ViewModel;
 
 namespace Mechi.Backend.Controllers.Blog;
+[Route("[controller]")]
 public class BlogController : Controller
 {
     private readonly IArticleRepository _blogRepo;
@@ -19,7 +21,8 @@ public class BlogController : Controller
         this._blogRepo = blogRepo;
         _blogService = blogService;
     }
-    public async Task<IActionResult> Index()
+    [Route("{page}")]
+    public async Task<IActionResult> Index(int? page)
     {
         var articles = await _blogRepo.GetAllBlogAsync().ConfigureAwait(false);
         var modelArticles = articles.Select(x => new ArticleViewModel()
@@ -28,16 +31,17 @@ public class BlogController : Controller
         var model = new BlogHomeViewModel()
         {
             Articles = modelArticles,
-            PageCount = 1,
+            PageCount = page??1,
             Pinned = modelArticles.First()
         };
         return View(model);
     }
-    public IActionResult Index(int page)
+    [Route("")]
+    public IActionResult Index()
     {
-        ViewData["PageCount"] = page;
-        return View();
+        return RedirectToAction("Index", new {page = 1});
     }
+    [Route("/Read/{id}")]
     public async Task<IActionResult> Read(int id)
     {
         var blog = await _blogRepo.GetArticleByIdAsync(id)??throw new ArticleNotFoundException();
@@ -51,21 +55,23 @@ public class BlogController : Controller
         };
         return View(model);
     }
-
+    [Route("Read")]
     public IActionResult Read() => RedirectToAction("Index");
     [Authorize]
+    [Route("Write")]
     public IActionResult Write()
     {
         return View();
     }
     [Authorize]
     [HttpPost]
-    public async Task<IActionResult> Write(ArticleCreateViewModel model)
+    public async Task<IActionResult> Create(ArticleCreateViewModel model)
     {
+        var user = await this.GetCurrentUser();
         var articleDto = new ArticleCreateDto()
         {
             Title = model.Title,
-            AdminId = 1,
+            AdminId = user.Id,
             AuthorName = "PlaceHolder",
             Body = model.CkEditorBody,
             PostedDate = DateTime.Now
@@ -73,7 +79,8 @@ public class BlogController : Controller
         await _blogService.Create(articleDto);
         return Ok();
     }
-    public async Task<IActionResult> GetDynamicPartialView(int page)
+    [Route("GetDynamicPartialView/{page}")]
+    public async Task<IActionResult> GetDynamicPartialView(int page=1)
     {
         var blogPage = _blogRepo.GetBlogQueryable().Count()/5;
         var model = new BlogPaginationViewModel()
