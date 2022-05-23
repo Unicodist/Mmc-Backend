@@ -7,5 +7,5 @@ namespace Mmc.User.Service;
 public interface IUserService
 {
     public Task<IUser> Create(UserCreateDto dto);
-    Task<IUser> ValidateUser(UserLoginDto userCreateDto);
+    IUser ValidateUser(UserLoginDto userCreateDto);
 }

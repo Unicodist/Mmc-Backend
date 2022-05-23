@@ -8,8 +8,8 @@ public class StateModel : IState
     public string Name { get; set; }
     public long CountryId { get; set; }
     public string Description { get; set; }
-    public CountryModel Country { get; }
+    public virtual CountryModel Country { get; }
     ICountry IState.Country => Country;
-    public ICollection<VdcModel> Vdcs { get; }
+    public virtual ICollection<VdcModel> Vdcs { get; }
     ICollection<IVdc> IState.Vdcs => Vdcs.Cast<IVdc>().ToList();
 }

@@ -8,6 +8,6 @@ public class VdcModel : IVdc
     public string Name { get; set; }
     public string? Description { get; set; }
     public long StateId { get; set; }
-    public StateModel State { get; set; }
+    public virtual StateModel State { get; set; }
     IState IVdc.State => State;
 }

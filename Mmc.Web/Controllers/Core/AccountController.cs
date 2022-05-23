@@ -61,7 +61,7 @@ public class AccountController : Controller
             Password = model.Password,
             Username = model.Username
         };
-        var user = await _userServices.ValidateUser(userCreateDto);
+        var user = _userServices.ValidateUser(userCreateDto);
         var claims = new List<Claim>()
         {
             new(ClaimTypes.Email,user.Email),

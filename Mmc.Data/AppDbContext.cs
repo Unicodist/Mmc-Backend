@@ -1,21 +1,34 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Mmc.Data.Configurations;
 using Mmc.Data.Configurations.Address;
 using Mmc.Data.Configurations.Blog;
 using Mmc.Data.Configurations.User;
+using MySqlConnector;
 
 namespace Mmc.Data;
 
 public class AppDbContext : DbContext
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    private readonly IConfiguration _configuration;
+    public AppDbContext(DbContextOptions<AppDbContext> options, IConfiguration configuration) : base(options)
     {
-        
+        _configuration = configuration;
     }
 
-    public AppDbContext()
+    public AppDbContext(IConfiguration configuration)
     {
+        _configuration = configuration;
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        var connectionString = _configuration.GetConnectionString("Default");
+        optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         
+        optionsBuilder
+            .UseLazyLoadingProxies()
+            .UseMySql(connectionString,ServerVersion.AutoDetect(connectionString));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

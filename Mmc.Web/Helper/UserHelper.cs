@@ -7,9 +7,9 @@ namespace Mechi.Backend.Helper;
 
 public static class UserHelper
 {
-    private static readonly UserRepository UserRepository = new (new AppDbContext());
-    public static async Task<UserModel> GetCurrentUser(this ControllerBase controller)
+    private static readonly UserRepository UserRepository = new (new AppDbContext(new ConfigurationManager()));
+    public static UserModel GetCurrentUser(this ControllerBase controller)
     {
-        return (UserModel)await UserRepository.GetByUsername(controller.User.Claims.SingleOrDefault(x => x.Type == "Name").Value);
+        return (UserModel) UserRepository.GetByUsername(controller.User.Claims.SingleOrDefault(x => x.Type == "Name").Value);
     }
 }

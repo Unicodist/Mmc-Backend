@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Mmc.Data.TypeConverter.User;
+namespace Mmc.Data.TypeConverter.Blog;
 
 public class BaseTypeStringConverter<T> : ValueConverter<T,string>
 {

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Mmc.User.Enum;
+using Mmc.Blog.Enum;
 
-namespace Mmc.Data.TypeConverter.User;
+namespace Mmc.Data.TypeConverter.Blog;
 
 public class EnumConverter<T> : ValueConverter<T,string> where T:BaseEnum
 {

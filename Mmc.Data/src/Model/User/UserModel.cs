@@ -13,6 +13,6 @@ public class UserModel: IUser, Mmc.Blog.Entity.Interface.IBlogUser,Mmc.Notice.En
     public string Email { get; set; }
     public string Password { get; set; }
     public string UserName { get; set; }
-    public ICollection<ArticleModel> BlogPosts { get; set; }
-    public ICollection<NoticeModel> Notices { get; set; }
+    public virtual ICollection<ArticleModel> BlogPosts { get; set; }
+    public virtual ICollection<NoticeModel> Notices { get; set; }
 }

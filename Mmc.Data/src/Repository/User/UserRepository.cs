@@ -38,9 +38,9 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IB
             UserType = UserType.User
         };
     }
-    public Task<IUser?> GetByUsername(string username)
+    public IUser? GetByUsername(string username)
     {
-        return Task.FromResult<IUser?>(GetQueryable().SingleOrDefault(x => x.UserName == username));
+        return GetQueryable().SingleOrDefault(x => x.UserName == username);
     }
     public async Task<ICollection<IUser>> GetByName(string name)
     {
@@ -55,6 +55,8 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IB
     {
         return await GetByIdAsync(id).ConfigureAwait(false)?? throw new UserNotFoundException();
     }
+
+    IBlogUser? IBlogUserRepository.GetByUsername(string userName) => (UserModel)GetByUsername(userName);
 
     #endregion
 

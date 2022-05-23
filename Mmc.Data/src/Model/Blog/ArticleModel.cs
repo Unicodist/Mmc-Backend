@@ -33,8 +33,8 @@ public class ArticleModel : IArticle
     public DateTime PostedDate { get; }
     public string AuthorName { get; } = null!;
     public long CategoryId { get; set; }
-    public UserModel AuthorAdmin { get; } = null!;
+    public virtual UserModel AuthorAdmin { get; } = null!;
     IBlogUser IArticle.AuthorAdmin => AuthorAdmin;
-    public CategoryModel Category { get; set; } = null!;
+    public virtual CategoryModel Category { get; set; } = null!;
     ICategory IArticle.Category => Category;
 }

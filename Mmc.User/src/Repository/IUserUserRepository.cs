@@ -8,5 +8,5 @@ public interface IUserUserRepository
     Task<IUser> InsertAsync(IUser user);
     Task<ICollection<IUser>> GetByName(string name);
     IUser CreateInstance(string name, string email, string password, string username);
-    Task<IUser?> GetByUsername(string username);
+    IUser? GetByUsername(string username);
 }

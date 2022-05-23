@@ -22,9 +22,9 @@ public class UserServices : IUserService
         return await _userUserRepo.InsertAsync(user);
     }
 
-    public async Task<IUser> ValidateUser(UserLoginDto userCreateDto)
+    public IUser ValidateUser(UserLoginDto userCreateDto)
     {
-        var user = await _userUserRepo.GetByUsername(userCreateDto.Username)??throw new UserNotFoundException();
+        var user = _userUserRepo.GetByUsername(userCreateDto.Username)??throw new UserNotFoundException();
         if (BCrypt.Net.BCrypt.Verify(userCreateDto.Password,user.Password))
         {
             return user;
