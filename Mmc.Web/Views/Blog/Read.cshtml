@@ -19,7 +19,7 @@
     <figure class="mb-4"><img class="img-fluid rounded" src="~/Assets/Home/Images/mechi5.jpg" alt="..." /></figure>
     <!-- Post content-->
     <section class="mb-5 fs-5">
-        @Model.Body
+        @Html.Raw(Model.Body)
     </section>
 </article>
 @* <!-- Comments section--> *@

@@ -28,6 +28,10 @@ public class BlogController : Controller
     public async Task<IActionResult> Index(int? page)
     {
         var articles = await _blogRepo.GetAllBlogAsync().ConfigureAwait(false);
+        if (!articles.Any())
+        {
+            return View("Errors/_No_Articles");
+        }
         var modelArticles = articles.Select(x => new ArticleViewModel()
             {BlogId = x.Id, Body = x.Body, DateTime = x.PostedDate, Image = "abc", Title = x.Title});
         var pinned = modelArticles.First();
@@ -83,8 +87,8 @@ public class BlogController : Controller
             PostedDate = DateTime.Now,
             CategoryId = 1
         };
-        await _blogService.Create(articleDto);
-        return Ok();
+        var article = await _blogService.Create(articleDto);
+        return RedirectToAction("Read", "Blog", new {id = article.Id});
     }
     [Route("[controller]/GetDynamicPartialView/{page}")]
     public async Task<IActionResult> GetDynamicPartialView(int page=1)

@@ -1,9 +1,10 @@
 using Mmc.Blog.Dto;
+using Mmc.Blog.Entity.Interface;
 
 namespace Mmc.Blog.Service.Interface;
 
 public interface IBlogService
 {
-    public Task Create(ArticleCreateDto blogCreateDto);
+    public Task<IArticle> Create(ArticleCreateDto blogCreateDto);
     public Task Update(BlogUpdateDto blogUpdateDto);
 }
