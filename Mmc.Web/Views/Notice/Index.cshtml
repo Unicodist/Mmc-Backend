@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "_Mmc_Layout";
 }
-<table id="noticeTable">
+<table class="DataTables">
     <thead>
     <tr>
         <th>Id</th>
@@ -14,12 +14,3 @@
     <tbody></tbody>
 
 </table>
-<script>
-    $(document).ready(function() {
-        $('#noticeTable').DataTable( {
-            "processing": true,
-            "serverSide": true,
-            "ajax": '@Url.Action("Read","NoticeGrid")'
-        } );
-    } );
-</script>

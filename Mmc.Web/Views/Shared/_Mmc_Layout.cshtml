@@ -55,5 +55,14 @@
             );
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('.DataTables').DataTable( {
+                "processing": true,
+                "serverSide": true,
+                "ajax": '@Url.Action("Read","NoticeGrid")'
+            } );
+        } );
+    </script>
     </body>
 </html>
