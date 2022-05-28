@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Mmc.Data.Configurations;
 using Mmc.Data.Configurations.Address;
 using Mmc.Data.Configurations.Blog;
+using Mmc.Data.Configurations.Notice;
 using Mmc.Data.Configurations.User;
 using MySqlConnector;
 
@@ -35,28 +36,33 @@ public class AppDbContext : DbContext
     {
         #region Blog
 
-        modelBuilder.ApplyConfiguration(new ArticleConfiguration());
-        modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new ArticleConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new CommentConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new UpvoteConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new InteractionLogConfiguration());
 
         #endregion
 
         #region Notice
 
-        modelBuilder.ApplyConfiguration(new NoticeConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new NoticeConfiguration());
 
         #endregion
 
         #region User
 
-        modelBuilder.ApplyConfiguration(new UserConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new UserConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new NotificationConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new NotificationTemplateConfiguration());
 
         #endregion
 
         #region Address
 
-        modelBuilder.ApplyConfiguration(new CountryConfiguration());
-        modelBuilder.ApplyConfiguration(new StateConfiguration());
-        modelBuilder.ApplyConfiguration(new VdcConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new CountryConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new StateConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new VdcConfiguration());
 
         #endregion
         

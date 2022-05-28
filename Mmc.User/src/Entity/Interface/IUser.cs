@@ -9,4 +9,7 @@ public interface IUser
     string Email { get; }
     string Password { get; }
     string UserName { get; set; }
+
+    void MakeAdmin();
+    void MakeUser();
 }

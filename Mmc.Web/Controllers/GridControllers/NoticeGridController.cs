@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Blog.ApiModel.Notice;
 using Mmc.Core.Repository;
+using Mmc.Notice.Repository;
 
 namespace Mechi.Backend.Controllers.GridControllers;
 [ApiController]

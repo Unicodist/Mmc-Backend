@@ -109,9 +109,9 @@ namespace Mmc.Data.Migrations
                     title = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     admin_id = table.Column<long>(type: "bigint", nullable: false),
-                    Body = table.Column<string>(type: "longtext", nullable: false)
+                    Body = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    posted_date = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2022, 5, 21, 22, 56, 25, 327, DateTimeKind.Local).AddTicks(1830)),
+                    posted_date = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2022, 5, 28, 17, 28, 11, 644, DateTimeKind.Local).AddTicks(262)),
                     AuthorName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CategoryId = table.Column<long>(type: "bigint", nullable: false)
@@ -138,23 +138,25 @@ namespace Mmc.Data.Migrations
                 name: "notice",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    notice_id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(type: "longtext", nullable: false)
+                    title = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Body = table.Column<string>(type: "longtext", nullable: false)
+                    body = table.Column<string>(type: "text", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PostedOn = table.Column<DateTime>(type: "datetime(6)", nullable: false, defaultValue: new DateTime(2022, 5, 21, 22, 56, 25, 327, DateTimeKind.Local).AddTicks(7518)),
-                    Picture = table.Column<string>(type: "longtext", nullable: true)
+                    date = table.Column<DateTime>(type: "datetime", nullable: false),
+                    picture = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    AdminId = table.Column<long>(type: "bigint", nullable: false)
+                    admin_id = table.Column<long>(type: "bigint", nullable: false),
+                    guid = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_notice", x => x.Id);
+                    table.PrimaryKey("PK_notice", x => x.notice_id);
                     table.ForeignKey(
-                        name: "FK_notice_user_AdminId",
-                        column: x => x.AdminId,
+                        name: "FK_notice_user_admin_id",
+                        column: x => x.admin_id,
                         principalTable: "user",
                         principalColumn: "user_id",
                         onDelete: ReferentialAction.Cascade);
@@ -185,10 +187,46 @@ namespace Mmc.Data.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.CreateTable(
+                name: "comment",
+                columns: table => new
+                {
+                    comment_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    body = table.Column<string>(type: "text", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    user_id = table.Column<long>(type: "bigint", nullable: false),
+                    article_id = table.Column<long>(type: "bigint", nullable: false),
+                    parent_id = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_comment", x => x.comment_id);
+                    table.ForeignKey(
+                        name: "FK_comment_blog_posts_article_id",
+                        column: x => x.article_id,
+                        principalTable: "blog_posts",
+                        principalColumn: "blog_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_comment_comment_parent_id",
+                        column: x => x.parent_id,
+                        principalTable: "comment",
+                        principalColumn: "comment_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_comment_user_user_id",
+                        column: x => x.user_id,
+                        principalTable: "user",
+                        principalColumn: "user_id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
             migrationBuilder.InsertData(
                 table: "user",
                 columns: new[] { "user_id", "email", "name", "password", "user_name", "user_type" },
-                values: new object[] { 1L, "ashishneupane999@gmail.com", "Ashish Neupane", "$2a$11$bR2IuGJGPljyO0ux5eCdG.Ua8ks4iQ42MhxbCsgzNhsfAzPuF6me6", "AshuraNep", "Superuser" });
+                values: new object[] { 1L, "ashishneupane999@gmail.com", "Ashish Neupane", "$2a$11$n0LRqsEeZE1DJAsGgJs32uhSjRJvvI2CEq71quYpT/STWXodyMSUW", "AshuraNep", "Superuser" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_blog_posts_admin_id",
@@ -201,9 +239,24 @@ namespace Mmc.Data.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_notice_AdminId",
+                name: "IX_comment_article_id",
+                table: "comment",
+                column: "article_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_comment_parent_id",
+                table: "comment",
+                column: "parent_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_comment_user_id",
+                table: "comment",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_notice_admin_id",
                 table: "notice",
-                column: "AdminId");
+                column: "admin_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_state_country_id",
@@ -219,7 +272,7 @@ namespace Mmc.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "blog_posts");
+                name: "comment");
 
             migrationBuilder.DropTable(
                 name: "notice");
@@ -228,13 +281,16 @@ namespace Mmc.Data.Migrations
                 name: "vdc");
 
             migrationBuilder.DropTable(
+                name: "blog_posts");
+
+            migrationBuilder.DropTable(
+                name: "state");
+
+            migrationBuilder.DropTable(
                 name: "category");
 
             migrationBuilder.DropTable(
                 name: "user");
-
-            migrationBuilder.DropTable(
-                name: "state");
 
             migrationBuilder.DropTable(
                 name: "country");

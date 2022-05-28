@@ -35,7 +35,7 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IB
             UserName = username,
             Password = password,
             Name = name,
-            UserType = UserType.User
+            UserType = UserType.USER
         };
     }
     public IUser? GetByUsername(string username)

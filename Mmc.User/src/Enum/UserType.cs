@@ -2,15 +2,17 @@ namespace Mmc.User.Enum;
 
 public class UserType : BaseEnum
 {
-    public static UserType User = new UserType(1, _user);
-    public static UserType Superuser = new UserType(2, _superuser);
-    private static string _user = "User";
-    private static string _superuser = "Superuser";
+    public static readonly UserType USER = new UserType(1, User);
+    public static readonly UserType SUPERUSER = new UserType(2, Superuser);
+    public static readonly UserType ADMIN = new UserType(3, Admin);
+    private const string User = "User";
+    private const string Superuser = "Superuser";
+    private const string Admin = "Admin";
 
     private UserType(int id, string value): base(id, value)
     {
         
     }
     public static implicit operator string(UserType value)=>value.ToString();
-    public static implicit operator UserType(string value)=>GetAll<UserType>().SingleOrDefault(x => x.ToString() == value);
+    public static implicit operator UserType(string value)=>GetAll<UserType>().SingleOrDefault(x => x.ToString() == value)??USER;
 }

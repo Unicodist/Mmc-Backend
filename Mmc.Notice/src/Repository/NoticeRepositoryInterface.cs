@@ -1,6 +1,6 @@
 using Mmc.Notice.Entity.Interface;
 
-namespace Mmc.Core.Repository;
+namespace Mmc.Notice.Repository;
 
 public interface NoticeRepositoryInterface
 {

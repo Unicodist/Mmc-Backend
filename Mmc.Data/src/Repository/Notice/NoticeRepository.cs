@@ -1,6 +1,7 @@
 using Mmc.Core.Repository;
 using Mmc.Data.Model.Notice;
 using Mmc.Notice.Entity.Interface;
+using Mmc.Notice.Repository;
 
 namespace Mmc.Data.Repository.Notice;
 

@@ -2,7 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mmc.Data;
 
@@ -11,10 +10,9 @@ using Mmc.Data;
 namespace Mmc.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220521171125_initial")]
-    partial class initial
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,7 +111,7 @@ namespace Mmc.Data.Migrations
                     b.ToTable("vdc", (string)null);
                 });
 
-            modelBuilder.Entity("Mmc.Data.Model.Blog.BlogPostModel", b =>
+            modelBuilder.Entity("Mmc.Data.Model.Blog.ArticleModel", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -130,16 +128,18 @@ namespace Mmc.Data.Migrations
 
                     b.Property<string>("Body")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("Body");
 
-                    b.Property<long?>("CategoryId")
-                        .IsRequired()
-                        .HasColumnType("bigint");
+                    b.Property<long>("CategoryId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("CategoryId");
 
                     b.Property<DateTime>("PostedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 5, 21, 22, 56, 25, 327, DateTimeKind.Local).AddTicks(1830))
+                        .HasDefaultValue(new DateTime(2022, 5, 28, 17, 28, 11, 644, DateTimeKind.Local).AddTicks(262))
                         .HasColumnName("posted_date");
 
                     b.Property<string>("Title")
@@ -186,30 +186,76 @@ namespace Mmc.Data.Migrations
                     b.ToTable("category", (string)null);
                 });
 
+            modelBuilder.Entity("Mmc.Data.Model.Blog.CommentModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("comment_id");
+
+                    b.Property<long>("ArticleId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("article_id");
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("body");
+
+                    b.Property<long>("ParentId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("parent_id");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
+
+                    b.HasIndex("ParentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("comment", (string)null);
+                });
+
             modelBuilder.Entity("Mmc.Data.Model.Notice.NoticeModel", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("notice_id");
 
                     b.Property<long>("AdminId")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("admin_id");
 
                     b.Property<string>("Body")
+                        .HasColumnType("text")
+                        .HasColumnName("body");
+
+                    b.Property<string>("Guid")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("guid");
 
                     b.Property<string>("Picture")
-                        .HasColumnType("longtext");
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("picture");
 
                     b.Property<DateTime>("PostedOn")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime(6)")
-                        .HasDefaultValue(new DateTime(2022, 5, 21, 22, 56, 25, 327, DateTimeKind.Local).AddTicks(7518));
+                        .HasColumnType("datetime")
+                        .HasColumnName("date");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("title");
 
                     b.HasKey("Id");
 
@@ -264,7 +310,7 @@ namespace Mmc.Data.Migrations
                             Id = 1L,
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
-                            Password = "$2a$11$bR2IuGJGPljyO0ux5eCdG.Ua8ks4iQ42MhxbCsgzNhsfAzPuF6me6",
+                            Password = "$2a$11$n0LRqsEeZE1DJAsGgJs32uhSjRJvvI2CEq71quYpT/STWXodyMSUW",
                             UserName = "AshuraNep",
                             UserType = "Superuser"
                         });
@@ -292,7 +338,7 @@ namespace Mmc.Data.Migrations
                     b.Navigation("State");
                 });
 
-            modelBuilder.Entity("Mmc.Data.Model.Blog.BlogPostModel", b =>
+            modelBuilder.Entity("Mmc.Data.Model.Blog.ArticleModel", b =>
                 {
                     b.HasOne("Mmc.Data.Model.User.UserModel", "AuthorAdmin")
                         .WithMany("BlogPosts")
@@ -309,6 +355,33 @@ namespace Mmc.Data.Migrations
                     b.Navigation("AuthorAdmin");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.Blog.CommentModel", b =>
+                {
+                    b.HasOne("Mmc.Data.Model.Blog.ArticleModel", "Article")
+                        .WithMany()
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mmc.Data.Model.Blog.CommentModel", "Parent")
+                        .WithMany("Replies")
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mmc.Data.Model.User.UserModel", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Article");
+
+                    b.Navigation("Parent");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Notice.NoticeModel", b =>
@@ -335,6 +408,11 @@ namespace Mmc.Data.Migrations
             modelBuilder.Entity("Mmc.Data.Model.Blog.CategoryModel", b =>
                 {
                     b.Navigation("BlogPosts");
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.Blog.CommentModel", b =>
+                {
+                    b.Navigation("Replies");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.User.UserModel", b =>

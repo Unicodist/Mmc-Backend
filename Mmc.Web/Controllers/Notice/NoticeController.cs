@@ -1,9 +1,19 @@
+using Mechi.Backend.ViewModel.Notice;
 using Microsoft.AspNetCore.Mvc;
+using Mmc.Notice.Repository;
+using Mmc.Notice.ViewModel;
 
 namespace Mechi.Backend.Controllers.Notice;
 public class NoticeController : Controller
 {
-    public IActionResult Index()
+    private NoticeRepositoryInterface _noticeRepository;
+
+    public NoticeController(NoticeRepositoryInterface noticeRepository)
+    {
+        _noticeRepository = noticeRepository;
+    }
+
+    public async Task<IActionResult> Index()
     {
         return View();
     }
@@ -13,8 +23,18 @@ public class NoticeController : Controller
         return View();
     }
 
-    public IActionResult List()
+    public async Task<IActionResult> Read()
     {
-        return View();
+        var notices = await _noticeRepository.GetAll();
+        var noticeModel = notices.Select(x => new NoticeViewModel()
+        {
+            Guid = x.Guid.ToString(),
+            Title = x.Title,
+            Body = x.Body,
+            Date = x.PostedOn,
+            Image = x.Picture,
+            User = x.Author.Name
+        });
+        return Json(noticeModel);
     }
 }

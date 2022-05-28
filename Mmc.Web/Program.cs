@@ -14,6 +14,11 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     option.LoginPath = "/Account/Login/";
     option.AccessDeniedPath = "/Account/Unauthorized/";
 });
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = _ => true;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

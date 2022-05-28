@@ -1,4 +1,6 @@
-﻿namespace Mmc.Notice.Entity.Interface
+﻿using Mmc.Notice.BaseType;
+
+namespace Mmc.Notice.Entity.Interface
 {
     public interface INotice
     {
@@ -10,5 +12,6 @@
         long AdminId { get; }
         
         INoticeUser Author { get; }
+        GuidType Guid { get; set; }
     }
 }

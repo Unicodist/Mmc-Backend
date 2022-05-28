@@ -13,12 +13,14 @@
         <meta name="description" content="Blog website for Mechi Multiple campus" />
         <meta name="author" content="Ashish And Pramisa" />
         <title>Mmc - @ViewData["Title"]</title>
+        <script src="~/js/mmc-temp-scripts.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js" ></script>
+        <script src="~/datatables/js/jquery.dataTables.js"></script>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <script src="~/lib/jquery/dist/jquery.min.js" ></script>
-        <link rel="stylesheet" href="~/datatables/css/jquery.dataTables.css">
-        <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/datatables/css/jquery.dataTables.css"/>
+        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -37,32 +39,18 @@
         <div class="container mt-5">
             @RenderBody()
         </div>
-
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Ashish&Pramisa</p></div>
         </footer>
-        <!-- Bootstrap core JS-->
-        <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="~/js/mmc-temp-scripts.js"></script>
-    <script src="~/datatables/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $.get('@Url.Action("GetDynamicPartialView","Home")', function(data) {
-                  $("#navbar_item_container").append(data);
-                }
-            );
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.DataTables').DataTable( {
-                "processing": true,
-                "serverSide": true,
-                "ajax": '@Url.Action("Read","NoticeGrid")'
-            } );
-        } );
-    </script>
+        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $.get('@Url.Action("GetDynamicPartialView","Home")', function(data) {
+                      $("#navbar_item_container").append(data);
+                    }
+                );
+            });
+        </script>
     </body>
 </html>

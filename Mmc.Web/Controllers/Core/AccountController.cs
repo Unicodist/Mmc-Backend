@@ -18,13 +18,17 @@ public class AccountController : Controller
     {
         _userServices = userServices;
     }
-
+    [Authorize(Roles = "Superuser,Admin")]
+    [Route("[controller]/{id}")]
+    public IActionResult Index(long id)
+    {
+        return View();
+    }
+    [Authorize]
     public IActionResult Index()
     {
         return View();
     }
-
-    [Authorize]
     public IActionResult Register()
     {
         return View();
@@ -56,17 +60,18 @@ public class AccountController : Controller
     {
         if(!ModelState.IsValid)
             return View(model);
-        var userCreateDto = new UserLoginDto
+        var userLoginDto = new UserLoginDto
         {
             Password = model.Password,
             Username = model.Username
         };
-        var user = _userServices.ValidateUser(userCreateDto);
+        var user = _userServices.ValidateUser(userLoginDto);
         var claims = new List<Claim>()
         {
             new(ClaimTypes.Email,user.Email),
             new(ClaimTypes.Name,user.Name),
-            new(ClaimTypes.NameIdentifier,user.UserName)
+            new(ClaimTypes.NameIdentifier,user.UserName),
+            new(ClaimTypes.Role,user.UserType),
         };
         var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
         var principle = new ClaimsPrincipal(identity);
@@ -79,6 +84,11 @@ public class AccountController : Controller
     {
         HttpContext.SignOutAsync();
         return RedirectToAction("Index","Home");
+    }
+
+    public IActionResult UnAuthorized()
+    {
+        return View();
     }
     
 }
