@@ -20,9 +20,11 @@ public class BlogController : Controller
     // GET
     public BlogController(IArticleRepository blogRepo, IBlogService blogService, IBlogUserRepository userRepository)
     {
-        this._blogRepo = blogRepo;
+        _blogRepo = blogRepo;
         _blogService = blogService;
         _userRepository = userRepository;
+
+        UserHelper.UserRepository = _userRepository;
     }
     [Route("[controller]/{page}")]
     public async Task<IActionResult> Index(int? page)
@@ -76,8 +78,7 @@ public class BlogController : Controller
     [Route("[controller]/Create")]
     public async Task<IActionResult> Create(ArticleCreateViewModel model)
     {
-        var userName = User.Claims.FirstOrDefault(c => c.Type.Equals(ClaimTypes.NameIdentifier));
-        var user = _userRepository.GetByUsername(userName.Value);
+        var user = this.GetCurrentBlogUser();
         var articleDto = new ArticleCreateDto()
         {
             Title = model.Title,

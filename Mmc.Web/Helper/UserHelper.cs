@@ -1,15 +1,15 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
-using Mmc.Data;
-using Mmc.Data.Model.User;
-using Mmc.Data.Repository.User;
+using Mmc.Blog.Entity.Interface;
+using Mmc.Blog.Repository;
 
 namespace Mechi.Backend.Helper;
 
 public static class UserHelper
 {
-    private static readonly UserRepository UserRepository = new (new AppDbContext(new ConfigurationManager()));
-    public static UserModel GetCurrentUser(this ControllerBase controller)
+    public static IBlogUserRepository? UserRepository;
+    public static IBlogUser GetCurrentBlogUser(this ControllerBase claims)
     {
-        return (UserModel) UserRepository.GetByUsername(controller.User.Claims.SingleOrDefault(x => x.Type == "Name").Value);
+        return UserRepository.GetByUsername(claims.User.Claims.FirstOrDefault(x=>x.Type==ClaimTypes.NameIdentifier).ToString());
     }
 }

@@ -14,5 +14,5 @@ public class NotificationModel : INotification
     public long TemplateId { get; set; }
     public virtual UserModel User { get; set; }
     IUser INotification.User => User;
-    public NotificationTemplate Template { get; set; }
+    public virtual NotificationTemplate Template { get; set; }
 }

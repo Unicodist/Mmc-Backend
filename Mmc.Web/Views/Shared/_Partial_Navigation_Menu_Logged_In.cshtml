@@ -1,4 +1,11 @@
+@model Mechi.Backend.ViewModel.Core.NavbarViewModel;
 <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new {@class = "nav-link"})</li>
 <li class="nav-item">@Html.ActionLink("Blog", "Index", "Blog", null, new {@class = "nav-link"})</li>
 <li class="nav-item">@Html.ActionLink("Notices", "Index", "Notice", null, new {@class = "nav-link"})</li>
 <li class="nav-item">@Html.ActionLink("Logout", "Logout", "Account", null, new {@class = "nav-link"})</li>
+<li class="nav-item">
+    <button class="btn">
+        <i class=""></i>
+        <span class="badge">@Model.NotificationCount</span>
+    </button>
+</li>

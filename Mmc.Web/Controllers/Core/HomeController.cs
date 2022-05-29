@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Mechi.Backend.ViewModel.Core;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Mechi.Backend.Controllers.Core
 {
@@ -14,7 +15,7 @@ namespace Mechi.Backend.Controllers.Core
             var CurrentUser = User.Identity;
             if (CurrentUser.IsAuthenticated)
             {
-                return PartialView("_Partial_Navigation_Menu_Logged_In");
+                return PartialView("_Partial_Navigation_Menu_Logged_In",new NavbarViewModel(){NotificationCount = "2"});
             }
 
             return PartialView("_Partial_Navigation_Non_Logged");
