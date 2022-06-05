@@ -3,15 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using Mmc.Blog.ApiResponseModel.Blog;
 using Mmc.Blog.Repository;
 
-namespace Mmc.Web.Api;
+namespace Mechi.Backend.Controllers.Api;
 
 [ApiController]
 [Route("api/[controller]")]
-public class BlogController : ControllerBase
+public class BlogApiController : ControllerBase
 {
-    private IArticleRepository _articleRepository;
+    private readonly IArticleRepository _articleRepository;
 
-    public BlogController(IArticleRepository articleRepository)
+    public BlogApiController(IArticleRepository articleRepository)
     {
         _articleRepository = articleRepository;
     }
@@ -19,8 +19,8 @@ public class BlogController : ControllerBase
     public async Task<IActionResult> Get()
     {
         var blogItems =await _articleRepository.GetAllBlogAsync();
-        var result = blogItems.Select(x =>
-            new BlogPostResponseApiModel(x.Title, x.Body, x.AuthorName, x.PostedDate.ToString(CultureInfo.CurrentCulture)));
+        var result = blogItems!.Select(x =>
+            new BlogPostResponseApiModel(x.Title, x.Body, x.AuthorAdmin.Name, x.PostedDate.ToString(CultureInfo.CurrentCulture)));
         return Ok(result);
     }
 
@@ -28,7 +28,7 @@ public class BlogController : ControllerBase
     public async Task<IActionResult> Get(int id)
     {
         var blogMaster = await _articleRepository.GetByIdAsync(id);
-        var dto = new BlogPostResponseApiModel(blogMaster.Title, blogMaster.Body, blogMaster.AuthorName,
+        var dto = new BlogPostResponseApiModel(blogMaster.Title, blogMaster.Body, blogMaster.AuthorAdmin.Name,
             blogMaster.PostedDate.ToString(CultureInfo.CurrentCulture));
         
         return Ok(dto);

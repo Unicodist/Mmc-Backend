@@ -1,3 +1,5 @@
+using Mmc.Notice.Entity;
+
 namespace Mmc.Notice.Dto;
 
 public class NoticeCreateDto
@@ -7,4 +9,5 @@ public class NoticeCreateDto
     public string? Body { get; set; }
     public DateTime PostedOn { get; set; }
     public string? Picture { get; set; }
+    public NoticeUser Author { get; set; }
 }

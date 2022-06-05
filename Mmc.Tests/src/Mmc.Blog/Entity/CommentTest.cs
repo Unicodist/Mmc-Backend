@@ -10,25 +10,30 @@ public class CommentTest
 {
     private readonly Comment _comment;
     private readonly IBlogUser _bloguser;
-    
-    
+
+
+    public CommentTest()
+    {
+        _comment = new Comment();
+        _bloguser = null;
+    }
+
     [Fact]
     public void Test_CommentTest_GetsAllNecessaryProperties()
     {
-        var obj = new Comment();
-        Assert.Equal(0,obj.Id);
-        obj.Body = "xyz";
-        Assert.Equal("xyz",obj.Body);
-        Assert.Equal(0,obj.UserId);
-        Assert.Equal(0,obj.ArticleId);
-        Assert.Equal(0,obj.ParentId);
-        obj.Status=Status.Active;
-        Assert.Equal(Status.Active,obj.Status);
-        Assert.Equal(null,obj.Parent);
-        Assert.Equal(null,obj.User);
-        Assert.Equal(null,obj.Article);
-        Assert.Equal(null,obj.Replies);
-        Assert.Equal(null,obj.Guid);
+        Assert.Equal(0,_comment.Id);
+        _comment.Body = "xyz";
+        Assert.Equal("xyz",_comment.Body);
+        Assert.Equal(0,_comment.UserId);
+        Assert.Equal(0,_comment.ArticleId);
+        Assert.Equal(0,_comment.ParentId);
+        _comment.Status=Status.Active;
+        Assert.Equal(Status.Active,_comment.Status);
+        Assert.Null(_comment.Parent);
+        Assert.Null(_comment.User);
+        Assert.Null(_comment.Article);
+        Assert.Null(_comment.Replies);
+        Assert.Null(_comment.Guid);
         
         
         
@@ -39,7 +44,7 @@ public class CommentTest
     
     public void Test_CommentWith_Parameter()
     {
-        var obj = new Comment(1, "xyz", Status.Active, User, "abcdd", "xyz", "abcd");
+        var _comment = new Comment(1, "xyz", Status.Active, User, "abcdd", "xyz", "abcd");
 
 
     }*/

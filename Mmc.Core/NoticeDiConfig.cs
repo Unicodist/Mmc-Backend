@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using Mmc.Core.Services.Notice;
+using Mmc.Notice.Service;
 using Mmc.Notice.Service.Interface;
 
 namespace Mmc.Core;

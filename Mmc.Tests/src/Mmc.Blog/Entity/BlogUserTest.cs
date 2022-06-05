@@ -5,14 +5,20 @@ namespace Mmc.Tests.Mmc.Blog.Entity;
 
 public class BlogUserTest
 {
+    private BlogUser _blogUser;
+
+    public BlogUserTest()
+    {
+        _blogUser = new BlogUser("Pramisa","Pramisa123","picture.xyz");
+    }
+
     [Fact]
     public void New__BlogUserTest_SetsAllNecessaryProperties()
     {
-        var obj = new BlogUser();
-        Assert.Equal(0,obj.Id);
-        Assert.Equal(null,obj.Name);
-        Assert.Equal(null,obj.UserName);
-        Assert.Equal(null,obj.picture);
+        Assert.Equal(0,_blogUser.Id);
+        Assert.Equal("Pramisa",_blogUser.Name);
+        Assert.Equal("Pramisa123",_blogUser.UserName);
+        Assert.Equal("picture.xyz",_blogUser.picture);
         
 
     }

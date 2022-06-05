@@ -54,8 +54,8 @@
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d8f84681_002D4251_002D4883_002D98ea_002D62759556b9a3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_ProvidedData_Constructor_CreatesUserWithCorrectValues" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="C:\Users\compu\OneDrive\Documents\GitHub\Mmc-Backend\Mmc.Tests" Presentation="&amp;lt;Mmc.Tests&amp;gt;" /&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d8f84681_002D4251_002D4883_002D98ea_002D62759556b9a3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test_ProvidedData_Constructor_CreatesUserWithCorrectValues" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Tests" Presentation="&amp;lt;Mmc.Tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=da4d99bc_002De4db_002D4638_002D9bb4_002D1b7f307d950f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_GuidType #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;

@@ -5,22 +5,24 @@ namespace Mmc.Tests.Mmc.Blog.Dto;
 
 public class ArticleCreateDtoTest
 {
+    private ArticleCreateDto _articleCreateDto;
+
+    public ArticleCreateDtoTest()
+    {
+        _articleCreateDto = new ArticleCreateDto("title","body",2,3);
+    }
+
     [Fact]
     public void Test__NewArticleCreateDtoTest_SetsAllNeccessaryProperties()
     {
-        var obj = new ArticleCreateDto();
-        obj.Title = "xyz";
-        obj.Body = "xyz";
-        obj.AdminId = 1;
-        obj.AuthorName = "pramisa";
-        obj.CategoryId = 1;
-        obj.PostedDate = DateTime.Now;
-        Assert.Equal(1,obj.AdminId);
-        Assert.Equal("xyz",obj.Title);
-        Assert.Equal("xyz",obj.Body);
-        Assert.Equal("pramisa" ,obj.AuthorName);
-        Assert.Equal(1,obj.CategoryId);
-        Assert.Equal(DateTime.Now, obj.PostedDate);
+        _articleCreateDto.Title = "xyz";
+        _articleCreateDto.Body = "xyz";
+        _articleCreateDto.AdminId = 1;
+        _articleCreateDto.CategoryId = 1;
+        Assert.Equal(1,_articleCreateDto.AdminId);
+        Assert.Equal("xyz",_articleCreateDto.Title);
+        Assert.Equal("xyz",_articleCreateDto.Body);
+        Assert.Equal(1,_articleCreateDto.CategoryId);
 
 
     }

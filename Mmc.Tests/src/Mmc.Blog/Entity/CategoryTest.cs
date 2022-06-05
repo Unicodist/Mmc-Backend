@@ -1,5 +1,6 @@
 using System.ComponentModel.Design;
 using Mmc.Blog.Entity;
+using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Enum;
 using Xunit;
 
@@ -9,14 +10,14 @@ namespace Mmc.Tests.Mmc.Blog.Entity;
 
 public class CategoryTest
 {
+    private Category cat = new Category("cat", "dog");
     [Fact]
-    public void Test__CategoryTest_GetsAllNecessaryProperties()
+    public void Test_catTest_GetsAllNecessaryProperties()
     {
-        var obj = new Category();
-        Assert.Equal(0, obj.Id);
-        Assert.Equal(null,obj.Description);
-        Assert.Equal(null,obj.Name);
-        Assert.Equal(null,obj.Status);
-        Assert.Equal(null,obj.BlogPosts);
+        Assert.Equal(0, cat.Id);
+        Assert.Equal("dog",cat.Description);
+        Assert.Equal("cat",cat.Name);
+        Assert.Equal(Status.Active,cat.Status);
+        Assert.Equal(new List<IArticle>(),cat.BlogPosts);
     }
 }

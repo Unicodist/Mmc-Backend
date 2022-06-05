@@ -23,6 +23,47 @@
     <ItemGroup>
       <_ContentIncludedByDefault Remove="wwwroot\datatables.net\jquery.dataTables.js" />
       <_ContentIncludedByDefault Remove="wwwroot\datatables.net\jquery.dataTables.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.bootstrap.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.bootstrap.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.bootstrap4.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.bootstrap4.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.bootstrap5.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.bootstrap5.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.bulma.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.bulma.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.dataTables.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.dataTables.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.foundation.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.foundation.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.jqueryui.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.jqueryui.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.semanticui.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\dataTables.semanticui.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\jquery.dataTables.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\css\jquery.dataTables.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\images\sort_asc.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\images\sort_asc_disabled.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\images\sort_both.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\images\sort_desc.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\images\sort_desc_disabled.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.bootstrap.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.bootstrap.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.bootstrap4.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.bootstrap4.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.bootstrap5.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.bootstrap5.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.bulma.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.bulma.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.dataTables.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.dataTables.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.foundation.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.foundation.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.jqueryui.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.jqueryui.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.semanticui.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\dataTables.semanticui.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\jquery.dataTables.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\datatables\js\jquery.dataTables.min.js" />
     </ItemGroup>
 
 </Project>

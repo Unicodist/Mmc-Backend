@@ -12,6 +12,6 @@ namespace Mmc.Notice.Entity.Interface
         long AdminId { get; }
         
         INoticeUser Author { get; }
-        GuidType Guid { get; set; }
+        GuidType Guid { get; }
     }
 }

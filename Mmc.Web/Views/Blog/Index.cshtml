@@ -13,7 +13,7 @@
             <div class="small text-muted">@Model.Pinned.DateTime.ToString(CultureInfo.InvariantCulture)</div>
             <h2 class="card-title">@Model.Pinned.Title</h2>
             <p class="card-text">@Html.Raw(Model.Pinned.Body)</p>
-            <a class="btn btn-primary" href="@Url.Action("Read","Blog")/@Model.Pinned.BlogId">Read more →</a>
+            <a class="btn btn-primary" href="@Url.Action("Read","BlogApi")/@Model.Pinned.BlogId">Read more →</a>
         </div>
     </div>
     <!-- Nested row for non-featured blog posts-->
@@ -26,7 +26,7 @@
                 <div class="small text-muted">@item.DateTime</div>
                 <h2 class="card-title h4">@item.Title</h2>
                 <p class="card-text">@Html.Raw(item.Body)</p>
-                <a class="btn btn-primary" href="@Url.Action("Read","Blog")/@item.BlogId">Read more →</a>
+                <a class="btn btn-primary" href="@Url.Action("Read","BlogApi")/@item.BlogId">Read more →</a>
             </div>
         </div>
     }

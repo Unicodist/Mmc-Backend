@@ -1,3 +1,4 @@
+using Mmc.Blog.BaseType;
 using Mmc.Blog.Entity;
 using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Enum;
@@ -17,5 +18,6 @@ public class CategoryModel : ICategory
     public string Description { get; set; }
     public Status Status { get; set; }
     public virtual ICollection<ArticleModel> BlogPosts { get; set; }
+    public GuidType Guid { get; set; }
     ICollection<IArticle> ICategory.BlogPosts => BlogPosts.Cast<IArticle>().ToList();
 }

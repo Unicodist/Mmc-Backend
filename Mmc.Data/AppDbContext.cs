@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Mmc.Data.Configurations;
 using Mmc.Data.Configurations.Address;
 using Mmc.Data.Configurations.Blog;
+using Mmc.Data.Configurations.Core;
 using Mmc.Data.Configurations.Notice;
 using Mmc.Data.Configurations.User;
 using MySqlConnector;
@@ -34,6 +35,7 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfiguration(new KeyValConfiguration());
         #region Blog
 
         _ = modelBuilder.ApplyConfiguration(new ArticleConfiguration());

@@ -1,4 +1,3 @@
-using Mmc.Core.Repository;
 using Mmc.Data.Model.Notice;
 using Mmc.Notice.Entity.Interface;
 using Mmc.Notice.Repository;
@@ -12,12 +11,12 @@ public class NoticeRepository : BaseRepository<NoticeModel>, NoticeRepositoryInt
         
     }
 
-    public new async Task<ICollection<INotice>> GetAll()
+    public new async Task<ICollection<INotice>?> GetAllAsync()
     {
         return (await base.GetAllAsync().ConfigureAwait(false)).Cast<INotice>().ToList();
     }
 
-    public async Task<INotice> GetById(long id)
+    public new async Task<INotice?> GetByIdAsync(long id)
     {
         return await base.GetByIdAsync(id).ConfigureAwait(false);
     }

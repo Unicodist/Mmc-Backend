@@ -38,7 +38,7 @@
 
 <script type="text/javascript">
     $.ajax({
-      url: "@Url.Action("GetComments","Blog")",
+      url: "@Url.Action("GetComments","BlogApi")",
       context: document.body
     }).done(function() {
       $( this ).addClass( "done" );

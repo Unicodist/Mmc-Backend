@@ -15,23 +15,23 @@
 </table>
 
 <script>
-    $(document).ready(function() {
-        $("#noticeDT").DataTable({
-            ajax:{
-                url: '@Url.Action("Read","Notice")'
-            },
-            columns:
-            [
-                {data:'title'},
-                {data:'body'},            
-                {data:'date'},            
-                {data:'user'},
-                {
-                    'data':'guid',render:function(data,type,row,meta){
-                        return "<button class='btn btn-primary' onclick='editNotice("+JSON.stringify(row)+")'>Edit</button>"
-                    }
-                }
-            ]
-        });
-    });
+    // $(document).ready(function() {
+    //     $("#noticeDT").DataTable({
+    //         ajax:{
+    //             url: '@Url.Action("Read","NoticeApi")'
+    //         },
+    //         columns:
+    //         [
+    //             {data:'title'},
+    //             {data:'body'},            
+    //             {data:'date'},            
+    //             {data:'user'},
+    //             {
+    //                 'data':'guid',render:function(data,type,row,meta){
+    //                     return "<button class='btn btn-primary' onclick='editNotice("+JSON.stringify(row)+")'>Edit</button>"
+    //                 }
+    //             }
+    //         ]
+    //     });
+    // });
 </script>

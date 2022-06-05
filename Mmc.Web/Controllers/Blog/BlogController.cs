@@ -8,6 +8,7 @@ using Mmc.Blog.Exception;
 using Mmc.Blog.Repository;
 using Mmc.Blog.Service.Interface;
 using Mmc.Blog.ViewModel;
+using Mmc.User.Repository;
 
 namespace Mechi.Backend.Controllers.Blog;
 public class BlogController : Controller
@@ -15,18 +16,21 @@ public class BlogController : Controller
     private readonly IArticleRepository _blogRepo;
     private readonly IBlogService _blogService;
     private readonly IBlogUserRepository _userRepository;
+    private readonly IUserUserRepository _userUserRepository;
     private readonly ICommentRepository _commentRepository;
     // GET
     public BlogController(IArticleRepository blogRepo, 
         IBlogService blogService, 
         IBlogUserRepository userRepository,
-        ICommentRepository commentRepository)
+        ICommentRepository commentRepository, 
+        IUserUserRepository userUserRepository)
     {
         _blogRepo = blogRepo;
         _blogService = blogService;
         _userRepository = userRepository;
         _commentRepository = commentRepository;
-        UserHelper.UserRepository = userRepository;
+        _userUserRepository = userUserRepository;
+        UserHelper.UserRepository = userUserRepository;
     }
     [Route("[controller]/{page}")]
     public async Task<IActionResult> Index(int? page)
@@ -49,9 +53,9 @@ public class BlogController : Controller
         return View(model);
     }
     [Route("[controller]")]
-    public IActionResult Index()
+    public Task<IActionResult> Index()
     {
-        return RedirectToAction("Index", new {page = 1});
+        return Index(1);
     }
     [Route("[controller]/Read/{id}")]
     public async Task<IActionResult> Read(long id)
@@ -60,7 +64,7 @@ public class BlogController : Controller
         var model = new ArticleReadViewModel()
         {
             Title = blog.Title,
-            AuthorName = blog.AuthorName,
+            AuthorName = blog.AuthorAdmin.Name,
             Body = blog.Body,
             Categories = blog.Category.Name,
             Date = blog.PostedDate.ToString(CultureInfo.InvariantCulture)
@@ -81,17 +85,16 @@ public class BlogController : Controller
     public async Task<IActionResult> Create(ArticleCreateViewModel model)
     {
         var user = this.GetCurrentBlogUser();
-        var articleDto = new ArticleCreateDto()
+        var articleDto = new ArticleCreateDto(model.Title,model.CkEditorBody,)
         {
             Title = model.Title,
             AdminId = 1,
-            AuthorName = user.Name,
             Body = model.CkEditorBody,
             PostedDate = DateTime.Now,
             CategoryId = 1
         };
         var article = await _blogService.Create(articleDto);
-        return RedirectToAction("Read", "Blog", new {id = article.Id});
+        return RedirectToAction("Read", "BlogApi", new {id = article.Id});
     }
     [Route("[controller]/GetDynamicPartialView/{page}")]
     public async Task<IActionResult> GetDynamicPartialView(int page=1)

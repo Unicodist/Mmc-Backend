@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using Mmc.Core.Services.User;
 using Mmc.User.Service;
 
 namespace Mmc.Core;

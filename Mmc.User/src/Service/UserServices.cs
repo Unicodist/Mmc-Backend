@@ -2,10 +2,9 @@ using Mmc.Core.Dto;
 using Mmc.User.Dto;
 using Mmc.User.Entity.Interface;
 using Mmc.User.Repository;
-using Mmc.User.Service;
 using Mmc.User.UserException;
 
-namespace Mmc.Core.Services.User;
+namespace Mmc.User.Service;
 
 public class UserServices : IUserService
 {
@@ -20,6 +19,11 @@ public class UserServices : IUserService
     {
         var user = _userUserRepo.CreateInstance(userCreateDto.Name,userCreateDto.Email,userCreateDto.Password, userCreateDto.Username);
         return await _userUserRepo.InsertAsync(user);
+    }
+
+    public Task<IUser> Update(UserUpdateDto dto)
+    {
+        throw new NotImplementedException();
     }
 
     public IUser ValidateUser(UserLoginDto userCreateDto)

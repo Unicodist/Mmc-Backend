@@ -18,7 +18,7 @@ public class ArticleConfiguration : IEntityTypeConfiguration<ArticleModel>
         builder.Property(b => b.CategoryId).HasColumnName("CategoryId").HasColumnType(ColumnTypes.Bigint);
         builder.Property(b => b.AuthorName).IsRequired();
 
-        builder.HasOne(b => b.AuthorAdmin).WithMany(u=>u.BlogPosts).HasForeignKey(b=>b.AdminId);
-        builder.HasOne(b => b.Category).WithMany(u=>u.BlogPosts).HasForeignKey(b=>b.CategoryId);
+        builder.HasOne(b => b.AuthorAdmin).WithMany(u=>u.BlogPosts).HasForeignKey(b=>b.AdminId).OnDelete(DeleteBehavior.Cascade);
+        builder.HasOne(b => b.Category).WithMany(u=>u.BlogPosts).HasForeignKey(b=>b.CategoryId).OnDelete(DeleteBehavior.Cascade);
     }
 }

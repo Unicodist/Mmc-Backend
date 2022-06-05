@@ -17,7 +17,7 @@ public class NoticeGridController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Read()
     {
-        var noticeMasters = await _noticeRepository.GetAll();
+        var noticeMasters = await _noticeRepository.GetAllAsync();
         var result = noticeMasters.Select(x => new NoticeResponseApiModel()
         {
             Title = x.Title,

@@ -6,10 +6,9 @@ public interface IArticle
     string Title { get; }
     string Body { get; }
     DateTime PostedDate { get; }
-    string AuthorName { get; }
     
     long AdminId { get; }
-    long CategoryId { get; }
+    long? CategoryId { get; }
     
     IBlogUser AuthorAdmin { get; }
     ICategory Category { get; }

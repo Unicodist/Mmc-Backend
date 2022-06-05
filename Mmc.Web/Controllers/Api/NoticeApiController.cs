@@ -7,18 +7,18 @@ namespace Mmc.Blog.Api;
 
 [ApiController]
 [Route("api/[controller]")]
-public class NoticeController : ControllerBase
+public class NoticeApiController : ControllerBase
 {
     private NoticeRepositoryInterface _noticeRepository;
 
-    public NoticeController(NoticeRepositoryInterface noticeRepository)
+    public NoticeApiController(NoticeRepositoryInterface noticeRepository)
     {
         _noticeRepository = noticeRepository;
     }
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var noticeMasters = await _noticeRepository.GetAll();
+        var noticeMasters = await _noticeRepository.GetAllAsync();
         var result = noticeMasters.Select(x => new NoticeResponseApiModel()
         {
             Title = x.Title,
@@ -32,7 +32,7 @@ public class NoticeController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(long id)
     {
-        var noticeMaster = await _noticeRepository.GetById(id);
+        var noticeMaster = await _noticeRepository.GetByIdAsync(id);
         var result = new NoticeResponseApiModel()
         {
             Title = noticeMaster.Title,
