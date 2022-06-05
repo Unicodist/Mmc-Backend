@@ -7,9 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="src\Mmc.Blog" />
-      <Folder Include="src\Mmc.Data" />
-      <Folder Include="src\Mmc.Notice" />
+      <Folder Include="src\Mmc.Data\Dto" />
+      <Folder Include="src\Mmc.Notice\Dto" />
     </ItemGroup>
 
     <ItemGroup>
