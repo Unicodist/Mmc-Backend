@@ -2,7 +2,6 @@ using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Exception;
 using Mmc.Blog.Repository;
 using Mmc.Data.Model.Blog;
-using Mmc.Data.Model.User;
 
 namespace Mmc.Data.Repository.Blog;
 
@@ -13,7 +12,7 @@ public class ArticleRepository : BaseRepository<ArticleModel>, IArticleRepositor
         
     }
 
-    public async Task<IArticle> GetByIdAsync(long id)
+    public new async Task<IArticle?> GetByIdAsync(long id)
     {
         return await base.GetByIdAsync(id).ConfigureAwait(false)??throw new ArticleNotFoundException();
     }
@@ -23,14 +22,9 @@ public class ArticleRepository : BaseRepository<ArticleModel>, IArticleRepositor
         return base.InsertAsync((ArticleModel)article);
     }
 
-    public async Task<ICollection<IArticle>> GetAllBlogAsync()
+    public async Task<ICollection<IArticle>?> GetAllBlogAsync()
     {
         return (await GetAllAsync().ConfigureAwait(false)).Cast<IArticle>().ToList();
-    }
-
-    public IArticle CreateInstance(string title, string authorName, string body, DateTime postedDate, IBlogUser authorAdmin, ICategory category)
-    {
-        return new ArticleModel(title, authorName, body, postedDate, (UserModel)authorAdmin, (CategoryModel)category);
     }
 
     public IQueryable<IArticle> GetBlogQueryable()

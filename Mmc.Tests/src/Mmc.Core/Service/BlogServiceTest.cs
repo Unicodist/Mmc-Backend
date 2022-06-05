@@ -11,15 +11,17 @@ namespace Mmc.Tests.Mmc.Core.Service;
 
 public class BlogServiceTest
 {
+   private readonly Mock<IArticleRepository> _articleRepository = new();
+   private readonly Mock<IBlogUserRepository> _blogUserRepository = new();
+   private readonly Mock<ICategoryRepository> _categoryRepository = new();
    private readonly BlogService _blogService;
-   private readonly Mock<IArticleRepository> _articleRepository;
+   
    private readonly IArticle _article;
-   private ICategory _category;
-   private IBlogUser _blogUser;
-   private readonly IBlogUserRepository _blogUserRepository;
-   private readonly ICategoryRepository _categoryRepository;
+   private readonly ICategory _category;
+   private readonly IBlogUser _blogUser;
+   readonly DateTime _someDate = DateTime.Now;
+   
    private readonly ArticleCreateDto _articleCreateDto;
-   DateTime _someDate = DateTime.Now;
 
 
    public BlogServiceTest()
@@ -29,23 +31,19 @@ public class BlogServiceTest
       _blogUser = new BlogUser("Ashish", "AshuraNep", "abc.jpg");
       
       _article = new Article("title", "body", _someDate, _category, _blogUser);
-      
+
       _articleCreateDto = new ArticleCreateDto("title","body",3,5);
-      _articleRepository.Setup(a => a.GetByIdAsync(It.IsAny<long>())).Returns(_article);
-      _blogUserRepository = blogUserRepository;
-      _categoryRepository = categoryRepository;
+      
+      _articleRepository.Setup( a => a.GetByIdAsync(It.IsAny<long>())).Returns(Task.FromResult(_article)!);
+      _blogUserRepository.Setup(a => a.GetBlogUserById(It.IsAny<long>())).Returns(Task.FromResult(_blogUser)!);
+      _categoryRepository.Setup(a => a.GetById(It.IsAny<long>())).Returns(Task.FromResult(_category)!);
+
+      _blogService = new BlogService(_articleRepository.Object, _blogUserRepository.Object, _categoryRepository.Object);
    }
 
    [Fact]
    public async Task Test_CreateMethod_Creates_Blog_With_Provided_data()
    {
-      dto.Title = "xyz";
-      dto.Body = "xyz";
-      dto.AuthorName = "xyz";
-      dto.CategoryId = 1;
-      dto.PostedDate=DateTime.Now;
-      await _blogService.Create(dto).ConfigureAwait(false);
-     
-
+      await _blogService.Create(_articleCreateDto);
    }
 }

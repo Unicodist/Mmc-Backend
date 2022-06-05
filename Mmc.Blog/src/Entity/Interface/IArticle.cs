@@ -11,5 +11,5 @@ public interface IArticle
     long? CategoryId { get; }
     
     IBlogUser AuthorAdmin { get; }
-    ICategory Category { get; }
+    ICategory? Category { get; }
 }

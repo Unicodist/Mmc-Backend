@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Mmc.Blog.BaseType;
 using Mmc.Blog.Enum;
 using Mmc.Data.Model.Blog;
 using Mmc.Data.TypeConverter.Blog;
-using Mmc.Notice.BaseType;
 
 namespace Mmc.Data.Configurations.Blog;
 

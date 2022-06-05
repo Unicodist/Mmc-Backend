@@ -4,7 +4,7 @@ using Mmc.Blog.Repository;
 
 namespace Mechi.Backend.Controllers.Api;
 [ApiController]
-
+[Route("api/[controller]")]
 public class CategoryApiController : ControllerBase
 {
     private ICategoryRepository _categoryRepository;

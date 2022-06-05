@@ -85,14 +85,7 @@ public class BlogController : Controller
     public async Task<IActionResult> Create(ArticleCreateViewModel model)
     {
         var user = this.GetCurrentBlogUser();
-        var articleDto = new ArticleCreateDto(model.Title,model.CkEditorBody,)
-        {
-            Title = model.Title,
-            AdminId = 1,
-            Body = model.CkEditorBody,
-            PostedDate = DateTime.Now,
-            CategoryId = 1
-        };
+        var articleDto = new ArticleCreateDto(model.Title, model.CkEditorBody, user.Id, model.CategoryId);
         var article = await _blogService.Create(articleDto);
         return RedirectToAction("Read", "BlogApi", new {id = article.Id});
     }
