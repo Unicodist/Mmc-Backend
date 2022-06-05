@@ -16,9 +16,12 @@ public static class DiConfig
     {
         #region Blog
 
-        services.AddScoped<ICategoryRepository, CategoryRepository>();
-        services.AddScoped<IArticleRepository, ArticleRepository>();
-        services.AddScoped<IBlogUserRepository, UserRepository>();
+        _ = services.AddScoped<ICategoryRepository, CategoryRepository>();
+        _ = services.AddScoped<IArticleRepository, ArticleRepository>();
+        _ = services.AddScoped<IBlogUserRepository, UserRepository>();
+        _ = services.AddScoped<ICommentRepository, CommentRepository>();
+        _ = services.AddScoped<IUpvoteRepository, UpvoteRepository>();
+        _ = services.AddScoped<IInteractionLogRepository, InteractionLogRepository>();
 
         #endregion
 

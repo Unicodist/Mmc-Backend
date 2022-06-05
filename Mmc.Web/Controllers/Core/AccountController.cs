@@ -19,7 +19,7 @@ public class AccountController : Controller
         _userServices = userServices;
     }
     [Authorize(Roles = "Superuser,Admin")]
-    [Route("[controller]/{id}")]
+    [Route("[controller]/Profile/{id}")]
     public IActionResult Index(long id)
     {
         return View();
@@ -79,7 +79,6 @@ public class AccountController : Controller
         
         return RedirectToAction("Index", "Dashboard");
     }
-
     public IActionResult Logout()
     {
         HttpContext.SignOutAsync();
@@ -88,7 +87,7 @@ public class AccountController : Controller
 
     public IActionResult UnAuthorized()
     {
-        return View();
+        return Ok("You are not authorized!");
     }
     
 }

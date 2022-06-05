@@ -1,5 +1,4 @@
 using System.Globalization;
-using System.Security.Claims;
 using Mechi.Backend.Helper;
 using Mechi.Backend.ViewModel;
 using Microsoft.AspNetCore.Authorization;
@@ -15,16 +14,19 @@ public class BlogController : Controller
 {
     private readonly IArticleRepository _blogRepo;
     private readonly IBlogService _blogService;
-
-    private IBlogUserRepository _userRepository;
+    private readonly IBlogUserRepository _userRepository;
+    private readonly ICommentRepository _commentRepository;
     // GET
-    public BlogController(IArticleRepository blogRepo, IBlogService blogService, IBlogUserRepository userRepository)
+    public BlogController(IArticleRepository blogRepo, 
+        IBlogService blogService, 
+        IBlogUserRepository userRepository,
+        ICommentRepository commentRepository)
     {
         _blogRepo = blogRepo;
         _blogService = blogService;
         _userRepository = userRepository;
-
-        UserHelper.UserRepository = _userRepository;
+        _commentRepository = commentRepository;
+        UserHelper.UserRepository = userRepository;
     }
     [Route("[controller]/{page}")]
     public async Task<IActionResult> Index(int? page)
@@ -54,7 +56,7 @@ public class BlogController : Controller
     [Route("[controller]/Read/{id}")]
     public async Task<IActionResult> Read(long id)
     {
-        var blog = await _blogRepo.GetArticleByIdAsync(id)??throw new ArticleNotFoundException();
+        var blog = await _blogRepo.GetByIdAsync(id)??throw new ArticleNotFoundException();
         var model = new ArticleReadViewModel()
         {
             Title = blog.Title,
@@ -82,8 +84,8 @@ public class BlogController : Controller
         var articleDto = new ArticleCreateDto()
         {
             Title = model.Title,
-            AdminId = user.Id,
-            AuthorName = model.Author??user.Name,
+            AdminId = 1,
+            AuthorName = user.Name,
             Body = model.CkEditorBody,
             PostedDate = DateTime.Now,
             CategoryId = 1
@@ -103,5 +105,21 @@ public class BlogController : Controller
             LastPage = page==blogPage
         };
         return PartialView("_Partial_Blog_Pagination",model);
+    }
+
+    [Route("[controller]/GetCommnets")]
+    public async Task<IActionResult> GetComments(long articleId, int page)
+    {
+        var article = await _blogRepo.GetByIdAsync(articleId);
+        var comments = await _commentRepository.GetByArticleIdAsync(articleId);
+        var model = new CommentSectionViewModel()
+        {
+            Comments = comments.Take(page).Select(x => new CommentItemViewModel()
+            {
+                Body = x.Body, Guid = x.Guid.ToString(), Name = x.User.UserName, picture = x.User.picture,
+                SelfComment = article.AuthorAdmin.Id == x.Id
+            }),
+        };
+        return PartialView("PartialViews/Blog/CommentItem", model);
     }
 }

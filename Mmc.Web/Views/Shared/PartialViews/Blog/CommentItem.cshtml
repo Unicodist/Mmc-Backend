@@ -1,0 +1,18 @@
+@model Mmc.Blog.ViewModel.CommentSectionViewModel
+<!-- Single comment-->
+@foreach (var item in Model.Comments)
+{
+<div class="d-flex">
+    <div class="flex-shrink-0"><img class="rounded-circle" src="@item.picture" alt="..." /></div>
+    <div class="ms-3">
+        <div class="fw-bold">@item.Name</div>
+        @item.Body
+    </div>
+    @if (item.SelfComment)
+    {
+        <sub><a>Edit</a></sub>
+        <sub><a>Delete</a></sub>
+    }
+</div>
+}
+

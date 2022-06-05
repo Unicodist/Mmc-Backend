@@ -1,3 +1,4 @@
+using Mmc.Blog.BaseType;
 using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Enum;
 using Mmc.Data.Model.User;
@@ -6,7 +7,7 @@ namespace Mmc.Data.Model.Blog;
 
 public class CommentModel : IComment
 {
-    protected CommentModel()
+    public CommentModel()
     {
         
     }
@@ -19,17 +20,18 @@ public class CommentModel : IComment
     }
 
     public long Id { get; }
-    public string Body { get; set; }
+    public string Body { get; set; } = null!;
     public long UserId { get; set; }
     public long ArticleId { get; set; }
     public long ParentId { get; set; }
-    public Status Status { get; set; }
+    public Status Status { get; set; } = null!;
 
     public virtual ICollection<CommentModel>? Replies { get; }
+    public GuidType Guid { get; set; }
 
-    public virtual UserModel User { get; }
-    public virtual ArticleModel Article { get; }
-    public virtual CommentModel Parent { get; }
+    public virtual UserModel User { get; } = null!;
+    public virtual ArticleModel Article { get; } = null!;
+    public virtual CommentModel Parent { get; } = null!;
 
 
     ICollection<IComment> IComment.Replies => Replies.Cast<IComment>().ToList();

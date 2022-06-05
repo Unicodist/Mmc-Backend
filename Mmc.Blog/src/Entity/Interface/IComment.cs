@@ -1,3 +1,4 @@
+using Mmc.Blog.BaseType;
 using Mmc.Blog.Enum;
 
 namespace Mmc.Blog.Entity.Interface;
@@ -14,5 +15,6 @@ public interface IComment
     IArticle Article { get; }
     IComment Parent { get; }
     ICollection<IComment>? Replies { get; }
+    GuidType Guid { get; }
     void Update(string body);
 }

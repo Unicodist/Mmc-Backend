@@ -13,9 +13,9 @@ public class ArticleRepository : BaseRepository<ArticleModel>, IArticleRepositor
         
     }
 
-    public async Task<IArticle> GetArticleByIdAsync(long id)
+    public async Task<IArticle> GetByIdAsync(long id)
     {
-        return await GetByIdAsync(id).ConfigureAwait(false)??throw new ArticleNotFoundException();
+        return await base.GetByIdAsync(id).ConfigureAwait(false)??throw new ArticleNotFoundException();
     }
 
     public Task InsertAsync(IArticle article)

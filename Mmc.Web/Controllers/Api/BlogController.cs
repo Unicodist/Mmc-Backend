@@ -27,7 +27,7 @@ public class BlogController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(int id)
     {
-        var blogMaster = await _articleRepository.GetArticleByIdAsync(id);
+        var blogMaster = await _articleRepository.GetByIdAsync(id);
         var dto = new BlogPostResponseApiModel(blogMaster.Title, blogMaster.Body, blogMaster.AuthorName,
             blogMaster.PostedDate.ToString(CultureInfo.CurrentCulture));
         

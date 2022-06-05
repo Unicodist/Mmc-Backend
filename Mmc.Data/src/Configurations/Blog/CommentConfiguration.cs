@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Mmc.Blog.BaseType;
 using Mmc.Blog.Enum;
 using Mmc.Data.Model.Blog;
 using Mmc.Data.TypeConverter.Blog;
@@ -18,6 +19,7 @@ public class CommentConfiguration : IEntityTypeConfiguration<CommentModel>
         _ = builder.Property(a => a.ParentId).HasColumnName("parent_id").HasColumnType(ColumnTypes.Bigint);
         _ = builder.Property(a => a.UserId).HasColumnName("user_id").HasColumnType(ColumnTypes.Bigint);
         _ = builder.Property(a => a.Status).HasColumnName("status").HasColumnType(ColumnTypes.Varchar).HasMaxLength(50).HasConversion(new BaseTypeStringConverter<Status>());
+        _ = builder.Property(a => a.Guid).HasColumnName("guid").HasColumnType(ColumnTypes.Varchar).HasMaxLength(50).HasConversion(new BaseTypeStringConverter<GuidType>());
 
         _ = builder.HasOne(a => a.Article).WithMany().HasForeignKey(a => a.ArticleId);
         _ = builder.HasOne(a => a.User).WithMany().HasForeignKey(a => a.UserId);

@@ -24,7 +24,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="src\Helper" />
       <Folder Include="src\Repository\Address" />
     </ItemGroup>
 
