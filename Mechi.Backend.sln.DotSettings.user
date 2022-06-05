@@ -1,9 +1,79 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/Hierarchy/Build/SolBuilderDuo/CustomGlobalProperties/=PreferredUILang/@EntryIndexedValue">NP</s:String>
-	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\ASUS\AppData\Local\JetBrains\Rider2021.3\resharper-host\temp\Rider\vAny\CoverageData\_Mechi.Backend.-1331944383\Snapshot\snapshot.utdcvr</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d8f84681_002D4251_002D4883_002D98ea_002D62759556b9a3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test_ProvidedData_Constructor_CreatesUserWithCorrectValues" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\compu\AppData\Local\JetBrains\Rider2021.3\resharper-host\temp\Rider\vAny\CoverageData\_Mechi.Backend.1415213518\Snapshot\snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1f049cbc_002D375e_002D4993_002Db2a9_002D39da8783d09b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test_UpdateMethod_UpdateComment" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Core.Entity.UserMasterEntityTest.Test_ProvidedData_Constructor_CreatesUserWithCorrectValues&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.CommentTest.Test_UpdateMethod_UpdateComment&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.CommentTest.Test_CommentTest_GetsAllNecessaryProperties&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.InteractionLogTest.Test_InteractionTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.UpvoteTest.Test_UpvoteTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Core.Entity.UserMasterEntityTest.Test_UserMasterEntityTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Core.Entity.UserMasterEntityTest.Test_SetValue&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Core.Service.BlogServiceTest.Test_CreateMethod_Creates_Blog_With_Provided_data&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=37c7137e_002D4d5b_002D49a5_002D922b_002D51f95c909fa3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_GuidType #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.BaseType.GuidTypeTest.Test_GuidType&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8b126634_002Df889_002D4dd8_002D8679_002Ddd8c3108626d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test__NewArticleCreateDtoTest_SetsAllNeccessaryProperties" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Dto.ArticleCreateDtoTest.Test__NewArticleCreateDtoTest_SetsAllNeccessaryProperties&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.ArticleTest.New__FeeHeadTest_SetsAllNecessaryProperties&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.ArticleTest.New__ArticleTest_SetsAllNecessaryProperties&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8c688141_002D8411_002D44bf_002Db643_002D2b812707c670/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="New__ArticleTest_SetsAllNecessaryProperties #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.ArticleTest.New__ArticleTest_SetsAllNecessaryProperties&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a370d9eb_002D8ee6_002D49c6_002D918f_002D310c8dbddded/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="New__ArticleTest_SetsAllNecessaryProperties #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.ArticleTest.New__ArticleTest_SetsAllNecessaryProperties&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Dto.ArticleCreateDtoTest.Test__NewArticleCreateDtoTest_SetsAllNeccessaryProperties&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.BlogUserTest.New__BlogUserTest_SetsAllNecessaryProperties&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.CategoryTest.Test__CategoryTest_GetsAllNecessaryProperties&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.CommentTest.Test_CommentTest_GetsAllNecessaryProperties&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a76c6d99_002D991b_002D47cc_002D9669_002D32815b238cff/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="New__ArticleTest_SetsAllNecessaryProperties #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.ArticleTest.New__ArticleTest_SetsAllNecessaryProperties&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=aa78b18c_002Dd786_002D4177_002D864d_002D61e5e94f33f8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="New__ArticleTest_SetsAllNecessaryProperties" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.ArticleTest.New__ArticleTest_SetsAllNecessaryProperties&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b5095926_002Dee4b_002D4b2b_002D85fa_002Da00c4b7c44bb/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_GuidType" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.BaseType.GuidTypeTest.Test_GuidType&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d8f84681_002D4251_002D4883_002D98ea_002D62759556b9a3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_ProvidedData_Constructor_CreatesUserWithCorrectValues" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\compu\OneDrive\Documents\GitHub\Mmc-Backend\Mmc.Tests" Presentation="&amp;lt;Mmc.Tests&amp;gt;" /&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=da4d99bc_002De4db_002D4638_002D9bb4_002D1b7f307d950f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_GuidType #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.BaseType.GuidTypeTest.Test_ToStringMethod_ReturnsGivenValueInStringFormat&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e41ad4a9_002D5914_002D45c4_002D9c65_002D36263e0dbba2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_CommentTest_GetsAllNecessaryProperties" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.CommentTest.Test_CommentTest_GetsAllNecessaryProperties&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.CommentTest.Test_Update_Comment&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.CommentTest.Test_UpdateMethod_UpdateComment&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fd719089_002D1bb1_002D425f_002D96b7_002Dd018060446cc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_ToStringMethod_ReturnsGivenValueInStringFormat" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.BaseType.GuidTypeTest.Test_ToStringMethod_ReturnsGivenValueInStringFormat&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.BaseType.GuidTypeTest.Test_GuidType&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Dto.ArticleCreateDtoTest.Test__NewArticleCreateDtoTest_SetsAllNeccessaryProperties&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Mechi/@EntryIndexedValue">True</s:Boolean>
