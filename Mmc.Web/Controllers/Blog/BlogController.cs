@@ -1,6 +1,7 @@
 using System.Globalization;
 using Mechi.Backend.Helper;
 using Mechi.Backend.ViewModel;
+using Mechi.Backend.ViewModel.Blog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Blog.Dto;
@@ -41,7 +42,7 @@ public class BlogController : Controller
             return View("Errors/_No_Articles");
         }
         var modelArticles = articles.Select(x => new ArticleViewModel()
-            {BlogId = x.Id, Body = x.Body, DateTime = x.PostedDate, Image = "abc", Title = x.Title});
+            {Guid = x.Guid, Body = x.Body, DateTime = x.PostedDate, Image = "abc", Title = x.Title});
         var pinned = modelArticles.First();
         modelArticles.ToList().Remove(pinned);
         var model = new BlogHomeViewModel()
@@ -78,16 +79,6 @@ public class BlogController : Controller
     public IActionResult Write()
     {
         return View();
-    }
-    [Authorize]
-    [HttpPost]
-    [Route("[controller]/Create")]
-    public async Task<IActionResult> Create(ArticleCreateViewModel model)
-    {
-        var user = this.GetCurrentBlogUser();
-        var articleDto = new ArticleCreateDto(model.Title, model.CkEditorBody, user.Id, model.CategoryGuid);
-        var article = await _blogService.Create(articleDto);
-        return RedirectToAction("Read", "BlogApi", new {id = article.Id});
     }
     [Route("[controller]/GetDynamicPartialView/{page}")]
     public async Task<IActionResult> GetDynamicPartialView(int page=1)

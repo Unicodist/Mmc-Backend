@@ -1,3 +1,5 @@
+using Mechi.Backend.ViewModel.Blog;
+
 namespace Mmc.Blog.ViewModel;
 
 public class BlogHomeViewModel
