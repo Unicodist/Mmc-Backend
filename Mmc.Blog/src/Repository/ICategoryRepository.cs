@@ -4,8 +4,8 @@ namespace Mmc.Blog.Repository;
 
 public interface ICategoryRepository
 {
-    public Task<ICategory?> GetById(long id);
-    public Task Insert(ICategory category);
-    public Task<ICollection<ICategory>?> GetAll();
-    ICategory CreateInstance(string name, string description);
+    public Task<ICategory?> GetByIdAsync(long id);
+    public Task InsertAsync(ICategory category);
+    public Task<ICollection<ICategory>?> GetAllAsync();
+    Task<ICategory?> GetByGuid(string dtoCategoryGuid);
 }

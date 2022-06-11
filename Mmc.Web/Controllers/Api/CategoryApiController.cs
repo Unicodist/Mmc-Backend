@@ -17,10 +17,10 @@ public class CategoryApiController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetCategoryList()
     {
-        var categories = await _categoryRepository.GetAll();
+        var categories = await _categoryRepository.GetAllAsync();
         var model = categories.Select(x => new CategoryResponseModel()
         {
-            Guid = x.Guid,
+            Guid = x.Guid.ToString(),
             Name = x.Name,
             Description = x.Description
         });

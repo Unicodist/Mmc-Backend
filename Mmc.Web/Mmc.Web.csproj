@@ -66,4 +66,8 @@
       <_ContentIncludedByDefault Remove="wwwroot\datatables\js\jquery.dataTables.min.js" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Helper\ViewHelpers\Blog" />
+    </ItemGroup>
+
 </Project>

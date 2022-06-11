@@ -1,7 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/Hierarchy/Build/SolBuilderDuo/CustomGlobalProperties/=PreferredUILang/@EntryIndexedValue">NP</s:String>
-	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\compu\AppData\Local\JetBrains\Rider2021.3\resharper-host\temp\Rider\vAny\CoverageData\_Mechi.Backend.1415213518\Snapshot\snapshot.utdcvr</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1f049cbc_002D375e_002D4993_002Db2a9_002D39da8783d09b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test_UpdateMethod_UpdateComment" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1f049cbc_002D375e_002D4993_002Db2a9_002D39da8783d09b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_UpdateMethod_UpdateComment" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.CommentTest.Test_UpdateMethod_UpdateComment&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.CommentTest.Test_CommentTest_GetsAllNecessaryProperties&lt;/TestId&gt;&#xD;
@@ -54,7 +54,7 @@
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d8f84681_002D4251_002D4883_002D98ea_002D62759556b9a3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test_ProvidedData_Constructor_CreatesUserWithCorrectValues" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d8f84681_002D4251_002D4883_002D98ea_002D62759556b9a3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_ProvidedData_Constructor_CreatesUserWithCorrectValues" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Project Location="C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Tests" Presentation="&amp;lt;Mmc.Tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=da4d99bc_002De4db_002D4638_002D9bb4_002D1b7f307d950f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_GuidType #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
@@ -69,7 +69,7 @@
     &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.CommentTest.Test_UpdateMethod_UpdateComment&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fd719089_002D1bb1_002D425f_002D96b7_002Dd018060446cc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_ToStringMethod_ReturnsGivenValueInStringFormat" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fd719089_002D1bb1_002D425f_002D96b7_002Dd018060446cc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test_ToStringMethod_ReturnsGivenValueInStringFormat" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.BaseType.GuidTypeTest.Test_ToStringMethod_ReturnsGivenValueInStringFormat&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.BaseType.GuidTypeTest.Test_GuidType&lt;/TestId&gt;&#xD;

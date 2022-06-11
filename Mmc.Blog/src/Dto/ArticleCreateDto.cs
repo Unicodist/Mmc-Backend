@@ -2,16 +2,16 @@ namespace Mmc.Blog.Dto;
 
 public class ArticleCreateDto
 {
-    public ArticleCreateDto(string title, string body,long adminId, long categoryId)
+    public ArticleCreateDto(string title, string body,long adminId, string categoryGuid)
     {
         Title = title;
         Body = body;
         AdminId = adminId;
-        CategoryId = categoryId;
+        CategoryGuid = categoryGuid;
     }
 
     public string Title { get; set; }
     public string Body { get; set; } 
     public long AdminId { get; set; }
-    public long CategoryId { get; set; }
+    public string CategoryGuid { get; set; }
 }

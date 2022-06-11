@@ -76,8 +76,7 @@ public class AccountController : Controller
         var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
         var principle = new ClaimsPrincipal(identity);
         await HttpContext.SignInAsync(principle);
-        
-        return RedirectToAction("Index", "Dashboard");
+        return RedirectToAction("Index","Dashboard");
     }
     public IActionResult Logout()
     {

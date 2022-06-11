@@ -22,7 +22,7 @@ public class BlogService : IBlogService
     public async Task<IArticle> Create(ArticleCreateDto dto)
     {
         var admin = await _blogUserRepository.GetBlogUserById(dto.AdminId);
-        var category = await _categoryRepository.GetById(dto.CategoryId);
+        var category = await _categoryRepository.GetByGuid(dto.CategoryGuid);
         var blogpost = new Article(dto.Title,dto.Body,DateTime.Now, category,admin);
         await _articleRepository.InsertAsync(blogpost);
         return blogpost;

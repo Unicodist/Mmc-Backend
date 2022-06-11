@@ -1,13 +1,23 @@
 @model Mmc.Blog.ViewModel.ArticleCreateViewModel
 @{
+	var categories = 
+}
+@{
     Layout = "_Blog_Layout";
 }
 <form asp-action="Create">
-@Html.TextBoxFor(m=>m.Title,null,new {@class="form-control mb-3",@placeholder="Title"})
-@Html.ValidationMessageFor(m=>m.Title)
-@Html.TextAreaFor(m=>m.CkEditorBody,new{@placeholder="Start Writing"})
-@Html.ValidationMessageFor(m=>m.CkEditorBody);
-<button type="submit" class="btn btn-outline-primary mt-3">Post</button>
+	<div class="form-row">
+		<div class="col-md-6">
+			@Html.TextBoxFor(m => m.Title, null, new {@class = "form-control mb-3", @placeholder = "Title"})
+			@Html.ValidationMessageFor(m => m.Title)
+		</div>
+		<div class="col-md-6">
+			@Html.DropDownListFor(m=>m.CategoryGuid,Array.Empty<SelectListItem>(),"Category",new{@class="form-control"})
+		</div>
+	</div>
+	@Html.TextAreaFor(m => m.CkEditorBody, new {@placeholder = "Start Writing"})
+	@Html.ValidationMessageFor(m => m.CkEditorBody)
+	<button type="submit" class="btn btn-outline-primary mt-3">Post</button>
 </form>
 <script src="~/ckeditor5/ckeditor.js"></script>
 <script>
@@ -23,4 +33,20 @@ ClassicEditor
     		.catch( err => {
     			console.error( err.stack );
     		} );
+
+		$(document).ready(function() {
+		  $.ajax({
+			  type: "GET",
+			  url: "@Url.Action("GetCategoryList","CategoryApi")",
+			  data: "{}",
+			  success: function(data) {
+				  let s = "";
+				  for (var i = 0; i < data.length; i++) {
+					  console.log(data[i])
+					  s += '<option value="' + data[i].guid + '">' + data[i].name + '</option>';
+				  }
+				  $("#CategoryGuid").html(s);
+			  }
+              });
+          });
 </script>

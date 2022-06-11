@@ -9,20 +9,16 @@ public class ArticleCreateDtoTest
 
     public ArticleCreateDtoTest()
     {
-        _articleCreateDto = new ArticleCreateDto("title","body",2,3);
+        _articleCreateDto = new ArticleCreateDto("title","body",2,"abc");
     }
 
     [Fact]
     public void Test__NewArticleCreateDtoTest_SetsAllNeccessaryProperties()
     {
-        _articleCreateDto.Title = "xyz";
-        _articleCreateDto.Body = "xyz";
-        _articleCreateDto.AdminId = 1;
-        _articleCreateDto.CategoryId = 1;
-        Assert.Equal(1,_articleCreateDto.AdminId);
-        Assert.Equal("xyz",_articleCreateDto.Title);
-        Assert.Equal("xyz",_articleCreateDto.Body);
-        Assert.Equal(1,_articleCreateDto.CategoryId);
+        Assert.Equal(2,_articleCreateDto.AdminId);
+        Assert.Equal("title",_articleCreateDto.Title);
+        Assert.Equal("body",_articleCreateDto.Body);
+        Assert.Equal("abc",_articleCreateDto.CategoryGuid);
 
 
     }

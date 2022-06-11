@@ -20,16 +20,16 @@ public class UserServices : IUserService
         var user = _userUserRepo.CreateInstance(userCreateDto.Name,userCreateDto.Email,userCreateDto.Password, userCreateDto.Username);
         return await _userUserRepo.InsertAsync(user);
     }
-
+ 
     public Task<IUser> Update(UserUpdateDto dto)
     {
         throw new NotImplementedException();
     }
 
-    public IUser ValidateUser(UserLoginDto userCreateDto)
+    public IUser ValidateUser(UserLoginDto userLoginDto)
     {
-        var user = _userUserRepo.GetByUsername(userCreateDto.Username)??throw new UserNotFoundException();
-        if (BCrypt.Net.BCrypt.Verify(userCreateDto.Password,user.Password))
+        var user = _userUserRepo.GetByUsername(userLoginDto.Username)??throw new UserNotFoundException();
+        if (BCrypt.Net.BCrypt.Verify(userLoginDto.Password,user.Password))
         {
             return user;
         }

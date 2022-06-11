@@ -10,24 +10,23 @@ public class CategoryRepository :BaseRepository<CategoryModel>, ICategoryReposit
     {
     }
     
-    public async Task<ICategory?> GetById(long id)
+    public new async Task<ICategory?> GetByIdAsync(long id)
     {
         return await base.GetByIdAsync(id).ConfigureAwait(false);
     }
 
-    public Task Insert(ICategory category)
+    public Task InsertAsync(ICategory category)
     {
         return base.InsertAsync((CategoryModel) category);
     }
 
-    public async Task<ICollection<ICategory>?> GetAll()
+    public new async Task<ICollection<ICategory>?> GetAllAsync()
     {
         return (await base.GetAllAsync().ConfigureAwait(false)).Cast<ICategory>().ToList();
     }
 
-    public ICategory CreateInstance(string name, string description)
+    public Task<ICategory?> GetByGuid(string dtoCategoryGuid)
     {
-        return new CategoryModel(name, description);
+        return Task.FromResult<ICategory?>(GetQueryable().SingleOrDefault(x => x.Guid.Equals(dtoCategoryGuid)));
     }
-
 }
