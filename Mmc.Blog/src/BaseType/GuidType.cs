@@ -18,4 +18,6 @@ public class GuidType
     {
         Value = value;
     }
+
+    public static implicit operator string(GuidType x) => x.Value;
 }

@@ -1,3 +1,4 @@
+using Mmc.Blog.BaseType;
 using Mmc.Blog.Dto;
 using Mmc.Blog.Entity;
 using Mmc.Blog.Entity.Interface;
@@ -30,7 +31,7 @@ public class BlogServiceTest
 
       _blogUser = new BlogUser("Ashish", "AshuraNep", "abc.jpg");
       
-      _article = new Article("title", "body", _someDate, _category, _blogUser);
+      _article = new Article("title", "body", _someDate, _category, _blogUser,"xyz.jpg",new GuidType("mmm"));
 
       _articleCreateDto = new ArticleCreateDto("title","body",3,"abc");
       

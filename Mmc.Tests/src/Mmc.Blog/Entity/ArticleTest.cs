@@ -1,3 +1,4 @@
+using Mmc.Blog.BaseType;
 using Mmc.Blog.Entity;
 using Mmc.Blog.Entity.Interface;
 using Xunit;
@@ -15,7 +16,7 @@ public class ArticleTest
     {
         _blogUser = new BlogUser("Pramisa","Pramisa123","xyz.png");
         _category = new Category("cat","dog");
-        _article = new Article("title","body",someDate,_category,_blogUser);
+        _article = new Article("title","body",someDate,_category,_blogUser,"xyz.jpg",new GuidType("mmm"));
     }
 
     [Fact]
@@ -27,6 +28,8 @@ public class ArticleTest
         Assert.Equal(someDate,_article.PostedDate);
         Assert.Equal(0,_article.CategoryId);
         Assert.Equal(_blogUser,_article.AuthorAdmin);
+        Assert.Equal("xyz.jpg",_article.Thumbnail);
+        Assert.Equal("mmm",_article.Guid);
     }
     
     

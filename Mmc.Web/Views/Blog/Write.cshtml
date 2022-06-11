@@ -12,7 +12,7 @@
 			@Html.ValidationMessageFor(m => m.Title)
 		</div>
 		<div class="col-md-6">
-			@Html.DropDownListFor(m=>m.CategoryGuid,Array.Empty<SelectListItem>(),"Category",new{@class="form-control"})
+			@Html.DropDownListFor(m => m.CategoryGuid, Array.Empty<SelectListItem>(), "Category", new {@class = "form-control"})
 		</div>
 	</div>
 	@Html.TextAreaFor(m => m.CkEditorBody, new {@placeholder = "Start Writing"})
@@ -49,4 +49,5 @@ ClassicEditor
 			  }
               });
           });
+		
 </script>

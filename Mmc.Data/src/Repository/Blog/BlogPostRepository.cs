@@ -1,6 +1,7 @@
 using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Exception;
 using Mmc.Blog.Repository;
+using Mmc.Data.Helper;
 using Mmc.Data.Model.Blog;
 
 namespace Mmc.Data.Repository.Blog;
@@ -17,9 +18,10 @@ public class ArticleRepository : BaseRepository<ArticleModel>, IArticleRepositor
         return await base.GetByIdAsync(id).ConfigureAwait(false)??throw new ArticleNotFoundException();
     }
 
-    public Task InsertAsync(IArticle article)
+    public Task InsertAsync(IArticle a)
     {
-        return base.InsertAsync((ArticleModel)article);
+        var model = new ArticleModel(a.Title,a.Body,a.PostedDate,a.AuthorAdmin,a.Category,a.Thumbnail,a.Guid);
+        return base.InsertAsync(model);
     }
 
     public async Task<ICollection<IArticle>?> GetAllBlogAsync()

@@ -14,4 +14,5 @@ public class ArticleCreateDto
     public string Body { get; set; } 
     public long AdminId { get; set; }
     public string CategoryGuid { get; set; }
+    public string Thumbnail { get; set; }
 }

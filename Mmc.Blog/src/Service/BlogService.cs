@@ -1,3 +1,4 @@
+using Mmc.Blog.BaseType;
 using Mmc.Blog.Dto;
 using Mmc.Blog.Entity;
 using Mmc.Blog.Entity.Interface;
@@ -23,7 +24,7 @@ public class BlogService : IBlogService
     {
         var admin = await _blogUserRepository.GetBlogUserById(dto.AdminId);
         var category = await _categoryRepository.GetByGuid(dto.CategoryGuid);
-        var blogpost = new Article(dto.Title,dto.Body,DateTime.Now, category,admin);
+        var blogpost = new Article(dto.Title,dto.Body,DateTime.Now, category,admin,dto.Thumbnail,new GuidType());
         await _articleRepository.InsertAsync(blogpost);
         return blogpost;
     }
