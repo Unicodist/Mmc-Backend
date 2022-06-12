@@ -17,7 +17,7 @@ namespace Mechi.Backend.Controllers.Core
         [Authorize]
         public IActionResult Index()
         {
-            var blogCount = _articleRepository.GetBlogQueryable().Count();
+            var blogCount = _articleRepository.GetQueryable().Count();
             return View();
         }
     }

@@ -1,4 +1,4 @@
-namespace Mmc.Backend.Models;
+namespace Mechi.Backend.Models;
 
 public class ErrorViewModel
 {

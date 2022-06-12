@@ -1,4 +1,4 @@
-namespace Mmc.Core.Enum;
+namespace Mmc.Core.Enums;
 
 public class UserType : BaseEnum
 {

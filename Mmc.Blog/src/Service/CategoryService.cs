@@ -1,6 +1,6 @@
 using Mmc.Blog.Service.Interface;
 
-namespace Mmc.Core.Services.Blog;
+namespace Mmc.Blog.Service;
 
 public class CategoryService : ICategoryService
 {

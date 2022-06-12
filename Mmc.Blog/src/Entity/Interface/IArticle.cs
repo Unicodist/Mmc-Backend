@@ -6,7 +6,7 @@ public interface IArticle
 {
     long Id { get; }
     string Title { get; }
-    string Body { get; }
+    string? Body { get; }
     DateTime PostedDate { get; }
     string Thumbnail { get; }
     GuidType Guid { get; }

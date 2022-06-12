@@ -1,7 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Mmc.Blog.Service;
 using Mmc.Blog.Service.Interface;
-using Mmc.Core.Services.Blog;
 
 namespace Mmc.Core;
 

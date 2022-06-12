@@ -1,7 +1,6 @@
-using Mmc.User.Entity.Interface;
 using Mmc.User.Enum;
 
-namespace Mmc.User.Entity;
+namespace Mmc.User.Entity.Interface;
 
 public interface INotification
 {

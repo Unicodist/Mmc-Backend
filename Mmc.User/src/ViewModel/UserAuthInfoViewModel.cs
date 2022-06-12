@@ -1,4 +1,4 @@
-namespace Mmc.Blog.ViewModel;
+namespace Mmc.User.ViewModel;
 
 public class UserAuthInfoViewModel
 {

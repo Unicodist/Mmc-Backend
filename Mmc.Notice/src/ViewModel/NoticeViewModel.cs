@@ -1,6 +1,3 @@
-using Mmc.Notice.BaseType;
-using Mmc.Notice.Entity.Interface;
-
 namespace Mmc.Notice.ViewModel;
 
 public class NoticeViewModel

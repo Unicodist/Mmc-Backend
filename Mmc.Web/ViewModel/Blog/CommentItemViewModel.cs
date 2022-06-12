@@ -1,4 +1,4 @@
-namespace Mmc.Blog.ViewModel;
+namespace Mechi.Backend.ViewModel.Blog;
 
 public class CommentItemViewModel
 {

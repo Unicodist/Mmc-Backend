@@ -1,4 +1,3 @@
-using Mmc.Blog.BaseType;
 using Mmc.Blog.Entity;
 using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Enum;

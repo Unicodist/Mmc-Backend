@@ -7,5 +7,6 @@ public interface IArticleRepository
     public Task<IArticle?> GetByIdAsync(long id);
     public Task InsertAsync(IArticle a);
     public Task<ICollection<IArticle>?> GetAllBlogAsync();
-    IQueryable<IArticle> GetBlogQueryable();
+    Task<IArticle> GetByGuidAsync(string guid);
+    IQueryable<IArticle> GetQueryable();
 }

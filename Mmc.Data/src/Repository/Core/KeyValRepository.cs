@@ -2,7 +2,7 @@ using Mmc.Core.Entity.Interface;
 using Mmc.Core.Repository;
 using Mmc.Data.Model.Core;
 
-namespace Mmc.Data.Repository;
+namespace Mmc.Data.Repository.Core;
 
 public class KeyValRepository : IKeyValRepository
 {

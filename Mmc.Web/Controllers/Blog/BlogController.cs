@@ -4,11 +4,9 @@ using Mechi.Backend.ViewModel;
 using Mechi.Backend.ViewModel.Blog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Mmc.Blog.Dto;
 using Mmc.Blog.Exception;
 using Mmc.Blog.Repository;
 using Mmc.Blog.Service.Interface;
-using Mmc.Blog.ViewModel;
 using Mmc.User.Repository;
 
 namespace Mechi.Backend.Controllers.Blog;
@@ -83,7 +81,7 @@ public class BlogController : Controller
     [Route("[controller]/GetDynamicPartialView/{page}")]
     public async Task<IActionResult> GetDynamicPartialView(int page=1)
     {
-        var blogPage = _blogRepo.GetBlogQueryable().Count()/5;
+        var blogPage = _blogRepo.GetQueryable().Count()/5;
         var model = new BlogPaginationViewModel()
         {
             CurrentPage = page,
@@ -108,5 +106,11 @@ public class BlogController : Controller
             }),
         };
         return PartialView("PartialViews/Blog/CommentItem", model);
+    }
+    [Authorize]
+    [Route("[controller]/Setup")]
+    public IActionResult Setup()
+    {
+        return View();
     }
 }

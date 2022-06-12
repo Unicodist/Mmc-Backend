@@ -1,7 +1,5 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
-using Mmc.Blog.Entity.Interface;
-using Mmc.Blog.Repository;
 using Mmc.Data.Model.User;
 using Mmc.User.Repository;
 

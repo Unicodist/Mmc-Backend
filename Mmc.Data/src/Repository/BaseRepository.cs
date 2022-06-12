@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+
 namespace Mmc.Data.Repository;
 
 public class BaseRepository<T> : IBaseRepository<T> where T:class

@@ -1,11 +1,8 @@
-@model Mmc.Blog.ViewModel.ArticleCreateViewModel
-@{
-	var categories = 
-}
+@model Mechi.Backend.ViewModel.Blog.ArticleCreateViewModel
 @{
     Layout = "_Blog_Layout";
 }
-<form asp-action="Create">
+<form asp-action="Create" asp-controller="BlogApi" id="form-post-article">
 	<div class="form-row">
 		<div class="col-md-6">
 			@Html.TextBoxFor(m => m.Title, null, new {@class = "form-control mb-3", @placeholder = "Title"})
@@ -49,5 +46,21 @@ ClassicEditor
 			  }
               });
           });
+		
+		$('#form-post-article').submit(function (e){
+				e.preventDefault();
+				var form = $("#form-post-article");
+				var url = form.attr('action');
+				
+				$.ajax({
+                        type: "POST",
+                        url: url,
+                        data: form.serialize(), // serializes the form's elements.
+                        success: function(data)
+                        {
+                          alert(data); 
+                        }
+                    });
+			});
 		
 </script>

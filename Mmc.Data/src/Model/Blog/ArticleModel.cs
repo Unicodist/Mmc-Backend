@@ -10,7 +10,7 @@ public class ArticleModel : IArticle
     {
     }
 
-    public ArticleModel(string title, string body, DateTime postedDate, IBlogUser authorAdmin, ICategory category, string thumbnail, GuidType guid)
+    public ArticleModel(string title, string? body, DateTime postedDate, IBlogUser authorAdmin, ICategory? category, string thumbnail, GuidType guid)
     {
         Title = title;
         Body = body;
@@ -33,12 +33,12 @@ public class ArticleModel : IArticle
         set;
     }
 
-    public string Body { get; } = null!;
+    public string? Body { get; } = null!;
     public DateTime PostedDate { get; }
     public long? CategoryId { get; set; }
 
     public virtual UserModel AuthorAdmin { get; } = null!;
     IBlogUser IArticle.AuthorAdmin => AuthorAdmin;
-    public virtual CategoryModel Category { get; } = null!;
-    ICategory IArticle.Category => Category;
+    public virtual CategoryModel? Category { get; } = null!;
+    ICategory? IArticle.Category => Category;
 }

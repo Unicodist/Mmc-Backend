@@ -3,8 +3,7 @@ using Mmc.Blog.Dto;
 using Mmc.Blog.Entity;
 using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Repository;
-using Mmc.Core.Services.Blog;
-using Mmc.Data.Repository.Blog;
+using Mmc.Blog.Service;
 using Moq;
 using Xunit;
 
@@ -33,7 +32,7 @@ public class BlogServiceTest
       
       _article = new Article("title", "body", _someDate, _category, _blogUser,"xyz.jpg",new GuidType("mmm"));
 
-      _articleCreateDto = new ArticleCreateDto("title","body",3,"abc");
+      _articleCreateDto = new ArticleCreateDto("title","body",3,"abc","abc.xyz");
       
       _articleRepository.Setup( a => a.GetByIdAsync(It.IsAny<long>())).Returns(Task.FromResult(_article)!);
       _blogUserRepository.Setup(a => a.GetBlogUserById(It.IsAny<long>())).Returns(Task.FromResult(_blogUser)!);

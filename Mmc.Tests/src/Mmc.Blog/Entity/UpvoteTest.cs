@@ -1,4 +1,3 @@
-using Mmc.Blog.Entity;
 using Xunit;
 
 namespace Mmc.Tests.Mmc.Blog.Entity;

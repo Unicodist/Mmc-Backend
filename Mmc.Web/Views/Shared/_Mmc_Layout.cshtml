@@ -45,7 +45,7 @@
         <script src="~/lib/bootstrap/js/bootstrap.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $.get('@Url.Action("GetDynamicPartialView","Home")', function(data) {
+                $.get('@Url.Action("GetDynamicNavbar","Home")', function(data) {
                       $("#navbar_item_container").append(data);
                     }
                 );

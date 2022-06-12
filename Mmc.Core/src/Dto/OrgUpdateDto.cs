@@ -1,5 +1,3 @@
-using Mmc.Address.Entity.Interface;
-
 namespace Mmc.Core.Dto;
 
 public class OrgUpdateDto

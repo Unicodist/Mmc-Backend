@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Mmc.Core.Enum;
+namespace Mmc.Core.Enums;
 
 public class BaseEnum : IComparable
 {

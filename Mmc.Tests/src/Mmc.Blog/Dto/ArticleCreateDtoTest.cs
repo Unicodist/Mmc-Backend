@@ -9,7 +9,7 @@ public class ArticleCreateDtoTest
 
     public ArticleCreateDtoTest()
     {
-        _articleCreateDto = new ArticleCreateDto("title","body",2,"abc");
+        _articleCreateDto = new ArticleCreateDto("title","body",2,"abc","abc.xyz");
     }
 
     [Fact]

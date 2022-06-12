@@ -1,0 +1,24 @@
+
+@model Mechi.Backend.ViewModel.Core.NavbarViewModel;
+
+<style>
+    #navbar_notification_badge {
+        top: -.5em;
+        position: relative;
+        font-size: 75%;
+        line-height: 0;
+        vertical-align: baseline;
+    }
+</style>
+<li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new {@class = "nav-link"})</li>
+<li class="nav-item">@Html.ActionLink("Blog", "Index", "Blog", null, new {@class = "nav-link"})</li>
+<li class="nav-item">@Html.ActionLink("Notices", "Index", "Notice", null, new {@class = "nav-link"})</li>
+<li class="nav-item">@Html.ActionLink("Logout", "Logout", "Account", null, new {@class = "nav-link"})</li>
+<li class="nav-item">@Html.ActionLink("Setup", "Setup", "Blog", null, new {@class = "nav-link"})</li>
+<li class="nav-item">
+    <button class="btn">
+        <i class="fa-solid fa-bell fa-lg"></i>
+        <sup id="navbar_notification_badge"><span class="badge">@Model.NotificationCount?0</span></sup>
+    </button>
+</li>
+

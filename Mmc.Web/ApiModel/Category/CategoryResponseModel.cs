@@ -1,5 +1,3 @@
-using Mmc.Blog.BaseType;
-
 namespace Mechi.Backend.ApiModel.Category;
 
 public class CategoryResponseModel

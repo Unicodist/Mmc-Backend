@@ -5,7 +5,7 @@ namespace Mmc.Blog.Entity;
 
 public class Article : IArticle
 {
-    public Article(string title, string body, DateTime someDate, ICategory? category, IBlogUser blogUser, string thumbnail, GuidType guid)
+    public Article(string title, string? body, DateTime someDate, ICategory? category, IBlogUser blogUser, string thumbnail, GuidType guid)
     {
         Title = title;
         Body = body;
@@ -18,7 +18,7 @@ public class Article : IArticle
 
     public long Id { get; }
     public string Title { get; }
-    public string Body { get; }
+    public string? Body { get; }
     public DateTime PostedDate { get; }
     public string Thumbnail { get; }
     public GuidType Guid { get; }

@@ -1,12 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Mmc.Data.Configurations;
 using Mmc.Data.Configurations.Address;
 using Mmc.Data.Configurations.Blog;
 using Mmc.Data.Configurations.Core;
 using Mmc.Data.Configurations.Notice;
 using Mmc.Data.Configurations.User;
-using MySqlConnector;
 
 namespace Mmc.Data;
 

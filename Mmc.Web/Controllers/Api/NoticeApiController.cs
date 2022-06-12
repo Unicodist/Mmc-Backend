@@ -1,9 +1,8 @@
+using Mechi.Backend.ApiModel.Notice;
 using Microsoft.AspNetCore.Mvc;
-using Mmc.Blog.ApiModel.Notice;
-using Mmc.Core.Repository;
 using Mmc.Notice.Repository;
 
-namespace Mmc.Blog.Api;
+namespace Mechi.Backend.Controllers.Api;
 
 [ApiController]
 [Route("api/[controller]")]

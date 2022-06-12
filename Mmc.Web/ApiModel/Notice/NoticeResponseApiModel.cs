@@ -1,4 +1,4 @@
-namespace Mmc.Blog.ApiModel.Notice;
+namespace Mechi.Backend.ApiModel.Notice;
 
 public class NoticeResponseApiModel
 {

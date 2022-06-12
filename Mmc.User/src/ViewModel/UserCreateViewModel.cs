@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Mmc.Blog.ViewModel;
+namespace Mmc.User.ViewModel;
 
 public class UserCreateViewModel
 {

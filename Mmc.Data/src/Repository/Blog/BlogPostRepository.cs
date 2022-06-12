@@ -1,7 +1,6 @@
 using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Exception;
 using Mmc.Blog.Repository;
-using Mmc.Data.Helper;
 using Mmc.Data.Model.Blog;
 
 namespace Mmc.Data.Repository.Blog;
@@ -29,8 +28,13 @@ public class ArticleRepository : BaseRepository<ArticleModel>, IArticleRepositor
         return (await GetAllAsync().ConfigureAwait(false)).Cast<IArticle>().ToList();
     }
 
-    public IQueryable<IArticle> GetBlogQueryable()
+    public Task<IArticle> GetByGuidAsync(string guid)
     {
-        return GetQueryable();
+        return Task.FromResult<IArticle>(base.GetQueryable().SingleOrDefault(x=>x.Guid==guid) ?? throw new ArticleNotFoundException());
+    }
+
+    public new IQueryable<IArticle> GetQueryable()
+    {
+        return base.GetQueryable();
     }
 }

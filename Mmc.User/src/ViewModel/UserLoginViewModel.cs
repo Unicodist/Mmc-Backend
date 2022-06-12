@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace Mmc.Blog.ViewModel;
+namespace Mmc.User.ViewModel;
 
 public class UserLoginViewModel
 {

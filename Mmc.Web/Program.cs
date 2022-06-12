@@ -1,11 +1,6 @@
-using System.Security.Claims;
 using Mechi.Backend;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Mmc.Core;
 using Mmc.Data;
-using Mmc.Data.Model.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
