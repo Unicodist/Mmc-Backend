@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Repository;
 using Mmc.Data.Model.Blog;
@@ -25,8 +26,8 @@ public class CategoryRepository :BaseRepository<CategoryModel>, ICategoryReposit
         return (await base.GetAllAsync().ConfigureAwait(false)).Cast<ICategory>().ToList();
     }
 
-    public Task<ICategory?> GetByGuid(string dtoCategoryGuid)
+    public async Task<ICategory?> GetByGuid(string dtoCategoryGuid)
     {
-        return Task.FromResult<ICategory?>(GetQueryable().SingleOrDefault(x => x.Guid.Equals(dtoCategoryGuid)));
+        return await GetQueryable().SingleOrDefaultAsync(x => x.Guid == dtoCategoryGuid);
     }
 }

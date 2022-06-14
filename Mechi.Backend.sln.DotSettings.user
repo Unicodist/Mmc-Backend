@@ -62,19 +62,11 @@
     &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.BaseType.GuidTypeTest.Test_ToStringMethod_ReturnsGivenValueInStringFormat&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e41ad4a9_002D5914_002D45c4_002D9c65_002D36263e0dbba2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_CommentTest_GetsAllNecessaryProperties" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.CommentTest.Test_CommentTest_GetsAllNecessaryProperties&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.CommentTest.Test_Update_Comment&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.CommentTest.Test_UpdateMethod_UpdateComment&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e41ad4a9_002D5914_002D45c4_002D9c65_002D36263e0dbba2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test_CommentTest_GetsAllNecessaryProperties" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Tests" Presentation="&amp;lt;Mmc.Tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fd719089_002D1bb1_002D425f_002D96b7_002Dd018060446cc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test_ToStringMethod_ReturnsGivenValueInStringFormat" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.BaseType.GuidTypeTest.Test_ToStringMethod_ReturnsGivenValueInStringFormat&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.BaseType.GuidTypeTest.Test_GuidType&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Dto.ArticleCreateDtoTest.Test__NewArticleCreateDtoTest_SetsAllNeccessaryProperties&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fd719089_002D1bb1_002D425f_002D96b7_002Dd018060446cc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_ToStringMethod_ReturnsGivenValueInStringFormat" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\ASUS\RiderProjects\Mechi.Backend\Mmc.Tests" Presentation="&amp;lt;Mmc.Tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Mechi/@EntryIndexedValue">True</s:Boolean>
 	

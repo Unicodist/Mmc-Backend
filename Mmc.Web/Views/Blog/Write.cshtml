@@ -2,18 +2,21 @@
 @{
     Layout = "_Blog_Layout";
 }
-<form asp-action="Create" asp-controller="BlogApi" id="form-post-article">
-	<div class="form-row">
-		<div class="col-md-6">
-			@Html.TextBoxFor(m => m.Title, null, new {@class = "form-control mb-3", @placeholder = "Title"})
-			@Html.ValidationMessageFor(m => m.Title)
-		</div>
-		<div class="col-md-6">
-			@Html.DropDownListFor(m => m.CategoryGuid, Array.Empty<SelectListItem>(), "Category", new {@class = "form-control"})
-		</div>
+<form asp-action="Create" asp-controller="Blog" id="form-post-article" enctype="multipart/form-data">
+	<div class="form-group">
+		@Html.TextBoxFor(m => m.Title, null, new {@class = "form-control mb-3", @placeholder = "Title"})
+		@Html.ValidationMessageFor(m => m.Title)
 	</div>
-	@Html.TextAreaFor(m => m.CkEditorBody, new {@placeholder = "Start Writing"})
-	@Html.ValidationMessageFor(m => m.CkEditorBody)
+	<div class="form-group">
+		<input type="file" name="Thumbnail" id="Thumbnail"/>
+	</div>
+	<div class="form-group">
+		@Html.DropDownListFor(m => m.CategoryGuid, Array.Empty<SelectListItem>(), "Category", new {@class = "form-control"})
+	</div>
+	<div class="form-group">
+		@Html.TextAreaFor(m => m.CkEditorBody, new {@placeholder = "Start Writing"})
+        @Html.ValidationMessageFor(m => m.CkEditorBody)
+	</div>
 	<button type="submit" class="btn btn-outline-primary mt-3">Post</button>
 </form>
 <script src="~/ckeditor5/ckeditor.js"></script>

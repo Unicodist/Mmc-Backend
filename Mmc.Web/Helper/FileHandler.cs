@@ -1,6 +1,6 @@
 namespace Mechi.Backend.Helper;
 
-public static class FileHandler
+public class FileHandler
 {
     public static async Task<string> UploadFile(IFormFile? file)
     {

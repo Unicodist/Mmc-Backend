@@ -15,7 +15,7 @@ public class ArticleTest
     {
         _blogUser = new BlogUser("Pramisa","Pramisa123","xyz.png");
         _category = new Category("cat","dog");
-        _article = new Article("title","body",someDate,_category,_blogUser,"xyz.jpg",new GuidType("mmm"));
+        _article = new Article("title","body",someDate,_category,_blogUser,"xyz.jpg");
     }
 
     [Fact]

@@ -30,7 +30,7 @@ public class BlogServiceTest
 
       _blogUser = new BlogUser("Ashish", "AshuraNep", "abc.jpg");
       
-      _article = new Article("title", "body", _someDate, _category, _blogUser,"xyz.jpg",new GuidType("mmm"));
+      _article = new Article("title", "body", _someDate, _category, _blogUser,"xyz.jpg");
 
       _articleCreateDto = new ArticleCreateDto("title","body",3,"abc","abc.xyz");
       

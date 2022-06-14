@@ -2,6 +2,7 @@ using Mmc.Blog.BaseType;
 using Mmc.Blog.Dto;
 using Mmc.Blog.Entity;
 using Mmc.Blog.Entity.Interface;
+using Mmc.Blog.Exception;
 using Mmc.Blog.Repository;
 using Mmc.Blog.Service.Interface;
 
@@ -24,13 +25,15 @@ public class BlogService : IBlogService
     {
         var admin = await _blogUserRepository.GetBlogUserById(dto.AdminId);
         var category = await _categoryRepository.GetByGuid(dto.CategoryGuid);
-        var blogpost = new Article(dto.Title,dto.Body,DateTime.Now, category,admin,dto.Thumbnail,new GuidType());
+        var blogpost = new Article(dto.Title,dto.Body,DateTime.Now, category,admin,dto.Thumbnail);
         await _articleRepository.InsertAsync(blogpost);
         return blogpost;
     }
 
-    public Task Update(BlogUpdateDto blogUpdateDto)
+    public async Task Update(ArticleUpdateDto dto)
     {
-        throw new NotImplementedException();
+        var blog = await _articleRepository.GetByIdAsync(dto.Id) ?? throw new ArticleNotFoundException();
+        var category = await _categoryRepository.GetByGuid(dto.CategoryGuid).ConfigureAwait(false);
+        blog.Update(dto.Title, dto.Body, category);
     }
 }

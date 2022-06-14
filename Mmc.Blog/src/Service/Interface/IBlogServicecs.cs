@@ -6,5 +6,5 @@ namespace Mmc.Blog.Service.Interface;
 public interface IBlogService
 {
     public Task<IArticle> Create(ArticleCreateDto dto);
-    public Task Update(BlogUpdateDto blogUpdateDto);
+    public Task Update(ArticleUpdateDto dto);
 }

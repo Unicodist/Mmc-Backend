@@ -22,8 +22,8 @@ public class ArticleModel : IArticle
 
     }
 
-    public long Id { get; }
-    public string Title { get; } = null!;
+    public long Id { get; protected set; }
+    public string Title { get; set; } = null!;
     public string Thumbnail { get; }
     public GuidType Guid { get; }
 
@@ -33,12 +33,19 @@ public class ArticleModel : IArticle
         set;
     }
 
-    public string? Body { get; } = null!;
+    public string? Body { get; protected set; } = null!;
     public DateTime PostedDate { get; }
-    public long? CategoryId { get; set; }
+    public long? CategoryId { get;  }
 
     public virtual UserModel AuthorAdmin { get; } = null!;
     IBlogUser IArticle.AuthorAdmin => AuthorAdmin;
-    public virtual CategoryModel? Category { get; } = null!;
+    public virtual CategoryModel? Category { get; protected set; } = null!;
+    public void Update(string dtoTitle, string? dtoBody, ICategory category)
+    {
+        Title = dtoTitle;
+        Body = dtoBody;
+        Category = (CategoryModel)category;
+    }
+
     ICategory? IArticle.Category => Category;
 }

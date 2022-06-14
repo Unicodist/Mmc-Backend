@@ -4,31 +4,28 @@ using Mechi.Backend.ViewModel;
 using Mechi.Backend.ViewModel.Blog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Mmc.Blog.Dto;
 using Mmc.Blog.Exception;
 using Mmc.Blog.Repository;
 using Mmc.Blog.Service.Interface;
 using Mmc.User.Repository;
 
 namespace Mechi.Backend.Controllers.Blog;
+
 public class BlogController : Controller
 {
     private readonly IArticleRepository _blogRepo;
     private readonly IBlogService _blogService;
-    private readonly IBlogUserRepository _userRepository;
-    private readonly IUserUserRepository _userUserRepository;
     private readonly ICommentRepository _commentRepository;
     // GET
     public BlogController(IArticleRepository blogRepo, 
-        IBlogService blogService, 
-        IBlogUserRepository userRepository,
+        IBlogService blogService,
         ICommentRepository commentRepository, 
         IUserUserRepository userUserRepository)
     {
         _blogRepo = blogRepo;
         _blogService = blogService;
-        _userRepository = userRepository;
         _commentRepository = commentRepository;
-        _userUserRepository = userUserRepository;
         UserHelper.UserRepository = userUserRepository;
     }
     [Route("[controller]/{page}")]
@@ -51,7 +48,6 @@ public class BlogController : Controller
         };
         return View(model);
     }
-    [Route("[controller]")]
     public Task<IActionResult> Index()
     {
         return Index(1);
@@ -78,6 +74,16 @@ public class BlogController : Controller
     {
         return View();
     }
+    [Route("[controller]/Create")]
+    public async Task<IActionResult> Create([FromForm]ArticleCreateViewModel model, IFormFile thumbnail)
+    {
+        var user = this.GetCurrentBlogUser();
+        var filePath = await FileHandler.UploadFile(thumbnail);
+        
+        var articleDto = new ArticleCreateDto(model.Title, model.CkEditorBody, user.Id, model.CategoryGuid,filePath);
+        var article = await _blogService.Create(articleDto);
+        return Ok("Article published successfully");
+    }
     [Route("[controller]/GetDynamicPartialView/{page}")]
     public async Task<IActionResult> GetDynamicPartialView(int page=1)
     {
@@ -93,10 +99,10 @@ public class BlogController : Controller
     }
 
     [Route("[controller]/GetCommnets")]
-    public async Task<IActionResult> GetComments(long articleId, int page)
+    public async Task<IActionResult> GetComments(string guid, int page)
     {
-        var article = await _blogRepo.GetByIdAsync(articleId);
-        var comments = await _commentRepository.GetByArticleIdAsync(articleId);
+        var article = await _blogRepo.GetByGuidAsync(guid);
+        var comments = await _commentRepository.GetByArticleIdAsync(article.Id);
         var model = new CommentSectionViewModel()
         {
             Comments = comments.Take(page).Select(x => new CommentItemViewModel()

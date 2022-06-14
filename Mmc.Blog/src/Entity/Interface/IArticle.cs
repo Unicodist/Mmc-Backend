@@ -16,4 +16,5 @@ public interface IArticle
     
     IBlogUser AuthorAdmin { get; }
     ICategory? Category { get; }
+    void Update(string dtoTitle, string? dtoBody, ICategory category);
 }

@@ -41,6 +41,7 @@ public class AppDbContext : DbContext
         _ = modelBuilder.ApplyConfiguration(new CommentConfiguration());
         _ = modelBuilder.ApplyConfiguration(new UpvoteConfiguration());
         _ = modelBuilder.ApplyConfiguration(new InteractionLogConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new CategorySubscriptionConfiguration());
 
         #endregion
 
