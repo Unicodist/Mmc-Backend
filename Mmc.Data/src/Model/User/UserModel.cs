@@ -10,7 +10,7 @@ public class UserModel: IUser,
     IBlogUser,
     INoticeUser
 {
-    public UserModel(string name, string userType, string email, string password, string userName)
+    public UserModel(string name, string userType, string email, string password, string userName,string? picture)
     {
         Name = name;
         UserType = userType;
@@ -31,7 +31,7 @@ public class UserModel: IUser,
     public string Email { get; set; }
     public string Password { get; set; }
     public string UserName { get; set; }
-    public string picture { get; }
+    public string? picture { get; }
     public virtual ICollection<ArticleModel> BlogPosts { get; }
     public virtual ICollection<NoticeModel> Notices { get; }
 

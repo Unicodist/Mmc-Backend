@@ -5,9 +5,9 @@ using Mmc.Notice.ViewModel;
 namespace Mechi.Backend.Controllers.Notice;
 public class NoticeController : Controller
 {
-    private NoticeRepositoryInterface _noticeRepository;
+    private INoticeRepository _noticeRepository;
 
-    public NoticeController(NoticeRepositoryInterface noticeRepository)
+    public NoticeController(INoticeRepository noticeRepository)
     {
         _noticeRepository = noticeRepository;
     }

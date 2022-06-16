@@ -7,9 +7,9 @@ namespace Mechi.Backend.Controllers.GridControllers;
 [Route("/grid/[controller]")]
 public class NoticeGridController : ControllerBase
 {
-    private readonly NoticeRepositoryInterface _noticeRepository;
+    private readonly INoticeRepository _noticeRepository;
     
-    public NoticeGridController(NoticeRepositoryInterface noticeRepository)
+    public NoticeGridController(INoticeRepository noticeRepository)
     {
         _noticeRepository = noticeRepository;
     }

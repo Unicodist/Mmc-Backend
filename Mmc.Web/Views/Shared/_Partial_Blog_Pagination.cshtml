@@ -1,23 +1,23 @@
 @model Mechi.Backend.ViewModel.BlogPaginationViewModel;
-<li class="page-item disabled"><a class="page-link" href="@Url.Action("Index","BlogApi",new {page=Model.CurrentPage-1})" tabindex="-1" aria-disabled="true">Newer</a></li>
+<li class="page-item disabled"><a class="page-link" href="@Url.Action("Index","Blog",new {page=Model.CurrentPage-1})" tabindex="-1" aria-disabled="true">Newer</a></li>
 @if (Model.FirstPage)
 {
-<li class="page-item active" aria-current="page"><a class="page-link" href="@Url.Action("Index","BlogApi",new {page=Model.CurrentPage})">@(Model.CurrentPage)</a></li>
-<li class="page-item"><a class="page-link" href="@Url.Action("Index","BlogApi",new {page=Model.CurrentPage+1})">@(Model.CurrentPage+1)</a></li>
-<li class="page-item"><a class="page-link" href="@Url.Action("Index","BlogApi",new {page=Model.CurrentPage+2})">@(Model.CurrentPage+2)</a></li>
+<li class="page-item active" aria-current="page"><a class="page-link" href="@Url.Action("Index","Blog",new {page=Model.CurrentPage})">@(Model.CurrentPage)</a></li>
+<li class="page-item"><a class="page-link" href="@Url.Action("Index","Blog",new {page=Model.CurrentPage+1})">@(Model.CurrentPage+1)</a></li>
+<li class="page-item"><a class="page-link" href="@Url.Action("Index","Blog",new {page=Model.CurrentPage+2})">@(Model.CurrentPage+2)</a></li>
 }
 else if (Model.LastPage)
 {
-<li class="page-item" aria-current="page"><a class="page-link" href="@Url.Action("Index","BlogApi",new {page=Model.CurrentPage-2})">@(Model.CurrentPage-2)</a></li>
-<li class="page-item active"><a class="page-link" href="@Url.Action("Index","BlogApi",new {page=Model.CurrentPage-1})">@(Model.CurrentPage-1)</a></li>
-<li class="page-item"><a class="page-link" href="@Url.Action("Index","BlogApi",new {page=Model.CurrentPage})">@(Model.CurrentPage)</a></li>
+<li class="page-item" aria-current="page"><a class="page-link" href="@Url.Action("Index","Blog",new {page=Model.CurrentPage-2})">@(Model.CurrentPage-2)</a></li>
+<li class="page-item active"><a class="page-link" href="@Url.Action("Index","Blog",new {page=Model.CurrentPage-1})">@(Model.CurrentPage-1)</a></li>
+<li class="page-item"><a class="page-link" href="@Url.Action("Index","Blog",new {page=Model.CurrentPage})">@(Model.CurrentPage)</a></li>
 }
 else
 {
-<li class="page-item" aria-current="page"><a class="page-link" href="@Url.Action("Index","BlogApi",new {page=Model.CurrentPage-1})">@(Model.CurrentPage-1)</a></li>
-<li class="page-item active"><a class="page-link" href="@Url.Action("Index","BlogApi",new {page=Model.CurrentPage})">@Model.CurrentPage</a></li>
-<li class="page-item"><a class="page-link" href="@Url.Action("Index","BlogApi",new {page=Model.CurrentPage+1})">@(Model.CurrentPage+1)</a></li>
+<li class="page-item" aria-current="page"><a class="page-link" href="@Url.Action("Index","Blog",new {page=Model.CurrentPage-1})">@(Model.CurrentPage-1)</a></li>
+<li class="page-item active"><a class="page-link" href="@Url.Action("Index","Blog",new {page=Model.CurrentPage})">@Model.CurrentPage</a></li>
+<li class="page-item"><a class="page-link" href="@Url.Action("Index","Blog",new {page=Model.CurrentPage+1})">@(Model.CurrentPage+1)</a></li>
 }
 <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
 <li class="page-item"><a class="page-link" href="#!">@Model.TotalPageCount</a></li>
-<li class="page-item"><a class="page-link" href="@Url.Action("Index","BlogApi",new {page=Model.CurrentPage+1})">Older</a></li>
+<li class="page-item"><a class="page-link" href="@Url.Action("Index","Blog",new {page=Model.CurrentPage+1})">Older</a></li>

@@ -6,5 +6,5 @@ public interface IBlogUser
     string Name { get; }
     string UserName { get; }
 
-    string picture { get; }
+    string? picture { get; }
 }

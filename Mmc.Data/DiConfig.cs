@@ -25,7 +25,7 @@ public static class DiConfig
 
         #region Notice
         
-        services.AddScoped<NoticeRepositoryInterface, NoticeRepository>();
+        services.AddScoped<INoticeRepository, NoticeRepository>();
         services.AddScoped<INoticeUserRepository, UserRepository>();
 
         #endregion

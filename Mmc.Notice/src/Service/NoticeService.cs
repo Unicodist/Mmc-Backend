@@ -6,8 +6,8 @@ namespace Mmc.Notice.Service;
 
 public class NoticeService : INoticeService
 {
-    private readonly NoticeRepositoryInterface _noticeRepository;
-    public NoticeService(NoticeRepositoryInterface noticeRepository)
+    private readonly INoticeRepository _noticeRepository;
+    public NoticeService(INoticeRepository noticeRepository)
     {
         _noticeRepository = noticeRepository;
     }

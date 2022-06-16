@@ -55,10 +55,10 @@ public class BlogApiController : ControllerBase
     [Authorize]
     [HttpPost]
     [Route("create")]
-    public async Task<IActionResult> Create([FromBody]ArticleCreateViewModel model,IFormFile thumbnail)
+    public async Task<IActionResult> Create([FromBody]ArticleCreateViewModel model)
     {
         var user = this.GetCurrentBlogUser();
-        var filePath = await FileHandler.UploadFile(thumbnail);
+        var filePath = await FileHandler.UploadFile(model.Thumbnail);
         
         var articleDto = new ArticleCreateDto(model.Title, model.CkEditorBody, user.Id, model.CategoryGuid,filePath);
         var article = await _blogService.Create(articleDto);

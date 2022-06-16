@@ -21,7 +21,8 @@
 </form>
 <script src="~/ckeditor5/ckeditor.js"></script>
 <script>
-var wineditor;
+import {ClassicEditor} from "../../wwwroot/ckeditor5/ckeditor"; 
+let wineditor;
 ClassicEditor
     		.create( document.querySelector( '#CkEditorBody' ), {
     			// toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
@@ -41,7 +42,7 @@ ClassicEditor
 			  data: "{}",
 			  success: function(data) {
 				  let s = "";
-				  for (var i = 0; i < data.length; i++) {
+				  for (let i = 0; i < data.length; i++) {
 					  console.log(data[i])
 					  s += '<option value="' + data[i].guid + '">' + data[i].name + '</option>';
 				  }
@@ -52,8 +53,8 @@ ClassicEditor
 		
 		$('#form-post-article').submit(function (e){
 				e.preventDefault();
-				var form = $("#form-post-article");
-				var url = form.attr('action');
+				const form = $("#form-post-article");
+				const url = form.attr('action');
 				
 				$.ajax({
                         type: "POST",
@@ -61,7 +62,19 @@ ClassicEditor
                         data: form.serialize(), // serializes the form's elements.
                         success: function(data)
                         {
-                          alert(data); 
+                          Swal.fire(
+                            'Hooray!!!',
+                            data,
+                            'success'
+                          )
+                        },
+                        error:function(data) {
+                          Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: data,
+                            footer: '<a href="">Why do I have this issue?</a>'
+                          })
                         }
                     });
 			});

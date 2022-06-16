@@ -32,7 +32,7 @@ public class BlogController : Controller
     public async Task<IActionResult> Index(int? page)
     {
         var articles = await _blogRepo.GetAllBlogAsync().ConfigureAwait(false);
-        if (!articles.Any())
+        if (articles != null && !articles.Any())
         {
             return View("Errors/_No_Articles");
         }
@@ -52,16 +52,16 @@ public class BlogController : Controller
     {
         return Index(1);
     }
-    [Route("[controller]/Read/{id}")]
-    public async Task<IActionResult> Read(long id)
+    [Route("[controller]/Read/{guid}")]
+    public async Task<IActionResult> Read(string guid)
     {
-        var blog = await _blogRepo.GetByIdAsync(id)??throw new ArticleNotFoundException();
+        var blog = await _blogRepo.GetByGuidAsync(guid)??throw new ArticleNotFoundException();
         var model = new ArticleReadViewModel()
         {
             Title = blog.Title,
             AuthorName = blog.AuthorAdmin.Name,
             Body = blog.Body,
-            Categories = blog.Category.Name,
+            Categories = blog.Category?.Name,
             Date = blog.PostedDate.ToString(CultureInfo.InvariantCulture)
         };
         return View(model);
@@ -75,17 +75,17 @@ public class BlogController : Controller
         return View();
     }
     [Route("[controller]/Create")]
-    public async Task<IActionResult> Create([FromForm]ArticleCreateViewModel model, IFormFile thumbnail)
+    public async Task<IActionResult> Create([FromForm]ArticleCreateViewModel model)
     {
         var user = this.GetCurrentBlogUser();
-        var filePath = await FileHandler.UploadFile(thumbnail);
+        var filePath = await FileHandler.UploadFile(model.Thumbnail);
         
         var articleDto = new ArticleCreateDto(model.Title, model.CkEditorBody, user.Id, model.CategoryGuid,filePath);
-        var article = await _blogService.Create(articleDto);
+        _ = await _blogService.Create(articleDto);
         return Ok("Article published successfully");
     }
     [Route("[controller]/GetDynamicPartialView/{page}")]
-    public async Task<IActionResult> GetDynamicPartialView(int page=1)
+    public PartialViewResult GetDynamicPartialView(int page=1)
     {
         var blogPage = _blogRepo.GetQueryable().Count()/5;
         var model = new BlogPaginationViewModel()
@@ -107,16 +107,13 @@ public class BlogController : Controller
         {
             Comments = comments.Take(page).Select(x => new CommentItemViewModel()
             {
-                Body = x.Body, Guid = x.Guid.ToString(), Name = x.User.UserName, picture = x.User.picture,
+                Body = x.Body,
+                Guid = x.Guid.ToString(),
+                Name = x.User.UserName,
+                picture = x.User.picture??Path.Combine(Directory.GetCurrentDirectory(), "/Images/","default.jpg"),
                 SelfComment = article.AuthorAdmin.Id == x.Id
-            }),
+            })
         };
         return PartialView("PartialViews/Blog/CommentItem", model);
-    }
-    [Authorize]
-    [Route("[controller]/Setup")]
-    public IActionResult Setup()
-    {
-        return View();
     }
 }
