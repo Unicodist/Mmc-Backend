@@ -17,33 +17,29 @@ public class CommentModel : IComment
         User = user;
         Article = article;
         Parent = parent;
+        Guid = new GuidType();
     }
 
-    public long Id { get; }
+    public long Id { get; protected set; }
     public string Body { get; set; } = null!;
-    public long UserId { get; set; }
-    public long ArticleId { get; set; }
-    public long ParentId { get; set; }
+    public long UserId { get; protected set; }
+    public long ArticleId { get; protected set; }
+    public long? ParentId { get; protected set; }
     public Status Status { get; set; } = null!;
 
     public virtual ICollection<CommentModel>? Replies { get; }
     public GuidType Guid { get; set; }
-
     public virtual UserModel User { get; } = null!;
     public virtual ArticleModel Article { get; } = null!;
-    public virtual CommentModel Parent { get; } = null!;
-
-
+    public virtual CommentModel? Parent { get; } = null!;
     ICollection<IComment> IComment.Replies => Replies.Cast<IComment>().ToList();
     IBlogUser IComment.User => User;
     IArticle IComment.Article => Article;
-    IComment IComment.Parent => Parent;
-    
+    IComment? IComment.Parent => Parent;
     public void Update(string body)
     {
         Body = body;
     }
-
     public void FlagAsSuspicious()
     {
         Status = Status.Pending;

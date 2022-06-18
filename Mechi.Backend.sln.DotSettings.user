@@ -45,7 +45,7 @@
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=aa78b18c_002Dd786_002D4177_002D864d_002D61e5e94f33f8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="New__ArticleTest_SetsAllNecessaryProperties" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Entity.ArticleTest.New__ArticleTest_SetsAllNecessaryProperties&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::33D15BBC-884D-4EB5-A33D-B604D31362A6::net6.0::Mmc.Tests.Mmc.Blog.Service.CommentServiceTest.Test_CreatingCommentWithToxicKeywords_ThrowBadLanguageException&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b5095926_002Dee4b_002D4b2b_002D85fa_002Da00c4b7c44bb/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test_GuidType" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;

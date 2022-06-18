@@ -10,8 +10,8 @@ public class NotificationTemplateConfiguration : IEntityTypeConfiguration<Notifi
     {
         _ = builder.ToTable("notification_template");
         _ = builder.HasKey(a => a.Id);
-        _ = builder.Property(a => a.Id).HasColumnName("notificatoin_template_id").HasColumnType(ColumnTypes.Bigint);
-        _ = builder.Property(a => a.Title).HasColumnName("title").HasColumnType(ColumnTypes.Varchar).HasMaxLength(50);
-        _ = builder.Property(a => a.Body).HasColumnName("body").HasColumnType(ColumnTypes.Varchar).HasMaxLength(100);
+        _ = builder.Property(a => a.Id).HasColumnName("notificatoin_template_id").HasColumnType(ColumnTypes.BIGINT);
+        _ = builder.Property(a => a.Title).HasColumnName("title").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50);
+        _ = builder.Property(a => a.Body).HasColumnName("body").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(100);
     }
 }

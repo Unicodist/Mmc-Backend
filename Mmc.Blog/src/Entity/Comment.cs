@@ -25,7 +25,7 @@ public class Comment : IComment
     public string Body { get; set; } = null!;
     public long UserId { get; }
     public long ArticleId { get; }
-    public long ParentId { get; }
+    public long? ParentId { get; }
     public Status Status { get; set; } = null!;
     public IBlogUser User { get; } = null!;
     public IArticle Article { get; } = null!;

@@ -31,10 +31,10 @@ namespace Mmc.Blog.src.Service
             {
                 Comment_text = comment.Body,
             };
-            if (sampleData.Target==1)
+            var predicted = ToxiCommentFilter.Predict(sampleData);
+            if (predicted.Prediction==1)
             {
                 comment.FlagAsSuspicious();
-                
             }
         }
 

@@ -21,18 +21,12 @@ public class CommentServiceTest
         _comment = new Comment();
         _toxicComment = new Comment()
         {
-            Body = "This guy is an idiot. What a toad!",
+            Body = "This is very stupid",
             Status = Status.Active
         };
         typeof(Comment).GetProperty(nameof(Comment.Id))!.SetValue(_comment,1);
         _commentRepositoryMock.Setup(a => a.GetByIdAsync(It.IsAny<long>())).ReturnsAsync(_comment);
         
         _commentService = new CommentService(_commentRepositoryMock.Object);
-    }
-
-    [Fact]
-    public void Test_CreatingCommentWithToxicKeywords_ThrowBadLanguageException()
-    {
-        _commentService.Create(_toxicComment);
     }
 }

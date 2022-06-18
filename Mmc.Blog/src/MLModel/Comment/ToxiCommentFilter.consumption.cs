@@ -40,7 +40,6 @@ namespace Mmc.Blog.MLModel.Comment
         private static string MLNetModelPath = Path.GetFullPath("ToxiCommentFilter.zip");
 
         public static readonly Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(() => CreatePredictEngine(), true);
-
         /// <summary>
         /// Use this method to predict on <see cref="ModelInput"/>.
         /// </summary>
@@ -51,7 +50,6 @@ namespace Mmc.Blog.MLModel.Comment
             var predEngine = PredictEngine.Value;
             return predEngine.Predict(input);
         }
-
         private static PredictionEngine<ModelInput, ModelOutput> CreatePredictEngine()
         {
             var mlContext = new MLContext();

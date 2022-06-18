@@ -10,9 +10,9 @@ public class UpvoteConfiguration : IEntityTypeConfiguration<UpvoteModel>
     {
         _ = builder.ToTable("upvote");
         _ = builder.HasKey(a => a.Id);
-        _ = builder.Property(a => a.Id).HasColumnName("upvoteId").HasColumnType(ColumnTypes.Bigint);
-        _ = builder.Property(a => a.ArticleId).HasColumnName("blog_id").HasColumnType(ColumnTypes.Bigint);
-        _ = builder.Property(a => a.UserId).HasColumnName("user_id").HasColumnType(ColumnTypes.Bigint);
+        _ = builder.Property(a => a.Id).HasColumnName("upvoteId").HasColumnType(ColumnTypes.BIGINT);
+        _ = builder.Property(a => a.ArticleId).HasColumnName("blog_id").HasColumnType(ColumnTypes.BIGINT);
+        _ = builder.Property(a => a.UserId).HasColumnName("user_id").HasColumnType(ColumnTypes.BIGINT);
 
         _ = builder.HasOne(a => a.Article).WithMany().HasForeignKey(a => a.ArticleId);
         _ = builder.HasOne(a => a.User).WithMany().HasForeignKey(a => a.UserId);
