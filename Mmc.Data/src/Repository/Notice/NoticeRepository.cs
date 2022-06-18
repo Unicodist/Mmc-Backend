@@ -1,4 +1,3 @@
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Mmc.Data.Model.Notice;
 using Mmc.Notice.Entity.Interface;

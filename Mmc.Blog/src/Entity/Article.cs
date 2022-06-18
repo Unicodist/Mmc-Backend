@@ -5,12 +5,12 @@ namespace Mmc.Blog.Entity;
 
 public class Article : IArticle
 {
-    public Article(string title, string? body, DateTime someDate, ICategory? category, IBlogUser blogUser, string? thumbnail)
+    public Article(string title, string? body, DateOnly someDate, ICategory? category, IBlogUser blogUser, string? thumbnail)
     {
         Title = title;
         Body = body;
         Category = category;
-        AuthorAdmin = blogUser;
+        User = blogUser;
         Thumbnail = thumbnail;
         Guid = new GuidType();
         PostedDate = someDate;
@@ -19,12 +19,13 @@ public class Article : IArticle
     public long Id { get; }
     public string Title { get; set; }
     public string? Body { get; set; }
-    public DateTime PostedDate { get; }
+    public DateOnly PostedDate { get; }
+    public TimeOnly PostedTime { get; set; }
     public string? Thumbnail { get; }
     public GuidType Guid { get; }
-    public long AdminId => AuthorAdmin.Id;
+    public long UserId => User.Id;
     public long? CategoryId => Category?.Id;
-    public IBlogUser AuthorAdmin { get; }
+    public IBlogUser User { get; }
     public ICategory? Category { get; set; }
 
     public void Update(string dtoTitle, string? dtoBody, ICategory category)

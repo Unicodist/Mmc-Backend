@@ -1,4 +1,3 @@
-using Mmc.Blog.BaseType;
 using Mmc.Blog.Entity;
 using Xunit;
 
@@ -9,13 +8,13 @@ public class ArticleTest
     private readonly Article _article;
     private readonly BlogUser _blogUser;
     private readonly Category _category;
-    private DateTime someDate = new DateTime(2000, 04, 03);
+    private readonly DateOnly _someDate = new(2000, 04, 03);
 
     public ArticleTest()
     {
         _blogUser = new BlogUser("Pramisa","Pramisa123","xyz.png");
         _category = new Category("cat","dog");
-        _article = new Article("title","body",someDate,_category,_blogUser,"xyz.jpg");
+        _article = new Article("title","body",_someDate,_category,_blogUser,"xyz.jpg");
     }
 
     [Fact]
@@ -24,9 +23,9 @@ public class ArticleTest
        Assert.Equal(0,_article.Id);
        Assert.Equal("title",_article.Title);
         Assert.Equal("body",_article.Body);
-        Assert.Equal(someDate,_article.PostedDate);
+        Assert.Equal(_someDate,_article.PostedDate);
         Assert.Equal(0,_article.CategoryId);
-        Assert.Equal(_blogUser,_article.AuthorAdmin);
+        Assert.Equal(_blogUser,_article.User);
         Assert.Equal("xyz.jpg",_article.Thumbnail);
         Assert.Equal("mmm",_article.Guid);
     }

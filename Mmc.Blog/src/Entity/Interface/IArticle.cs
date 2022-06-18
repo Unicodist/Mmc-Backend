@@ -7,14 +7,15 @@ public interface IArticle
     long Id { get; }
     string Title { get; }
     string? Body { get; }
-    DateTime PostedDate { get; }
+    DateOnly PostedDate { get; }
+    TimeOnly PostedTime { get; }
     string Thumbnail { get; }
     GuidType Guid { get; }
     
-    long AdminId { get; }
+    long UserId { get; }
     long? CategoryId { get; }
     
-    IBlogUser AuthorAdmin { get; }
+    IBlogUser User { get; }
     ICategory? Category { get; }
     void Update(string dtoTitle, string? dtoBody, ICategory category);
 }

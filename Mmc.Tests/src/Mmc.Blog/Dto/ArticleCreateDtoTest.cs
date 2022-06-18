@@ -15,7 +15,7 @@ public class ArticleCreateDtoTest
     [Fact]
     public void Test__NewArticleCreateDtoTest_SetsAllNeccessaryProperties()
     {
-        Assert.Equal(2,_articleCreateDto.AdminId);
+        Assert.Equal(2,_articleCreateDto.UserId);
         Assert.Equal("title",_articleCreateDto.Title);
         Assert.Equal("body",_articleCreateDto.Body);
         Assert.Equal("abc",_articleCreateDto.CategoryGuid);

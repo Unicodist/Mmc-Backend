@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Mmc.Core.Dto;
 using Mmc.User.Dto;
 using Mmc.User.Service;
 using Mmc.User.ViewModel;

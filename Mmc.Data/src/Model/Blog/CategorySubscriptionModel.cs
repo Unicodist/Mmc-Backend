@@ -1,7 +1,6 @@
 using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Enum;
 using Mmc.Data.Model.User;
-using Mmc.User.Entity.Interface;
 
 namespace Mmc.Data.Model.Blog;
 

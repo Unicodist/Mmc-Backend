@@ -2,7 +2,7 @@ namespace Mmc.Blog.Dto;
 
 public class ArticleUpdateDto : ArticleCreateDto
 {
-    public ArticleUpdateDto(string title, string? body, long adminId, string? categoryGuid, string? thumbnail) : base(title, body, adminId, categoryGuid, thumbnail)
+    public ArticleUpdateDto(string title, string? body, long userId, string? categoryGuid, string? thumbnail) : base(title, body, userId, categoryGuid, thumbnail)
     {
     }
 

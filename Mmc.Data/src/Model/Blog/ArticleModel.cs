@@ -10,7 +10,7 @@ public class ArticleModel : IArticle
     {
     }
 
-    public ArticleModel(string title, string? body, DateTime postedDate, IBlogUser authorAdmin, ICategory? category, string thumbnail, GuidType guid)
+    public ArticleModel(string title, string? body, DateOnly postedDate, IBlogUser authorAdmin, ICategory? category, string thumbnail, GuidType guid)
     {
         Title = title;
         Body = body;
@@ -24,21 +24,22 @@ public class ArticleModel : IArticle
 
     public long Id { get; protected set; }
     public string Title { get; set; } = null!;
+    public TimeOnly PostedTime { get; set; }
     public string Thumbnail { get; }
     public GuidType Guid { get; }
 
-    public long AdminId
+    public long UserId
     {
         get;
         set;
     }
 
     public string? Body { get; protected set; } = null!;
-    public DateTime PostedDate { get; }
+    public DateOnly PostedDate { get; }
     public long? CategoryId { get;  }
 
     public virtual UserModel AuthorAdmin { get; } = null!;
-    IBlogUser IArticle.AuthorAdmin => AuthorAdmin;
+    IBlogUser IArticle.User => AuthorAdmin;
     public virtual CategoryModel? Category { get; protected set; } = null!;
     public void Update(string dtoTitle, string? dtoBody, ICategory category)
     {

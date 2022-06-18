@@ -19,7 +19,7 @@ public class ArticleRepository : BaseRepository<ArticleModel>, IArticleRepositor
 
     public Task InsertAsync(IArticle a)
     {
-        var model = new ArticleModel(a.Title,a.Body,a.PostedDate,a.AuthorAdmin,a.Category,a.Thumbnail,a.Guid);
+        var model = new ArticleModel(a.Title,a.Body,a.PostedDate,a.User,a.Category,a.Thumbnail,a.Guid);
         return base.InsertAsync(model);
     }
 

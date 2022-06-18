@@ -1,6 +1,7 @@
 using System.Globalization;
 using Mechi.Backend.ApiModel.Blog;
 using Mechi.Backend.Helper;
+using Mechi.Backend.Helper.DateHelper;
 using Mechi.Backend.ViewModel.Blog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,7 @@ public class BlogApiController : ControllerBase
     {
         var blogItems =await _articleRepository.GetAllBlogAsync();
         var result = blogItems!.Select(x =>
-            new BlogPostResponseApiModel(x.Title, x.Body, x.AuthorAdmin.Name, x.PostedDate.ToString(CultureInfo.CurrentCulture),x.Guid,x.Thumbnail));
+            new BlogPostResponseApiModel(x.Title, x.Body, x.User.Name, x.PostedDate.ToString(CultureInfo.CurrentCulture),x.Guid,x.Thumbnail));
         return Ok(result);
     }
 
@@ -39,7 +40,7 @@ public class BlogApiController : ControllerBase
         try
         {
             var blogMaster = (await _articleRepository.GetByGuidAsync(guid));
-            var dto = new BlogPostResponseApiModel(blogMaster.Title, blogMaster.Body, blogMaster.AuthorAdmin.Name,
+            var dto = new BlogPostResponseApiModel(blogMaster.Title, blogMaster.Body, blogMaster.User.Name,
                 blogMaster.PostedDate.ToString(CultureInfo.CurrentCulture),blogMaster.Guid,blogMaster.Thumbnail);
         
             return Ok(dto);
@@ -66,7 +67,7 @@ public class BlogApiController : ControllerBase
         {
             Title = article.Title,
             Body = article.Body,
-            DateTime = article.PostedDate,
+            DateTime = article.PostedDate.ToDateTime(article.PostedTime),
             Guid = article.Guid,
             Image = article.Thumbnail
         });

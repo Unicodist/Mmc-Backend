@@ -9,17 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mmc.Data", "Mmc.Data\Mmc.Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mmc.Core", "Mmc.Core\Mmc.Core.csproj", "{116A73EC-847E-48FA-B843-5D066366AC72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmc.Tests", "Mmc.Tests\Mmc.Tests.csproj", "{33D15BBC-884D-4EB5-A33D-B604D31362A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mmc.Tests", "Mmc.Tests\Mmc.Tests.csproj", "{33D15BBC-884D-4EB5-A33D-B604D31362A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmc.Blog", "Mmc.Blog\Mmc.Blog.csproj", "{F543D6D5-5139-4BD4-9972-9BD7724FD528}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mmc.Blog", "Mmc.Blog\Mmc.Blog.csproj", "{F543D6D5-5139-4BD4-9972-9BD7724FD528}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmc.Notice", "Mmc.Notice\Mmc.Notice.csproj", "{C9A42A47-4347-4E51-8954-4CC3CD0BE896}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mmc.Notice", "Mmc.Notice\Mmc.Notice.csproj", "{C9A42A47-4347-4E51-8954-4CC3CD0BE896}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmc.User", "Mmc.User\Mmc.User.csproj", "{06056FB6-CB07-40D5-AE1D-CDB9173595B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mmc.User", "Mmc.User\Mmc.User.csproj", "{06056FB6-CB07-40D5-AE1D-CDB9173595B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmc.Address", "Mmc.Address\Mmc.Address.csproj", "{6C8E5479-6422-4901-A271-B8831186C1D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mmc.Address", "Mmc.Address\Mmc.Address.csproj", "{6C8E5479-6422-4901-A271-B8831186C1D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmc.Documentation", "Mmc.Documentation\Mmc.Documentation.csproj", "{20023341-B8B9-44E5-8C16-E725DB5D38BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mmc.Documentation", "Mmc.Documentation\Mmc.Documentation.csproj", "{20023341-B8B9-44E5-8C16-E725DB5D38BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +31,6 @@ Global
 		{3291A610-4BD1-42BF-BD9F-27890D6B4011}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3291A610-4BD1-42BF-BD9F-27890D6B4011}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3291A610-4BD1-42BF-BD9F-27890D6B4011}.Release|Any CPU.Build.0 = Release|Any CPU
-		{506C466F-2936-4ABE-95E9-E625B9A3AF86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{506C466F-2936-4ABE-95E9-E625B9A3AF86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{506C466F-2936-4ABE-95E9-E625B9A3AF86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{506C466F-2936-4ABE-95E9-E625B9A3AF86}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C54EF7DF-442E-47F1-AC12-CAFF2A0E1AC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C54EF7DF-442E-47F1-AC12-CAFF2A0E1AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C54EF7DF-442E-47F1-AC12-CAFF2A0E1AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,5 +1,6 @@
 using System.Globalization;
 using Mechi.Backend.Helper;
+using Mechi.Backend.Helper.DateHelper;
 using Mechi.Backend.ViewModel;
 using Mechi.Backend.ViewModel.Blog;
 using Microsoft.AspNetCore.Authorization;
@@ -37,7 +38,7 @@ public class BlogController : Controller
             return View("Errors/_No_Articles");
         }
         var modelArticles = articles.Select(x => new ArticleViewModel()
-            {Guid = x.Guid, Body = x.Body, DateTime = x.PostedDate, Image = "abc", Title = x.Title});
+            {Guid = x.Guid, Body = x.Body, DateTime = DateHelper.GetDateTime(x.PostedDate,x.PostedTime), Image = "abc", Title = x.Title});
         var pinned = modelArticles.First();
         modelArticles.ToList().Remove(pinned);
         var model = new BlogHomeViewModel()
@@ -59,7 +60,7 @@ public class BlogController : Controller
         var model = new ArticleReadViewModel()
         {
             Title = blog.Title,
-            AuthorName = blog.AuthorAdmin.Name,
+            AuthorName = blog.User.Name,
             Body = blog.Body,
             Categories = blog.Category?.Name,
             Date = blog.PostedDate.ToString(CultureInfo.InvariantCulture)
@@ -111,7 +112,7 @@ public class BlogController : Controller
                 Guid = x.Guid.ToString(),
                 Name = x.User.UserName,
                 picture = x.User.picture??Path.Combine(Directory.GetCurrentDirectory(), "/Images/","default.jpg"),
-                SelfComment = article.AuthorAdmin.Id == x.Id
+                SelfComment = article.User.Id == x.Id
             })
         };
         return PartialView("PartialViews/Blog/CommentItem", model);

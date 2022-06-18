@@ -1,9 +1,10 @@
-using Mmc.Blog.BaseType;
+using ASP;
 using Mmc.Blog.Dto;
 using Mmc.Blog.Entity;
 using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Repository;
 using Mmc.Blog.Service;
+using Mmc.Core.Services.Blog;
 using Moq;
 using Xunit;
 
@@ -19,7 +20,7 @@ public class BlogServiceTest
    private readonly IArticle _article;
    private readonly ICategory _category;
    private readonly IBlogUser _blogUser;
-   readonly DateTime _someDate = DateTime.Now;
+   readonly DateOnly _someDate = new(2000,2,2);
    
    private readonly ArticleCreateDto _articleCreateDto;
 
