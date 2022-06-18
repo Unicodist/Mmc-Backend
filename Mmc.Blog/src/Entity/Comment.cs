@@ -21,7 +21,7 @@ public class Comment : IComment
         Guid = guid;
     }
 
-    public long Id { get; }
+    public long Id { get; protected set; }
     public string Body { get; set; } = null!;
     public long UserId { get; }
     public long ArticleId { get; }
@@ -36,5 +36,10 @@ public class Comment : IComment
     public void Update(string body)
     {
         Body = body;
+    }
+
+    public void FlagAsSuspicious()
+    {
+        Status = Status.Pending;
     }
 }

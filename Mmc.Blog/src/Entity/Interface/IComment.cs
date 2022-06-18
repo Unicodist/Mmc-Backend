@@ -17,4 +17,5 @@ public interface IComment
     ICollection<IComment>? Replies { get; }
     GuidType Guid { get; }
     void Update(string body);
+    void FlagAsSuspicious();
 }

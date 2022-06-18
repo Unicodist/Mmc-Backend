@@ -43,4 +43,9 @@ public class CommentModel : IComment
     {
         Body = body;
     }
+
+    public void FlagAsSuspicious()
+    {
+        Status = Status.Pending;
+    }
 }
