@@ -1,4 +1,5 @@
 ﻿using Mmc.Notice.BaseType;
+using Mmc.Notice.Enum;
 
 namespace Mmc.Notice.Entity.Interface
 {
@@ -9,9 +10,11 @@ namespace Mmc.Notice.Entity.Interface
         string? Body { get; }
         DateTime PostedOn { get; }
         string? Picture { get; }
+        Status Status { get; }
         long AdminId { get; }
         
         INoticeUser Author { get; }
         GuidType Guid { get; }
+        void Deactivate();
     }
 }

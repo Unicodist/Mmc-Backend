@@ -30,11 +30,16 @@ public class NoticeRepository : BaseRepository<NoticeModel>, INoticeRepository
 
     public Task Update(INotice noticeUpdateDto)
     {
-        throw new NotImplementedException();
+        return base.Update((NoticeModel)noticeUpdateDto);
     }
 
     public async Task<INotice> GetByGuidAsync(string guid)
     {
-        return await GetQueryable().SingleOrDefaultAsync(x => x.Guid.ToString() == guid) ?? throw new NoticeNotFoundException();
+        return await GetQueryable().SingleOrDefaultAsync(x => x.Guid == guid) ?? throw new NoticeNotFoundException();
+    }
+
+    public IQueryable<INotice> GetQueryable()
+    {
+        return base.GetQueryable();
     }
 }

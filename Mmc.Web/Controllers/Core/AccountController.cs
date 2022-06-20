@@ -33,7 +33,6 @@ public class AccountController : Controller
         return View();
     }
     [HttpPost]
-    [Authorize]
     public async Task<IActionResult> Register(UserCreateViewModel model)
     {
         if(!ModelState.IsValid)
@@ -70,7 +69,7 @@ public class AccountController : Controller
             new(ClaimTypes.Email,user.Email),
             new(ClaimTypes.Name,user.Name),
             new(ClaimTypes.NameIdentifier,user.UserName),
-            new(ClaimTypes.Role,user.UserType),
+            new(ClaimTypes.Role,user.UserType)
         };
         var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
         var principle = new ClaimsPrincipal(identity);
@@ -82,7 +81,6 @@ public class AccountController : Controller
         HttpContext.SignOutAsync();
         return RedirectToAction("Index","Home");
     }
-
     public IActionResult UnAuthorized()
     {
         return Ok("You are not authorized!");

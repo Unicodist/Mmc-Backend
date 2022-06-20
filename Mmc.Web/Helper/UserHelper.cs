@@ -13,4 +13,9 @@ public static class UserHelper
         var userName = claims.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
         return (UserModel)UserRepository.GetByUsername(userName);
     }
+
+    public static string? GetRole(this ClaimsPrincipal principal)
+    {
+        return principal.Claims.SingleOrDefault(x => x.Type == ClaimTypes.Role)?.Value.ToString();
+    }
 }

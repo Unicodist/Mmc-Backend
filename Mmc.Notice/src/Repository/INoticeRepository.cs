@@ -9,4 +9,5 @@ public interface INoticeRepository
      Task Insert(INotice noticeCreateDto);
      Task Update(INotice noticeUpdateDto);
      Task<INotice> GetByGuidAsync(string guid);
+     IQueryable<INotice> GetQueryable();
 }

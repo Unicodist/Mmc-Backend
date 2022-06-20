@@ -1,22 +1,24 @@
 using System.Globalization;
 using Mechi.Backend.ApiModel.Notice;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Notice.Entity.Interface;
+using Mmc.Notice.Exception;
 using Mmc.Notice.Repository;
 
 namespace Mechi.Backend.Controllers.Api;
 
 [ApiController]
+[Route("api/[controller]")]
 public class NoticeApiController : ControllerBase
 {
-    private INoticeRepository _noticeRepository;
+    private readonly INoticeRepository _noticeRepository;
 
     public NoticeApiController(INoticeRepository noticeRepository)
     {
         _noticeRepository = noticeRepository;
     }
     [HttpGet]
-    [Route("[controller]/Get")]
     public async Task<IActionResult> Get()
     {
         var noticeMasters = (await _noticeRepository.GetAllAsync())??new List<INotice>();
@@ -30,7 +32,7 @@ public class NoticeApiController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("[controller]/Get/{guid}")]
+    [HttpGet("{guid}")]
     public async Task<IActionResult> Get(string guid)
     {
         var noticeMaster = await _noticeRepository.GetByGuidAsync(guid);
@@ -42,5 +44,14 @@ public class NoticeApiController : ControllerBase
             Picture = noticeMaster.Picture
         };
         return Ok(result);
+    }
+    [Authorize]
+    [HttpPost("delete")]
+    public async Task<IActionResult> Delete([FromForm]string guid)
+    {
+        var notice = await _noticeRepository.GetByGuidAsync(guid) ?? throw new NoticeNotFoundException();
+        notice.Deactivate();
+        await _noticeRepository.Update(notice);
+        return Ok();
     }
 }

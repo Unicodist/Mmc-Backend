@@ -1,12 +1,19 @@
-﻿<table id="grid_data" class="table table-condensed table-hover table-striped">
+﻿@using Mechi.Backend.Helper
+@using Mmc.User.Enum
+@if (new[]{UserType.ADMIN.ToString(),UserType.SUPERUSER.ToString()}.Contains(User.GetRole()))
+{
+    @Html.ActionLink("Add new","Create",new{},new{@class="btn btn-primary"})
+}
+<table id="grid_data" class="table table-condensed table-hover table-striped">
     <thead>
-            <tr>
-                <th data-column-id="title" data-type="numeric">title</th>
-                <th data-column-id="body">body</th>
-                <th data-column-id="date" data-order="date">Date</th>
-                <th data-column-id="action" data-formatter="commands" data-sortable="false">Delete</th>
-            </tr>
-        </thead>
+    <tr>
+        <th data-column-id="guid" data-visible="false">guid</th>
+        <th data-column-id="title">title</th>
+        <th data-column-id="body">body</th>
+        <th data-column-id="date" data-order="date">Date</th>
+        <th data-column-id="action" data-formatter="commands" data-sortable="false">actions</th>
+    </tr>
+    </thead>
 </table>
 <script>
     let grid = $("#grid_data").bootgrid({
@@ -20,6 +27,55 @@
                 id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
             };
         },
-        url: "@Url.Action("Get","NoticeApi")"
-    });
+        url: "@Url.Action("Read","NoticeGrid")",
+        formatters: {
+            "commands": function(column, row)
+            {
+                return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.guid + "\"><span class=\"fa fa-pencil\"></span></button> " + 
+                    "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.guid + "\"><span class=\"fa-solid fa-trash-can\"></span></button>";
+            }
+        }
+    }).on("loaded.rs.jquery.bootgrid", function()
+      {
+          $("a.button").addClass("btn");
+          grid.find(".command-edit").on("click", function(e)
+          {
+              console.log($(this).data("row-id"));
+          }).end().find(".command-delete").on("click", function(e)
+          {
+              Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    let rowGuid = $(this).data("row-id");
+                    $.ajax('@Url.Action("Delete","NoticeApi")', {
+                        type: 'POST', 
+                        data: { guid: rowGuid }, 
+                        success: function (data, status, xhr) {
+                            Swal.fire(
+                                'Deleted!',
+                                'The row has been deleted.',
+                                'success'
+                              );
+                            $('#grid-data').bootgrid('reload');
+                        },
+                        error: function (jqXhr, textStatus, errorMessage) {
+                            Swal.fire({
+                              icon: 'error',
+                              title: 'Oops...',
+                              text: "Something went wrong! Contact your administration",
+                              footer: '@Html.ActionLink("See More Info","NoticeDelete","Error")'
+                            })
+                        }
+                    });
+                }
+              })
+          });
+      });
 </script>

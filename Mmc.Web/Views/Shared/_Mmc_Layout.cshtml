@@ -12,18 +12,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="Blog website for Mechi Multiple campus" />
         <meta name="author" content="Ashish And Pramisa" />
+        
         <title>Mmc - @ViewData["Title"]</title>
-        <script src="~/js/mmc-temp-scripts.js"></script>
-        <script src="~/lib/jquery/dist/jquery.js" ></script>
-        <!-- Favicon-->
+        
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
-        <link rel="stylesheet" href="~/fontawesome/css/all.min.css">
-    <script src="~/swal/dist/sweetalert2.all.min.js"></script>
-    <script src="~/bootgrid/jquery.bootgrid.min.js"></script>
-        <script src="~/bootgrid/jquery.bootgrid.fa.min.js"></script>
-        <link rel="stylesheet" href="~/bootgrid/jquery.bootgrid.min.css">
+
+        <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="~/lib/jquery-bootgrid/jquery.bootgrid.css">
+        <link rel="stylesheet" href="~/fontawesome/css/all.css">
+        
+        <script src="~/lib/jquery/dist/jquery.js" ></script>
+        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+        <script src="~/lib/jquery-bootgrid/jquery.bootgrid.js"></script>
+        <script src="~/lib/jquery-bootgrid/jquery.bootgrid.fa.js"></script>
+        <script src="~/lib/limonte-sweetalert2/sweetalert2.all.js"></script>
+        <script src="~/fontawesome/js/all.js"></script>
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -44,13 +47,12 @@
         </div>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Ashish&Pramisa</p></div>
+            <div class="container"><p class="m-0 text-center text-white">Created by Ashish & Pramisa</p></div>
         </footer>
-        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 $.get('@Url.Action("GetDynamicNavbar","Home")', function(data) {
-                      $("#navbar_item_container").append(data);
+                      $('#navbar_item_container').append(data);
                     }
                 );
             });

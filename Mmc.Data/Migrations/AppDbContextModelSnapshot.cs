@@ -151,8 +151,7 @@ namespace Mmc.Data.Migrations
 
                     b.Property<string>("Body")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar(40)")
+                        .HasColumnType("text")
                         .HasColumnName("Body");
 
                     b.Property<long?>("CategoryId")
@@ -281,7 +280,7 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("guid");
 
-                    b.Property<long>("ParentId")
+                    b.Property<long?>("ParentId")
                         .HasColumnType("bigint")
                         .HasColumnName("parent_id");
 
@@ -410,6 +409,12 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("date");
 
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("status");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -507,7 +512,7 @@ namespace Mmc.Data.Migrations
                             Id = 1L,
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
-                            Password = "$2a$11$3wgYemx/QAvSA/ep8zEj3OtRpRWUDxalggtE9Y5NQBKQzdKZahNd2",
+                            Password = "$2a$11$yjoqvvZUVh1Q3i2XIoQPI.R7ULSsitOWZwa.jNA/keCqWQ/cNWBPa",
                             UserName = "AshuraNep",
                             UserType = "Superuser"
                         });
@@ -606,9 +611,7 @@ namespace Mmc.Data.Migrations
 
                     b.HasOne("Mmc.Data.Model.Blog.CommentModel", "Parent")
                         .WithMany("Replies")
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ParentId");
 
                     b.HasOne("Mmc.Data.Model.User.UserModel", "User")
                         .WithMany()

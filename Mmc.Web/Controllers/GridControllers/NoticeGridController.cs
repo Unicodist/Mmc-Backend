@@ -1,29 +1,40 @@
 using Mechi.Backend.ApiModel.Notice;
+using Mechi.Backend.ViewModel.Notice;
 using Microsoft.AspNetCore.Mvc;
+using Mmc.Notice.Enum;
 using Mmc.Notice.Repository;
+using Mmc.Notice.Service.Interface;
 
 namespace Mechi.Backend.Controllers.GridControllers;
-[ApiController]
-[Route("/grid/[controller]")]
 public class NoticeGridController : ControllerBase
 {
     private readonly INoticeRepository _noticeRepository;
-    
-    public NoticeGridController(INoticeRepository noticeRepository)
+    private INoticeService _noticeService;
+
+    public NoticeGridController(INoticeRepository noticeRepository, INoticeService noticeService)
     {
         _noticeRepository = noticeRepository;
+        _noticeService = noticeService;
     }
     [HttpGet]
-    public async Task<IActionResult> Read()
+    public Task<IActionResult> Read(NoticeGridQueryModel model)
     {
-        var noticeMasters = await _noticeRepository.GetAllAsync();
+        var noticeMasters = _noticeRepository.GetQueryable().Where(x=>x.Status==Status.Active.ToString());
+        if (model.current > 1)
+        {
+            noticeMasters = noticeMasters.Skip((model.current - 1)*10);
+        }
+        noticeMasters = noticeMasters.Take(model.rowCount);
+        
+        model.total = noticeMasters.Count();
         var result = noticeMasters.Select(x => new NoticeResponseApiModel()
         {
+            Guid = x.Guid.ToString(),
             Title = x.Title,
             Body = x.Body,
-            Date = x.PostedOn.ToString(),
+            Date = DateOnly.FromDateTime(x.PostedOn).ToString(),
             Picture = x.Picture
         });
-        return Ok(result);
+        return Task.FromResult<IActionResult>(Ok(model.Fill(result)));
     }
 }

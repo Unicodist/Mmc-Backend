@@ -1,10 +1,10 @@
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Mmc.User.ViewModel;
 
 public class UserLoginViewModel
 {
-    [PasswordPropertyText]
+    [DataType(DataType.Password)]
     public string Password { get; set; }
     public string Username { get; set; }
 }

@@ -2,8 +2,8 @@
 @{
     Layout = "_Blog_Layout";
 }
-<form asp-action="Create" asp-controller="Blog" id="form-post-article" enctype="multipart/form-data">
-	<div class="form-group">
+@using(Html.BeginForm("Create","Blog","",FormMethod.Post,null,new{enctype="multipart/form-data",id="form-post-article"})){
+<div class="form-group">
 		@Html.TextBoxFor(m => m.Title, null, new {@class = "form-control mb-3", @placeholder = "Title"})
 		@Html.ValidationMessageFor(m => m.Title)
 	</div>
@@ -14,25 +14,78 @@
 		@Html.DropDownListFor(m => m.CategoryGuid, Array.Empty<SelectListItem>(), "Category", new {@class = "form-control"})
 	</div>
 	<div class="form-group">
-		@Html.TextAreaFor(m => m.CkEditorBody, new {@placeholder = "Start Writing"})
-        @Html.ValidationMessageFor(m => m.CkEditorBody)
+		@Html.TextAreaFor(m=>m.CkEditorBody)
 	</div>
 	<button type="submit" class="btn btn-outline-primary mt-3">Post</button>
-</form>
-<script src="~/ckeditor5/ckeditor.js"></script>
-<script>
-var wineditor;
-ClassicEditor
-    		.create( document.querySelector( '#CkEditorBody' ), {
-    			// toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-    			// removePlugins : 'image'
-    		} )
-    		.then( editor => {
-    			window.editor = editor;
-    		} )
-    		.catch( err => {
-    			console.error( err.stack );
-    		} );
+}
+<script src="~/lib/ckeditor5/ckeditor.js"></script>
+<script type="module">
+class MyUploadAdapter {
+    constructor( loader ) {
+        this.loader = loader;
+    }
+    upload() {
+        server.onUploadProgress( data => {
+            loader.uploadTotal = data.total;
+            loader.uploaded = data.uploaded;
+        } );
+
+        return loader.file
+            .then( file => server.upload( file ) );
+    }
+    abort() {
+        server.abortUpload();
+    }
+	 _initRequest() {
+		const xhr = this.xhr = new XMLHttpRequest();
+		xhr.open( 'POST', '@Url.Action("UploadImage","ImageApi")', true );
+		xhr.responseType = 'json';
+        }
+	_initListeners( resolve, reject, file ) {
+		const xhr = this.xhr;
+		const loader = this.loader;
+		const genericErrorText = `Couldn't upload file: ${ file.name }.`;
+
+		xhr.addEventListener( 'error', () => reject( genericErrorText ) );
+		xhr.addEventListener( 'abort', () => reject() );
+		xhr.addEventListener( 'load', () => {
+			const response = xhr.response;
+			if ( !response || response.error ) {
+				return reject( response && response.error ? response.error.message : genericErrorText );
+			}
+			resolve( {
+				default: response.url
+			} );
+		} );
+		if ( xhr.upload ) {
+			xhr.upload.addEventListener( 'progress', evt => {
+				if ( evt.lengthComputable ) {
+					loader.uploadTotal = evt.total;
+					loader.uploaded = evt.loaded;
+				}
+			} );
+		}
+	}
+	_sendRequest( file ) {
+			const data = new FormData();
+			data.append( 'upload', file );
+			this.xhr.send( data );
+	}
+}
+function MyCustomUploadAdapterPlugin( editor ) {
+	editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) => {
+		return new MyUploadAdapter( loader );
+	};
+}
+ClassicEditor.create( document.querySelector( '#CkEditorBody' ),{
+	extraPlugins: [ MyCustomUploadAdapterPlugin ]
+	})
+	.then( editor => {
+		window.editor = editor;
+	} )
+	.catch( err => {
+		console.error( err.stack );
+	} );
 
 		$(document).ready(function() {
 		  $.ajax({

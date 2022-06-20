@@ -20,7 +20,6 @@ public class UserMasterEntityTest
     {
         var obj = new KeyVal();
         obj.SetValue("xyz");
-     
     }
     
 }

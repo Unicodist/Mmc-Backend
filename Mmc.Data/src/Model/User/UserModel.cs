@@ -1,6 +1,4 @@
 using Mmc.Blog.Entity.Interface;
-using Mmc.Data.Model.Blog;
-using Mmc.Data.Model.Notice;
 using Mmc.Notice.Entity.Interface;
 using Mmc.User.Entity.Interface;
 using Mmc.User.Enum;
@@ -32,8 +30,6 @@ public class UserModel: IUser,
     public string Password { get; set; }
     public string UserName { get; set; }
     public string? picture { get; }
-    public virtual ICollection<ArticleModel> BlogPosts { get; }
-    public virtual ICollection<NoticeModel> Notices { get; }
 
     public void MakeAdmin()
     {

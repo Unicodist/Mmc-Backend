@@ -1,6 +1,4 @@
-﻿using Microsoft.ML;
-using Mmc.Blog.Entity.Interface;
-using Mmc.Blog.Exception;
+﻿using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Helper;
 using Mmc.Blog.MLModel.Comment;
 using Mmc.Blog.Repository;

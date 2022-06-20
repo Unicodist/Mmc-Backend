@@ -18,4 +18,13 @@ public class GuidType
     {
         Value = value;
     }
+
+    public static implicit operator GuidType(string data)
+    {
+        return new GuidType(data);
+    }
+    public static implicit operator string(GuidType data)
+    {
+        return data.ToString();
+    }
 }

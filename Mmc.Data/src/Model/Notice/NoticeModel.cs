@@ -1,6 +1,7 @@
 ﻿using Mmc.Data.Model.User;
 using Mmc.Notice.BaseType;
 using Mmc.Notice.Entity.Interface;
+using Mmc.Notice.Enum;
 
 namespace Mmc.Data.Model.Notice
 {
@@ -21,9 +22,15 @@ namespace Mmc.Data.Model.Notice
         public string? Body { get; set; }
         public DateTime PostedOn { get; set; }
         public string? Picture { get; set; }
+        public Status Status { get; protected set; }
         public long AdminId { get; set; }
         public virtual UserModel Author { get; set; }
         public GuidType Guid { get; set; }
+        public void Deactivate()
+        {
+            Status = Status.Inactive;
+        }
+
         INoticeUser INotice.Author => Author;
     }
 }

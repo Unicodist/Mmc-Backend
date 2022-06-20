@@ -1,4 +1,3 @@
-using System.Reflection;
 using Mmc.Blog.Entity;
 using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Enum;
@@ -28,5 +27,10 @@ public class CommentServiceTest
         _commentRepositoryMock.Setup(a => a.GetByIdAsync(It.IsAny<long>())).ReturnsAsync(_comment);
         
         _commentService = new CommentService(_commentRepositoryMock.Object);
+    }
+    [Fact]
+    public void Test_CreatingComment_ChangesStatusToPending()
+    {
+        _commentService.Create(_toxicComment);
     }
 }

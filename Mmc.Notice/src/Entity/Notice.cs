@@ -1,5 +1,6 @@
 using Mmc.Notice.BaseType;
 using Mmc.Notice.Entity.Interface;
+using Mmc.Notice.Enum;
 
 namespace Mmc.Notice.Entity;
 
@@ -17,8 +18,13 @@ public class Notice : INotice
     public string? Body { get; set; }
     public DateTime PostedOn { get; set; }
     public string? Picture { get; set; }
+    public Status Status { get; set; }
     public long AdminId { get; set; }
     public NoticeUser Author { get; set; }
     INoticeUser INotice.Author => Author;
     public GuidType Guid { get; set; }
+    public void Deactivate()
+    {
+        Status = Status.Inactive;
+    }
 }

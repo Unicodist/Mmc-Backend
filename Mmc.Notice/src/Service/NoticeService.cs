@@ -1,4 +1,5 @@
 using Mmc.Notice.Dto;
+using Mmc.Notice.Helper;
 using Mmc.Notice.Repository;
 using Mmc.Notice.Service.Interface;
 
@@ -24,5 +25,14 @@ public class NoticeService : INoticeService
     public void Update(NoticeUpdateDto noticeUpdateDto)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task Delete(string guid)
+    {
+        var tx = TransactionScopeHelper.GetInstance;
+        var notice = await _noticeRepository.GetByGuidAsync(guid).ConfigureAwait(false);
+        notice.Deactivate();
+        await _noticeRepository.Update(notice);
+        tx.Complete();
     }
 }

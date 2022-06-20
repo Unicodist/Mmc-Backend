@@ -12,12 +12,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="bootstrap" Version="5.1.3" />
-      <PackageReference Include="ckeditor-basic" Version="4.17.2" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.3" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.3" />
       <PackageReference Include="Microsoft.OpenApi" Version="1.3.1" />
-      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.2" />
       <PackageReference Include="Serilog" Version="2.11.1-dev-01397" />
     </ItemGroup>
 
@@ -180,6 +176,99 @@
       <_ContentIncludedByDefault Remove="wwwroot\grid\plugins\selection\dist\tests\rowSelection\actions.test.d.ts" />
       <_ContentIncludedByDefault Remove="wwwroot\grid\plugins\selection\dist\tests\rowSelection\store.test.d.ts" />
       <_ContentIncludedByDefault Remove="wwwroot\grid\README.md" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\ckeditor.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\ckeditor.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\LICENSE.md" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\README.md" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\sample\css\sample.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\sample\img\bg.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\sample\img\github.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\sample\img\logo.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\sample\img\umbrellas.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\af.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\ar.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\ast.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\az.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\bg.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\bs.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\ca.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\cs.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\da.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\de-ch.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\de.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\el.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\en-au.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\en-gb.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\eo.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\es.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\et.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\eu.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\fa.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\fi.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\fr.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\gl.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\gu.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\he.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\hi.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\hr.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\hu.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\id.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\it.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\ja.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\km.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\kn.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\ko.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\ku.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\lt.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\lv.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\ms.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\nb.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\ne.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\nl.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\no.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\oc.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\pl.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\pt-br.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\pt.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\ro.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\ru.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\si.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\sk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\sl.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\sq.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\sr-latn.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\sr.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\sv.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\th.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\tk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\tr.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\tt.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\ug.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\uk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\uz.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\vi.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\zh-cn.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\ckeditor5\translations\zh.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\css\bootstrap-grid.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\css\bootstrap-grid.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\css\bootstrap-grid.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\css\bootstrap-grid.min.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\css\bootstrap-reboot.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\css\bootstrap-reboot.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\css\bootstrap-reboot.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\css\bootstrap-reboot.min.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\css\bootstrap.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\css\bootstrap.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\css\bootstrap.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\css\bootstrap.min.css.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\js\bootstrap.bundle.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\js\bootstrap.bundle.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\js\bootstrap.bundle.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\js\bootstrap.bundle.min.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\js\bootstrap.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\js\bootstrap.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\js\bootstrap.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\js\bootstrap.min.js.map" />
     </ItemGroup>
 
     <ItemGroup>

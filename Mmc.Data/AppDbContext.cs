@@ -8,7 +8,7 @@ using Mmc.Data.Configurations.User;
 
 namespace Mmc.Data;
 
-public class AppDbContext : DbContext
+public class  AppDbContext : DbContext
 {
     private readonly IConfiguration _configuration;
     public AppDbContext(DbContextOptions<AppDbContext> options, IConfiguration configuration) : base(options)
