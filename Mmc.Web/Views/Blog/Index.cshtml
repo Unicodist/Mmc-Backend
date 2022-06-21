@@ -40,7 +40,7 @@
 <script>
     $(document).ready(function() {
         $.ajax({
-          url: '@Url.Action("GetDynamicPartialView")/@Model.PageCount',
+          url: '@Url.Action("GetBlogPaginationView")/@Model.PageCount',
           method : "GET",
           success: function(view) {
             $("#pagination_list_container").append(view);

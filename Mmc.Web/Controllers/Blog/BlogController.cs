@@ -12,7 +12,6 @@ using Mmc.Blog.Service.Interface;
 using Mmc.User.Repository;
 
 namespace Mechi.Backend.Controllers.Blog;
-
 public class BlogController : Controller
 {
     private readonly IArticleRepository _blogRepo;
@@ -67,15 +66,12 @@ public class BlogController : Controller
         };
         return View(model);
     }
-    [Route("[controller]/Read")]
-    public IActionResult Read() => RedirectToAction("Index");
     [Authorize]
     [Route("[controller]/Write")]
     public IActionResult Write()
     {
         return View();
     }
-    [Route("[controller]/Create")]
     public async Task<IActionResult> Create([FromForm]ArticleCreateViewModel model)
     {
         var user = this.GetCurrentBlogUser();
@@ -85,8 +81,8 @@ public class BlogController : Controller
         _ = await _blogService.Create(articleDto);
         return Ok("Article published successfully");
     }
-    [Route("[controller]/GetDynamicPartialView/{page}")]
-    public PartialViewResult GetDynamicPartialView(int page=1)
+    [Route("GetBlogPaginationView/{page}")]
+    public PartialViewResult GetBlogPaginationView(int page=1)
     {
         var blogPage = _blogRepo.GetQueryable().Count()/5;
         var model = new BlogPaginationViewModel()

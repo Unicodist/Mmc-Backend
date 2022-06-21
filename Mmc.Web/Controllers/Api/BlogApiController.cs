@@ -11,7 +11,7 @@ using Mmc.Blog.Service.Interface;
 namespace Mechi.Backend.Controllers.Api;
 
 [ApiController]
-[Route("api/blog/")]
+[Route("api/[controller]")]
 public class BlogApiController : ControllerBase
 {
     private readonly IArticleRepository _articleRepository;
@@ -23,7 +23,6 @@ public class BlogApiController : ControllerBase
         _blogService = blogService;
     }
     [HttpGet]
-    [Route("get")]
     public async Task<IActionResult> Get()
     {
         var blogItems =await _articleRepository.GetAllBlogAsync();
@@ -33,7 +32,7 @@ public class BlogApiController : ControllerBase
     }
 
     [HttpGet]
-    [Route("get/{guid}")]
+    [Route("{guid}")]
     public async Task<IActionResult> Get(string guid)
     {
         try
