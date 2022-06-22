@@ -7,4 +7,5 @@ public class ArticleReadViewModel
     public string AuthorName { get; set; }
     public string? Category { get; set; }
     public string? Body { get; set; }
+    public string Guid { get; set; }
 }

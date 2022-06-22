@@ -36,4 +36,9 @@ public class CommentRepository : BaseRepository<CommentModel>,ICommentRepository
     {
         return await base.GetQueryable().Where(x => x.ArticleId == id).Cast<IComment>().ToListAsync();
     }
+
+    public async Task<IComment?> GetByGuidAsync(string guid)
+    {
+        return await base.GetQueryable().SingleOrDefaultAsync(x => x.Guid == guid).ConfigureAwait(false);
+    }
 }

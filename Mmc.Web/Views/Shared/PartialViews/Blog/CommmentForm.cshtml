@@ -2,14 +2,52 @@
 
 @using (Html.BeginForm("CreateComment", "Blog", FormMethod.Post,new{@class="mb-4", id="comment_form"}))
 {
-    @Html.TextAreaFor(m=>m.Body,
-        new{rows=3,@class="form-control",placeholder="Join the discussion by leaving comment"});
+    @Html.TextBoxFor(m=>m.Body,
+        new{@class="form-control",placeholder="Join the discussion by leaving comment"})
+    @Html.HiddenFor(m=>m.ArticleGuid)
 }
 <script type="text/javascript">
     $(document).ready(function() {
       $('#comment_form').submit(function(e) {
         e.preventDefault();
-        
+        var form = $('#comment_form');
+        let url = form.attr('action');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+              console.log(data);
+            },
+            error:function(data) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: data,
+                footer: '<a href="">Why do I have this issue?</a>'
+              });
+            }
+        });
       });
     });
+    
+    function appendComment(commentGuid) {
+      $.ajax('@Url.Action("GetComment","Blog")', {
+          type: 'POST', 
+          data: form.serialize(),
+          success: function (data, status, xhr) {
+              
+              $('#comment-section-container').append()
+          },
+          error: function (jqXhr, textStatus, errorMessage) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Cannot write that comment. Contact your administration",
+                footer: '@Html.ActionLink("See More Info","CommentError","Documentation")'
+              });
+          }
+      });
+    }
 </script>

@@ -10,4 +10,5 @@ public interface ICommentRepository
     IQueryable<IComment> GetQueryable();
 
     Task<ICollection<IComment>> GetByArticleIdAsync(long id);
+    Task<IComment?> GetByGuidAsync(string guid);
 }

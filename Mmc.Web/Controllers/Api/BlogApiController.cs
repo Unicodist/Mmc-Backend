@@ -63,7 +63,7 @@ public class BlogApiController : ControllerBase
         
         var articleDto = new ArticleCreateDto(model.Title, model.CkEditorBody, user.Id, model.CategoryGuid,filePath);
         var article = await _blogService.Create(articleDto);
-        return Ok(new ArticleViewModel()
+        return Ok(new ArticleViewModel
         {
             Title = article.Title,
             Body = article.Body,
@@ -71,16 +71,5 @@ public class BlogApiController : ControllerBase
             Guid = article.Guid,
             Image = article.Thumbnail
         });
-    }
-    
-    [Route("CreateComment")]
-    [Authorize]
-    [HttpPost]
-    public async Task<IActionResult> CreateComment([FromForm]CommentCreateViewModel model)
-    {
-        var user = this.GetCurrentBlogUser();
-        var commentDto = new CommentCreateDto(model.ArticleGuid,model.Body,user.Id);
-        var comment = await _commentService.Create(commentDto);
-        return Ok(comment);
     }
 }

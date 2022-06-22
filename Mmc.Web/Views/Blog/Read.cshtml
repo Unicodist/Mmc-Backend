@@ -1,6 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@using Mechi.Backend.ViewModel.Blog
 @model Mechi.Backend.ViewModel.Blog.ArticleReadViewModel;
 <article>
     <!-- Post header-->
@@ -24,8 +25,8 @@
     <div class="card bg-light">
         <div class="card-body">
             <!-- Comment form-->
-            @Html.PartialAsync("PartialViews/Blog/CommmentForm");
-            <div class="comment-section-container">
+            @await Html.PartialAsync("PartialViews/Blog/CommmentForm",new CommentCreateViewModel {ArticleGuid=Model.Guid})
+            <div class="comment-section-container" id="comment-section-container">
                 
             </div>
             
@@ -36,8 +37,9 @@
 <script type="text/javascript">
     $.ajax({
       url: "@Url.Action("GetComments","Blog")",
-      context: document.body
+      context: document.body,
+      data : {guid:'@Model.Guid',page:1}
     }).done(function() {
       $( this ).addClass( "done" );
     });
-</script>>
+</script>

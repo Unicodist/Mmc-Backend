@@ -1,7 +1,6 @@
 using Mmc.Blog.Dto;
 using Mmc.Blog.Entity;
 using Mmc.Blog.Entity.Interface;
-using Mmc.Blog.Enum;
 using Mmc.Blog.Repository;
 using Mmc.Blog.src.Service;
 using Moq;
@@ -12,9 +11,9 @@ namespace Mmc.Tests.Mmc.Blog.Service;
 public class CommentServiceTest
 {
     private readonly Mock<ICommentRepository> _commentRepositoryMock = new();
-    private Mock<IBlogUserRepository> _blogUserRepository = new();
-    private Mock<IArticleRepository> _articleRepositoryMock = new();
-    private CommentService _commentService;
+    private readonly Mock<IBlogUserRepository> _blogUserRepository = new();
+    private readonly Mock<IArticleRepository> _articleRepositoryMock = new();
+    private readonly CommentService _commentService;
     private IComment _comment;
     private readonly CommentCreateDto _toxicComment;
 

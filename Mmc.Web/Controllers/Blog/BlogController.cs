@@ -1,4 +1,5 @@
 using System.Globalization;
+using Mechi.Backend.ApiModel.Comment;
 using Mechi.Backend.Helper;
 using Mechi.Backend.Helper.DateHelper;
 using Mechi.Backend.ViewModel;
@@ -17,15 +18,19 @@ public class BlogController : Controller
     private readonly IArticleRepository _blogRepo;
     private readonly IBlogService _blogService;
     private readonly ICommentRepository _commentRepository;
+
+    private readonly ICommentService _commentService;
+
     // GET
     public BlogController(IArticleRepository blogRepo, 
         IBlogService blogService,
         ICommentRepository commentRepository, 
-        IUserUserRepository userUserRepository)
+        IUserUserRepository userUserRepository, ICommentService commentService)
     {
         _blogRepo = blogRepo;
         _blogService = blogService;
         _commentRepository = commentRepository;
+        _commentService = commentService;
         UserHelper.UserRepository = userUserRepository;
     }
     [Route("[controller]/{page}")]
@@ -62,7 +67,8 @@ public class BlogController : Controller
             AuthorName = blog.User.Name,
             Body = blog.Body,
             Category = blog.Category?.Name,
-            Date = blog.PostedDate.ToString(CultureInfo.InvariantCulture)
+            Date = blog.PostedDate.ToString(CultureInfo.InvariantCulture),
+            Guid = blog.Guid.ToString()
         };
         return View(model);
     }
@@ -81,7 +87,7 @@ public class BlogController : Controller
         _ = await _blogService.Create(articleDto);
         return Ok("Article published successfully");
     }
-    [Route("GetBlogPaginationView/{page}")]
+    [Route("[controller]/GetBlogPaginationView/{page}")]
     public PartialViewResult GetBlogPaginationView(int page=1)
     {
         var blogPage = _blogRepo.GetQueryable().Count()/5;
@@ -112,5 +118,31 @@ public class BlogController : Controller
             })
         };
         return PartialView("PartialViews/Blog/CommentItem", model);
+    }
+
+    [Route("[controller]/GetComment")]
+    [Authorize]
+    public async Task<IActionResult> GetComment(string guid)
+    {
+        var comment = await _commentRepository.GetByGuidAsync(guid) ?? throw new CommentNotFoundException();
+        var user = this.GetCurrentBlogUser();
+        var model = new CommentResponseApiModel()
+        {
+            Guid = comment.Guid.ToString(),
+            Body = comment.Body,
+            SelfAuthor = user.Id == comment.UserId
+        };
+        return Ok(model);
+    }
+    
+    [Authorize]
+    [HttpPost]
+    [Route("[controller]/CreateComment")]
+    public async Task<JsonResult> CreateComment([FromForm]CommentCreateViewModel model)
+    {
+        var user = this.GetCurrentBlogUser();
+        var commentDto = new CommentCreateDto(model.ArticleGuid,model.Body,user.Id);
+        var comment = await _commentService.Create(commentDto);
+        return Json(comment);
     }
 }
