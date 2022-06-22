@@ -1,0 +1,15 @@
+@model Mechi.Backend.ViewModel.Blog.CommentCreateViewModel;
+
+@using (Html.BeginForm("CreateComment", "Blog", FormMethod.Post,new{@class="mb-4", id="comment_form"}))
+{
+    @Html.TextAreaFor(m=>m.Body,
+        new{rows=3,@class="form-control",placeholder="Join the discussion by leaving comment"});
+}
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('#comment_form').submit(function(e) {
+        e.preventDefault();
+        
+      });
+    });
+</script>

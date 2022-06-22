@@ -1,3 +1,4 @@
+using Mmc.Blog.Dto;
 using Mmc.Blog.Entity;
 using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Enum;
@@ -10,23 +11,21 @@ namespace Mmc.Tests.Mmc.Blog.Service;
 
 public class CommentServiceTest
 {
-    private Mock<ICommentRepository> _commentRepositoryMock = new();
+    private readonly Mock<ICommentRepository> _commentRepositoryMock = new();
+    private Mock<IBlogUserRepository> _blogUserRepository = new();
+    private Mock<IArticleRepository> _articleRepositoryMock = new();
     private CommentService _commentService;
     private IComment _comment;
-    private readonly IComment _toxicComment;
+    private readonly CommentCreateDto _toxicComment;
 
     public CommentServiceTest()
     {
         _comment = new Comment();
-        _toxicComment = new Comment()
-        {
-            Body = "This is very stupid",
-            Status = Status.Active
-        };
+        _toxicComment = new("someGuid", "This sounds so stupid what the hell", 1);
         typeof(Comment).GetProperty(nameof(Comment.Id))!.SetValue(_comment,1);
         _commentRepositoryMock.Setup(a => a.GetByIdAsync(It.IsAny<long>())).ReturnsAsync(_comment);
         
-        _commentService = new CommentService(_commentRepositoryMock.Object);
+        _commentService = new CommentService(_commentRepositoryMock.Object,_blogUserRepository.Object,_articleRepositoryMock.Object);
     }
     [Fact]
     public void Test_CreatingComment_ChangesStatusToPending()

@@ -10,28 +10,24 @@ public class Comment : IComment
     {
         
     }
-    public Comment(long userId, string body, Status status, IBlogUser user, IArticle article, IComment parent, GuidType guid)
+    public Comment(string body,IBlogUser user, IArticle article)
     {
-        UserId = userId;
+        User = user;
         Body = body;
-        Status = status;
+        Status = Status.Active;
         User = user;
         Article = article;
-        Parent = parent;
-        Guid = guid;
     }
 
     public long Id { get; protected set; }
     public string Body { get; set; } = null!;
     public long UserId { get; }
     public long ArticleId { get; }
-    public long? ParentId { get; }
     public Status Status { get; set; } = null!;
     public IBlogUser User { get; } = null!;
     public IArticle Article { get; } = null!;
-    public IComment? Parent { get; }
     public ICollection<IComment>? Replies { get; }
-    public GuidType Guid { get; } = null!;
+    public GuidType Guid { get; }
 
     public void Update(string body)
     {

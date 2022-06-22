@@ -10,10 +10,7 @@
         <!-- Post meta content-->
         <div class="text-muted fst-italic mb-2">@Model.Date by @Model.AuthorName</div>
         <!-- Post categories-->
-            @foreach (var item in Model.Categories)
-            {
-                <a class="badge bg-secondary text-decoration-none link-light" href="#">item</a>
-            }
+        <a class="badge bg-secondary text-decoration-none link-light" href="#">@Model.Category</a>
     </header>
     <!-- Preview image figure-->
     <figure class="mb-4"><img class="img-fluid rounded" src="~/Assets/Home/Images/mechi5.jpg" alt="..." /></figure>
@@ -27,7 +24,7 @@
     <div class="card bg-light">
         <div class="card-body">
             <!-- Comment form-->
-            <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
+            @Html.PartialAsync("PartialViews/Blog/CommmentForm");
             <div class="comment-section-container">
                 
             </div>
@@ -38,7 +35,7 @@
 
 <script type="text/javascript">
     $.ajax({
-      url: "@Url.Action("GetComments","BlogApi")",
+      url: "@Url.Action("GetComments","Blog")",
       context: document.body
     }).done(function() {
       $( this ).addClass( "done" );

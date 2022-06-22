@@ -61,7 +61,7 @@ public class BlogController : Controller
             Title = blog.Title,
             AuthorName = blog.User.Name,
             Body = blog.Body,
-            Categories = blog.Category?.Name,
+            Category = blog.Category?.Name,
             Date = blog.PostedDate.ToString(CultureInfo.InvariantCulture)
         };
         return View(model);

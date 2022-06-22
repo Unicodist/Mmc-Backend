@@ -16,11 +16,13 @@ public class BlogApiController : ControllerBase
 {
     private readonly IArticleRepository _articleRepository;
     private readonly IBlogService _blogService;
+    private readonly ICommentService _commentService;
 
-    public BlogApiController(IArticleRepository articleRepository, IBlogService blogService)
+    public BlogApiController(IArticleRepository articleRepository, IBlogService blogService, ICommentService commentService)
     {
         _articleRepository = articleRepository;
         _blogService = blogService;
+        _commentService = commentService;
     }
     [HttpGet]
     public async Task<IActionResult> Get()
@@ -69,5 +71,16 @@ public class BlogApiController : ControllerBase
             Guid = article.Guid,
             Image = article.Thumbnail
         });
+    }
+    
+    [Route("CreateComment")]
+    [Authorize]
+    [HttpPost]
+    public async Task<IActionResult> CreateComment([FromForm]CommentCreateViewModel model)
+    {
+        var user = this.GetCurrentBlogUser();
+        var commentDto = new CommentCreateDto(model.ArticleGuid,model.Body,user.Id);
+        var comment = await _commentService.Create(commentDto);
+        return Ok(comment);
     }
 }

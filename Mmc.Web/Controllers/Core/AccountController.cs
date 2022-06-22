@@ -48,12 +48,6 @@ public class AccountController : Controller
 
         return RedirectToAction("Index", "Home");
     }
-
-    public IActionResult Login()
-    {
-        return View();
-    }
-    [HttpPost]
     public async Task<IActionResult> Login(UserLoginViewModel model)
     {
         if(!ModelState.IsValid)
@@ -74,7 +68,11 @@ public class AccountController : Controller
         var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
         var principle = new ClaimsPrincipal(identity);
         await HttpContext.SignInAsync(principle);
-        return RedirectToAction("Index","Dashboard");
+        if (string.IsNullOrEmpty(model.ReturnUrl))
+        {
+            return RedirectToAction("Index","Dashboard");
+        }
+        return Redirect(model.ReturnUrl);
     }
     public IActionResult Logout()
     {
