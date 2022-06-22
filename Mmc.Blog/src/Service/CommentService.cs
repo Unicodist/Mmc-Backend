@@ -36,7 +36,7 @@ namespace Mmc.Blog.src.Service
         private void ValidateComment(Comment comment)
         {
             
-            var sampleData = new ToxiCommentFilter.ModelInput()
+            var sampleData = new ToxiCommentFilter.ModelInput
             {
                 Comment_text = comment.Body,
             };

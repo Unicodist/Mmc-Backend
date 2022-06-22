@@ -17,7 +17,8 @@ public class UserConfiguration : IEntityTypeConfiguration<UserModel>
         builder.Property(u => u.UserType).HasColumnName("user_type").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50);
         builder.Property(u => u.UserName).HasColumnName("user_name").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50).IsRequired();
 
-        builder.HasData(new UserModel(){
+        builder.HasData(new UserModel
+        {
             Id = 1,
             Name = "Ashish Neupane",
             Email = "ashishneupane999@gmail.com",

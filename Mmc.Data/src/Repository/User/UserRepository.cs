@@ -29,7 +29,7 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IB
     }
     public IUser CreateInstance(string name, string email, string password, string username)
     {
-        return new UserModel()
+        return new UserModel
         {
             Email = email,
             UserName = username,

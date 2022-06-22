@@ -18,7 +18,7 @@ public class CategoryApiController : ControllerBase
     public async Task<IActionResult> GetCategoryList()
     {
         var categories = await _categoryRepository.GetAllAsync();
-        var model = categories.Select(x => new CategoryResponseModel()
+        var model = categories.Select(x => new CategoryResponseModel
         {
             Guid = x.Guid.ToString(),
             Name = x.Name,

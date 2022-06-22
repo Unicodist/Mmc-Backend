@@ -22,7 +22,7 @@ public class NoticeApiController : ControllerBase
     public async Task<IActionResult> Get()
     {
         var noticeMasters = (await _noticeRepository.GetAllAsync())??new List<INotice>();
-        var result = noticeMasters.Select(x => new NoticeResponseApiModel()
+        var result = noticeMasters.Select(x => new NoticeResponseApiModel
         {
             Title = x.Title,
             Body = x.Body,
@@ -36,7 +36,7 @@ public class NoticeApiController : ControllerBase
     public async Task<IActionResult> Get(string guid)
     {
         var noticeMaster = await _noticeRepository.GetByGuidAsync(guid);
-        var result = new NoticeResponseApiModel()
+        var result = new NoticeResponseApiModel
         {
             Title = noticeMaster.Title,
             Body = noticeMaster.Body,

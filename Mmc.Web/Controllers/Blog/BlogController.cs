@@ -10,7 +10,6 @@ using Mmc.Blog.Dto;
 using Mmc.Blog.Exception;
 using Mmc.Blog.Repository;
 using Mmc.Blog.Service.Interface;
-using Mmc.User.Repository;
 
 namespace Mechi.Backend.Controllers.Blog;
 public class BlogController : Controller
@@ -25,27 +24,26 @@ public class BlogController : Controller
     public BlogController(IArticleRepository blogRepo, 
         IBlogService blogService,
         ICommentRepository commentRepository, 
-        IUserUserRepository userUserRepository, ICommentService commentService)
+        IBlogUserRepository userRepository, ICommentService commentService)
     {
         _blogRepo = blogRepo;
         _blogService = blogService;
         _commentRepository = commentRepository;
         _commentService = commentService;
-        UserHelper.UserRepository = userUserRepository;
+        UserHelper.UserRepository = userRepository;
     }
     [Route("[controller]/{page}")]
-    public async Task<IActionResult> Index(int? page)
+    public async Task<IActionResult> Index(int? page = 1)
     {
-        var articles = await _blogRepo.GetAllBlogAsync().ConfigureAwait(false);
+        var articles = (await _blogRepo.GetAllBlogAsync().ConfigureAwait(false));
         if (articles != null && !articles.Any())
         {
             return View("Errors/_No_Articles");
         }
-        var modelArticles = articles.Select(x => new ArticleViewModel()
-            {Guid = x.Guid, Body = x.Body, DateTime = DateHelper.GetDateTime(x.PostedDate,x.PostedTime), Image = "abc", Title = x.Title});
+        var modelArticles = articles.Select(x => new ArticleViewModel {Guid = x.Guid, Body = x.Body, DateTime = DateHelper.GetDateTime(x.PostedDate,x.PostedTime), Image = "abc", Title = x.Title});
         var pinned = modelArticles.First();
         modelArticles.ToList().Remove(pinned);
-        var model = new BlogHomeViewModel()
+        var model = new BlogHomeViewModel
         {
             Articles = modelArticles,
             PageCount = page??1,
@@ -53,15 +51,11 @@ public class BlogController : Controller
         };
         return View(model);
     }
-    public Task<IActionResult> Index()
-    {
-        return Index(1);
-    }
     [Route("[controller]/Read/{guid}")]
     public async Task<IActionResult> Read(string guid)
     {
         var blog = await _blogRepo.GetByGuidAsync(guid)??throw new ArticleNotFoundException();
-        var model = new ArticleReadViewModel()
+        var model = new ArticleReadViewModel
         {
             Title = blog.Title,
             AuthorName = blog.User.Name,
@@ -91,7 +85,7 @@ public class BlogController : Controller
     public PartialViewResult GetBlogPaginationView(int page=1)
     {
         var blogPage = _blogRepo.GetQueryable().Count()/5;
-        var model = new BlogPaginationViewModel()
+        var model = new BlogPaginationViewModel
         {
             CurrentPage = page,
             TotalPageCount = blogPage,
@@ -106,9 +100,9 @@ public class BlogController : Controller
     {
         var article = await _blogRepo.GetByGuidAsync(guid);
         var comments = await _commentRepository.GetByArticleIdAsync(article.Id);
-        var model = new CommentSectionViewModel()
+        var model = new CommentSectionViewModel
         {
-            Comments = comments.Take(page).Select(x => new CommentItemViewModel()
+            Comments = comments.Take(page).Select(x => new CommentItemViewModel
             {
                 Body = x.Body,
                 Guid = x.Guid.ToString(),
@@ -126,7 +120,7 @@ public class BlogController : Controller
     {
         var comment = await _commentRepository.GetByGuidAsync(guid) ?? throw new CommentNotFoundException();
         var user = this.GetCurrentBlogUser();
-        var model = new CommentResponseApiModel()
+        var model = new CommentResponseApiModel
         {
             Guid = comment.Guid.ToString(),
             Body = comment.Body,

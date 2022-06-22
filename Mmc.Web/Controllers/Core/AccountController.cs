@@ -37,7 +37,7 @@ public class AccountController : Controller
     {
         if(!ModelState.IsValid)
             return View(model);
-        var userCreateDto = new UserCreateDto()
+        var userCreateDto = new UserCreateDto
         {
             Name = model.FirstName+" "+model.LastName,
             Email = model.Email,
@@ -58,7 +58,7 @@ public class AccountController : Controller
             Username = model.Username
         };
         var user = _userServices.ValidateUser(userLoginDto);
-        var claims = new List<Claim>()
+        var claims = new List<Claim>
         {
             new(ClaimTypes.Email,user.Email),
             new(ClaimTypes.Name,user.Name),

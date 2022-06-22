@@ -27,7 +27,7 @@ public class NoticeGridController : ControllerBase
         noticeMasters = noticeMasters.Take(model.rowCount);
         
         model.total = noticeMasters.Count();
-        var result = noticeMasters.Select(x => new NoticeResponseApiModel()
+        var result = noticeMasters.Select(x => new NoticeResponseApiModel
         {
             Guid = x.Guid.ToString(),
             Title = x.Title,

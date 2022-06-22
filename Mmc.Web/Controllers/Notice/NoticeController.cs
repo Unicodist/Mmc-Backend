@@ -25,7 +25,7 @@ public class NoticeController : Controller
     public async Task<IActionResult> Read()
     {
         var notices = await _noticeRepository.GetAllAsync();
-        var noticeModel = notices.Select(x => new NoticeViewModel()
+        var noticeModel = notices.Select(x => new NoticeViewModel
         {
             Guid = x.Guid.ToString(),
             Title = x.Title,
