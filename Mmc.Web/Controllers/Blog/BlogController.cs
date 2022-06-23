@@ -32,7 +32,6 @@ public class BlogController : Controller
         _commentService = commentService;
         UserHelper.UserRepository = userRepository;
     }
-    [Route("[controller]/{page}")]
     public async Task<IActionResult> Index(int? page = 1)
     {
         var articles = (await _blogRepo.GetAllBlogAsync().ConfigureAwait(false));
@@ -67,7 +66,7 @@ public class BlogController : Controller
         return View(model);
     }
     [Authorize]
-    [Route("[controller]/Write")]
+    [Route("Write")]
     public IActionResult Write()
     {
         return View();

@@ -3,16 +3,21 @@
 *@
 @using Mechi.Backend.ViewModel.Blog
 @model Mechi.Backend.ViewModel.Blog.ArticleReadViewModel;
+<link rel="stylesheet" href="~/css/heart-button.css">
 <article>
     <!-- Post header-->
-    <header class="mb-4">
-        <!-- Post title-->
-        <h1 class="fw-bolder mb-1">@Model.Title</h1>
-        <!-- Post meta content-->
-        <div class="text-muted fst-italic mb-2">@Model.Date by @Model.AuthorName</div>
-        <!-- Post categories-->
-        <a class="badge bg-secondary text-decoration-none link-light" href="#">@Model.Category</a>
-    </header>
+    <div class="d-flex justify-content-between">
+        <header class="mb-4">
+        
+            <!-- Post title-->
+            <h1 class="fw-bolder mb-1">@Model.Title</h1>
+            <!-- Post meta content-->
+            <div class="text-muted fst-italic mb-2">@Model.Date by @Model.AuthorName</div>
+            <!-- Post categories-->
+            <a class="badge bg-secondary text-decoration-none link-light" href="#">@Model.Category</a>
+        </header>
+        <i class="article-heart fa-regular fa-heart fa-lg"></i>
+    </div>
     <!-- Preview image figure-->
     <figure class="mb-4"><img class="img-fluid rounded" src="~/Assets/Home/Images/mechi5.jpg" alt="..." /></figure>
     <!-- Post content-->
@@ -43,3 +48,4 @@
       $( this ).addClass( "done" );
     });
 </script>
+<script src="~/js/article-heart-button.js"></script>

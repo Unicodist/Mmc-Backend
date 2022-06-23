@@ -1,0 +1,10 @@
+.article-heart{
+    color: #2D3A4A;
+    height: 50px;
+    cursor: pointer;
+}
+.article-heart:hover{
+    color: #d63384;
+    transition: 0.9s;
+    transform: rotateY(180deg);
+}

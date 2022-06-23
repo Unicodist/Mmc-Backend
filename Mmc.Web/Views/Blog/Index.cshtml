@@ -6,8 +6,8 @@
 }
 
 <!-- Blog entries-->
-    <!-- Featured blog post-->
-    <div class="card mb-4">
+<!-- Featured blog post-->
+<div class="card mb-4"> 
         <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
         <div class="card-body">
             <div class="small text-muted">@Model.Pinned.DateTime.ToString(CultureInfo.InvariantCulture)</div>
@@ -31,6 +31,9 @@
         </div>
     }
 </div>
+
+<link rel="stylesheet" href="~/css/floating-button.css">
+<a asp-action="Write" class="floating-button"><i class="fa fa-plus"></i></a>
     <!-- Pagination-->
 <nav aria-label="Pagination">
     <hr class="my-0" />
