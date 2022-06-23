@@ -3,13 +3,28 @@
 @using (Html.BeginForm("CreateComment", "Blog", FormMethod.Post,new{@class="mb-4", id="comment_form"}))
 {
     @Html.TextBoxFor(m=>m.Body,
-        new{@class="form-control",placeholder="Join the discussion by leaving comment"})
+        new{@class="form-control",id="comment-form-input",placeholder="Join the discussion by leaving comment"})
     @Html.HiddenFor(m=>m.ArticleGuid)
 }
 <script type="text/javascript">
+    function appendComment(commentGuid) {
+      $.ajax('@Url.Action("GetCommentView","Blog")', {
+          type: 'POST', 
+          data: {guid:commentGuid},
+          success: function (data, status, xhr) {
+              $('#comment-section-container').prepend(data)
+            },
+          error: function (jqXhr, textStatus, errorMessage) {
+              
+            }
+      });
+    }
+        
+        
     $(document).ready(function() {
       $('#comment_form').submit(function(e) {
         e.preventDefault();
+        $('#comment-form-input').val('');
         var form = $('#comment_form');
         let url = form.attr('action');
         $.ajax({
@@ -18,7 +33,7 @@
             data: form.serialize(), // serializes the form's elements.
             success: function(data)
             {
-              console.log(data);
+              appendComment(data.guid);
             },
             error:function(data) {
               Swal.fire({
@@ -31,18 +46,4 @@
         });
       });
     });
-    
-    function appendComment(commentGuid) {
-      $.ajax('@Url.Action("GetCommentItem","Blog")', {
-          type: 'POST', 
-          data: {guid:commentGuid},
-          success: function (data, status, xhr) {
-              
-              $('#comment-section-container').append(data)
-          },
-          error: function (jqXhr, textStatus, errorMessage) {
-              
-          }
-      });
-    }
 </script>

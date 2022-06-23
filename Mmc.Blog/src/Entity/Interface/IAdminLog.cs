@@ -6,5 +6,5 @@ public interface IAdminLog
 {
     public long Id { get; set; }
     public long AdminId { get; set; }
-    public InteractionAction Type { get; set; }
+    public InteractionType Type { get; set; }
 }

@@ -24,5 +24,6 @@ public class ArticleConfiguration : IEntityTypeConfiguration<ArticleModel>
 
         builder.HasOne(b => b.AuthorAdmin).WithMany().HasForeignKey(b=>b.UserId).OnDelete(DeleteBehavior.Cascade);
         builder.HasOne(b => b.Category).WithMany(u=>u.BlogPosts).HasForeignKey(b=>b.CategoryId).OnDelete(DeleteBehavior.Cascade);
+        builder.HasMany(b => b.Interactions).WithOne(u=>u.Article).HasForeignKey(b=>b.ArticleId).OnDelete(DeleteBehavior.Cascade);
     }
 }

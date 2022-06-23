@@ -350,6 +350,33 @@ namespace Mmc.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "like",
+                columns: table => new
+                {
+                    like_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    user_id = table.Column<long>(type: "bigint", nullable: false),
+                    article_id = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_like", x => x.like_id);
+                    table.ForeignKey(
+                        name: "FK_like_blog_posts_article_id",
+                        column: x => x.article_id,
+                        principalTable: "blog_posts",
+                        principalColumn: "blog_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_like_user_user_id",
+                        column: x => x.user_id,
+                        principalTable: "user",
+                        principalColumn: "user_id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "upvote",
                 columns: table => new
                 {
@@ -391,7 +418,9 @@ namespace Mmc.Data.Migrations
                     action = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     article_id = table.Column<long>(type: "bigint", nullable: true),
-                    comment_id = table.Column<long>(type: "bigint", nullable: true)
+                    comment_id = table.Column<long>(type: "bigint", nullable: true),
+                    type = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
@@ -400,7 +429,8 @@ namespace Mmc.Data.Migrations
                         name: "FK_interaction_log_blog_posts_article_id",
                         column: x => x.article_id,
                         principalTable: "blog_posts",
-                        principalColumn: "blog_id");
+                        principalColumn: "blog_id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_interaction_log_comment_comment_id",
                         column: x => x.comment_id,
@@ -412,12 +442,12 @@ namespace Mmc.Data.Migrations
             migrationBuilder.InsertData(
                 table: "user_picture",
                 columns: new[] { "picture_id", "guid", "location", "type", "uploaded_date" },
-                values: new object[] { 1L, "GodGuid", "Images/SuperAdmin", "Avatar", new DateTime(2022, 6, 23, 20, 8, 2, 618, DateTimeKind.Local).AddTicks(3558) });
+                values: new object[] { 1L, "GodGuid", "/Assets/Account/Profile/SuperAdmin.jpg", "Avatar", new DateTime(2022, 6, 23, 21, 38, 9, 738, DateTimeKind.Local).AddTicks(7266) });
 
             migrationBuilder.InsertData(
                 table: "user",
                 columns: new[] { "user_id", "email", "name", "password", "picture_id", "user_name", "user_type" },
-                values: new object[] { 1L, "ashishneupane999@gmail.com", "Ashish Neupane", "$2a$11$ltXtvb3r3mDUrR1Rfc/cgeP3zXt4E8uNxrmTArAVo4Xxa9qdYSkdW", 1L, "AshuraNep", "Superuser" });
+                values: new object[] { 1L, "ashishneupane999@gmail.com", "Ashish Neupane", "$2a$11$AuQ5VISr25IPS5BiddksEuNSIEWjC7F0xlKZHuH.rOYKBb8WJItae", 1L, "AshuraNep", "Superuser" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_blog_posts_admin_id",
@@ -453,6 +483,16 @@ namespace Mmc.Data.Migrations
                 name: "IX_interaction_log_comment_id",
                 table: "interaction_log",
                 column: "comment_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_like_article_id",
+                table: "like",
+                column: "article_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_like_user_id",
+                table: "like",
+                column: "user_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_notice_admin_id",
@@ -505,6 +545,9 @@ namespace Mmc.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "keyValue");
+
+            migrationBuilder.DropTable(
+                name: "like");
 
             migrationBuilder.DropTable(
                 name: "notice");

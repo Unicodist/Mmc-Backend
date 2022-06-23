@@ -1,5 +1,6 @@
 using Mmc.Blog.BaseType;
 using Mmc.Blog.Entity.Interface;
+using Mmc.Blog.Enum;
 
 namespace Mmc.Blog.Entity;
 
@@ -27,11 +28,19 @@ public class Article : IArticle
     public long? CategoryId => Category?.Id;
     public IBlogUser User { get; }
     public ICategory? Category { get; set; }
+    public ICollection<ILike> Likes { get; }
+    public ICollection<IInteractionLog> Interactions { get; set; }
+    
 
     public void Update(string dtoTitle, string? dtoBody, ICategory category)
     {
         Title = dtoTitle;
         Body = dtoBody;
         Category = category;
+    }
+
+    public int GetLikesCount()
+    {
+        return Interactions.Count(x => x.InteractionType == InteractionType.LikeArticle);
     }
 }

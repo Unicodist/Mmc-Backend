@@ -17,5 +17,13 @@ public interface IArticle
     
     IBlogUser User { get; }
     ICategory? Category { get; }
+    ICollection<ILike> Likes { get; }
+
+    ICollection<IInteractionLog> Interactions
+    {
+        get;
+    }
+
     void Update(string dtoTitle, string? dtoBody, ICategory category);
+    int GetLikesCount();
 }

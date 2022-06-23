@@ -8,4 +8,6 @@ public class ArticleReadViewModel
     public string? Category { get; set; }
     public string? Body { get; set; }
     public string Guid { get; set; }
+    public int LikeCount { get; set; }
+    public bool Liked { get; set; }
 }

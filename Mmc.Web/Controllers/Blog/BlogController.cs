@@ -7,6 +7,7 @@ using Mechi.Backend.ViewModel.Blog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Blog.Dto;
+using Mmc.Blog.Entity;
 using Mmc.Blog.Exception;
 using Mmc.Blog.Repository;
 using Mmc.Blog.Service.Interface;
@@ -63,8 +64,14 @@ public class BlogController : Controller
             Body = blog.Body,
             Category = blog.Category?.Name,
             Date = blog.PostedDate.ToString(CultureInfo.InvariantCulture),
-            Guid = blog.Guid.ToString()
+            Guid = blog.Guid.ToString(),
+            LikeCount = blog.Likes.Count
         };
+        if (User.Identity!.IsAuthenticated)
+        {
+            var user = this.GetCurrentBlogUser();
+            model.Liked = blog.Likes.Select(x => x.UserId).Contains(user.Id);
+        }
         return View(model);
     }
     [Authorize]
@@ -103,7 +110,7 @@ public class BlogController : Controller
         var comments = await _commentRepository.GetByArticleIdAsync(article.Id);
         var model = new CommentSectionViewModel
         {
-            Comments = comments.Take(page*10).Select(x => new CommentItemViewModel
+            Comments = comments.Take(page*10).Reverse().Select(x => new CommentItemViewModel
             {
                 Body = x.Body,
                 Guid = x.Guid.ToString(),

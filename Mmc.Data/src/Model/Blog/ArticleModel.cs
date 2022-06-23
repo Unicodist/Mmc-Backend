@@ -1,5 +1,6 @@
 using Mmc.Blog.BaseType;
 using Mmc.Blog.Entity.Interface;
+using Mmc.Blog.Enum;
 using Mmc.Data.Model.User;
 
 namespace Mmc.Data.Model.Blog;
@@ -41,11 +42,21 @@ public class ArticleModel : IArticle
     public virtual UserModel AuthorAdmin { get; } = null!;
     IBlogUser IArticle.User => AuthorAdmin;
     public virtual CategoryModel? Category { get; protected set; }
+    public virtual ICollection<LikeModel> Likes { get; }
+    ICollection<ILike> IArticle.Likes => Likes.Cast<ILike>().ToList();
+    public virtual ICollection<InteractionLogModel> Interactions { get; set; }
+    ICollection<IInteractionLog> IArticle.Interactions => Interactions.Cast<IInteractionLog>().ToList();
+
     public void Update(string dtoTitle, string? dtoBody, ICategory category)
     {
         Title = dtoTitle;
         Body = dtoBody;
         Category = (CategoryModel)category;
+    }
+
+    public int GetLikesCount()
+    {
+        return Interactions.Count(x => x.InteractionType == InteractionType.LikeArticle);
     }
 
     ICategory? IArticle.Category => Category;

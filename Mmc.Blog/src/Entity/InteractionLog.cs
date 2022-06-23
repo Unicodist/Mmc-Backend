@@ -1,4 +1,5 @@
 using Mmc.Blog.Entity.Interface;
+using Mmc.Blog.Enum;
 
 namespace Mmc.Blog.Entity;
 
@@ -13,6 +14,7 @@ public class InteractionLog : IInteractionLog
     public long? CommentId { get; }
     public Article? Article { get; set; }
     public Comment? Comment { get; set; }
+    public InteractionType InteractionType { get; set; }
     IArticle? IInteractionLog.Article => Article;
     IComment? IInteractionLog.Comment => Comment;
 }

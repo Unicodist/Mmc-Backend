@@ -11,7 +11,7 @@ using Mmc.Data;
 namespace Mmc.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220623142303_initial")]
+    [Migration("20220623155310_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -308,12 +308,6 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("log_id");
 
-                    b.Property<string>("Action")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("action");
-
                     b.Property<long?>("ArticleId")
                         .HasColumnType("bigint")
                         .HasColumnName("article_id");
@@ -325,6 +319,12 @@ namespace Mmc.Data.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime")
                         .HasColumnName("date");
+
+                    b.Property<string>("InteractionType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("type");
 
                     b.Property<string>("NewValue")
                         .IsRequired()
@@ -338,6 +338,12 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("varchar(100)")
                         .HasColumnName("old_value");
 
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("action");
+
                     b.Property<long>("UserId")
                         .HasColumnType("bigint")
                         .HasColumnName("user_id");
@@ -349,6 +355,30 @@ namespace Mmc.Data.Migrations
                     b.HasIndex("CommentId");
 
                     b.ToTable("interaction_log", (string)null);
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.Blog.LikeModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("like_id");
+
+                    b.Property<long>("ArticleId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("article_id");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("like", (string)null);
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Blog.UpvoteModel", b =>
@@ -462,9 +492,9 @@ namespace Mmc.Data.Migrations
                         {
                             Id = 1L,
                             Guid = "GodGuid",
-                            Location = "Images/SuperAdmin",
+                            Location = "/Assets/Account/Profile/SuperAdmin.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 23, 20, 8, 2, 618, DateTimeKind.Local).AddTicks(3558)
+                            UploadedDate = new DateTime(2022, 6, 23, 21, 38, 9, 738, DateTimeKind.Local).AddTicks(7266)
                         });
                 });
 
@@ -559,7 +589,7 @@ namespace Mmc.Data.Migrations
                             Id = 1L,
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
-                            Password = "$2a$11$ltXtvb3r3mDUrR1Rfc/cgeP3zXt4E8uNxrmTArAVo4Xxa9qdYSkdW",
+                            Password = "$2a$11$AuQ5VISr25IPS5BiddksEuNSIEWjC7F0xlKZHuH.rOYKBb8WJItae",
                             PictureId = 1L,
                             UserName = "AshuraNep",
                             UserType = "Superuser"
@@ -671,8 +701,9 @@ namespace Mmc.Data.Migrations
             modelBuilder.Entity("Mmc.Data.Model.Blog.InteractionLogModel", b =>
                 {
                     b.HasOne("Mmc.Data.Model.Blog.ArticleModel", "Article")
-                        .WithMany()
-                        .HasForeignKey("ArticleId");
+                        .WithMany("Interactions")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Mmc.Data.Model.Blog.CommentModel", "Comment")
                         .WithMany()
@@ -681,6 +712,25 @@ namespace Mmc.Data.Migrations
                     b.Navigation("Article");
 
                     b.Navigation("Comment");
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.Blog.LikeModel", b =>
+                {
+                    b.HasOne("Mmc.Data.Model.Blog.ArticleModel", "Article")
+                        .WithMany("Likes")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mmc.Data.Model.User.UserModel", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Article");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Blog.UpvoteModel", b =>
@@ -751,6 +801,13 @@ namespace Mmc.Data.Migrations
             modelBuilder.Entity("Mmc.Data.Model.Address.StateModel", b =>
                 {
                     b.Navigation("Vdcs");
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.Blog.ArticleModel", b =>
+                {
+                    b.Navigation("Interactions");
+
+                    b.Navigation("Likes");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Blog.CategoryModel", b =>
