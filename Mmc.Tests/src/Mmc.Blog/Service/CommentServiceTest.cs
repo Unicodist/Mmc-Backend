@@ -20,7 +20,7 @@ public class CommentServiceTest
     public CommentServiceTest()
     {
         _comment = new Comment();
-        _toxicComment = new("someGuid", "This sounds so stupid what the hell", 1);
+        _toxicComment = new CommentCreateDto("someGuid", "This sounds so stupid what the hell", 1);
         typeof(Comment).GetProperty(nameof(Comment.Id))!.SetValue(_comment,1);
         _commentRepositoryMock.Setup(a => a.GetByIdAsync(It.IsAny<long>())).ReturnsAsync(_comment);
         

@@ -9,7 +9,7 @@ namespace Mmc.Tests.Mmc.Blog.Entity;
 
 public class CategoryTest
 {
-    private Category cat = new Category("cat", "dog");
+    private Category cat = new("cat", "dog");
     [Fact]
     public void Test_catTest_GetsAllNecessaryProperties()
     {

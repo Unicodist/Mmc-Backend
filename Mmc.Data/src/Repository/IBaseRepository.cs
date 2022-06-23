@@ -10,7 +10,7 @@ public interface IBaseRepository<T> where T : class
 
     IQueryable<T> GetQueryable();
 
-     Task<T> InsertAsync(T t);
+     Task InsertAsync(T t);
 
     Task Update(T t);
         

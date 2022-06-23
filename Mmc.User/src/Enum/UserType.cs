@@ -2,9 +2,9 @@ namespace Mmc.User.Enum;
 
 public class UserType : BaseEnum
 {
-    public static readonly UserType USER = new UserType(1, User);
-    public static readonly UserType SUPERUSER = new UserType(2, Superuser);
-    public static readonly UserType ADMIN = new UserType(3, Admin);
+    public static readonly UserType USER = new(1, User);
+    public static readonly UserType SUPERUSER = new(2, Superuser);
+    public static readonly UserType ADMIN = new(3, Admin);
     private const string User = "User";
     private const string Superuser = "Superuser";
     private const string Admin = "Admin";

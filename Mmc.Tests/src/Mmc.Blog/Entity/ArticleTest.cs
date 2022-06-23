@@ -8,11 +8,12 @@ public class ArticleTest
     private readonly Article _article;
     private readonly BlogUser _blogUser;
     private readonly Category _category;
+    private readonly Picture _picture;
     private readonly DateOnly _someDate = new(2000, 04, 03);
 
     public ArticleTest()
     {
-        _blogUser = new BlogUser("Pramisa","Pramisa123","xyz.png");
+        _blogUser = new BlogUser("Pramisa","Pramisa123",_picture);
         _category = new Category("cat","dog");
         _article = new Article("title","body",_someDate,_category,_blogUser,"xyz.jpg");
     }

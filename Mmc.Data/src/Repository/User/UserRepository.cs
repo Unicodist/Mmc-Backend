@@ -25,7 +25,9 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IB
     }
     public async Task<IUser> InsertAsync(IUser user)
     {
-        return await base.InsertAsync((UserModel) user);
+        var uModel = new UserModel(user.Name, user.UserType, user.Email, user.Password, user.UserName, user.Picture);
+        await base.InsertAsync(uModel);
+        return uModel;
     }
     public IUser CreateInstance(string name, string email, string password, string username)
     {

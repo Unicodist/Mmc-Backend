@@ -5,6 +5,5 @@ public interface IBlogUser
     public long Id { get; }
     string Name { get; }
     string UserName { get; }
-
-    string? picture { get; }
+    IPicture Picture { get; }
 }

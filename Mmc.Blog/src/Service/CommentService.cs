@@ -24,12 +24,12 @@ namespace Mmc.Blog.src.Service
 
         public async Task<IComment> Create(CommentCreateDto c)
         {
-            var tx = TransactionScopeHelper.GetInstance;
+            
             var user = await _userRepository.GetBlogUserById(c.UserId) ?? throw new UserNotFoundException();
             var article = await _articleRepository.GetByGuidAsync(c.ArticleGuid)??throw new ArticleNotFoundException();
-            var comment = new Comment(c.Body,user,article);
+            var comment = new Comment(c.Body,user,article) {ArticleId = article.Id, UserId = user.Id};
             ValidateComment(comment);
-            tx.Complete();
+            await _commentRepository.InsertAsync(comment);
             return comment;
         }
 
@@ -41,7 +41,7 @@ namespace Mmc.Blog.src.Service
                 Comment_text = comment.Body,
             };
             var predicted = ToxiCommentFilter.Predict(sampleData);
-            if (Math.Abs(predicted.Prediction - 1) < 1)
+            if (predicted.Prediction  > 0)
             {
                 comment.FlagAsSuspicious();
             }

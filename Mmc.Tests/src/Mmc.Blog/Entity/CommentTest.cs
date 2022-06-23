@@ -29,7 +29,6 @@ public class CommentTest
         Assert.Equal(Status.Active,_comment.Status);
         Assert.Null(_comment.User);
         Assert.Null(_comment.Article);
-        Assert.Null(_comment.Replies);
         Assert.Null(_comment.Guid);
         
         

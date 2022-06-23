@@ -33,20 +33,15 @@
     });
     
     function appendComment(commentGuid) {
-      $.ajax('@Url.Action("GetComment","Blog")', {
+      $.ajax('@Url.Action("GetCommentItem","Blog")', {
           type: 'POST', 
-          data: form.serialize(),
+          data: {guid:commentGuid},
           success: function (data, status, xhr) {
               
-              $('#comment-section-container').append()
+              $('#comment-section-container').append(data)
           },
           error: function (jqXhr, textStatus, errorMessage) {
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: "Cannot write that comment. Contact your administration",
-                footer: '@Html.ActionLink("See More Info","CommentError","Documentation")'
-              });
+              
           }
       });
     }

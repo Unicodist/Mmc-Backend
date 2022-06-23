@@ -17,6 +17,7 @@ public class BlogController : Controller
     private readonly IArticleRepository _blogRepo;
     private readonly IBlogService _blogService;
     private readonly ICommentRepository _commentRepository;
+    private IWebHostEnvironment _webHostEnvironment;
 
     private readonly ICommentService _commentService;
 
@@ -24,12 +25,13 @@ public class BlogController : Controller
     public BlogController(IArticleRepository blogRepo, 
         IBlogService blogService,
         ICommentRepository commentRepository, 
-        IBlogUserRepository userRepository, ICommentService commentService)
+        IBlogUserRepository userRepository, ICommentService commentService, IWebHostEnvironment webHostEnvironment)
     {
         _blogRepo = blogRepo;
         _blogService = blogService;
         _commentRepository = commentRepository;
         _commentService = commentService;
+        _webHostEnvironment = webHostEnvironment;
         UserHelper.UserRepository = userRepository;
     }
     public async Task<IActionResult> Index(int? page = 1)
@@ -101,41 +103,49 @@ public class BlogController : Controller
         var comments = await _commentRepository.GetByArticleIdAsync(article.Id);
         var model = new CommentSectionViewModel
         {
-            Comments = comments.Take(page).Select(x => new CommentItemViewModel
+            Comments = comments.Take(page*10).Select(x => new CommentItemViewModel
             {
                 Body = x.Body,
                 Guid = x.Guid.ToString(),
                 Name = x.User.UserName,
-                picture = x.User.picture??Path.Combine(Directory.GetCurrentDirectory(), "/Images/","default.jpg"),
+                Picture = Path.Combine(x.User.Picture.Location),
                 SelfComment = article.User.Id == x.Id
             })
         };
         return PartialView("PartialViews/Blog/CommentItem", model);
     }
 
-    [Route("[controller]/GetComment")]
+    [Route("[controller]/GetCommentView")]
     [Authorize]
-    public async Task<IActionResult> GetComment(string guid)
+    public async Task<IActionResult> GetCommentView(string guid)
     {
         var comment = await _commentRepository.GetByGuidAsync(guid) ?? throw new CommentNotFoundException();
         var user = this.GetCurrentBlogUser();
-        var model = new CommentResponseApiModel
+        var model = new CommentItemViewModel()
         {
             Guid = comment.Guid.ToString(),
             Body = comment.Body,
-            SelfAuthor = user.Id == comment.UserId
+            SelfComment = user.Id == comment.UserId,
+            Name = user.Name,
+            Picture = user.Picture.Location
         };
-        return Ok(model);
+        return PartialView("PartialViews/Blog/SingleCommentView",model);
     }
     
-    [Authorize]
     [HttpPost]
     [Route("[controller]/CreateComment")]
-    public async Task<JsonResult> CreateComment([FromForm]CommentCreateViewModel model)
+    [Authorize]
+    public async Task<JsonResult> CreateComment(CommentCreateViewModel model)
     {
         var user = this.GetCurrentBlogUser();
         var commentDto = new CommentCreateDto(model.ArticleGuid,model.Body,user.Id);
         var comment = await _commentService.Create(commentDto);
-        return Json(comment);
+        var commentModel = new CommentResponseApiModel
+        {
+            Body = comment.Body,
+            Guid = comment.Guid.ToString(),
+            SelfAuthor = comment.UserId == user.Id
+        };
+        return Json(commentModel);
     }
 }

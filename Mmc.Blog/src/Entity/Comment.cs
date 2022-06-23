@@ -17,16 +17,16 @@ public class Comment : IComment
         Status = Status.Active;
         User = user;
         Article = article;
+        Guid = new GuidType();
     }
 
     public long Id { get; protected set; }
     public string Body { get; set; } = null!;
-    public long UserId { get; }
-    public long ArticleId { get; }
+    public long UserId { get; set; }
+    public long ArticleId { get; set; }
     public Status Status { get; set; } = null!;
     public IBlogUser User { get; } = null!;
     public IArticle Article { get; } = null!;
-    public ICollection<IComment>? Replies { get; }
     public GuidType Guid { get; }
 
     public void Update(string body)

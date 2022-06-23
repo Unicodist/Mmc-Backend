@@ -11,14 +11,14 @@ using Mmc.Data;
 namespace Mmc.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220622075915_RemovedCommentNesting")]
-    partial class RemovedCommentNesting
+    [Migration("20220623142303_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.5")
+                .HasAnnotation("ProductVersion", "6.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Mmc.Core.Entity.KeyVal", b =>
@@ -424,6 +424,50 @@ namespace Mmc.Data.Migrations
                     b.ToTable("notice", (string)null);
                 });
 
+            modelBuilder.Entity("Mmc.Data.Model.PictureModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("picture_id");
+
+                    b.Property<string>("Guid")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("guid");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("location");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("type");
+
+                    b.Property<DateTime>("UploadedDate")
+                        .HasColumnType("datetime")
+                        .HasColumnName("uploaded_date");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("user_picture", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Guid = "GodGuid",
+                            Location = "Images/SuperAdmin",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 6, 23, 20, 8, 2, 618, DateTimeKind.Local).AddTicks(3558)
+                        });
+                });
+
             modelBuilder.Entity("Mmc.Data.Model.User.NotificationModel", b =>
                 {
                     b.Property<long>("Id")
@@ -486,6 +530,11 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("text")
                         .HasColumnName("password");
 
+                    b.Property<long>("PictureId")
+                        .HasMaxLength(50)
+                        .HasColumnType("bigint")
+                        .HasColumnName("picture_id");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -500,6 +549,8 @@ namespace Mmc.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PictureId");
+
                     b.ToTable("user", (string)null);
 
                     b.HasData(
@@ -508,7 +559,8 @@ namespace Mmc.Data.Migrations
                             Id = 1L,
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
-                            Password = "$2a$11$ksB3zSkRHGXRJ196bJ0hXu3o.GIhbWOiQcwUQppd3rqjRsr14Uqi.",
+                            Password = "$2a$11$ltXtvb3r3mDUrR1Rfc/cgeP3zXt4E8uNxrmTArAVo4Xxa9qdYSkdW",
+                            PictureId = 1L,
                             UserName = "AshuraNep",
                             UserType = "Superuser"
                         });
@@ -678,6 +730,17 @@ namespace Mmc.Data.Migrations
                     b.Navigation("Template");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.User.UserModel", b =>
+                {
+                    b.HasOne("Mmc.Data.Model.PictureModel", "Picture")
+                        .WithMany()
+                        .HasForeignKey("PictureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Picture");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Address.CountryModel", b =>

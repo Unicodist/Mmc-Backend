@@ -1,0 +1,9 @@
+@model Mechi.Backend.ViewModel.Blog.CommentItemViewModel
+
+<div class="d-flex mb-4">
+    <div class="flex-shrink-0"><img class="rounded-circle" height="50px" width="50px" src="@Model.Picture" alt='@Model.Name' /></div>
+    <div class="ms-3">
+        <div class="fw-bold">@Model.Name</div>
+        @Model.Body
+    </div>
+</div>

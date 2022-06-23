@@ -18,6 +18,7 @@ public class BlogServiceTest
    private readonly IArticle _article;
    private readonly ICategory _category;
    private readonly IBlogUser _blogUser;
+   private readonly Picture _picture;
    readonly DateOnly _someDate = new(2000,2,2);
    
    private readonly ArticleCreateDto _articleCreateDto;
@@ -27,7 +28,7 @@ public class BlogServiceTest
    {
       _category = new Category("cat_name", "cat_desc");
 
-      _blogUser = new BlogUser("Ashish", "AshuraNep", "abc.jpg");
+      _blogUser = new BlogUser("Ashish", "AshuraNep", _picture);
       
       _article = new Article("title", "body", _someDate, _category, _blogUser,"xyz.jpg");
 

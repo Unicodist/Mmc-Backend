@@ -6,10 +6,11 @@ namespace Mmc.Tests.Mmc.Blog.Entity;
 public class BlogUserTest
 {
     private BlogUser _blogUser;
+    private Picture _picture;
 
     public BlogUserTest()
     {
-        _blogUser = new BlogUser("Pramisa","Pramisa123","picture.xyz");
+        _blogUser = new BlogUser("Pramisa","Pramisa123",_picture);
     }
 
     [Fact]
@@ -18,7 +19,7 @@ public class BlogUserTest
         Assert.Equal(0,_blogUser.Id);
         Assert.Equal("Pramisa",_blogUser.Name);
         Assert.Equal("Pramisa123",_blogUser.UserName);
-        Assert.Equal("picture.xyz",_blogUser.picture);
+        Assert.Equal(_picture,_blogUser.Picture);
         
 
     }

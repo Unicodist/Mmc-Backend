@@ -16,6 +16,9 @@ public class UserConfiguration : IEntityTypeConfiguration<UserModel>
         builder.Property(u => u.Password).HasColumnName("password").HasColumnType(ColumnTypes.TEXT).IsRequired();
         builder.Property(u => u.UserType).HasColumnName("user_type").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50);
         builder.Property(u => u.UserName).HasColumnName("user_name").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50).IsRequired();
+        builder.Property(u => u.PictureId).HasColumnName("picture_id").HasColumnType(ColumnTypes.BIGINT).HasMaxLength(50);
+
+        _ = builder.HasOne(a => a.Picture).WithMany().HasForeignKey(a => a.PictureId);
 
         builder.HasData(new UserModel
         {
@@ -24,7 +27,8 @@ public class UserConfiguration : IEntityTypeConfiguration<UserModel>
             Email = "ashishneupane999@gmail.com",
             Password = BCrypt.Net.BCrypt.HashPassword("ShineBright"),
             UserType = "Superuser",
-            UserName = "AshuraNep"
+            UserName = "AshuraNep",
+            PictureId = 1
         });
     }
 }

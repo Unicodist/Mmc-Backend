@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Mmc.Blog.Entity;
 using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Repository;
-using Mmc.Data.Helper;
 using Mmc.Data.Model.Blog;
+using Mmc.Data.Model.User;
 
 namespace Mmc.Data.Repository.Blog;
 
@@ -12,24 +13,26 @@ public class CommentRepository : BaseRepository<CommentModel>,ICommentRepository
     {
     }
 
-    public async Task<IComment?> GetByIdAsync(long id)
+    public new async Task<IComment?> GetByIdAsync(long id)
     {
         return await base.GetByIdAsync(id);
     }
 
-    public Task Insert(IComment comment)
+    public async Task InsertAsync(IComment comment)
     {
-        return base.InsertAsync(comment.Convert<CommentModel>());
+        var cModel = new CommentModel(comment.Body, (UserModel)comment.User, (ArticleModel)comment.Article,comment.Status,comment.Guid);
+        await base.InsertAsync(cModel);
+        typeof(Comment).GetProperty(nameof(Comment.Id))!.SetValue(comment,cModel.Id);
     }
 
-    public Task<ICollection<IComment>?> GetAll()
+    public async Task<ICollection<IComment>?> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return (await base.GetAllAsync()).Cast<IComment>().ToList();
     }
 
-    public IQueryable<IComment> GetQueryable()
+    public new IQueryable<IComment> GetQueryable()
     {
-        throw new NotImplementedException();
+        return base.GetQueryable();
     }
 
     public async Task<ICollection<IComment>> GetByArticleIdAsync(long id)

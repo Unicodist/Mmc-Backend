@@ -30,11 +30,10 @@ public class BaseRepository<T> : IBaseRepository<T> where T:class
         return _dbSet;
     }
 
-    public async Task<T> InsertAsync(T t)
+    public async Task InsertAsync(T t)
     {
         await _dbSet.AddAsync(t).ConfigureAwait(false);
         await _dbContext.SaveChangesAsync().ConfigureAwait(false);
-        return t;
     }
 
     public async Task Update(T t)

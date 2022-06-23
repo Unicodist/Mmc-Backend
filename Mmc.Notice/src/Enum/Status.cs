@@ -6,9 +6,9 @@ public class Status : BaseEnum
     private const string _inactive = "Inactive";
     private const string _pending = "Pending";
 
-    public static readonly Status Active = new Status(1, _active);
-    public static readonly Status Inactive = new Status(2, _inactive);
-    public static readonly Status Pending = new Status(2, _pending);
+    public static readonly Status Active = new(1, _active);
+    public static readonly Status Inactive = new(2, _inactive);
+    public static readonly Status Pending = new(2, _pending);
     
     protected Status(int id, string? value) : base(id, value)
     {

@@ -4,15 +4,15 @@ namespace Mmc.Blog.Entity;
 
 public class BlogUser : IBlogUser
 {
-    public BlogUser(string name, string userName, string picture)
+    public BlogUser(string name, string userName, IPicture picture)
     {
         Name = name;
         UserName = userName;
-        this.picture = picture;
+        Picture = picture;
     }
 
     public long Id { get; }
     public string Name { get; }
     public string UserName { get; }
-    public string? picture { get; }
+    public IPicture Picture { get; }
 }

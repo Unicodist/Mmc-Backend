@@ -11,12 +11,13 @@ public class CommentModel : IComment
     {
         
     }
-    public CommentModel(string body, UserModel user, ArticleModel article)
+    public CommentModel(string body, UserModel user, ArticleModel article, Status status, GuidType commentGuid)
     {
         Body = body;
         User = user;
         Article = article;
-        Guid = new GuidType();
+        Status = status;
+        Guid = commentGuid;
     }
 
     public long Id { get; protected set; }

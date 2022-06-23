@@ -8,7 +8,8 @@ public interface IUser
     UserType UserType { get; }
     string Email { get; }
     string Password { get; }
-    string UserName { get; set; }
+    string UserName { get; }
+    IPicture? Picture { get; }
 
     void MakeAdmin();
     void MakeUser();

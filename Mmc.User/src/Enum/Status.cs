@@ -2,8 +2,8 @@ namespace Mmc.User.Enum;
 
 public class Status : BaseEnum
 {
-    public static readonly Status ACTIVE = new Status(1, Active);
-    public static readonly Status INACTIVE = new Status(2, Inactive);
+    public static readonly Status ACTIVE = new(1, Active);
+    public static readonly Status INACTIVE = new(2, Inactive);
     private const string Active = "Active";
     private const string Inactive = "Inactive";
 

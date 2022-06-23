@@ -40,7 +40,7 @@ public class ArticleModel : IArticle
 
     public virtual UserModel AuthorAdmin { get; } = null!;
     IBlogUser IArticle.User => AuthorAdmin;
-    public virtual CategoryModel? Category { get; protected set; } = null!;
+    public virtual CategoryModel? Category { get; protected set; }
     public void Update(string dtoTitle, string? dtoBody, ICategory category)
     {
         Title = dtoTitle;

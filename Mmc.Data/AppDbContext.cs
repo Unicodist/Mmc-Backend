@@ -56,6 +56,7 @@ public class  AppDbContext : DbContext
         _ = modelBuilder.ApplyConfiguration(new UserConfiguration());
         _ = modelBuilder.ApplyConfiguration(new NotificationConfiguration());
         _ = modelBuilder.ApplyConfiguration(new NotificationTemplateConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new PictureConfiguration());
 
         #endregion
 
