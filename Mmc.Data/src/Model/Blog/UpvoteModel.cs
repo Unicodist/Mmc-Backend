@@ -5,6 +5,16 @@ namespace Mmc.Data.Model.Blog;
 
 public class UpvoteModel : IUpvote
 {
+    public UpvoteModel()
+    {
+    }
+
+    public UpvoteModel(UserModel user, ArticleModel article)
+    {
+        User = user;
+        Article = article;
+    }
+
     public long ArticleId { get; }
     public long UserId { get; }
     

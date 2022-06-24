@@ -6,12 +6,26 @@ namespace Mmc.Data.Model.Blog;
 
 public class InteractionLogModel : IInteractionLog
 {
+    public InteractionLogModel()
+    {
+    }
+
+    public InteractionLogModel(ArticleModel? interactionArticle, CommentModel? interactionComment, UserModel interactionUser, InteractionType interactionInteractionType, string interactionOldValue, string interactionNewValue, DateTime interactionDateTime)
+    {
+        Article = interactionArticle;
+        Comment = interactionComment;
+        User = interactionUser;
+        InteractionType = interactionInteractionType;
+        OldValue = interactionOldValue;
+        NewValue = interactionNewValue;
+        DateTime = interactionDateTime;
+    }
+
     public long Id { get; }
     public DateTime DateTime { get; }
     public long UserId { get; set; }
-    public string OldValue { get; set; }
+    public string? OldValue { get; set; }
     public string NewValue { get; set; }
-    public InteractionType Type { get; set; }
     public long? ArticleId { get; set; }
     public long? CommentId { get; set; }
     

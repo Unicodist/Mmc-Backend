@@ -24,7 +24,7 @@ namespace Mmc.Blog.src.Service
             _interactionLogService = interactionLogService;
         }
 
-        public async Task<IComment> Create(CommentCreateDto c)
+        public async Task<long> Create(CommentCreateDto c)
         {
             var tx = TransactionScopeHelper.GetInstance;
             var user = await _userRepository.GetByIdAsync(c.UserId) ?? throw new UserNotFoundException();
@@ -34,7 +34,7 @@ namespace Mmc.Blog.src.Service
             await _commentRepository.InsertAsync(comment);
             await _interactionLogService.Create(comment);
             tx.Complete();
-            return comment;
+            return comment.Id;
         }
 
         private void ValidateComment(Comment comment)

@@ -1,5 +1,7 @@
 ﻿using Mmc.Blog.Dto;
 using Mmc.Blog.Entity;
+using Mmc.Blog.Exception;
+using Mmc.Blog.Helper;
 using Mmc.Blog.Repository;
 using Mmc.Blog.Service.Interface;
 
@@ -9,11 +11,13 @@ public class InteractionLogService : IInteractionLogService
 {
     private readonly IInteractionLogRepository _interactionLogRepository;
     private readonly IArticleRepository _articleRepository;
+    private readonly ICommentRepository _commentRepository;
 
-    public InteractionLogService(IInteractionLogRepository interactionLogRepository, IArticleRepository articleRepository)
+    public InteractionLogService(IInteractionLogRepository interactionLogRepository, IArticleRepository articleRepository, ICommentRepository commentRepository)
     {
         _interactionLogRepository = interactionLogRepository;
         _articleRepository = articleRepository;
+        _commentRepository = commentRepository;
     }
 
     public Task Create(InteractionLogDto c)
@@ -23,10 +27,12 @@ public class InteractionLogService : IInteractionLogService
         return Task.CompletedTask;
     }
 
-    public Task Create(Comment comment)
+    public async Task Create(Comment comment)
     {
-        var log = new InteractionLog(comment, comment.User);
-        _interactionLogRepository.InsertAsync(log);
-        return Task.CompletedTask;
+        var tx = TransactionScopeHelper.GetInstance;
+        var commentModel = await _commentRepository.GetByIdAsync(comment.Id)??throw new CommentNotFoundException();
+        var log = new InteractionLog(commentModel, comment.User);
+        await _interactionLogRepository.InsertAsync(log);
+        tx.Complete();
     }
 }

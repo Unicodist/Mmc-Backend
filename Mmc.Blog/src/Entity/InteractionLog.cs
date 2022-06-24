@@ -16,13 +16,15 @@ public class InteractionLog : IInteractionLog
     {
         Comment = comment;
         User = user;
+        InteractionType = InteractionType.Comment;
+        NewValue = comment.Body;
     }
 
     public long Id { get; }
     public DateTime DateTime { get; }
     public long UserId { get; }
     public string? OldValue { get; }
-    public string? NewValue { get; }
+    public string NewValue { get; }
     public long? ArticleId { get; }
     public long? CommentId { get; }
     public IArticle? Article { get; set; }

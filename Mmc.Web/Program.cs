@@ -1,8 +1,14 @@
 using Mechi.Backend;
 using Microsoft.EntityFrameworkCore;
 using Mmc.Data;
+using Serilog;
+using Serilog.Events;
 
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.File("logs/log.txt",LogEventLevel.Information,rollingInterval:RollingInterval.Day)
+    .CreateLogger();
 var builder = WebApplication.CreateBuilder(args);
+builder.Host.UseSerilog();
 
 builder.Services.AddDbContext<AppDbContext>(option =>
 {
@@ -12,10 +18,9 @@ builder.Services.AddDbContext<AppDbContext>(option =>
 
 builder.Services.Configure();
 
-
-//End DbContext
-
 var app = builder.Build();
+
+app.ConfigureExceptionHandler();
 
 app.UseAuthentication();
 

@@ -63,7 +63,7 @@ public static class TestRepository
         InteractionLogRepositoryMock.Setup(a => a.GetByIdAsync(It.IsAny<long>())).ReturnsAsync(InteractionLog);
 
         IInteractionLogService =
-            new InteractionLogService(InteractionLogRepositoryMock.Object, ArticleRepositoryMock.Object);
+            new InteractionLogService(InteractionLogRepositoryMock.Object, ArticleRepositoryMock.Object,CommentRepositoryMock.Object);
         CommentService = new CommentService(CommentRepositoryMock.Object, BlogUserRepositoryMock.Object,
             ArticleRepositoryMock.Object, IInteractionLogService);
 

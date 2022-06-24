@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Repository;
-using Mmc.Data.Helper;
 using Mmc.Data.Model.Blog;
+using Mmc.Data.Model.User;
 
 namespace Mmc.Data.Repository.Blog;
 
@@ -12,17 +12,18 @@ public class UpvoteRepository : BaseRepository<UpvoteModel>,IUpvoteRepository
     public UpvoteRepository(AppDbContext context) : base(context)
     {
     }
-    public Task InsertAsync(IUpvote category)
+    public Task InsertAsync(IUpvote upvote)
     {
-        return base.InsertAsync(category.Convert<UpvoteModel>());
+        var model = new UpvoteModel((UserModel)upvote.User,(ArticleModel)upvote.Article);
+        return base.InsertAsync(model);
     }
 
-    public async Task<ICollection<IUpvote>?> GetAllAsync()
+    public new async Task<ICollection<IUpvote>?> GetAllAsync()
     {
         return (await base.GetAllAsync().ConfigureAwait(false)).Cast<IUpvote>().ToList();
     }
 
-    public IQueryable<IUpvote> GetQueryable()
+    public new IQueryable<IUpvote> GetQueryable()
     {
         return base.GetQueryable();
     }

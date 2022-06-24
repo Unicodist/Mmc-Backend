@@ -135,9 +135,8 @@ public class BlogController : Controller
             Name = user.Name,
             Picture = user.Picture.Location
         };
-        return PartialView("PartialViews/Blog/SingleCommentView",model);
+        return PartialView("PartialViews/Blog/SingleCommentView", model);
     }
-    
     [HttpPost]
     [Route("[controller]/CreateComment")]
     [Authorize]
@@ -145,7 +144,8 @@ public class BlogController : Controller
     {
         var user = this.GetCurrentBlogUser();
         var commentDto = new CommentCreateDto(model.ArticleGuid,model.Body,user.Id);
-        var comment = await _commentService.Create(commentDto);
+        var commentId = await _commentService.Create(commentDto);
+        var comment = await _commentRepository.GetByIdAsync(commentId)??throw new CommentNotFoundException();
         var commentModel = new CommentResponseApiModel
         {
             Body = comment.Body,

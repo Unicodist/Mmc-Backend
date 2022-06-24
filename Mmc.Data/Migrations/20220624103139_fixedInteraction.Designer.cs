@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mmc.Data;
 
@@ -10,9 +11,10 @@ using Mmc.Data;
 namespace Mmc.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220624103139_fixedInteraction")]
+    partial class fixedInteraction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -467,7 +469,7 @@ namespace Mmc.Data.Migrations
                             Guid = "GodGuid",
                             Location = "/Assets/Account/Profiles/SuperAdmin.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 24, 16, 20, 34, 274, DateTimeKind.Local).AddTicks(9346)
+                            UploadedDate = new DateTime(2022, 6, 24, 16, 16, 38, 583, DateTimeKind.Local).AddTicks(8172)
                         });
                 });
 
@@ -562,7 +564,7 @@ namespace Mmc.Data.Migrations
                             Id = 1L,
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
-                            Password = "$2a$11$pK6lNaZCcum9ZF1wjbo7W.XXzb3utK2xrlHp7HaIGdhUToMVoFqjy",
+                            Password = "$2a$11$r5Ze3T5TXpkJE9jd/9Ulre5pm/ylNYAmAWJQE5u7Pw9wtpzVUyr.e",
                             PictureId = 1L,
                             UserName = "AshuraNep",
                             UserType = "Superuser"

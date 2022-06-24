@@ -13,7 +13,6 @@ public class InteractionLogConfiguration : IEntityTypeConfiguration<InteractionL
         _ = builder.ToTable("interaction_log");
         _ = builder.HasKey(a => a.Id);
         _ = builder.Property(a => a.Id).HasColumnName("log_id").HasColumnType(ColumnTypes.BIGINT);
-        _ = builder.Property(a => a.Type).HasColumnName("action").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50).HasConversion(new BaseTypeStringConverter<InteractionType>());
         _ = builder.Property(a => a.InteractionType).HasColumnName("type").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50).HasConversion(new EnumConverter<InteractionType>());
         _ = builder.Property(a => a.ArticleId).HasColumnName("article_id").HasColumnType(ColumnTypes.BIGINT);
         _ = builder.Property(a => a.CommentId).HasColumnName("comment_id").HasColumnType(ColumnTypes.BIGINT);
