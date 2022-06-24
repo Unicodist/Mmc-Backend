@@ -1,5 +1,7 @@
 $(document).ready(function (){
    $('.article-heart').click(function (button) {
-       console.log("Clicked the heart button");
+       let thisButton = $('.article-heart');
+       thisButton.addClass("fa-solid");
+       thisButton.removeClass("fa-regular");
    }); 
 });

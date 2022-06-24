@@ -11,7 +11,7 @@ using Mmc.Data;
 namespace Mmc.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220623155310_initial")]
+    [Migration("20220624041145_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -357,37 +357,8 @@ namespace Mmc.Data.Migrations
                     b.ToTable("interaction_log", (string)null);
                 });
 
-            modelBuilder.Entity("Mmc.Data.Model.Blog.LikeModel", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("like_id");
-
-                    b.Property<long>("ArticleId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("article_id");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("user_id");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArticleId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("like", (string)null);
-                });
-
             modelBuilder.Entity("Mmc.Data.Model.Blog.UpvoteModel", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("upvoteId");
-
                     b.Property<long>("ArticleId")
                         .HasColumnType("bigint")
                         .HasColumnName("blog_id");
@@ -396,9 +367,12 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("user_id");
 
-                    b.HasKey("Id");
+                    b.Property<long?>("ArticleModelId")
+                        .HasColumnType("bigint");
 
-                    b.HasIndex("ArticleId");
+                    b.HasKey("ArticleId", "UserId");
+
+                    b.HasIndex("ArticleModelId");
 
                     b.HasIndex("UserId");
 
@@ -494,7 +468,7 @@ namespace Mmc.Data.Migrations
                             Guid = "GodGuid",
                             Location = "/Assets/Account/Profile/SuperAdmin.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 23, 21, 38, 9, 738, DateTimeKind.Local).AddTicks(7266)
+                            UploadedDate = new DateTime(2022, 6, 24, 9, 56, 44, 296, DateTimeKind.Local).AddTicks(5713)
                         });
                 });
 
@@ -589,7 +563,7 @@ namespace Mmc.Data.Migrations
                             Id = 1L,
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
-                            Password = "$2a$11$AuQ5VISr25IPS5BiddksEuNSIEWjC7F0xlKZHuH.rOYKBb8WJItae",
+                            Password = "$2a$11$zjmIEd0kY24L0e4NHLV94u7p7J7LcD.dLTQepKY6Y7NkalbNW5pR6",
                             PictureId = 1L,
                             UserName = "AshuraNep",
                             UserType = "Superuser"
@@ -714,25 +688,6 @@ namespace Mmc.Data.Migrations
                     b.Navigation("Comment");
                 });
 
-            modelBuilder.Entity("Mmc.Data.Model.Blog.LikeModel", b =>
-                {
-                    b.HasOne("Mmc.Data.Model.Blog.ArticleModel", "Article")
-                        .WithMany("Likes")
-                        .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Mmc.Data.Model.User.UserModel", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Article");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Mmc.Data.Model.Blog.UpvoteModel", b =>
                 {
                     b.HasOne("Mmc.Data.Model.Blog.ArticleModel", "Article")
@@ -740,6 +695,10 @@ namespace Mmc.Data.Migrations
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Mmc.Data.Model.Blog.ArticleModel", null)
+                        .WithMany("Likes")
+                        .HasForeignKey("ArticleModelId");
 
                     b.HasOne("Mmc.Data.Model.User.UserModel", "User")
                         .WithMany()

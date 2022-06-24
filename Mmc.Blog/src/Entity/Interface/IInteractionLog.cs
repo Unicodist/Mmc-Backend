@@ -14,5 +14,6 @@ public interface IInteractionLog
     
     IArticle? Article { get; }
     IComment Comment { get; }
+    IBlogUser User { get; }
     InteractionType InteractionType { get; set; }
 }

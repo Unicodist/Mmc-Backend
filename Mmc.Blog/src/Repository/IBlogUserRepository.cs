@@ -4,6 +4,6 @@ namespace Mmc.Blog.Repository;
 
 public interface IBlogUserRepository
 {
-    Task<IBlogUser?> GetBlogUserById(long id);
+    Task<IBlogUser?> GetByIdAsync(long id);
     IBlogUser GetByUsername(string userName);
 }

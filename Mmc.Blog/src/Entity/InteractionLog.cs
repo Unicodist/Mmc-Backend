@@ -5,16 +5,28 @@ namespace Mmc.Blog.Entity;
 
 public class InteractionLog : IInteractionLog
 {
+    public InteractionLog(IArticle article, IBlogUser user, IComment comment)
+    {
+        Article = article;
+        User = user;
+        Comment = comment;
+    }
+
+    public InteractionLog(IComment comment, IBlogUser user)
+    {
+        Comment = comment;
+        User = user;
+    }
+
     public long Id { get; }
     public DateTime DateTime { get; }
     public long UserId { get; }
-    public string OldValue { get; }
-    public string NewValue { get; }
+    public string? OldValue { get; }
+    public string? NewValue { get; }
     public long? ArticleId { get; }
     public long? CommentId { get; }
-    public Article? Article { get; set; }
-    public Comment? Comment { get; set; }
+    public IArticle? Article { get; set; }
+    public IComment? Comment { get; set; }
+    public IBlogUser User { get; }
     public InteractionType InteractionType { get; set; }
-    IArticle? IInteractionLog.Article => Article;
-    IComment? IInteractionLog.Comment => Comment;
 }

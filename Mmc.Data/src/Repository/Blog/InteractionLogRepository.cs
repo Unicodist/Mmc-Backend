@@ -15,7 +15,7 @@ public class InteractionLogRepository : BaseRepository<InteractionLogModel>, IIn
         return await base.GetByIdAsync(id);
     }
 
-    public Task Insert(IInteractionLog category)
+    public Task InsertAsync(IInteractionLog category)
     {
         return base.InsertAsync(category.Convert<InteractionLogModel>());
     }

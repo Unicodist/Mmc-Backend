@@ -1,5 +1,6 @@
 using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Enum;
+using Mmc.Data.Model.User;
 
 namespace Mmc.Data.Model.Blog;
 
@@ -16,6 +17,9 @@ public class InteractionLogModel : IInteractionLog
     
     public virtual ArticleModel? Article { get; set; }
     public virtual CommentModel? Comment { get; set; }
+
+    public virtual UserModel User { get; set; }
+    IBlogUser IInteractionLog.User => User;
     public InteractionType InteractionType { get; set; }
 
     IArticle? IInteractionLog.Article => Article;

@@ -6,7 +6,7 @@ namespace Mmc.Data.Configurations.User;
 
 public class PictureConfiguration : IEntityTypeConfiguration<PictureModel>
 {
-    private static readonly PictureModel SuperAdmin = new("GodGuid", "Avatar", "/Assets/Account/Profile/SuperAdmin.jpg",DateTime.Now){Id=1};
+    private static readonly PictureModel SuperAdmin = new("GodGuid", "Avatar", "/Assets/Account/Profiles/SuperAdmin.jpg",DateTime.Now){Id=1};
     public void Configure(EntityTypeBuilder<PictureModel> builder)
     {
         _ = builder.ToTable("user_picture");

@@ -42,8 +42,8 @@ public class ArticleModel : IArticle
     public virtual UserModel AuthorAdmin { get; } = null!;
     IBlogUser IArticle.User => AuthorAdmin;
     public virtual CategoryModel? Category { get; protected set; }
-    public virtual ICollection<LikeModel> Likes { get; }
-    ICollection<ILike> IArticle.Likes => Likes.Cast<ILike>().ToList();
+    public virtual ICollection<UpvoteModel> Likes { get; }
+    ICollection<IUpvote> IArticle.Likes => Likes.Cast<IUpvote>().ToList();
     public virtual ICollection<InteractionLogModel> Interactions { get; set; }
     ICollection<IInteractionLog> IArticle.Interactions => Interactions.Cast<IInteractionLog>().ToList();
 

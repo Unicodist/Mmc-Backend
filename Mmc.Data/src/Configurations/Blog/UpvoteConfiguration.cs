@@ -9,8 +9,7 @@ public class UpvoteConfiguration : IEntityTypeConfiguration<UpvoteModel>
     public void Configure(EntityTypeBuilder<UpvoteModel> builder)
     {
         _ = builder.ToTable("upvote");
-        _ = builder.HasKey(a => a.Id);
-        _ = builder.Property(a => a.Id).HasColumnName("upvoteId").HasColumnType(ColumnTypes.BIGINT);
+        _ = builder.HasKey(a => new{a.ArticleId,a.UserId});
         _ = builder.Property(a => a.ArticleId).HasColumnName("blog_id").HasColumnType(ColumnTypes.BIGINT);
         _ = builder.Property(a => a.UserId).HasColumnName("user_id").HasColumnType(ColumnTypes.BIGINT);
 

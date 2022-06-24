@@ -24,7 +24,6 @@
     $(document).ready(function() {
       $('#comment_form').submit(function(e) {
         e.preventDefault();
-        $('#comment-form-input').val('');
         var form = $('#comment_form');
         let url = form.attr('action');
         $.ajax({
@@ -32,14 +31,16 @@
             url: url,
             data: form.serialize(), // serializes the form's elements.
             success: function(data)
-            {
-              appendComment(data.guid);
+            {                
+                $('#comment-form-input').val('');
+                appendComment(data.guid);
             },
             error:function(data) {
+                console.log(data);
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: data,
+                text: 'Something went wrong. Contact your administration',
                 footer: '<a href="">Why do I have this issue?</a>'
               });
             }

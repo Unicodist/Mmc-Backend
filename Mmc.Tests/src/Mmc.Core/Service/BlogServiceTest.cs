@@ -35,7 +35,7 @@ public class BlogServiceTest
       _articleCreateDto = new ArticleCreateDto("title","body",3,"abc","abc.xyz");
       
       _articleRepository.Setup( a => a.GetByIdAsync(It.IsAny<long>())).Returns(Task.FromResult(_article)!);
-      _blogUserRepository.Setup(a => a.GetBlogUserById(It.IsAny<long>())).Returns(Task.FromResult(_blogUser)!);
+      _blogUserRepository.Setup(a => a.GetByIdAsync(It.IsAny<long>())).Returns(Task.FromResult(_blogUser)!);
       _categoryRepository.Setup(a => a.GetByIdAsync(It.IsAny<long>())).Returns(Task.FromResult(_category)!);
 
       _blogService = new BlogService(_articleRepository.Object, _blogUserRepository.Object, _categoryRepository.Object);

@@ -22,7 +22,7 @@ public class BlogService : IBlogService
 
     public async Task<IArticle> Create(ArticleCreateDto dto)
     {
-        var admin = await _blogUserRepository.GetBlogUserById(dto.UserId);
+        var admin = await _blogUserRepository.GetByIdAsync(dto.UserId);
         var category = await _categoryRepository.GetByGuid(dto.CategoryGuid);
         var blogpost = new Article(dto.Title,dto.Body,DateOnly.FromDateTime(DateTime.Now), category,admin,dto.Thumbnail);
         await _articleRepository.InsertAsync(blogpost);
@@ -35,6 +35,15 @@ public class BlogService : IBlogService
         var category = await _categoryRepository.GetByGuid(dto.CategoryGuid).ConfigureAwait(false);
         blog.Update(dto.Title, dto.Body, category);
     }
+
+    public async Task SubmitUpvote(LikeDto likeDto)
+    {
+        var article = await _articleRepository.GetByIdAsync(likeDto.ArticleId)??throw new ArticleNotFoundException();
+        var user = await _blogUserRepository.GetByIdAsync(likeDto.UserId)??throw new UserNotFoundException();
+        
+        
+    }
+
     private void ValidateForSpam(ArticleCreateDto dto)
     {
         var posts = _articleRepository.GetQueryable().Where(a => a.User.Id == dto.UserId);

@@ -14,22 +14,26 @@ namespace Mmc.Blog.src.Service
         private ICommentRepository _commentRepository;
         private readonly IBlogUserRepository _userRepository;
         private readonly IArticleRepository _articleRepository;
+        private readonly IInteractionLogService _interactionLogService;
 
-        public CommentService(ICommentRepository commentRepository, IBlogUserRepository userRepository, IArticleRepository articleRepository)
+        public CommentService(ICommentRepository commentRepository, IBlogUserRepository userRepository, IArticleRepository articleRepository, IInteractionLogService interactionLogService)
         {
             _commentRepository = commentRepository;
             _userRepository = userRepository;
             _articleRepository = articleRepository;
+            _interactionLogService = interactionLogService;
         }
 
         public async Task<IComment> Create(CommentCreateDto c)
         {
-            
-            var user = await _userRepository.GetBlogUserById(c.UserId) ?? throw new UserNotFoundException();
+            var tx = TransactionScopeHelper.GetInstance;
+            var user = await _userRepository.GetByIdAsync(c.UserId) ?? throw new UserNotFoundException();
             var article = await _articleRepository.GetByGuidAsync(c.ArticleGuid)??throw new ArticleNotFoundException();
             var comment = new Comment(c.Body,user,article) {ArticleId = article.Id, UserId = user.Id};
             ValidateComment(comment);
             await _commentRepository.InsertAsync(comment);
+            await _interactionLogService.Create(comment);
+            tx.Complete();
             return comment;
         }
 

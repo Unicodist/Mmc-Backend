@@ -21,7 +21,7 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IB
 
     public async Task<IUser> GetUserUserById(long id)
     {
-        return await GetByIdAsync(id).ConfigureAwait(false)??throw new UserNotFoundException();
+        return await base.GetByIdAsync(id).ConfigureAwait(false)??throw new UserNotFoundException();
     }
     public async Task<IUser> InsertAsync(IUser user)
     {
@@ -53,9 +53,9 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IB
 
     #region Blog
     
-    public async Task<IBlogUser> GetBlogUserById(long id)
+    public async Task<IBlogUser> GetByIdAsync(long id)
     {
-        return await GetByIdAsync(id).ConfigureAwait(false)?? throw new UserNotFoundException();
+        return await base.GetByIdAsync(id).ConfigureAwait(false)?? throw new UserNotFoundException();
     }
 
     IBlogUser? IBlogUserRepository.GetByUsername(string userName) => (UserModel)GetByUsername(userName);
@@ -66,7 +66,7 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IB
 
     public async Task<INoticeUser> GetNoticeUserById(long id)
     {
-        return await GetByIdAsync(id).ConfigureAwait(false)?? throw new UserNotFoundException();
+        return await base.GetByIdAsync(id).ConfigureAwait(false)?? throw new UserNotFoundException();
     }
 
     #endregion
