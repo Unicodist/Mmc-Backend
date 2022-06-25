@@ -1,4 +1,5 @@
 using Mechi.Backend.ViewModel.Notice;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Notice.Repository;
 
@@ -16,9 +17,14 @@ public class NoticeController : Controller
     {
         return View();
     }
-
-    public IActionResult Create()
+    [Authorize]
+    public IActionResult Create(NoticeCreateViewModel model)
     {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
         return View();
     }
 

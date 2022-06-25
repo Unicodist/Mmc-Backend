@@ -9,6 +9,10 @@ namespace Mmc.Data.Model.Core;
 
 public class FacultyModel : CoreFaculty, NoticeFaculty
 {
+    public FacultyModel()
+    {
+    }
+
     public long Id { get; }
     public string Guid { get; }
     CoreGuid CoreFaculty.Guid => new(Guid);

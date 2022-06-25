@@ -1,4 +1,6 @@
-﻿using Mmc.Core.Entity.Interface;
+﻿using Microsoft.EntityFrameworkCore;
+using Mmc.Core.BaseType;
+using Mmc.Core.Entity.Interface;
 using Mmc.Core.Repository;
 using Mmc.Data.Model.Core;
 
@@ -10,38 +12,34 @@ public class CourseRepository : BaseRepository<CourseModel>, ICourseRepository
     {
     }
 
-    public Task<ICourse?> GetByIdAsync(long id)
+    public async Task<ICourse?> GetByIdAsync(long id)
     {
-        throw new NotImplementedException();
+        return await base.GetByIdAsync(id).ConfigureAwait(false);
     }
 
-    public Task<ICourse> InsertAsync(ICourse entity)
+    public async Task<ICourse> InsertAsync(ICourse entity)
     {
-        throw new NotImplementedException();
+        var cModel = new CourseModel(entity.Name, entity.Guid, entity.Status, (FacultyModel)entity.Faculty);
+        await base.InsertAsync(cModel);
+        return cModel;
     }
 
-    public Task<ICollection<ICourse>?> GetAllAsync()
+    public new async Task<ICollection<ICourse>?> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return (await base.GetAllAsync()).Cast<ICourse>().ToList();
     }
 
-    public IQueryable<ICourse> GetQueryable()
+    public new IQueryable<ICourse> GetQueryable()
     {
-        throw new NotImplementedException();
+        return base.GetQueryable();
+    }
+    public async Task<ICourse?> GetByGuidAsync(string guid)
+    {
+        return await base.GetQueryable().SingleOrDefaultAsync(x => x.Guid == guid);
     }
 
-    public Task<ICollection<ICourse>> GetByArticleIdAsync(long id)
+    public Task UpdateAsync(ICourse course)
     {
-        throw new NotImplementedException();
-    }
-
-    public Task<ICourse?> GetByGuidAsync(string guid)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task UpdateAsync(ICourse comment)
-    {
-        throw new NotImplementedException();
+        return base.Update((CourseModel)course);
     }
 }

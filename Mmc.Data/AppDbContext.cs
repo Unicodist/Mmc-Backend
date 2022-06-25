@@ -35,6 +35,14 @@ public class  AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new KeyValConfiguration());
+
+        #region Core
+
+        _ = modelBuilder.ApplyConfiguration(new CourseConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new FacultyConfiguration());
+
+        #endregion
+        
         #region Blog
 
         _ = modelBuilder.ApplyConfiguration(new ArticleConfiguration());
