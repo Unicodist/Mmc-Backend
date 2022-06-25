@@ -1,4 +1,4 @@
-namespace Mmc.Notice.ViewModel;
+namespace Mechi.Backend.ViewModel.Notice;
 
 public class NoticeViewModel
 {

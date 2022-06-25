@@ -18,10 +18,4 @@
       <ProjectReference Include="..\Mmc.User\Mmc.User.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="src\Services\Blog" />
-      <Folder Include="src\Services\Notice" />
-      <Folder Include="src\Services\User" />
-    </ItemGroup>
-
 </Project>

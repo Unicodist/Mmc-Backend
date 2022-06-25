@@ -15,6 +15,8 @@ namespace Mmc.Notice.Entity.Interface
         
         INoticeUser Author { get; }
         GuidType Guid { get; }
+        ICollection<ICourse> Courses { get; }
         void Deactivate();
+        void AddCourse(ICourse course);
     }
 }

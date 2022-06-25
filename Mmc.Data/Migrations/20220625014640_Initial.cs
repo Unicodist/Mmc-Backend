@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mmc.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,6 +56,26 @@ namespace Mmc.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "images",
+                columns: table => new
+                {
+                    picture_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    guid = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    type = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    location = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    uploaded_date = table.Column<DateTime>(type: "datetime", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_images", x => x.picture_id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "keyValue",
                 columns: table => new
                 {
@@ -88,26 +108,6 @@ namespace Mmc.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_notification_template", x => x.notificatoin_template_id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "user_picture",
-                columns: table => new
-                {
-                    picture_id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    guid = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    type = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    location = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    uploaded_date = table.Column<DateTime>(type: "datetime", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_user_picture", x => x.picture_id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -157,9 +157,9 @@ namespace Mmc.Data.Migrations
                 {
                     table.PrimaryKey("PK_user", x => x.user_id);
                     table.ForeignKey(
-                        name: "FK_user_user_picture_picture_id",
+                        name: "FK_user_images_picture_id",
                         column: x => x.picture_id,
-                        principalTable: "user_picture",
+                        principalTable: "images",
                         principalColumn: "picture_id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -388,11 +388,9 @@ namespace Mmc.Data.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     date = table.Column<DateTime>(type: "datetime", nullable: false),
                     user_id = table.Column<long>(type: "bigint", nullable: false),
-                    old_value = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                    old_value = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     new_value = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    action = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     article_id = table.Column<long>(type: "bigint", nullable: true),
                     comment_id = table.Column<long>(type: "bigint", nullable: true),
@@ -413,18 +411,24 @@ namespace Mmc.Data.Migrations
                         column: x => x.comment_id,
                         principalTable: "comment",
                         principalColumn: "comment_id");
+                    table.ForeignKey(
+                        name: "FK_interaction_log_user_user_id",
+                        column: x => x.user_id,
+                        principalTable: "user",
+                        principalColumn: "user_id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.InsertData(
-                table: "user_picture",
+                table: "images",
                 columns: new[] { "picture_id", "guid", "location", "type", "uploaded_date" },
-                values: new object[] { 1L, "GodGuid", "/Assets/Account/Profile/SuperAdmin.jpg", "Avatar", new DateTime(2022, 6, 24, 9, 56, 44, 296, DateTimeKind.Local).AddTicks(5713) });
+                values: new object[] { 1L, "GodGuid", "/Assets/Account/Profiles/SuperAdmin.jpg", "Avatar", new DateTime(2022, 6, 25, 7, 31, 39, 262, DateTimeKind.Local).AddTicks(3891) });
 
             migrationBuilder.InsertData(
                 table: "user",
                 columns: new[] { "user_id", "email", "name", "password", "picture_id", "user_name", "user_type" },
-                values: new object[] { 1L, "ashishneupane999@gmail.com", "Ashish Neupane", "$2a$11$zjmIEd0kY24L0e4NHLV94u7p7J7LcD.dLTQepKY6Y7NkalbNW5pR6", 1L, "AshuraNep", "Superuser" });
+                values: new object[] { 1L, "ashishneupane999@gmail.com", "Ashish Neupane", "$2a$11$krfWfU12SHTXUWwWCVniruoxelXyBsFcRd.yj2Gl..7xdCxIp.wJq", 1L, "AshuraNep", "Superuser" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_blog_posts_admin_id",
@@ -460,6 +464,11 @@ namespace Mmc.Data.Migrations
                 name: "IX_interaction_log_comment_id",
                 table: "interaction_log",
                 column: "comment_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_interaction_log_user_id",
+                table: "interaction_log",
+                column: "user_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_notice_admin_id",
@@ -547,7 +556,7 @@ namespace Mmc.Data.Migrations
                 name: "user");
 
             migrationBuilder.DropTable(
-                name: "user_picture");
+                name: "images");
         }
     }
 }

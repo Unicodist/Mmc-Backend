@@ -26,9 +26,16 @@ namespace Mmc.Data.Model.Notice
         public long AdminId { get; set; }
         public virtual UserModel Author { get; set; }
         public GuidType Guid { get; set; }
+        public virtual ICollection<ICourse> Courses { get; }
+
         public void Deactivate()
         {
             Status = Status.Inactive;
+        }
+
+        public void AddCourse(ICourse course)
+        {
+            Courses.Add(course);
         }
 
         INoticeUser INotice.Author => Author;

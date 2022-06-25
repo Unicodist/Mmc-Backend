@@ -11,14 +11,14 @@ using Mmc.Data;
 namespace Mmc.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220624103535_fix_interaction")]
-    partial class fix_interaction
+    [Migration("20220625014640_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("ProductVersion", "6.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Mmc.Core.Entity.KeyVal", b =>
@@ -337,12 +337,6 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("varchar(100)")
                         .HasColumnName("old_value");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("action");
-
                     b.Property<long>("UserId")
                         .HasColumnType("bigint")
                         .HasColumnName("user_id");
@@ -460,7 +454,7 @@ namespace Mmc.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("user_picture", (string)null);
+                    b.ToTable("images", (string)null);
 
                     b.HasData(
                         new
@@ -469,7 +463,7 @@ namespace Mmc.Data.Migrations
                             Guid = "GodGuid",
                             Location = "/Assets/Account/Profiles/SuperAdmin.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 24, 16, 20, 34, 274, DateTimeKind.Local).AddTicks(9346)
+                            UploadedDate = new DateTime(2022, 6, 25, 7, 31, 39, 262, DateTimeKind.Local).AddTicks(3891)
                         });
                 });
 
@@ -564,7 +558,7 @@ namespace Mmc.Data.Migrations
                             Id = 1L,
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
-                            Password = "$2a$11$pK6lNaZCcum9ZF1wjbo7W.XXzb3utK2xrlHp7HaIGdhUToMVoFqjy",
+                            Password = "$2a$11$krfWfU12SHTXUWwWCVniruoxelXyBsFcRd.yj2Gl..7xdCxIp.wJq",
                             PictureId = 1L,
                             UserName = "AshuraNep",
                             UserType = "Superuser"

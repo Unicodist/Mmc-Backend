@@ -24,6 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="src\Configurations\College" />
       <Folder Include="src\Repository\Address" />
     </ItemGroup>
 

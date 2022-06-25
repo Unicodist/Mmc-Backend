@@ -144,8 +144,7 @@ public class BlogController : Controller
     {
         var user = this.GetCurrentBlogUser();
         var commentDto = new CommentCreateDto(model.ArticleGuid,model.Body,user.Id);
-        var commentId = await _commentService.Create(commentDto);
-        var comment = await _commentRepository.GetByIdAsync(commentId)??throw new CommentNotFoundException();
+        var comment = await _commentService.Create(commentDto);
         var commentModel = new CommentResponseApiModel
         {
             Body = comment.Body,

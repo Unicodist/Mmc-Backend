@@ -1,6 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Mmc.Blog.Repository;
+using Mmc.Core.Repository;
 using Mmc.Data.Repository.Blog;
+using Mmc.Data.Repository.Core;
 using Mmc.Data.Repository.Notice;
 using Mmc.Data.Repository.User;
 using Mmc.Notice.Repository;
@@ -12,6 +14,13 @@ public static class DiConfig
 {
     public static void ConfData(this IServiceCollection services)
     {
+        #region core
+
+        _ = services.AddScoped<ICourseRepository, CourseRepository>();
+        _ = services.AddScoped<IFacultyRepository, FacultyRepository>();
+
+        #endregion
+        
         #region Blog
 
         _ = services.AddScoped<ICategoryRepository, CategoryRepository>();

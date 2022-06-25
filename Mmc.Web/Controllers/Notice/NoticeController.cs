@@ -1,6 +1,6 @@
+using Mechi.Backend.ViewModel.Notice;
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Notice.Repository;
-using Mmc.Notice.ViewModel;
 
 namespace Mechi.Backend.Controllers.Notice;
 public class NoticeController : Controller

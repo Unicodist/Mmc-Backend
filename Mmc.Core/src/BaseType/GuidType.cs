@@ -1,4 +1,4 @@
-namespace Mmc.Core.BaseTypes;
+namespace Mmc.Core.BaseType;
 
 public class GuidType
 {

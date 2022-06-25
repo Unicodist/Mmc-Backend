@@ -23,8 +23,16 @@ public class Notice : INotice
     public NoticeUser Author { get; set; }
     INoticeUser INotice.Author => Author;
     public GuidType Guid { get; set; }
+    public virtual ICollection<ICourse> Courses { get; set; }
     public void Deactivate()
     {
         Status = Status.Inactive;
     }
+
+    public void AddCourse(ICourse course)
+    {
+        Courses.Add(course);
+    }
+
+
 }

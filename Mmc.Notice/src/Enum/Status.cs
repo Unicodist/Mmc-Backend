@@ -8,7 +8,7 @@ public class Status : BaseEnum
 
     public static readonly Status Active = new(1, _active);
     public static readonly Status Inactive = new(2, _inactive);
-    public static readonly Status Pending = new(2, _pending);
+    public static readonly Status Pending = new(3, _pending);
     
     protected Status(int id, string? value) : base(id, value)
     {

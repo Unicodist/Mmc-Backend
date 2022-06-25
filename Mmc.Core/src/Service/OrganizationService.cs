@@ -3,7 +3,7 @@ using Mmc.Core.Entity.Interface;
 using Mmc.Core.Helper;
 using Mmc.Core.Repository;
 
-namespace Mmc.Core.Services;
+namespace Mmc.Core.Service;
 
 public class OrganizationService
 {

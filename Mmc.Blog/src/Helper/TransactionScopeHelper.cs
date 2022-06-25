@@ -2,7 +2,12 @@ using System.Transactions;
 
 namespace Mmc.Blog.Helper;
 
-public class TransactionScopeHelper
+public static class TransactionScopeHelper
 {
-    public static TransactionScope GetInstance => new(TransactionScopeAsyncFlowOption.Enabled);
+    private static readonly TransactionOptions TransactionOptions = new()
+    {
+        IsolationLevel = IsolationLevel.ReadCommitted,
+        Timeout = TransactionManager.MaximumTimeout
+    };
+    public static TransactionScope GetInstance => new(TransactionScopeOption.Required,TransactionOptions,TransactionScopeAsyncFlowOption.Enabled);
 }

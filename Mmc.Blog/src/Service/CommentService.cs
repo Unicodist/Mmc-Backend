@@ -24,17 +24,15 @@ namespace Mmc.Blog.src.Service
             _interactionLogService = interactionLogService;
         }
 
-        public async Task<long> Create(CommentCreateDto c)
+        public async Task<IComment> Create(CommentCreateDto c)
         {
-            var tx = TransactionScopeHelper.GetInstance;
             var user = await _userRepository.GetByIdAsync(c.UserId) ?? throw new UserNotFoundException();
             var article = await _articleRepository.GetByGuidAsync(c.ArticleGuid)??throw new ArticleNotFoundException();
-            var comment = new Comment(c.Body,user,article) {ArticleId = article.Id, UserId = user.Id};
+            var comment = new Comment(c.Body,user,article);
             ValidateComment(comment);
-            await _commentRepository.InsertAsync(comment);
-            await _interactionLogService.Create(comment);
-            tx.Complete();
-            return comment.Id;
+            var commentModel = await _commentRepository.InsertAsync(comment).ConfigureAwait(false);
+            await _interactionLogService.Create(commentModel).ConfigureAwait(false);
+            return commentModel;
         }
 
         private void ValidateComment(Comment comment)
@@ -57,6 +55,7 @@ namespace Mmc.Blog.src.Service
 
             var comment = await _commentRepository.GetByIdAsync(c.Id)??throw new CommentNotFoundException();
             comment.Update(c.Body);
+            _commentRepository.UpdateAsync(comment);
             
             tx.Complete();
         }

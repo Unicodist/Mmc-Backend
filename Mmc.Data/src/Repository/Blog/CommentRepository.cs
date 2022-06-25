@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Mmc.Blog.Entity;
 using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Repository;
 using Mmc.Data.Model.Blog;
@@ -18,11 +17,11 @@ public class CommentRepository : BaseRepository<CommentModel>,ICommentRepository
         return await base.GetByIdAsync(id);
     }
 
-    public async Task InsertAsync(IComment comment)
+    public async Task<IComment> InsertAsync(IComment comment)
     {
         var cModel = new CommentModel(comment.Body, (UserModel)comment.User, (ArticleModel)comment.Article,comment.Status,comment.Guid);
         await base.InsertAsync(cModel);
-        typeof(Comment).GetProperty(nameof(Comment.Id))!.SetValue(comment,cModel.Id);
+        return cModel;
     }
 
     public async Task<ICollection<IComment>?> GetAllAsync()
@@ -43,5 +42,10 @@ public class CommentRepository : BaseRepository<CommentModel>,ICommentRepository
     public async Task<IComment?> GetByGuidAsync(string guid)
     {
         return await base.GetQueryable().SingleOrDefaultAsync(x => x.Guid == guid).ConfigureAwait(false);
+    }
+
+    public Task UpdateAsync(IComment comment)
+    {
+        return base.Update((CommentModel)comment);
     }
 }
