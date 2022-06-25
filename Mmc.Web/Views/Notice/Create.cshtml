@@ -24,8 +24,8 @@
         @Html.DropDownListFor(m=>m.SeverityId,new SelectList(BaseEnum.GetAll<NoticeSeverity>(),"Id","Value"),new{@class="form-control"})
     </div>
     <div class="form-group">
-        @Html.LabelFor(m=>m.CourseId)
-        @Html.ListBoxFor(m=>m.CourseId,new SelectList(await _courseRepository.GetAllAsync(),"Guid","Name",new SelectListItem("0","All")),new{@class="form-control"})
+        @Html.LabelFor(m=>m.CourseGuids)
+        @Html.DropDownListFor(m=>m.CourseGuids,new SelectList(await _courseRepository.GetAllAsync(),"Guid","Name",new SelectListItem("0","All")),new{@class="form-control", multiple="multiple"})
     </div>
     <button type="submit" class="btn btn-primary mt-2">Publish Notice</button>
 }

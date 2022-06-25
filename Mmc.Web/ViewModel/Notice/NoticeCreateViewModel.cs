@@ -8,10 +8,10 @@ public class NoticeCreateViewModel
     public string Title { get; set; }
     [DisplayName("Notice Body")]
     public string? Body { get; set; }
-    public IFormFile Image { get; set; }
+    public IFormFile? Image { get; set; }
     [DisplayName("Choose Importance")]
     public long SeverityId { get; set; }
     [DisplayName("Related Courses")]
-    public IEnumerable<long>? CourseId { get; set; }
-    public IEnumerable<long> SemesterId { get; set; }
+    public List<string>? CourseGuids { get; set; }
+    public IEnumerable<long>? SemesterId { get; set; }
 }

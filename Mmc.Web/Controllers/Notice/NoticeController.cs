@@ -1,16 +1,19 @@
 using Mechi.Backend.ViewModel.Notice;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Mmc.Core.Repository;
 using Mmc.Notice.Repository;
 
 namespace Mechi.Backend.Controllers.Notice;
 public class NoticeController : Controller
 {
     private INoticeRepository _noticeRepository;
+    private readonly ICourseRepository _courseRepository;
 
-    public NoticeController(INoticeRepository noticeRepository)
+    public NoticeController(INoticeRepository noticeRepository, ICourseRepository courseRepository)
     {
         _noticeRepository = noticeRepository;
+        _courseRepository = courseRepository;
     }
 
     public async Task<IActionResult> Index()
@@ -18,14 +21,15 @@ public class NoticeController : Controller
         return View();
     }
     [Authorize]
-    public IActionResult Create(NoticeCreateViewModel model)
+    public async Task<IActionResult> Create(NoticeCreateViewModel model)
     {
         if (!ModelState.IsValid)
-        {
             return View(model);
-        }
 
-        return View();
+        var courses = await _courseRepository.FindBy(x => model.CourseGuids.Contains(x.Guid.ToString()));
+        
+        
+        return RedirectToAction("Index");
     }
 
     public async Task<IActionResult> Read()
