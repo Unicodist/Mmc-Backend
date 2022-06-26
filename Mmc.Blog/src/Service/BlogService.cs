@@ -34,14 +34,7 @@ public class BlogService : IBlogService
         var blog = await _articleRepository.GetByIdAsync(dto.Id) ?? throw new ArticleNotFoundException();
         var category = await _categoryRepository.GetByGuid(dto.CategoryGuid).ConfigureAwait(false);
         blog.Update(dto.Title, dto.Body, category);
-    }
-
-    public async Task SubmitUpvote(LikeDto likeDto)
-    {
-        var article = await _articleRepository.GetByIdAsync(likeDto.ArticleId)??throw new ArticleNotFoundException();
-        var user = await _blogUserRepository.GetByIdAsync(likeDto.UserId)??throw new UserNotFoundException();
-        
-        
+        _articleRepository.UpdateAsync(blog);
     }
 
     private void ValidateForSpam(ArticleCreateDto dto)

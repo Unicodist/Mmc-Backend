@@ -4,9 +4,9 @@ using Mmc.Data.Model.Blog;
 
 namespace Mmc.Data.Configurations.Blog;
 
-public class UpvoteConfiguration : IEntityTypeConfiguration<UpvoteModel>
+public class UpvoteConfiguration : IEntityTypeConfiguration<HeartModel>
 {
-    public void Configure(EntityTypeBuilder<UpvoteModel> builder)
+    public void Configure(EntityTypeBuilder<HeartModel> builder)
     {
         _ = builder.ToTable("upvote");
         _ = builder.HasKey(a => new{a.ArticleId,a.UserId});

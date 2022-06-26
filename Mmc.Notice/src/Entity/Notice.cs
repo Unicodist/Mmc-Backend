@@ -9,6 +9,7 @@ public class Notice : INotice
     public Notice(string title, string? body, string? picture, NoticeSeverity severity, INoticeUser author)
     {
         Title = title;
+        Body = body;
         Author = author;
         Guid = new GuidType();
         Status = Status.Active;

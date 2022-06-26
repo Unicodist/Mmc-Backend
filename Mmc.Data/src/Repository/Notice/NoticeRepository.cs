@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Mmc.Data.Model.Notice;
+using Mmc.Data.Model.User;
 using Mmc.Notice.Entity.Interface;
 using Mmc.Notice.Exception;
 using Mmc.Notice.Repository;
@@ -23,9 +24,12 @@ public class NoticeRepository : BaseRepository<NoticeModel>, INoticeRepository
         return await base.GetByIdAsync(id).ConfigureAwait(false);
     }
 
-    public Task Insert(INotice noticeCreateDto)
+    public async Task<INotice> Insert(INotice entity)
     {
-        throw new NotImplementedException();
+        var noticeModel = new NoticeModel(entity.Title, entity.Body, entity.PostedOn, entity.Picture, (UserModel)entity.Author,
+            entity.Guid,entity.Severity,entity.Status);
+        await base.InsertAsync(noticeModel);
+        return noticeModel;
     }
 
     public Task Update(INotice noticeUpdateDto)

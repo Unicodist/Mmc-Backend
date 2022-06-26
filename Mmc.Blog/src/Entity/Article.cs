@@ -28,7 +28,7 @@ public class Article : IArticle
     public long? CategoryId => Category?.Id;
     public IBlogUser User { get; }
     public ICategory? Category { get; set; }
-    public ICollection<IUpvote> Likes { get; }
+    public ICollection<IHeart> Likes { get; }
     public ICollection<IInteractionLog> Interactions { get; set; }
     
 

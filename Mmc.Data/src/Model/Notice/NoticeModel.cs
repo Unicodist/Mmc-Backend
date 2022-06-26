@@ -7,14 +7,20 @@ namespace Mmc.Data.Model.Notice
 {
     public class NoticeModel : INotice
     {
-        public NoticeModel(string title, string? body, DateTime postedOn, string? picture, long adminId, GuidType guid)
+        public NoticeModel()
+        {
+        }
+
+        public NoticeModel(string title, string? body, DateTime postedOn, string? picture, UserModel author, GuidType guid, NoticeSeverity severity,Status status)
         {
             Title = title;
             Body = body;
             PostedOn = postedOn;
             Picture = picture;
-            AdminId = adminId;
+            Author = author;
             Guid = guid;
+            Severity = severity;
+            Status = status;
         }
 
         public long Id { get; }

@@ -9,4 +9,5 @@ public interface IArticleRepository
     public Task<ICollection<IArticle>?> GetAllBlogAsync();
     Task<IArticle> GetByGuidAsync(string guid);
     IQueryable<IArticle> GetQueryable();
+    Task UpdateAsync(IArticle blog);
 }

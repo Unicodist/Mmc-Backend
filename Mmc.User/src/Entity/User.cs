@@ -12,6 +12,7 @@ public class User : IUser
         Password = password;
         UserName = userName;
         Picture = picture;
+        UserType = UserType.USER;
     }
 
     public long Id { get; set; }

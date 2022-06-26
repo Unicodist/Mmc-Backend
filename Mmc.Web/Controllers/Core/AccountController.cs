@@ -23,9 +23,9 @@ public class AccountController : Controller
     }
     [Authorize(Roles = "Superuser,Admin")]
     [Route("[controller]/{username}")]
-    public IActionResult Index(string username)
+    public async Task<IActionResult> Index(string username)
     {
-        var user = _userRepository.GetByUsername(username);
+        var user = await _userRepository.GetByUsername(username);
         return View();
     }
     [Authorize]

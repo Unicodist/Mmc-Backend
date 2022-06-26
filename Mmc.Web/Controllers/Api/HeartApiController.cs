@@ -7,17 +7,19 @@ using Mmc.Blog.Service.Interface;
 
 namespace Mechi.Backend.Controllers.Api;
 
-public class LikeApiController : Controller
+public class HeartApiController : Controller
 {
     private readonly IArticleRepository _articleRepository;
     private readonly IBlogService _articleService;
     private readonly IUpvoteRepository _upvoteRepository;
+    private readonly IHeartService _heartService;
 
-    public LikeApiController(IArticleRepository articleRepository, IBlogService articleService, IUpvoteRepository upvoteRepository)
+    public HeartApiController(IArticleRepository articleRepository, IBlogService articleService, IUpvoteRepository upvoteRepository, IHeartService heartService)
     {
         _articleRepository = articleRepository;
         _articleService = articleService;
         _upvoteRepository = upvoteRepository;
+        _heartService = heartService;
     }
     
     [Authorize]
@@ -31,8 +33,8 @@ public class LikeApiController : Controller
             return Problem("Duplicate like","This",500,"The article is already liked");
         }
 
-        var likeDto = new LikeDto(user.Id,article.Id);
-        await _articleService.SubmitUpvote(likeDto);
+        var heartDto = new HeartDto(user.Id,article.Guid);
+        await _heartService.Heart(heartDto);
 
         var like = await _upvoteRepository.GetByUserIdAndArticleId(user.Id, article.Id);
         return Ok(like==null ? new {Liked = true} : new {Liked = false});

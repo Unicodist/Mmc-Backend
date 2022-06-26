@@ -91,7 +91,6 @@ ClassicEditor.create( document.querySelector( '#CkEditorBody' ),{
 		  $.ajax({
 			  type: "GET",
 			  url: "@Url.Action("GetCategoryList","CategoryApi")",
-			  data: "{}",
 			  success: function(data) {
 				  let s = "";
 				  for (let i = 0; i < data.length; i++) {
@@ -124,9 +123,10 @@ ClassicEditor.create( document.querySelector( '#CkEditorBody' ),{
                           Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
-                            text: data,
+                            text: 'We have a problem publishing that article. Contact you service provider',
                             footer: '<a href="">Why do I have this issue?</a>'
-                          })
+                          });
+                          console.log(data);
                         }
                     });
 			});

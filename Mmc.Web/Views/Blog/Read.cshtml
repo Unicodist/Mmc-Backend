@@ -8,7 +8,6 @@
     <!-- Post header-->
     <div class="d-flex justify-content-between">
         <header class="mb-4">
-        
             <!-- Post title-->
             <h1 class="fw-bolder mb-1">@Model.Title</h1>
             <!-- Post meta content-->
@@ -32,13 +31,14 @@
             <!-- Comment form-->
             @await Html.PartialAsync("PartialViews/Blog/CommmentForm",new CommentCreateViewModel {ArticleGuid=Model.Guid})
             <div class="comment-section-container" id="comment-section-container">
+                
             </div>
-            
         </div>
     </div>
 </section>
 <script src="~/js/blog-read-comments-fetch-initial.js"></script>
+<script src="~/js/article-heart-button.js"></script>
 <script>
     fetchComments('@Url.Action("GetComments","Blog")','@Model.Guid',1);
+    setArticleHeartListener('@Model.Guid','@Url.Action("Heart","BlogApi")')
 </script>
-<script src="~/js/article-heart-button.js"></script>

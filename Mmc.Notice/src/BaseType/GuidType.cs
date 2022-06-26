@@ -6,7 +6,7 @@ public class GuidType
 
     public GuidType()
     {
-        Value = new Guid().ToString();
+        Value = Guid.NewGuid().ToString();
     }
 
     public override string ToString()

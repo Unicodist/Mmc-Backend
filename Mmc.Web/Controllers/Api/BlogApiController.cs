@@ -5,6 +5,7 @@ using Mechi.Backend.ViewModel.Blog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Blog.Dto;
+using Mmc.Blog.Exception;
 using Mmc.Blog.Repository;
 using Mmc.Blog.Service.Interface;
 
@@ -17,12 +18,14 @@ public class BlogApiController : ControllerBase
     private readonly IArticleRepository _articleRepository;
     private readonly IBlogService _blogService;
     private readonly ICommentService _commentService;
+    private readonly IHeartService _heartService;
 
-    public BlogApiController(IArticleRepository articleRepository, IBlogService blogService, ICommentService commentService)
+    public BlogApiController(IArticleRepository articleRepository, IBlogService blogService, ICommentService commentService, IHeartService heartService)
     {
         _articleRepository = articleRepository;
         _blogService = blogService;
         _commentService = commentService;
+        _heartService = heartService;
     }
     [HttpGet]
     public async Task<IActionResult> Get()
@@ -51,8 +54,6 @@ public class BlogApiController : ControllerBase
             throw;
         }
     }
-
-    
     [Authorize]
     [HttpPost]
     [Route("create")]
