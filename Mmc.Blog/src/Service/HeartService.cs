@@ -9,13 +9,13 @@ namespace Mmc.Blog.Service;
 
 public class HeartService : IHeartService
 {
-    private readonly IHeartRepository _heartService;
+    private readonly IHeartRepository _heartRepository;
     private readonly IArticleRepository _articleRepository;
     private readonly IBlogUserRepository _blogUserRepository;
 
-    public HeartService(IHeartRepository heartService, IArticleRepository articleRepository, IBlogUserRepository blogUserRepository)
+    public HeartService(IHeartRepository heartRepository, IArticleRepository articleRepository, IBlogUserRepository blogUserRepository)
     {
-        _heartService = heartService;
+        _heartRepository = heartRepository;
         _articleRepository = articleRepository;
         _blogUserRepository = blogUserRepository;
     }
@@ -25,7 +25,7 @@ public class HeartService : IHeartService
         var article = await _articleRepository.GetByGuidAsync(dto.ArticleGuid)??throw new ArticleNotFoundException();
         var user = await _blogUserRepository.GetByIdAsync(dto.UserId) ?? throw new UserNotFoundException();
         var heart = new Heart(user,article);
-        await _heartService.InsertAsync(heart);
+        await _heartRepository.InsertAsync(heart).ConfigureAwait(false);
     }
 
     public Task UnHeart(HeartDto heartDto)

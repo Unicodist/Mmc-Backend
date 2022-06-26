@@ -8,7 +8,6 @@ namespace Mmc.Data.Repository.Blog;
 
 public class HeartRepository : BaseRepository<HeartModel>,IHeartRepository
 {
-    
     public HeartRepository(AppDbContext context) : base(context)
     {
     }

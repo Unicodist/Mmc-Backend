@@ -1,6 +1,7 @@
 @model Mechi.Backend.ViewModel.Blog.ArticleCreateViewModel
 @{
     Layout = "_Blog_Layout";
+    ViewData["Title"] = "Write a new Blog";
 }
 @using(Html.BeginForm("Create","Blog","",FormMethod.Post,null,new{enctype="multipart/form-data",id="form-post-article"})){
 <div class="form-group">
@@ -78,57 +79,43 @@ function MyCustomUploadAdapterPlugin( editor ) {
 	};
 }
 ClassicEditor.create( document.querySelector( '#CkEditorBody' ),{
-	extraPlugins: [ MyCustomUploadAdapterPlugin ]
-	})
-	.then( editor => {
-		window.editor = editor;
-	} )
-	.catch( err => {
-		console.error( err.stack );
-	} );
-
-		$(document).ready(function() {
-		  $.ajax({
-			  type: "GET",
-			  url: "@Url.Action("GetCategoryList","CategoryApi")",
-			  success: function(data) {
-				  let s = "";
-				  for (let i = 0; i < data.length; i++) {
-					  console.log(data[i])
-					  s += '<option value="' + data[i].guid + '">' + data[i].name + '</option>';
-				  }
-				  $("#CategoryGuid").html(s);
-			  }
-              });
-          });
+extraPlugins: [ MyCustomUploadAdapterPlugin ]
+})
+.then( editor => {
+    window.editor = editor;
+} )
+.catch( err => {
+    console.error( err.stack );
+});
 		
-		$('#form-post-article').submit(function (e){
-				e.preventDefault();
-				const form = $("#form-post-article");
-				const url = form.attr('action');
-				
-				$.ajax({
-                        type: "POST",
-                        url: url,
-                        data: form.serialize(), // serializes the form's elements.
-                        success: function(data)
-                        {
-                          Swal.fire(
-                            'Hooray!!!',
-                            data,
-                            'success'
-                          )
-                        },
-                        error:function(data) {
-                          Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'We have a problem publishing that article. Contact you service provider',
-                            footer: '<a href="">Why do I have this issue?</a>'
-                          });
-                          console.log(data);
-                        }
-                    });
-			});
+    $('#form-post-article').submit(function (e){
+        e.preventDefault();
+        const form = $("#form-post-article");
+        const url = form.attr('action');
+
+        $.ajax({
+        type: "POST",
+        url: url,
+        data: form.serialize(), // serializes the form's elements.
+        success: function(data)
+        {
+          Swal.fire(
+            'Hooray!!!',
+            data.message,
+            'success'
+          );
+          window.location.replace("@Url.Action("Read","Blog")/"+data.guid);
+        },
+        error:function(data) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'We have a problem publishing that article. Contact you service provider',
+            footer: '<a href="">Why do I have this issue?</a>'
+          });
+          console.log(data);
+        }
+        });
+    });
 		
 </script>

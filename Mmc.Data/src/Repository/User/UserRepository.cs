@@ -12,7 +12,7 @@ using Mmc.User.Repository;
 
 namespace Mmc.Data.Repository.User;
 
-public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IBlogUserRepository, INoticeUserRepository
+public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, INoticeUserRepository
 {
     public UserRepository(AppDbContext dbContext) : base(dbContext)
     {
@@ -38,13 +38,6 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IB
     {
         return await GetQueryable().Where(x=>x.Name==name).Cast<IUser>().ToListAsync();
     }
-
-    #endregion
-
-    #region Blog
-    
-    public async Task<IBlogUser> GetByIdAsync(long id) => await base.GetByIdAsync(id).ConfigureAwait(false)?? throw new UserNotFoundException();
-    IBlogUser? IBlogUserRepository.GetByUsername(string userName) => GetQueryable().SingleOrDefault(x=>x.UserName==userName)??throw new Mmc.Blog.Exception.UserNotFoundException();
 
     #endregion
 

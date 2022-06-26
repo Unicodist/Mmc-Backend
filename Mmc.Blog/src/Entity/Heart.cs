@@ -8,7 +8,6 @@ public class Heart : IHeart
     {
         User = user;
         Article = article;
-        throw new NotImplementedException();
     }
 
     public long Id { get; init; }

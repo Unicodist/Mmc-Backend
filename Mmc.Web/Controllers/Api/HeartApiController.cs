@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mmc.Blog.Dto;
 using Mmc.Blog.Repository;
 using Mmc.Blog.Service.Interface;
+using Mmc.Data.Repository.Blog;
 
 namespace Mechi.Backend.Controllers.Api;
 
@@ -11,15 +12,16 @@ public class HeartApiController : Controller
 {
     private readonly IArticleRepository _articleRepository;
     private readonly IBlogService _articleService;
-    private readonly IHeartRepository _heartRepository;
+    private readonly HeartRepository _heartRepository;
     private readonly IHeartService _heartService;
 
-    public HeartApiController(IArticleRepository articleRepository, IBlogService articleService, IHeartRepository heartRepository, IHeartService heartService)
+    public HeartApiController(IArticleRepository articleRepository, IBlogService articleService, HeartRepository heartRepository, IHeartService heartService, IBlogUserRepository userRepository)
     {
         _articleRepository = articleRepository;
         _articleService = articleService;
         _heartRepository = heartRepository;
         _heartService = heartService;
+        UserHelper.BlogUserRepository = userRepository;
     }
     
     [Authorize]

@@ -89,8 +89,8 @@ public class BlogController : Controller
         var filePath = await FileHandler.UploadFile(model.Thumbnail);
         
         var articleDto = new ArticleCreateDto(model.Title, model.CkEditorBody, user.Id, model.CategoryGuid,filePath);
-        _ = await _blogService.Create(articleDto);
-        return Ok("Article published successfully");
+        var guid = (await _blogService.Create(articleDto)).Guid;
+        return Ok(new{Guid=guid.ToString(),Message="Article published successfully"});
     }
     [Route("[controller]/GetBlogPaginationView/{page}")]
     public PartialViewResult GetBlogPaginationView(int page=1)

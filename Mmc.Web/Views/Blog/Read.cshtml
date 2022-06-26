@@ -3,6 +3,9 @@
 *@
 @using Mechi.Backend.ViewModel.Blog
 @model Mechi.Backend.ViewModel.Blog.ArticleReadViewModel;
+@{
+    ViewData["Title"] = Model.Title;
+}
 <link rel="stylesheet" href="~/css/heart-button.css">
 <article>
     <!-- Post header-->
