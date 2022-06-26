@@ -6,10 +6,10 @@ using Mmc.Data.Model.User;
 
 namespace Mmc.Data.Repository.Blog;
 
-public class UpvoteRepository : BaseRepository<HeartModel>,IUpvoteRepository
+public class HeartRepository : BaseRepository<HeartModel>,IHeartRepository
 {
     
-    public UpvoteRepository(AppDbContext context) : base(context)
+    public HeartRepository(AppDbContext context) : base(context)
     {
     }
     public Task InsertAsync(IHeart heart)
@@ -23,13 +23,23 @@ public class UpvoteRepository : BaseRepository<HeartModel>,IUpvoteRepository
         return (await base.GetAllAsync().ConfigureAwait(false)).Cast<IHeart>().ToList();
     }
 
+    public async Task<ICollection<IHeart>?> GetAllByBlogIdAsync(long articleId)
+    {
+        return await GetQueryable().Where(x => x.ArticleId == articleId).ToListAsync();
+    }
+
     public new IQueryable<IHeart> GetQueryable()
     {
         return base.GetQueryable();
     }
 
-    public async Task<IHeart?> GetByUserIdAndArticleId(long userId, long articleId)
+    public async Task<bool> GetByUserIdAndArticleId(long userId, long articleId)
     {
-        return await GetQueryable().SingleOrDefaultAsync(x => x.ArticleId == articleId && x.UserId == userId);
+        return await GetQueryable().SingleOrDefaultAsync(x=>x.ArticleId==articleId&&x.UserId==userId)!=null;
+    }
+
+    public Task<int> GetHeartCountByArticleId(long articleId)
+    {
+        return GetQueryable().CountAsync(x => x.ArticleId == articleId);
     }
 }

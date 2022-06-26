@@ -11,20 +11,20 @@ public class HeartApiController : Controller
 {
     private readonly IArticleRepository _articleRepository;
     private readonly IBlogService _articleService;
-    private readonly IUpvoteRepository _upvoteRepository;
+    private readonly IHeartRepository _heartRepository;
     private readonly IHeartService _heartService;
 
-    public HeartApiController(IArticleRepository articleRepository, IBlogService articleService, IUpvoteRepository upvoteRepository, IHeartService heartService)
+    public HeartApiController(IArticleRepository articleRepository, IBlogService articleService, IHeartRepository heartRepository, IHeartService heartService)
     {
         _articleRepository = articleRepository;
         _articleService = articleService;
-        _upvoteRepository = upvoteRepository;
+        _heartRepository = heartRepository;
         _heartService = heartService;
     }
     
     [Authorize]
     [HttpPost]
-    public async Task<IActionResult> SubmitLike(string guid)
+    public async Task<IActionResult> Heart(string guid)
     {
         var user = this.GetCurrentBlogUser();
         var article = await _articleRepository.GetByGuidAsync(guid);
@@ -36,7 +36,7 @@ public class HeartApiController : Controller
         var heartDto = new HeartDto(user.Id,article.Guid);
         await _heartService.Heart(heartDto);
 
-        var like = await _upvoteRepository.GetByUserIdAndArticleId(user.Id, article.Id);
+        var like = await _heartRepository.GetByUserIdAndArticleId(user.Id, article.Id);
         return Ok(like==null ? new {Liked = true} : new {Liked = false});
     }
 

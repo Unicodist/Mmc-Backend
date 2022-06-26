@@ -3,8 +3,13 @@
     height: 50px;
     cursor: pointer;
 }
-.article-heart:hover{
+.article-heart-unliked:hover{
     color: #d63384;
+    transition: 0.9s;
+    transform: rotateY(180deg);
+}
+.article-heart-liked:hover{
+    color: #2D3A4A;
     transition: 0.9s;
     transform: rotateY(180deg);
 }

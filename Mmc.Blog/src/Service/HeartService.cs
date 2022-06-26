@@ -9,11 +9,11 @@ namespace Mmc.Blog.Service;
 
 public class HeartService : IHeartService
 {
-    private readonly IUpvoteRepository _heartService;
+    private readonly IHeartRepository _heartService;
     private readonly IArticleRepository _articleRepository;
     private readonly IBlogUserRepository _blogUserRepository;
 
-    public HeartService(IUpvoteRepository heartService, IArticleRepository articleRepository, IBlogUserRepository blogUserRepository)
+    public HeartService(IHeartRepository heartService, IArticleRepository articleRepository, IBlogUserRepository blogUserRepository)
     {
         _heartService = heartService;
         _articleRepository = articleRepository;

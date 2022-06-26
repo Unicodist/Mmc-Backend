@@ -15,13 +15,15 @@ namespace Mmc.Blog.src.Service
         private readonly IBlogUserRepository _userRepository;
         private readonly IArticleRepository _articleRepository;
         private readonly IInteractionLogService _interactionLogService;
+        private readonly IToxicCommentService _toxicCommentService;
 
-        public CommentService(ICommentRepository commentRepository, IBlogUserRepository userRepository, IArticleRepository articleRepository, IInteractionLogService interactionLogService)
+        public CommentService(ICommentRepository commentRepository, IBlogUserRepository userRepository, IArticleRepository articleRepository, IInteractionLogService interactionLogService, IToxicCommentService toxicCommentService)
         {
             _commentRepository = commentRepository;
             _userRepository = userRepository;
             _articleRepository = articleRepository;
             _interactionLogService = interactionLogService;
+            _toxicCommentService = toxicCommentService;
         }
 
         public async Task<IComment> Create(CommentCreateDto c)
@@ -29,13 +31,13 @@ namespace Mmc.Blog.src.Service
             var user = await _userRepository.GetByIdAsync(c.UserId) ?? throw new UserNotFoundException();
             var article = await _articleRepository.GetByGuidAsync(c.ArticleGuid)??throw new ArticleNotFoundException();
             var comment = new Comment(c.Body,user,article);
-            ValidateComment(comment);
             var commentModel = await _commentRepository.InsertAsync(comment).ConfigureAwait(false);
             await _interactionLogService.Create(commentModel).ConfigureAwait(false);
+            await ValidateComment(commentModel);
             return commentModel;
         }
 
-        private void ValidateComment(Comment comment)
+        private async Task ValidateComment(IComment comment)
         {
             
             var sampleData = new ToxiCommentFilter.ModelInput
@@ -45,7 +47,7 @@ namespace Mmc.Blog.src.Service
             var predicted = ToxiCommentFilter.Predict(sampleData);
             if (predicted.Prediction  > 0)
             {
-                comment.FlagAsSuspicious();
+                await _toxicCommentService.Create(comment);
             }
         }
 
@@ -55,7 +57,7 @@ namespace Mmc.Blog.src.Service
 
             var comment = await _commentRepository.GetByIdAsync(c.Id)??throw new CommentNotFoundException();
             comment.Update(c.Body);
-            _commentRepository.UpdateAsync(comment);
+            await _commentRepository.UpdateAsync(comment);
             
             tx.Complete();
         }

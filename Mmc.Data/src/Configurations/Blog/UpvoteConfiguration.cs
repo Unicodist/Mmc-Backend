@@ -13,7 +13,7 @@ public class UpvoteConfiguration : IEntityTypeConfiguration<HeartModel>
         _ = builder.Property(a => a.ArticleId).HasColumnName("blog_id").HasColumnType(ColumnTypes.BIGINT);
         _ = builder.Property(a => a.UserId).HasColumnName("user_id").HasColumnType(ColumnTypes.BIGINT);
 
-        _ = builder.HasOne(a => a.Article).WithMany().HasForeignKey(a => a.ArticleId);
+        _ = builder.HasOne(a => a.Article).WithMany(a=>a.Likes).HasForeignKey(a => a.ArticleId);
         _ = builder.HasOne(a => a.User).WithMany().HasForeignKey(a => a.UserId);
     }
 }

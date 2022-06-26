@@ -20,18 +20,20 @@ public class BlogController : Controller
     private IWebHostEnvironment _webHostEnvironment;
 
     private readonly ICommentService _commentService;
+    private readonly IHeartRepository _heartRepository;
 
     // GET
     public BlogController(IArticleRepository blogRepo, 
         IBlogService blogService,
         ICommentRepository commentRepository, 
-        IBlogUserRepository blogUserRepository, ICommentService commentService, IWebHostEnvironment webHostEnvironment)
+        IBlogUserRepository blogUserRepository, ICommentService commentService, IWebHostEnvironment webHostEnvironment, IHeartRepository heartRepository)
     {
         _blogRepo = blogRepo;
         _blogService = blogService;
         _commentRepository = commentRepository;
         _commentService = commentService;
         _webHostEnvironment = webHostEnvironment;
+        _heartRepository = heartRepository;
         UserHelper.BlogUserRepository = blogUserRepository;
     }
     public async Task<IActionResult> Index(int? page = 1)
@@ -56,6 +58,7 @@ public class BlogController : Controller
     public async Task<IActionResult> Read(string guid)
     {
         var blog = await _blogRepo.GetByGuidAsync(guid)??throw new ArticleNotFoundException();
+        var heartModel = new HeartIconViewModel(blog.Guid,blog.Likes.Count,false);
         var model = new ArticleReadViewModel
         {
             Title = blog.Title,
@@ -64,13 +67,14 @@ public class BlogController : Controller
             Category = blog.Category?.Name,
             Date = blog.PostedDate.ToString(CultureInfo.InvariantCulture),
             Guid = blog.Guid.ToString(),
-            LikeCount = blog.Likes.Count
+            Heart = heartModel
         };
-        if (User.Identity!.IsAuthenticated)
+        if (!User.Identity!.IsAuthenticated)
         {
-            var user = this.GetCurrentBlogUser();
-            model.Liked = blog.Likes.Select(x => x.UserId).Contains(user.Id);
+            return View(model);
         }
+        var user = this.GetCurrentBlogUser();
+        model.Heart.IsLiked = blog.Likes.Select(x => x.UserId).Contains(user.Id);
         return View(model);
     }
     [Authorize]

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mmc.Data;
 
@@ -10,9 +11,10 @@ using Mmc.Data;
 namespace Mmc.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220626071602_Fixed upvote configuration")]
+    partial class Fixedupvoteconfiguration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -367,30 +369,6 @@ namespace Mmc.Data.Migrations
                     b.ToTable("interaction_log", (string)null);
                 });
 
-            modelBuilder.Entity("Mmc.Data.Model.Blog.ToxicCommentModel", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("toxic_comment_id");
-
-                    b.Property<long>("CommentId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("comment_id");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar(40)")
-                        .HasColumnName("status");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CommentId");
-
-                    b.ToTable("toxic_comment", (string)null);
-                });
-
             modelBuilder.Entity("Mmc.Data.Model.Core.CourseModel", b =>
                 {
                     b.Property<long>("Id")
@@ -553,7 +531,7 @@ namespace Mmc.Data.Migrations
                             Location = "/Assets/Account/Profiles/SuperAdmin.jpg",
                             Type = "Avatar",
                             UploadedById = 1L,
-                            UploadedDate = new DateTime(2022, 6, 26, 13, 37, 30, 939, DateTimeKind.Local).AddTicks(6993)
+                            UploadedDate = new DateTime(2022, 6, 26, 13, 1, 1, 365, DateTimeKind.Local).AddTicks(736)
                         });
                 });
 
@@ -648,7 +626,7 @@ namespace Mmc.Data.Migrations
                             Id = 1L,
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
-                            Password = "$2a$11$NpbZc7eyoCrU0cVLr2eaNuTWllFomf5gezUFiIDQOZEdQ3YcupPwi",
+                            Password = "$2a$11$XPbMDvfOb..TVr7HaM6/ru4oivPPVDVHcfOkENuv8VGP3YFmPnw4S",
                             PictureId = 1L,
                             UserName = "AshuraNep",
                             UserType = "Superuser"
@@ -798,17 +776,6 @@ namespace Mmc.Data.Migrations
                     b.Navigation("Comment");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Mmc.Data.Model.Blog.ToxicCommentModel", b =>
-                {
-                    b.HasOne("Mmc.Data.Model.Blog.CommentModel", "Comment")
-                        .WithMany()
-                        .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Comment");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Core.CourseModel", b =>

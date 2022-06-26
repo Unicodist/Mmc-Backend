@@ -15,7 +15,7 @@
             <!-- Post categories-->
             <a class="badge bg-secondary text-decoration-none link-light" href="#">@Model.Category</a>
         </header>
-        <i class="article-heart fa-regular fa-heart fa-lg"></i>
+        @await Html.PartialAsync("PartialViews/Blog/HeartIcon",Model.Heart)
     </div>
     <!-- Preview image figure-->
     <figure class="mb-4"><img class="img-fluid rounded" src="~/Assets/Home/Images/mechi5.jpg" alt="..." /></figure>
@@ -37,8 +37,6 @@
     </div>
 </section>
 <script src="~/js/blog-read-comments-fetch-initial.js"></script>
-<script src="~/js/article-heart-button.js"></script>
 <script>
     fetchComments('@Url.Action("GetComments","Blog")','@Model.Guid',1);
-    setArticleHeartListener('@Model.Guid','@Url.Action("Heart","BlogApi")')
 </script>

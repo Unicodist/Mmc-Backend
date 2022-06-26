@@ -7,7 +7,7 @@ namespace Mmc.Data.Configurations.User;
 public class UserConfiguration : IEntityTypeConfiguration<UserModel>
 {
     
-    public static UserModel SuperAdmin = new UserModel
+    public static UserModel SuperAdmin = new()
     {
         Id = 1,
         Name = "Ashish Neupane",

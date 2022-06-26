@@ -27,8 +27,9 @@ public static class DiConfig
         _ = services.AddScoped<IArticleRepository, ArticleRepository>();
         _ = services.AddScoped<IBlogUserRepository, UserRepository>();
         _ = services.AddScoped<ICommentRepository, CommentRepository>();
-        _ = services.AddScoped<IUpvoteRepository, UpvoteRepository>();
+        _ = services.AddScoped<IHeartRepository, HeartRepository>();
         _ = services.AddScoped<IInteractionLogRepository, InteractionLogRepository>();
+        _ = services.AddScoped<ISuspiciousCommentRepository, SuspiciousCommentRepository>();
 
         #endregion
 

@@ -1,0 +1,18 @@
+@model Mechi.Backend.ViewModel.Blog.HeartIconViewModel;
+
+@if (Model.IsLiked)
+{
+    <div>
+        <i class="article-heart article-heart-unliked fa-solid fa-heart fa-lg"></i> <span>@Model.Count</span>
+    </div>
+}
+else
+{
+    <div>
+        <i class="article-heart article-heart-liked fa-solid fa-heart fa-lg"></i> <span>@Model.Count</span>
+    </div>
+}
+<script src="~/js/article-heart-button.js"></script>
+<script>
+  setArticleHeartListener('@Model.Guid','@Url.Action("Heart","HeartApi")')
+</script>
