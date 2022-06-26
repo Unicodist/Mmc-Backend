@@ -21,7 +21,7 @@
                   </div>
                   <div class="form-outline mb-4">
                     @Html.LabelFor(m=>m.Password,new{@class="form-label"})
-                    @Html.TextBoxFor(m=>m.Password,new {@class="form-control"})
+                    @Html.PasswordFor(m=>m.Password,new {@class="form-control"})
                     @Html.ValidationMessageFor(m=>m.Password)
                   </div>
                   @Html.HiddenFor(m=>m.ReturnUrl)

@@ -17,6 +17,7 @@ public class NoticeConfiguration : IEntityTypeConfiguration<NoticeModel>
         _ = builder.Property(a => a.Body).HasColumnName("body").HasColumnType(ColumnTypes.TEXT);
         _ = builder.Property(a => a.Guid).HasColumnName("guid").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(40).HasConversion(new BaseTypeStringConverter<GuidType>());
         _ = builder.Property(a => a.Status).HasColumnName("status").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(40).HasConversion(new EnumConverter<Status>());
+        _ = builder.Property(a => a.Severity).HasColumnName("severity").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(40).HasConversion(new EnumConverter<NoticeSeverity>());
         _ = builder.Property(a => a.Picture).HasColumnName("picture").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(100);
         _ = builder.Property(a => a.Title).HasColumnName("title").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50);
         _ = builder.Property(a => a.PostedOn).HasColumnName("date").HasColumnType(ColumnTypes.DATETIME);

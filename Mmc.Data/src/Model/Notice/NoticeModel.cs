@@ -23,6 +23,7 @@ namespace Mmc.Data.Model.Notice
         public DateTime PostedOn { get; set; }
         public string? Picture { get; set; }
         public Status Status { get; protected set; }
+        public NoticeSeverity Severity { get; set; }
         public long AdminId { get; set; }
         public virtual UserModel Author { get; set; }
         public GuidType Guid { get; set; }

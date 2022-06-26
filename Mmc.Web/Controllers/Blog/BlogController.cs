@@ -25,14 +25,14 @@ public class BlogController : Controller
     public BlogController(IArticleRepository blogRepo, 
         IBlogService blogService,
         ICommentRepository commentRepository, 
-        IBlogUserRepository userRepository, ICommentService commentService, IWebHostEnvironment webHostEnvironment)
+        IBlogUserRepository blogUserRepository, ICommentService commentService, IWebHostEnvironment webHostEnvironment)
     {
         _blogRepo = blogRepo;
         _blogService = blogService;
         _commentRepository = commentRepository;
         _commentService = commentService;
         _webHostEnvironment = webHostEnvironment;
-        UserHelper.UserRepository = userRepository;
+        UserHelper.BlogUserRepository = blogUserRepository;
     }
     public async Task<IActionResult> Index(int? page = 1)
     {

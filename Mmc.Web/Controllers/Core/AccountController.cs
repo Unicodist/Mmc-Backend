@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Mmc.Data.Repository.User;
 using Mmc.User.Dto;
+using Mmc.User.Repository;
 using Mmc.User.Service;
 using Mmc.User.ViewModel;
 
@@ -12,15 +14,18 @@ namespace Mechi.Backend.Controllers.Core;
 public class AccountController : Controller
 {
     private readonly IUserService _userServices;
+    private readonly IUserUserRepository _userRepository;
 
-    public AccountController(IUserService userServices)
+    public AccountController(IUserService userServices, IUserUserRepository userRepository)
     {
         _userServices = userServices;
+        _userRepository = userRepository;
     }
     [Authorize(Roles = "Superuser,Admin")]
-    [Route("[controller]/Profile/{id}")]
-    public IActionResult Index(long id)
+    [Route("[controller]/{username}")]
+    public IActionResult Index(string username)
     {
+        var user = _userRepository.GetByUsername(username);
         return View();
     }
     [Authorize]
@@ -28,12 +33,7 @@ public class AccountController : Controller
     {
         return View();
     }
-    public IActionResult Register()
-    {
-        return View();
-    }
-    [HttpPost]
-    public async Task<IActionResult> Register(UserCreateViewModel model)
+    public async Task<IActionResult> Register(UserCreateViewModel? model)
     {
         if(!ModelState.IsValid)
             return View(model);
@@ -57,7 +57,7 @@ public class AccountController : Controller
             Password = model.Password,
             Username = model.Username
         };
-        var user = _userServices.ValidateUser(userLoginDto);
+        var user = await _userServices.ValidateUser(userLoginDto);
         var claims = new List<Claim>
         {
             new(ClaimTypes.Email,user.Email),

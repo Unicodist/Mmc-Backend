@@ -3,6 +3,7 @@ using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Repository;
 using Mmc.Data.Model.User;
 using Mmc.Notice.Entity.Interface;
+using Mmc.Notice.Exception;
 using Mmc.Notice.Repository;
 using Mmc.User.Entity.Interface;
 using Mmc.User.Enum;
@@ -29,20 +30,9 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IB
         await base.InsertAsync(uModel);
         return uModel;
     }
-    public IUser CreateInstance(string name, string email, string password, string username)
+    public async Task<IUser?> GetByUsername(string username)
     {
-        return new UserModel
-        {
-            Email = email,
-            UserName = username,
-            Password = password,
-            Name = name,
-            UserType = UserType.USER
-        };
-    }
-    public IUser? GetByUsername(string username)
-    {
-        return GetQueryable().SingleOrDefault(x => x.UserName == username);
+        return await GetQueryable().SingleOrDefaultAsync(x => x.UserName == username);
     }
     public async Task<ICollection<IUser>> GetByName(string name)
     {
@@ -53,21 +43,16 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IB
 
     #region Blog
     
-    public async Task<IBlogUser> GetByIdAsync(long id)
-    {
-        return await base.GetByIdAsync(id).ConfigureAwait(false)?? throw new UserNotFoundException();
-    }
-
-    IBlogUser? IBlogUserRepository.GetByUsername(string userName) => (UserModel)GetByUsername(userName);
+    public async Task<IBlogUser> GetByIdAsync(long id) => await base.GetByIdAsync(id).ConfigureAwait(false)?? throw new UserNotFoundException();
+    IBlogUser? IBlogUserRepository.GetByUsername(string userName) => GetQueryable().SingleOrDefault(x=>x.UserName==userName)??throw new Mmc.Blog.Exception.UserNotFoundException();
 
     #endregion
 
     #region Notice
 
-    public async Task<INoticeUser> GetNoticeUserById(long id)
-    {
-        return await base.GetByIdAsync(id).ConfigureAwait(false)?? throw new UserNotFoundException();
-    }
+    public async Task<INoticeUser> GetNoticeUserById(long id) => await base.GetByIdAsync(id).ConfigureAwait(false)?? throw new UserNotFoundException();
+
+    INoticeUser INoticeUserRepository.GetByUsername(string userName) => GetQueryable().SingleOrDefault(x => x.UserName == userName)??throw new PublisherNotFoundException();
 
     #endregion
 }

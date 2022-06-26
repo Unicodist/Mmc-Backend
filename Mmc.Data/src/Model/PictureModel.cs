@@ -1,5 +1,6 @@
-﻿using Mmc.User.Entity.Interface;
-
+﻿using Mmc.Blog.Entity.Interface;
+using Mmc.Data.Model.User;
+using Mmc.User.Entity.Interface;
 using UserPictureType = Mmc.User.Enum.PictureType;
 using BlogPictureType = Mmc.Blog.Enum.PictureType;
 
@@ -12,7 +13,7 @@ using UserPicture = Mmc.User.Entity.Interface.IPicture;
 
 namespace Mmc.Data.Model;
 
-public class PictureModel : IPicture, Mmc.Blog.Entity.Interface.IPicture
+public class PictureModel : UserPicture, BlogPicture
 {
     public PictureModel()
     {
@@ -35,4 +36,8 @@ public class PictureModel : IPicture, Mmc.Blog.Entity.Interface.IPicture
     BlogPictureType BlogPicture.Type => Type;
     public string Location { get; }
     public DateTime UploadedDate { get; }
+    public virtual UserModel UploadedBy { get; set; }
+    public long UploadedById { get; init; }
+    IBlogUser BlogPicture.UploadedBy => UploadedBy;
+    IUser UserPicture.UploadedBy => UploadedBy;
 }

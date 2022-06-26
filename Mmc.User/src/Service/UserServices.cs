@@ -1,4 +1,5 @@
 using Mmc.User.Dto;
+using Mmc.User.Entity;
 using Mmc.User.Entity.Interface;
 using Mmc.User.Repository;
 using Mmc.User.UserException;
@@ -14,9 +15,10 @@ public class UserServices : IUserService
         _userUserRepo = userUserRepo;
     }
 
-    public async Task<IUser> Create(UserCreateDto userCreateDto)
+    public async Task<IUser> Create(UserCreateDto dto)
     {
-        var user = _userUserRepo.CreateInstance(userCreateDto.Name,userCreateDto.Email,userCreateDto.Password, userCreateDto.Username);
+        
+        var user = new Entity.User(dto.Name,dto.Email,dto.Password, dto.Username, new Picture(dto.Picture));
         return await _userUserRepo.InsertAsync(user);
     }
  
@@ -25,14 +27,13 @@ public class UserServices : IUserService
         throw new NotImplementedException();
     }
 
-    public IUser ValidateUser(UserLoginDto userLoginDto)
+    public async Task<IUser> ValidateUser(UserLoginDto userLoginDto)
     {
-        var user = _userUserRepo.GetByUsername(userLoginDto.Username)??throw new UserNotFoundException();
+        var user = await _userUserRepo.GetByUsername(userLoginDto.Username)??throw new UserNotFoundException();
         if (BCrypt.Net.BCrypt.Verify(userLoginDto.Password,user.Password))
         {
             return user;
         }
-
         throw new WrongPasswordException();
     }
 }

@@ -13,9 +13,9 @@ public class NoticeService : INoticeService
         _noticeRepository = noticeRepository;
     }
 
-    public void Create(NoticeCreateDto noticeCreateDto)
+    public void Create(NoticeCreateDto dto)
     {
-        var notice = new Entity.Notice(noticeCreateDto.Title,noticeCreateDto.Body,noticeCreateDto.Picture,noticeCreateDto.Author)
+        var notice = new Entity.Notice(dto.Title,dto.Body,dto.Picture,dto.Severity,dto.Author)
         {
             PostedOn = DateTime.Now
         };
