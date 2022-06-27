@@ -18,6 +18,7 @@ public static class DiConfig
 
         _ = services.AddScoped<ICourseRepository, CourseRepository>();
         _ = services.AddScoped<IFacultyRepository, FacultyRepository>();
+        _ = services.AddScoped<IStudentEnrollmentRepository, StudentEnrollmentRepository>();
 
         #endregion
         

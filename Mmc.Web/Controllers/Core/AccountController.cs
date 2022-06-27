@@ -21,7 +21,6 @@ public class AccountController : Controller
         _userServices = userServices;
         _userRepository = userRepository;
     }
-    [Authorize(Roles = "Superuser,Admin")]
     [Route("[controller]/{username}")]
     public async Task<IActionResult> Index(string username)
     {
@@ -33,13 +32,15 @@ public class AccountController : Controller
     {
         return View();
     }
+
+    [Route("/Register")]
     public async Task<IActionResult> Register(UserCreateViewModel? model)
     {
-        if(!ModelState.IsValid)
+        if (!ModelState.IsValid)
             return View(model);
         var userCreateDto = new UserCreateDto
         {
-            Name = model.FirstName+" "+model.LastName,
+            Name = model.FirstName + " " + model.LastName,
             Email = model.Email,
             Password = model.Password,
             Username = model.Username
@@ -48,6 +49,9 @@ public class AccountController : Controller
 
         return RedirectToAction("Index", "Home");
     }
+
+    [AllowAnonymous]
+    [Route("/Login")]
     public async Task<IActionResult> Login(UserLoginViewModel model)
     {
         if(!ModelState.IsValid)

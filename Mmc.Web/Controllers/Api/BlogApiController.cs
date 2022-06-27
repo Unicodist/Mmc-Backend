@@ -40,19 +40,11 @@ public class BlogApiController : ControllerBase
     [Route("{guid}")]
     public async Task<IActionResult> Get(string guid)
     {
-        try
-        {
-            var blogMaster = (await _articleRepository.GetByGuidAsync(guid));
-            var dto = new BlogPostResponseApiModel(blogMaster.Title, blogMaster.Body, blogMaster.User.Name,
-                blogMaster.PostedDate.ToString(CultureInfo.CurrentCulture),blogMaster.Guid,blogMaster.Thumbnail);
-        
-            return Ok(dto);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+        var blogMaster = (await _articleRepository.GetByGuidAsync(guid));
+        var dto = new BlogPostResponseApiModel(blogMaster.Title, blogMaster.Body, blogMaster.User.Name,
+            blogMaster.PostedDate.ToString(CultureInfo.CurrentCulture),blogMaster.Guid,blogMaster.Thumbnail);
+    
+        return Ok(dto);
     }
     [Authorize]
     [HttpPost]
