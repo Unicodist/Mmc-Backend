@@ -5,7 +5,8 @@ using Serilog;
 using Serilog.Events;
 
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.File("logs/log.txt",LogEventLevel.Information,rollingInterval:RollingInterval.Day)
+    .WriteTo.File("logs/WarningLog.txt",LogEventLevel.Warning,rollingInterval:RollingInterval.Day)
+    .WriteTo.File("logs/ErrorLog.txt",LogEventLevel.Error)
     .CreateLogger();
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog();

@@ -1,4 +1,4 @@
-namespace Mmc.Core.Enums;
+namespace Mmc.Core.Enum;
 
 public class UserType : BaseEnum
 {
@@ -12,7 +12,7 @@ public class UserType : BaseEnum
     public static UserType Mod { get; set; } = new(3,_mod);
     public static UserType User { get; set; } = new(4, _user);
 
-    public UserType(int id, string name) : base(id, name)
+    public UserType(int id, string value) : base(id, value)
     {
         
     }

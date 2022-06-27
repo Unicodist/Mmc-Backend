@@ -40,6 +40,7 @@ public class  AppDbContext : DbContext
 
         _ = modelBuilder.ApplyConfiguration(new CourseConfiguration());
         _ = modelBuilder.ApplyConfiguration(new FacultyConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new StudentEnrollmentDetailConfiguration());
 
         #endregion
         
@@ -51,6 +52,7 @@ public class  AppDbContext : DbContext
         _ = modelBuilder.ApplyConfiguration(new UpvoteConfiguration());
         _ = modelBuilder.ApplyConfiguration(new InteractionLogConfiguration());
         _ = modelBuilder.ApplyConfiguration(new CategorySubscriptionConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new ToxicCommentConfiguration());
 
         #endregion
 

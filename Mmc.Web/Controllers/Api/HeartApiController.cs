@@ -4,25 +4,29 @@ using Microsoft.AspNetCore.Mvc;
 using Mmc.Blog.Dto;
 using Mmc.Blog.Repository;
 using Mmc.Blog.Service.Interface;
+using Mmc.Data.Repository.Blog;
 
 namespace Mechi.Backend.Controllers.Api;
 
-public class LikeApiController : Controller
+public class HeartApiController : Controller
 {
     private readonly IArticleRepository _articleRepository;
     private readonly IBlogService _articleService;
-    private readonly IUpvoteRepository _upvoteRepository;
+    private readonly HeartRepository _heartRepository;
+    private readonly IHeartService _heartService;
 
-    public LikeApiController(IArticleRepository articleRepository, IBlogService articleService, IUpvoteRepository upvoteRepository)
+    public HeartApiController(IArticleRepository articleRepository, IBlogService articleService, HeartRepository heartRepository, IHeartService heartService, IBlogUserRepository userRepository)
     {
         _articleRepository = articleRepository;
         _articleService = articleService;
-        _upvoteRepository = upvoteRepository;
+        _heartRepository = heartRepository;
+        _heartService = heartService;
+        UserHelper.BlogUserRepository = userRepository;
     }
     
     [Authorize]
     [HttpPost]
-    public async Task<IActionResult> SubmitLike(string guid)
+    public async Task<IActionResult> Heart(string guid)
     {
         var user = this.GetCurrentBlogUser();
         var article = await _articleRepository.GetByGuidAsync(guid);
@@ -31,10 +35,10 @@ public class LikeApiController : Controller
             return Problem("Duplicate like","This",500,"The article is already liked");
         }
 
-        var likeDto = new LikeDto(user.Id,article.Id);
-        await _articleService.SubmitUpvote(likeDto);
+        var heartDto = new HeartDto(user.Id,article.Guid);
+        await _heartService.Heart(heartDto);
 
-        var like = await _upvoteRepository.GetByUserIdAndArticleId(user.Id, article.Id);
+        var like = await _heartRepository.GetByUserIdAndArticleId(user.Id, article.Id);
         return Ok(like==null ? new {Liked = true} : new {Liked = false});
     }
 

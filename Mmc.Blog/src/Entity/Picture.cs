@@ -19,4 +19,6 @@ public class Picture : IPicture
     public PictureType Type { get; set; }
     public string Location { get; }
     public DateTime UploadedDate { get; }
+    public IBlogUser UploadedBy { get; }
+    public long UploadedById { get; }
 }

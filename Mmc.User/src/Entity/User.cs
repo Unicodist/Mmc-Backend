@@ -5,6 +5,16 @@ namespace Mmc.User.Entity;
 
 public class User : IUser
 {
+    public User(string name, string email, string password, string userName, IPicture? picture)
+    {
+        Name = name;
+        Email = email;
+        Password = password;
+        UserName = userName;
+        Picture = picture;
+        UserType = UserType.USER;
+    }
+
     public long Id { get; set; }
     public string Name { get; set; }
     public UserType UserType { get; set; }

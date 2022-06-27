@@ -1,6 +1,6 @@
 ﻿using Mmc.Core.BaseType;
 using Mmc.Core.Entity.Interface;
-using Mmc.Core.Enums;
+using Mmc.Core.Enum;
 
 namespace Mmc.Core.Entity;
 

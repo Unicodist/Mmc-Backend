@@ -3,13 +3,13 @@ using Mmc.Data.Model.User;
 
 namespace Mmc.Data.Model.Blog;
 
-public class UpvoteModel : IUpvote
+public class HeartModel : IHeart
 {
-    public UpvoteModel()
+    public HeartModel()
     {
     }
 
-    public UpvoteModel(UserModel user, ArticleModel article)
+    public HeartModel(UserModel user, ArticleModel article)
     {
         User = user;
         Article = article;
@@ -21,6 +21,6 @@ public class UpvoteModel : IUpvote
     public virtual UserModel User { get; }
     public virtual ArticleModel Article { get; }
 
-    IBlogUser IUpvote.User => User;
-    IArticle IUpvote.Article => Article;
+    IBlogUser IHeart.User => User;
+    IArticle IHeart.Article => Article;
 }

@@ -1,4 +1,5 @@
 using Mmc.Notice.Dto;
+using Mmc.Notice.Entity.Interface;
 using Mmc.Notice.Helper;
 using Mmc.Notice.Repository;
 using Mmc.Notice.Service.Interface;
@@ -13,13 +14,13 @@ public class NoticeService : INoticeService
         _noticeRepository = noticeRepository;
     }
 
-    public void Create(NoticeCreateDto noticeCreateDto)
+    public async Task<INotice> Create(NoticeCreateDto dto)
     {
-        var notice = new Entity.Notice(noticeCreateDto.Title,noticeCreateDto.Body,noticeCreateDto.Picture,noticeCreateDto.Author)
+        var notice = new Entity.Notice(dto.Title,dto.Body,dto.Picture,dto.Severity,dto.Author)
         {
             PostedOn = DateTime.Now
         };
-        _noticeRepository.Insert(notice);
+        return await _noticeRepository.Insert(notice);
     }
 
     public void Update(NoticeUpdateDto noticeUpdateDto)

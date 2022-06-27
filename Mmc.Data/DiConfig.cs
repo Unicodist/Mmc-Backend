@@ -18,6 +18,7 @@ public static class DiConfig
 
         _ = services.AddScoped<ICourseRepository, CourseRepository>();
         _ = services.AddScoped<IFacultyRepository, FacultyRepository>();
+        _ = services.AddScoped<IStudentEnrollmentRepository, StudentEnrollmentRepository>();
 
         #endregion
         
@@ -25,10 +26,12 @@ public static class DiConfig
 
         _ = services.AddScoped<ICategoryRepository, CategoryRepository>();
         _ = services.AddScoped<IArticleRepository, ArticleRepository>();
-        _ = services.AddScoped<IBlogUserRepository, UserRepository>();
+        _ = services.AddScoped<IBlogUserRepository, BlogUserRepository>();
         _ = services.AddScoped<ICommentRepository, CommentRepository>();
-        _ = services.AddScoped<IUpvoteRepository, UpvoteRepository>();
+        _ = services.AddScoped<IHeartRepository, HeartRepository>();
+        _ = services.AddScoped<HeartRepository,HeartRepository>();
         _ = services.AddScoped<IInteractionLogRepository, InteractionLogRepository>();
+        _ = services.AddScoped<ISuspiciousCommentRepository, SuspiciousCommentRepository>();
 
         #endregion
 

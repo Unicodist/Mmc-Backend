@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using Mmc.Core.BaseType;
 using Mmc.Core.Entity.Interface;
 using Mmc.Core.Repository;
@@ -41,5 +42,10 @@ public class CourseRepository : BaseRepository<CourseModel>, ICourseRepository
     public Task UpdateAsync(ICourse course)
     {
         return base.Update((CourseModel)course);
+    }
+
+    public async Task<ICollection<ICourse>> FindBy(Expression<Func<ICourse,bool>> predicate)
+    {
+        return await GetQueryable().Where(predicate).ToListAsync();
     }
 }

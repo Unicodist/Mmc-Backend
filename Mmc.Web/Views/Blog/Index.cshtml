@@ -1,21 +1,21 @@
 ﻿@using System.Globalization
 @model Mechi.Backend.ViewModel.Blog.BlogHomeViewModel;
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Blog";
     Layout = "_Blog_Layout";
 }
 
 <!-- Blog entries-->
 <!-- Featured blog post-->
 <div class="card mb-4"> 
-        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
-        <div class="card-body">
-            <div class="small text-muted">@Model.Pinned.DateTime.ToString(CultureInfo.InvariantCulture)</div>
-            <h2 class="card-title">@Model.Pinned.Title</h2>
-            <p class="card-text">@Html.Raw(Model.Pinned.Body)</p>
-            <a class="btn btn-primary" href="@Url.Action("Read","Blog")/@Model.Pinned.Guid">Read more →</a>
-        </div>
+    <a asp-action="Read" asp-route-guid="@Model.Pinned.Guid"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+    <div class="card-body">
+        <div class="small text-muted">@Model.Pinned.DateTime.ToString(CultureInfo.InvariantCulture)</div>
+        <h2 class="card-title">@Model.Pinned.Title</h2>
+        <p class="card-text">@Html.Raw(Model.Pinned.Body)</p>
+        <a class="btn btn-primary" href="@Url.Action("Read","Blog")/@Model.Pinned.Guid">Read more →</a>
     </div>
+</div>
     <!-- Nested row for non-featured blog posts-->
 <div class="row">
     @foreach (var item in Model.Articles)

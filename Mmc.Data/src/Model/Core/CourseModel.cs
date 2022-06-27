@@ -1,12 +1,11 @@
 ﻿using Mmc.Address.Entity.Interface;
-using Mmc.Core.Enums;
 using CoreCourse = Mmc.Core.Entity.Interface.ICourse;
 using NoticeCourse = Mmc.Notice.Entity.Interface.ICourse;
 using CoreFaculty = Mmc.Core.Entity.Interface.IFaculty;
 using NoticeFaculty = Mmc.Notice.Entity.Interface.IFaculty;
 using CoreGuid = Mmc.Core.BaseType.GuidType;
 using NoticeGuid = Mmc.Notice.BaseType.GuidType;
-using CoreStatus = Mmc.Core.Enums.Status;
+using CoreStatus = Mmc.Core.Enum.Status;
 
 namespace Mmc.Data.Model.Core;
 

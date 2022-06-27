@@ -1,0 +1,47 @@
+@model Mechi.Backend.ViewModel.Blog.HeartIconViewModel;
+
+@if (Model.IsLiked)
+{
+    <div>
+        <i class="article-heart article-heart-liked fa-solid fa-heart fa-lg"></i> <span>@Model.Count</span>
+    </div>
+}
+else
+{
+    <div>
+        <i class="article-heart article-heart-unliked fa-solid fa-heart fa-lg"></i> <span>@Model.Count</span>
+    </div>
+}
+<script src="~/js/article-heart-button.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".article-heart-unliked").click(function () {
+            let heartButton = $('.article-heart');
+            heartButton.addClass("article-heart-liked");
+            heartButton.removeClass("article-heart-unliked");
+            
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Heart","HeartApi")',
+                data: {guid:"@Model.Guid"}, // serializes the form's elements.
+                success: function(data)
+                {
+                  Swal.fire(
+                    'Hooray!!!',
+                    data,
+                    'success'
+                  )
+                },
+                error:function(data) {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: data.responseText,
+                    footer: '<a href="">Why do I have this issue?</a>'
+                  });
+                  console.log(data);
+                }
+                });
+        });
+    });
+</script>

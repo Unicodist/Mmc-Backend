@@ -6,11 +6,14 @@ namespace Mmc.Notice.Entity;
 
 public class Notice : INotice
 {
-    public Notice(string title, string? body, string? picture, NoticeUser author)
+    public Notice(string title, string? body, string? picture, NoticeSeverity severity, INoticeUser author)
     {
         Title = title;
+        Body = body;
         Author = author;
         Guid = new GuidType();
+        Status = Status.Active;
+        Severity = severity;
     }
 
     public long Id { get; set; }
@@ -19,9 +22,9 @@ public class Notice : INotice
     public DateTime PostedOn { get; set; }
     public string? Picture { get; set; }
     public Status Status { get; set; }
+    public NoticeSeverity Severity { get; set; }
     public long AdminId { get; set; }
-    public NoticeUser Author { get; set; }
-    INoticeUser INotice.Author => Author;
+    public INoticeUser Author { get; set; }
     public GuidType Guid { get; set; }
     public virtual ICollection<ICourse> Courses { get; set; }
     public void Deactivate()

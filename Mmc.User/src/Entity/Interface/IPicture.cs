@@ -10,4 +10,6 @@ public interface IPicture
     public PictureType Type { get; }
     public string Location { get; }
     public DateTime UploadedDate { get; }
+    IUser UploadedBy { get; }
+    long UploadedById { get; }
 }

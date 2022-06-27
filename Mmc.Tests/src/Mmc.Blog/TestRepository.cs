@@ -31,6 +31,7 @@ public static class TestRepository
     public static readonly Mock<IBlogUserRepository> BlogUserRepositoryMock = new();
     public static readonly Mock<IArticleRepository> ArticleRepositoryMock = new();
     public static readonly Mock<IInteractionLogRepository> InteractionLogRepositoryMock = new();
+    public static readonly Mock<IToxicCommentService> SuspiciousCommentServiceMock = new();
 
     #endregion
 
@@ -65,7 +66,7 @@ public static class TestRepository
         IInteractionLogService =
             new InteractionLogService(InteractionLogRepositoryMock.Object, ArticleRepositoryMock.Object,CommentRepositoryMock.Object);
         CommentService = new CommentService(CommentRepositoryMock.Object, BlogUserRepositoryMock.Object,
-            ArticleRepositoryMock.Object, IInteractionLogService);
+            ArticleRepositoryMock.Object, IInteractionLogService,SuspiciousCommentServiceMock.Object);
 
     }
 }

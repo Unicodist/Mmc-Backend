@@ -14,5 +14,7 @@ public static class BlogDiConfig
         services.AddScoped<ICategoryService,CategoryService>();
         services.AddScoped<ICommentService,CommentService>();
         services.AddScoped<IInteractionLogService,InteractionLogService>();
+        services.AddScoped<IToxicCommentService,ToxicCommentService>();
+        services.AddScoped<IHeartService,HeartService>();
     }
 }

@@ -6,7 +6,7 @@ public interface INoticeRepository
 {
      Task<ICollection<INotice>?> GetAllAsync();
      Task<INotice?> GetByIdAsync(long id);
-     Task Insert(INotice noticeCreateDto);
+     Task<INotice> Insert(INotice entity);
      Task Update(INotice noticeUpdateDto);
      Task<INotice> GetByGuidAsync(string guid);
      IQueryable<INotice> GetQueryable();

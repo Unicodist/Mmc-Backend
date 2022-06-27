@@ -1,6 +1,6 @@
 namespace Mmc.Blog.Entity.Interface;
 
-public interface IUpvote
+public interface IHeart
 {
     long ArticleId { get; }
     long UserId { get; }

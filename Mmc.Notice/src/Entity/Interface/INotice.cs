@@ -11,6 +11,7 @@ namespace Mmc.Notice.Entity.Interface
         DateTime PostedOn { get; }
         string? Picture { get; }
         Status Status { get; }
+        NoticeSeverity Severity { get; }
         long AdminId { get; }
         
         INoticeUser Author { get; }

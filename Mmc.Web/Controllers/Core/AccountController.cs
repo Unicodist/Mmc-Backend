@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Mmc.Data.Repository.User;
 using Mmc.User.Dto;
+using Mmc.User.Repository;
 using Mmc.User.Service;
 using Mmc.User.ViewModel;
 
@@ -12,15 +14,17 @@ namespace Mechi.Backend.Controllers.Core;
 public class AccountController : Controller
 {
     private readonly IUserService _userServices;
+    private readonly IUserUserRepository _userRepository;
 
-    public AccountController(IUserService userServices)
+    public AccountController(IUserService userServices, IUserUserRepository userRepository)
     {
         _userServices = userServices;
+        _userRepository = userRepository;
     }
-    [Authorize(Roles = "Superuser,Admin")]
-    [Route("[controller]/Profile/{id}")]
-    public IActionResult Index(long id)
+    [Route("[controller]/{username}")]
+    public async Task<IActionResult> Index(string username)
     {
+        var user = await _userRepository.GetByUsername(username);
         return View();
     }
     [Authorize]
@@ -28,18 +32,15 @@ public class AccountController : Controller
     {
         return View();
     }
-    public IActionResult Register()
+
+    [Route("/Register")]
+    public async Task<IActionResult> Register(UserCreateViewModel? model)
     {
-        return View();
-    }
-    [HttpPost]
-    public async Task<IActionResult> Register(UserCreateViewModel model)
-    {
-        if(!ModelState.IsValid)
+        if (!ModelState.IsValid)
             return View(model);
         var userCreateDto = new UserCreateDto
         {
-            Name = model.FirstName+" "+model.LastName,
+            Name = model.FirstName + " " + model.LastName,
             Email = model.Email,
             Password = model.Password,
             Username = model.Username
@@ -48,6 +49,9 @@ public class AccountController : Controller
 
         return RedirectToAction("Index", "Home");
     }
+
+    [AllowAnonymous]
+    [Route("/Login")]
     public async Task<IActionResult> Login(UserLoginViewModel model)
     {
         if(!ModelState.IsValid)
@@ -57,7 +61,7 @@ public class AccountController : Controller
             Password = model.Password,
             Username = model.Username
         };
-        var user = _userServices.ValidateUser(userLoginDto);
+        var user = await _userServices.ValidateUser(userLoginDto);
         var claims = new List<Claim>
         {
             new(ClaimTypes.Email,user.Email),

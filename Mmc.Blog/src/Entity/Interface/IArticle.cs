@@ -17,7 +17,7 @@ public interface IArticle
     
     IBlogUser User { get; }
     ICategory? Category { get; }
-    ICollection<IUpvote> Likes { get; }
+    ICollection<IHeart> Likes { get; }
 
     ICollection<IInteractionLog> Interactions
     {

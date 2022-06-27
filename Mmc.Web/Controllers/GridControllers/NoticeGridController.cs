@@ -25,7 +25,6 @@ public class NoticeGridController : ControllerBase
             noticeMasters = noticeMasters.Skip((model.current - 1)*10);
         }
         noticeMasters = noticeMasters.Take(model.rowCount);
-        
         model.total = noticeMasters.Count();
         var result = noticeMasters.Select(x => new NoticeResponseApiModel
         {
@@ -34,7 +33,8 @@ public class NoticeGridController : ControllerBase
             Body = x.Body,
             Date = DateOnly.FromDateTime(x.PostedOn).ToString(),
             Picture = x.Picture
-        });
+        }).ToList();
+        result.Reverse();
         return Task.FromResult<IActionResult>(Ok(model.Fill(result)));
     }
 }

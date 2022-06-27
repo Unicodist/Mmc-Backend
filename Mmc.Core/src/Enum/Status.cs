@@ -1,6 +1,6 @@
-namespace Mmc.Core.Enums;
+namespace Mmc.Core.Enum;
 
-public class Status : Notice.Enum.BaseEnum
+public class Status : BaseEnum
 {
     private const string _active  = "Active";
     private const string _inactive = "Inactive";

@@ -6,6 +6,17 @@ namespace Mmc.Data.Configurations.User;
 
 public class UserConfiguration : IEntityTypeConfiguration<UserModel>
 {
+    
+    public static UserModel SuperAdmin = new()
+    {
+        Id = 1,
+        Name = "Ashish Neupane",
+        Email = "ashishneupane999@gmail.com",
+        Password = BCrypt.Net.BCrypt.HashPassword("ShineBright"),
+        UserType = "Superuser",
+        UserName = "AshuraNep",
+        PictureId = 1
+    };
     public void Configure(EntityTypeBuilder<UserModel> builder)
     {
         builder.ToTable("user");
@@ -20,15 +31,6 @@ public class UserConfiguration : IEntityTypeConfiguration<UserModel>
 
         _ = builder.HasOne(a => a.Picture).WithMany().HasForeignKey(a => a.PictureId);
 
-        builder.HasData(new UserModel
-        {
-            Id = 1,
-            Name = "Ashish Neupane",
-            Email = "ashishneupane999@gmail.com",
-            Password = BCrypt.Net.BCrypt.HashPassword("ShineBright"),
-            UserType = "Superuser",
-            UserName = "AshuraNep",
-            PictureId = 1
-        });
+        builder.HasData(SuperAdmin);
     }
 }

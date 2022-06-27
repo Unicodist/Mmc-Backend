@@ -3,5 +3,5 @@ $(document).ready(function (){
        let thisButton = $('.article-heart');
        thisButton.addClass("fa-solid");
        thisButton.removeClass("fa-regular");
-   }); 
+   });
 });

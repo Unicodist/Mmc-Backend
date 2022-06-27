@@ -1,4 +1,5 @@
-﻿using Mmc.Core.BaseType;
+﻿using System.Linq.Expressions;
+using Mmc.Core.BaseType;
 using Mmc.Core.Entity.Interface;
 
 namespace Mmc.Core.Repository;
@@ -11,4 +12,5 @@ public interface ICourseRepository
     IQueryable<ICourse> GetQueryable();
     Task<ICourse?> GetByGuidAsync(string guid);
     Task UpdateAsync(ICourse course);
+    Task<ICollection<ICourse>> FindBy(Expression<Func<ICourse,bool>> expression);
 }

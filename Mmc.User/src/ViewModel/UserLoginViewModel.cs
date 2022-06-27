@@ -5,8 +5,8 @@ namespace Mmc.User.ViewModel;
 
 public class UserLoginViewModel
 {
-    [DataType(DataType.Password)]
     [DisplayName("Password:")]
+    [MaxLength(50)]
     public string Password { get; set; }
     [DisplayName("Username:")]
     public string Username { get; set; }

@@ -2,10 +2,10 @@ using Mmc.Blog.Enum;
 
 namespace Mmc.Blog.Entity.Interface;
 
-public interface ISuspiciousComment
+public interface IToxicComment
 {
     long Id { get; }
     long CommentId { get; }
-    Status status { get; }
+    ToxicCommentStatus Status { get; }
     IComment Comment { get; }
 }

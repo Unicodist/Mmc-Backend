@@ -3,12 +3,14 @@
 *@
 @using Mechi.Backend.ViewModel.Blog
 @model Mechi.Backend.ViewModel.Blog.ArticleReadViewModel;
+@{
+    ViewData["Title"] = Model.Title;
+}
 <link rel="stylesheet" href="~/css/heart-button.css">
 <article>
     <!-- Post header-->
     <div class="d-flex justify-content-between">
         <header class="mb-4">
-        
             <!-- Post title-->
             <h1 class="fw-bolder mb-1">@Model.Title</h1>
             <!-- Post meta content-->
@@ -16,7 +18,7 @@
             <!-- Post categories-->
             <a class="badge bg-secondary text-decoration-none link-light" href="#">@Model.Category</a>
         </header>
-        <i class="article-heart fa-regular fa-heart fa-lg"></i>
+        @await Html.PartialAsync("PartialViews/Blog/HeartIcon",Model.Heart)
     </div>
     <!-- Preview image figure-->
     <figure class="mb-4"><img class="img-fluid rounded" src="~/Assets/Home/Images/mechi5.jpg" alt="..." /></figure>
@@ -32,8 +34,8 @@
             <!-- Comment form-->
             @await Html.PartialAsync("PartialViews/Blog/CommmentForm",new CommentCreateViewModel {ArticleGuid=Model.Guid})
             <div class="comment-section-container" id="comment-section-container">
+                
             </div>
-            
         </div>
     </div>
 </section>
@@ -41,4 +43,3 @@
 <script>
     fetchComments('@Url.Action("GetComments","Blog")','@Model.Guid',1);
 </script>
-<script src="~/js/article-heart-button.js"></script>

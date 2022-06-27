@@ -1,18 +1,18 @@
 using System.Reflection;
 
-namespace Mmc.Core.Enums;
+namespace Mmc.Core.Enum;
 
 public class BaseEnum : IComparable
 {
-    public BaseEnum(int id, string name)
+    public BaseEnum(int id, string value)
     {
         Id = id;
-        Name = name;
+        Value = value;
     }
 
     protected int Id { get; set; }
-    protected string Name { get; set; }
-    public string ToString() => Name;
+    protected string Value { get; set; }
+    public string ToString() => Value;
     public int CompareTo(object? obj)
     {
         throw new NotImplementedException();
