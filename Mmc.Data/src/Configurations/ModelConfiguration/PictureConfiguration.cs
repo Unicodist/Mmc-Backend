@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Mmc.Data.Configurations.User;
 using Mmc.Data.Model;
 
 namespace Mmc.Data.Configurations.ModelConfiguration;

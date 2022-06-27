@@ -1,4 +1,4 @@
-namespace Mmc.Address.Entity.Interface;
+namespace Mmc.User.Entity.Interface;
 
 public interface ICountry
 {

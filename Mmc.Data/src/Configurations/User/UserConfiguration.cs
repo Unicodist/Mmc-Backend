@@ -21,15 +21,17 @@ public class UserConfiguration : IEntityTypeConfiguration<UserModel>
     {
         builder.ToTable("user");
         builder.HasKey(u => u.Id);
-        builder.Property(u => u.Id).HasColumnName("user_id").HasColumnType("bigint");
+        builder.Property(u => u.Id).HasColumnName("user_id").HasColumnType(ColumnTypes.BIGINT);
         builder.Property(u => u.Name).HasColumnName("name").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50).IsRequired();
         builder.Property(u => u.Email).HasColumnName("email").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50).IsRequired();
         builder.Property(u => u.Password).HasColumnName("password").HasColumnType(ColumnTypes.TEXT).IsRequired();
         builder.Property(u => u.UserType).HasColumnName("user_type").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50);
         builder.Property(u => u.UserName).HasColumnName("user_name").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50).IsRequired();
-        builder.Property(u => u.PictureId).HasColumnName("picture_id").HasColumnType(ColumnTypes.BIGINT).HasMaxLength(50);
+        builder.Property(u => u.PictureId).HasColumnName("picture_id").HasColumnType(ColumnTypes.BIGINT);
+        builder.Property(u => u.PictureId).HasColumnName("organization_id").HasColumnType(ColumnTypes.BIGINT);
 
         _ = builder.HasOne(a => a.Picture).WithMany().HasForeignKey(a => a.PictureId);
+        _ = builder.HasOne(a => a.Organization).WithMany().HasForeignKey(a => a.OrganizationId);
 
         builder.HasData(SuperAdmin);
     }

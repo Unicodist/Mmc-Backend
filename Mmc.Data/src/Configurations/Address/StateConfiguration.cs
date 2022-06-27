@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Mmc.Address.Entity;
 using Mmc.Data.Model.Address;
 
 namespace Mmc.Data.Configurations.Address;

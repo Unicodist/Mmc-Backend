@@ -1,5 +1,3 @@
-using Mmc.User.Entity.Interface;
-
 namespace Mmc.User.Dto;
 
 public class UserCreateDto

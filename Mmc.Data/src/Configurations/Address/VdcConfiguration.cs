@@ -15,7 +15,7 @@ namespace Mmc.Data.Configurations.Address
             _ = builder.Property(a => a.Description).HasColumnName("description").HasColumnType(ColumnTypes.TEXT);
             _ = builder.Property(a => a.StateId).HasColumnName("state_id").HasColumnType(ColumnTypes.BIGINT);
 
-            _ = builder.HasOne(a => a.State).WithMany(s => s.Vdcs).HasForeignKey(a => a.StateId);
+            _ = builder.HasOne(a => a.StateModel).WithMany(s => s.Vdcs).HasForeignKey(a => a.StateId);
         }
     }
 }

@@ -4,7 +4,6 @@ using Mmc.Core.Entity.Interface;
 using Mmc.Core.Exception;
 using Mmc.Core.Repository;
 using Mmc.Core.Service.Interface;
-using Mmc.Notice.Repository;
 using Mmc.User.Repository;
 
 namespace Mmc.Core.Service;

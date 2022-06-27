@@ -8,7 +8,6 @@ using Mmc.Notice.Enum;
 using Mmc.Notice.Exception;
 using Mmc.Notice.Repository;
 using Mmc.Notice.Service.Interface;
-using System.Linq;
 
 namespace Mechi.Backend.Controllers.Notice;
 public class NoticeController : Controller

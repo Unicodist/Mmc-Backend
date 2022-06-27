@@ -1,4 +1,5 @@
 using Mmc.Blog.Entity.Interface;
+using Mmc.Data.Model.Core;
 using Mmc.Notice.Entity.Interface;
 using Mmc.User.Entity.Interface;
 using Mmc.User.Enum;
@@ -32,9 +33,19 @@ public class UserModel: IUser,
     public string Password { get; set; }
     public string UserName { get; set; }
     public virtual PictureModel Picture { get; set; }
+
+    public virtual OrganizationModel Organization { get; set; }
+    IOrganization IUser.Organization => Organization;
+
     IPicture IBlogUser.Picture => Picture;
     Mmc.User.Entity.Interface.IPicture IUser.Picture => Picture;
     public long PictureId { get; set; }
+
+    public long OrganizationId
+    {
+        get;
+        set;
+    }
 
     public void MakeAdmin()
     {

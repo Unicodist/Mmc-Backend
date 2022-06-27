@@ -1,12 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using Mmc.Blog.Entity.Interface;
-using Mmc.Blog.Repository;
 using Mmc.Data.Model.User;
 using Mmc.Notice.Entity.Interface;
 using Mmc.Notice.Exception;
 using Mmc.Notice.Repository;
 using Mmc.User.Entity.Interface;
-using Mmc.User.Enum;
 using Mmc.User.UserException;
 using Mmc.User.Repository;
 

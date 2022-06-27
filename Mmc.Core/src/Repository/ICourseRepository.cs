@@ -1,5 +1,4 @@
 ﻿using System.Linq.Expressions;
-using Mmc.Core.BaseType;
 using Mmc.Core.Entity.Interface;
 
 namespace Mmc.Core.Repository;

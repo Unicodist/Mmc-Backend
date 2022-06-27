@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mmc.Data;
 
@@ -10,9 +11,10 @@ using Mmc.Data;
 namespace Mmc.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220627150725_Added Enrollment")]
+    partial class AddedEnrollment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,7 +59,7 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("country_id");
 
-                    b.Property<string>("Abbreviation")
+                    b.Property<string>("Abr")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("varchar(10)")
@@ -595,7 +597,7 @@ namespace Mmc.Data.Migrations
                             Location = "/Assets/Account/Profiles/SuperAdmin.jpg",
                             Type = "Avatar",
                             UploadedById = 1L,
-                            UploadedDate = new DateTime(2022, 6, 27, 21, 26, 20, 354, DateTimeKind.Local).AddTicks(9473)
+                            UploadedDate = new DateTime(2022, 6, 27, 20, 52, 24, 805, DateTimeKind.Local).AddTicks(183)
                         });
                 });
 
@@ -690,7 +692,7 @@ namespace Mmc.Data.Migrations
                             Id = 1L,
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
-                            Password = "$2a$11$H5vh/2Nfva/28RLrrg3MpehSGPbKBDVU1SojREDqD9K2Y/Kurdlmq",
+                            Password = "$2a$11$w/9lIpzN6gMDihwjZbQ5seJayOmRxPC1dJV1un0DeC3r3f1TpPihW",
                             PictureId = 1L,
                             UserName = "AshuraNep",
                             UserType = "Superuser"
@@ -734,13 +736,13 @@ namespace Mmc.Data.Migrations
 
             modelBuilder.Entity("Mmc.Data.Model.Address.VdcModel", b =>
                 {
-                    b.HasOne("Mmc.Data.Model.Address.StateModel", "StateModel")
+                    b.HasOne("Mmc.Data.Model.Address.StateModel", "State")
                         .WithMany("Vdcs")
                         .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("StateModel");
+                    b.Navigation("State");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Blog.ArticleModel", b =>

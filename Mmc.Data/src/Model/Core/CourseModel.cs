@@ -1,5 +1,4 @@
-﻿using Mmc.Address.Entity.Interface;
-using CoreCourse = Mmc.Core.Entity.Interface.ICourse;
+﻿using CoreCourse = Mmc.Core.Entity.Interface.ICourse;
 using NoticeCourse = Mmc.Notice.Entity.Interface.ICourse;
 using CoreFaculty = Mmc.Core.Entity.Interface.IFaculty;
 using NoticeFaculty = Mmc.Notice.Entity.Interface.IFaculty;

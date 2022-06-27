@@ -1,6 +1,5 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using Mmc.Core.BaseType;
 using Mmc.Core.Entity.Interface;
 using Mmc.Core.Repository;
 using Mmc.Data.Model.Core;

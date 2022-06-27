@@ -1,6 +1,5 @@
 ﻿using Mmc.Blog.Dto;
 using Mmc.Blog.Entity;
-using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Exception;
 using Mmc.Blog.Repository;
 using Mmc.Blog.Service.Interface;

@@ -22,6 +22,9 @@ public class User : IUser
     public string Password { get; set; }
     public string UserName { get; set; }
     public IPicture? Picture { get; set; }
+
+    public IOrganization Organization { get; set; }
+
     public void MakeAdmin()
     {
         UserType = UserType.ADMIN;

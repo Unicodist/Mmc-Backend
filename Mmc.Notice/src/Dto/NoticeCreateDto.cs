@@ -1,4 +1,3 @@
-using Mmc.Notice.Entity;
 using Mmc.Notice.Entity.Interface;
 using Mmc.Notice.Enum;
 

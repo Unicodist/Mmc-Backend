@@ -10,6 +10,7 @@ public interface IUser
     string Password { get; }
     string UserName { get; }
     IPicture? Picture { get; }
+    IOrganization Organization { get; }
 
     void MakeAdmin();
     void MakeUser();
