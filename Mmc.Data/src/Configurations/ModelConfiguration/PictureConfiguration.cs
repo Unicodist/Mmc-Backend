@@ -6,7 +6,7 @@ namespace Mmc.Data.Configurations.ModelConfiguration;
 
 public class PictureConfiguration : IEntityTypeConfiguration<PictureModel>
 {
-    private static readonly PictureModel SuperAdmin = new("GodGuid", "Avatar", "/Assets/Account/Profiles/SuperAdmin.jpg",DateTime.Now){Id=1, UploadedById = 1};
+    private static readonly PictureModel SuperAdmin = new("GodGuid", "Profile", "/Assets/Account/Profiles/SuperAdmin.jpg",DateTime.Now){Id=1, UploadedById = 1};
     
     public void Configure(EntityTypeBuilder<PictureModel> builder)
     {
@@ -19,7 +19,7 @@ public class PictureConfiguration : IEntityTypeConfiguration<PictureModel>
         _ = builder.Property(a => a.Location).HasColumnName("location").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(100);
         _ = builder.Property(a => a.UploadedDate).HasColumnName("uploaded_date").HasColumnType(ColumnTypes.DATETIME);
 
-        _ = builder.HasOne(a => a.UploadedBy).WithMany().HasForeignKey(a => a.UploadedById);
+        _ = builder.HasOne(a => a.UploadedBy).WithMany(a=>a.Pictures).HasForeignKey(a => a.UploadedById);
 
         _ = builder.HasData(SuperAdmin);
     }

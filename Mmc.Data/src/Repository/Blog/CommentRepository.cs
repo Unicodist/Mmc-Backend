@@ -46,6 +46,6 @@ public class CommentRepository : BaseRepository<CommentModel>,ICommentRepository
 
     public Task UpdateAsync(IComment comment)
     {
-        return base.Update((CommentModel)comment);
+        return base.UpdateAsync((CommentModel)comment);
     }
 }

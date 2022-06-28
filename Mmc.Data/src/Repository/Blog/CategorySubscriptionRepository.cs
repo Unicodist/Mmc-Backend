@@ -24,6 +24,6 @@ public class CategorySubscriptionRepository :BaseRepository<CategorySubscription
 
     public Task UpdateAsync(ICategorySubscription cs)
     {
-        return base.Update((CategorySubscriptionModel) cs);
+        return base.UpdateAsync((CategorySubscriptionModel) cs);
     }
 }

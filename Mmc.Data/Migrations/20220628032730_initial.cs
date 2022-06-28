@@ -183,41 +183,24 @@ namespace Mmc.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "OrganizationModel",
+                name: "organization",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    organization_id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
+                    name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Subtitle = table.Column<string>(type: "longtext", nullable: false)
+                    subtitle = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    StateId = table.Column<long>(type: "bigint", nullable: false),
-                    StateModelId = table.Column<long>(type: "bigint", nullable: false),
-                    CountryId = table.Column<long>(type: "bigint", nullable: false),
-                    CountryModelId = table.Column<long>(type: "bigint", nullable: false),
-                    VdcModelId = table.Column<long>(type: "bigint", nullable: false),
-                    Ward = table.Column<int>(type: "int", nullable: false),
-                    VdcId = table.Column<long>(type: "bigint", nullable: false)
+                    ward = table.Column<int>(type: "int", nullable: false),
+                    vdc_id = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrganizationModel", x => x.Id);
+                    table.PrimaryKey("PK_organization", x => x.organization_id);
                     table.ForeignKey(
-                        name: "FK_OrganizationModel_country_CountryModelId",
-                        column: x => x.CountryModelId,
-                        principalTable: "country",
-                        principalColumn: "country_id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_OrganizationModel_state_StateModelId",
-                        column: x => x.StateModelId,
-                        principalTable: "state",
-                        principalColumn: "state_id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_OrganizationModel_vdc_VdcModelId",
-                        column: x => x.VdcModelId,
+                        name: "FK_organization_vdc_vdc_id",
+                        column: x => x.vdc_id,
                         principalTable: "vdc",
                         principalColumn: "vdc_id",
                         onDelete: ReferentialAction.Cascade);
@@ -246,11 +229,11 @@ namespace Mmc.Data.Migrations
                 {
                     table.PrimaryKey("PK_user", x => x.user_id);
                     table.ForeignKey(
-                        name: "FK_user_OrganizationModel_organization_id",
+                        name: "FK_user_organization_organization_id",
                         column: x => x.organization_id,
-                        principalTable: "OrganizationModel",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalTable: "organization",
+                        principalColumn: "organization_id",
+                        onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -576,16 +559,6 @@ namespace Mmc.Data.Migrations
                 values: new object[] { 1L, "Np", null, "Nepal", "977" });
 
             migrationBuilder.InsertData(
-                table: "user",
-                columns: new[] { "user_id", "email", "name", "organization_id", "password", "user_name", "user_type" },
-                values: new object[] { 1L, "ashishneupane999@gmail.com", "Ashish Neupane", 1L, "$2a$11$MbpjtGLcAHdcbvT.9uF2V.LH4pGJs6.Vt5dEhBPMQ54ac1D6h4c7C", "AshuraNep", "Superuser" });
-
-            migrationBuilder.InsertData(
-                table: "images",
-                columns: new[] { "picture_id", "guid", "IsProfilePicture", "location", "type", "user_id", "uploaded_date", "UserModelId" },
-                values: new object[] { 1L, "GodGuid", false, "/Assets/Account/Profiles/SuperAdmin.jpg", "Avatar", 1L, new DateTime(2022, 6, 28, 8, 49, 47, 226, DateTimeKind.Local).AddTicks(3741), null });
-
-            migrationBuilder.InsertData(
                 table: "state",
                 columns: new[] { "state_id", "country_id", "description", "name" },
                 values: new object[] { 1L, 1L, "Eastern most province", "Province 1" });
@@ -594,6 +567,21 @@ namespace Mmc.Data.Migrations
                 table: "vdc",
                 columns: new[] { "vdc_id", "description", "name", "state_id" },
                 values: new object[] { 1L, "Near Mechi River", "Bhdrapur", 1L });
+
+            migrationBuilder.InsertData(
+                table: "organization",
+                columns: new[] { "organization_id", "name", "subtitle", "vdc_id", "ward" },
+                values: new object[] { 1L, "Mechi Multiple Campus", "Bhadrapur", 1L, 5 });
+
+            migrationBuilder.InsertData(
+                table: "user",
+                columns: new[] { "user_id", "email", "name", "organization_id", "password", "user_name", "user_type" },
+                values: new object[] { 1L, "ashishneupane999@gmail.com", "Ashish Neupane", 1L, "$2a$11$3s1GIt2NsybyACjZFzvWd.nC42doIlThtc3cMvbWuhNA7jOWMw92G", "AshuraNep", "Superuser" });
+
+            migrationBuilder.InsertData(
+                table: "images",
+                columns: new[] { "picture_id", "guid", "IsProfilePicture", "location", "type", "user_id", "uploaded_date", "UserModelId" },
+                values: new object[] { 1L, "GodGuid", false, "/Assets/Account/Profiles/SuperAdmin.jpg", "Avatar", 1L, new DateTime(2022, 6, 28, 9, 12, 29, 214, DateTimeKind.Local).AddTicks(5563), null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_blog_posts_admin_id",
@@ -666,19 +654,9 @@ namespace Mmc.Data.Migrations
                 column: "user_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrganizationModel_CountryModelId",
-                table: "OrganizationModel",
-                column: "CountryModelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrganizationModel_StateModelId",
-                table: "OrganizationModel",
-                column: "StateModelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrganizationModel_VdcModelId",
-                table: "OrganizationModel",
-                column: "VdcModelId");
+                name: "IX_organization_vdc_id",
+                table: "organization",
+                column: "vdc_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_state_country_id",
@@ -767,7 +745,7 @@ namespace Mmc.Data.Migrations
                 name: "user");
 
             migrationBuilder.DropTable(
-                name: "OrganizationModel");
+                name: "organization");
 
             migrationBuilder.DropTable(
                 name: "vdc");

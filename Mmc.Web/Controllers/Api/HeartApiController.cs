@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Blog.Dto;
+using Mmc.Blog.Exception;
 using Mmc.Blog.Repository;
 using Mmc.Blog.Service.Interface;
 using Mmc.Data.Repository.Blog;
@@ -39,7 +40,22 @@ public class HeartApiController : Controller
         await _heartService.Heart(heartDto);
 
         var like = await _heartRepository.GetByUserIdAndArticleId(user.Id, article.Id);
-        return Ok(like==null ? new {Liked = true} : new {Liked = false});
+        var heartCount = await _heartRepository.Count();
+        return like ? Ok(new {HeartCount = heartCount}) : Problem();
+    }
+    [Authorize]
+    [HttpPost]
+    public async Task<IActionResult> UnHeart(string guid)
+    {
+        var user = this.GetCurrentBlogUser();
+        var article = await _articleRepository.GetByGuidAsync(guid)??throw new ArticleNotFoundException();
+
+        var heartDto = new HeartDto(user.Id,article.Guid);
+        await _heartService.UnHeart(heartDto);
+
+        var like = await _heartRepository.GetByUserIdAndArticleId(user.Id, article.Id);
+        var heartCount = await _heartRepository.Count();
+        return !like ? Ok(new {HeartCount = heartCount}) : Problem();
     }
 
     public async Task<IActionResult> RemoveLike(string guid)

@@ -11,8 +11,8 @@ using Mmc.Data;
 namespace Mmc.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220628030615_Ondelete restrict user organization")]
-    partial class Ondeleterestrictuserorganization
+    [Migration("20220628034218_Changed Picture Configuration")]
+    partial class ChangedPictureConfiguration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -484,46 +484,44 @@ namespace Mmc.Data.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CountryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CountryModelId")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("organization_id");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<long>("StateId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("StateModelId")
-                        .HasColumnType("bigint");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("name");
 
                     b.Property<string>("Subtitle")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("subtitle");
 
                     b.Property<long>("VdcId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("VdcModelId")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("vdc_id");
 
                     b.Property<int>("Ward")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ward");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CountryModelId");
+                    b.HasIndex("VdcId");
 
-                    b.HasIndex("StateModelId");
+                    b.ToTable("organization", (string)null);
 
-                    b.HasIndex("VdcModelId");
-
-                    b.ToTable("OrganizationModel");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Name = "Mechi Multiple Campus",
+                            Subtitle = "Bhadrapur",
+                            VdcId = 1L,
+                            Ward = 5
+                        });
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Core.StudentEnrollmentModel", b =>
@@ -636,9 +634,6 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("guid");
 
-                    b.Property<bool>("IsProfilePicture")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -659,14 +654,9 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("uploaded_date");
 
-                    b.Property<long?>("UserModelId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
                     b.HasIndex("UploadedById");
-
-                    b.HasIndex("UserModelId");
 
                     b.ToTable("images", (string)null);
 
@@ -675,11 +665,10 @@ namespace Mmc.Data.Migrations
                         {
                             Id = 1L,
                             Guid = "GodGuid",
-                            IsProfilePicture = false,
                             Location = "/Assets/Account/Profiles/SuperAdmin.jpg",
-                            Type = "Avatar",
+                            Type = "Profile",
                             UploadedById = 1L,
-                            UploadedDate = new DateTime(2022, 6, 28, 8, 51, 14, 29, DateTimeKind.Local).AddTicks(8173)
+                            UploadedDate = new DateTime(2022, 6, 28, 9, 27, 17, 361, DateTimeKind.Local).AddTicks(7643)
                         });
                 });
 
@@ -774,7 +763,7 @@ namespace Mmc.Data.Migrations
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
                             OrganizationId = 1L,
-                            Password = "$2a$11$SxaLWe2PKgZntTzzQ5rljexTfpEHexJZ.Je0wkwnKk/3WXln/pyOS",
+                            Password = "$2a$11$iHervb9/1Fs5AQLY6j2TgOQ4fgEW/hRDD7jNbDMtwa49kjYO57ewe",
                             UserName = "AshuraNep",
                             UserType = "Superuser"
                         });
@@ -949,27 +938,11 @@ namespace Mmc.Data.Migrations
 
             modelBuilder.Entity("Mmc.Data.Model.Core.OrganizationModel", b =>
                 {
-                    b.HasOne("Mmc.Data.Model.Address.CountryModel", "CountryModel")
-                        .WithMany()
-                        .HasForeignKey("CountryModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Mmc.Data.Model.Address.StateModel", "StateModel")
-                        .WithMany()
-                        .HasForeignKey("StateModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Mmc.Data.Model.Address.VdcModel", "VdcModel")
                         .WithMany()
-                        .HasForeignKey("VdcModelId")
+                        .HasForeignKey("VdcId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("CountryModel");
-
-                    b.Navigation("StateModel");
 
                     b.Navigation("VdcModel");
                 });
@@ -1007,14 +980,10 @@ namespace Mmc.Data.Migrations
             modelBuilder.Entity("Mmc.Data.Model.PictureModel", b =>
                 {
                     b.HasOne("Mmc.Data.Model.User.UserModel", "UploadedBy")
-                        .WithMany()
+                        .WithMany("Pictures")
                         .HasForeignKey("UploadedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Mmc.Data.Model.User.UserModel", null)
-                        .WithMany("Pictures")
-                        .HasForeignKey("UserModelId");
 
                     b.Navigation("UploadedBy");
                 });

@@ -1,5 +1,6 @@
 ﻿using Mmc.Blog.Dto;
 using Mmc.Blog.Entity;
+using Mmc.Blog.Entity.Interface;
 using Mmc.Blog.Exception;
 using Mmc.Blog.Repository;
 using Mmc.Blog.Service.Interface;
@@ -27,8 +28,16 @@ public class HeartService : IHeartService
         await _heartRepository.InsertAsync(heart).ConfigureAwait(false);
     }
 
-    public Task UnHeart(HeartDto heartDto)
+    public async Task UnHeart(HeartDto heartDto)
     {
-        throw new NotImplementedException();
+        var article = await _articleRepository.GetByGuidAsync(heartDto.ArticleGuid) ?? throw new ArticleNotFoundException();
+        var user = await _blogUserRepository.GetByIdAsync(heartDto.UserId) ?? throw new UserNotFoundException();
+        IHeart? heart = (await _heartRepository.GetAllAsync()).SingleOrDefault(x =>
+            x.ArticleId == user.Id && x.ArticleId == article.Id);
+
+        if (heart != null)
+        {
+            _heartRepository.Remove(heart);
+        }
     }
 }

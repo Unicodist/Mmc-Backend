@@ -40,7 +40,7 @@ public class CourseRepository : BaseRepository<CourseModel>, ICourseRepository
 
     public Task UpdateAsync(ICourse course)
     {
-        return base.Update((CourseModel)course);
+        return base.UpdateAsync((CourseModel)course);
     }
 
     public async Task<ICollection<ICourse>> FindBy(Expression<Func<ICourse,bool>> predicate)

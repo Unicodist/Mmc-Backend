@@ -34,7 +34,7 @@ public class NoticeRepository : BaseRepository<NoticeModel>, INoticeRepository
 
     public Task Update(INotice noticeUpdateDto)
     {
-        return base.Update((NoticeModel)noticeUpdateDto);
+        return base.UpdateAsync((NoticeModel)noticeUpdateDto);
     }
 
     public async Task<INotice> GetByGuidAsync(string guid)

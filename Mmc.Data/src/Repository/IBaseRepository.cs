@@ -12,7 +12,7 @@ public interface IBaseRepository<T> where T : class
 
      Task InsertAsync(T t);
 
-    Task Update(T t);
+    Task UpdateAsync(T t);
         
      void Delete(T entity);
         

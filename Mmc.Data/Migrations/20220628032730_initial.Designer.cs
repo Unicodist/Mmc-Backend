@@ -11,7 +11,7 @@ using Mmc.Data;
 namespace Mmc.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220628030448_initial")]
+    [Migration("20220628032730_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -484,46 +484,44 @@ namespace Mmc.Data.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CountryId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CountryModelId")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("organization_id");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<long>("StateId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("StateModelId")
-                        .HasColumnType("bigint");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("name");
 
                     b.Property<string>("Subtitle")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("subtitle");
 
                     b.Property<long>("VdcId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("VdcModelId")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("vdc_id");
 
                     b.Property<int>("Ward")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ward");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CountryModelId");
+                    b.HasIndex("VdcId");
 
-                    b.HasIndex("StateModelId");
+                    b.ToTable("organization", (string)null);
 
-                    b.HasIndex("VdcModelId");
-
-                    b.ToTable("OrganizationModel");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Name = "Mechi Multiple Campus",
+                            Subtitle = "Bhadrapur",
+                            VdcId = 1L,
+                            Ward = 5
+                        });
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Core.StudentEnrollmentModel", b =>
@@ -679,7 +677,7 @@ namespace Mmc.Data.Migrations
                             Location = "/Assets/Account/Profiles/SuperAdmin.jpg",
                             Type = "Avatar",
                             UploadedById = 1L,
-                            UploadedDate = new DateTime(2022, 6, 28, 8, 49, 47, 226, DateTimeKind.Local).AddTicks(3741)
+                            UploadedDate = new DateTime(2022, 6, 28, 9, 12, 29, 214, DateTimeKind.Local).AddTicks(5563)
                         });
                 });
 
@@ -774,7 +772,7 @@ namespace Mmc.Data.Migrations
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
                             OrganizationId = 1L,
-                            Password = "$2a$11$MbpjtGLcAHdcbvT.9uF2V.LH4pGJs6.Vt5dEhBPMQ54ac1D6h4c7C",
+                            Password = "$2a$11$3s1GIt2NsybyACjZFzvWd.nC42doIlThtc3cMvbWuhNA7jOWMw92G",
                             UserName = "AshuraNep",
                             UserType = "Superuser"
                         });
@@ -949,27 +947,11 @@ namespace Mmc.Data.Migrations
 
             modelBuilder.Entity("Mmc.Data.Model.Core.OrganizationModel", b =>
                 {
-                    b.HasOne("Mmc.Data.Model.Address.CountryModel", "CountryModel")
-                        .WithMany()
-                        .HasForeignKey("CountryModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Mmc.Data.Model.Address.StateModel", "StateModel")
-                        .WithMany()
-                        .HasForeignKey("StateModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Mmc.Data.Model.Address.VdcModel", "VdcModel")
                         .WithMany()
-                        .HasForeignKey("VdcModelId")
+                        .HasForeignKey("VdcId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("CountryModel");
-
-                    b.Navigation("StateModel");
 
                     b.Navigation("VdcModel");
                 });
@@ -1043,7 +1025,7 @@ namespace Mmc.Data.Migrations
                     b.HasOne("Mmc.Data.Model.Core.OrganizationModel", "Organization")
                         .WithMany()
                         .HasForeignKey("OrganizationId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Organization");

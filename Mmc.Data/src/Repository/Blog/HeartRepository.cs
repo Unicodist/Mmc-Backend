@@ -17,7 +17,7 @@ public class HeartRepository : BaseRepository<HeartModel>,IHeartRepository
         return base.InsertAsync(model);
     }
 
-    public new async Task<ICollection<IHeart>?> GetAllAsync()
+    public new async Task<ICollection<IHeart>> GetAllAsync()
     {
         return (await base.GetAllAsync().ConfigureAwait(false)).Cast<IHeart>().ToList();
     }
@@ -40,5 +40,10 @@ public class HeartRepository : BaseRepository<HeartModel>,IHeartRepository
     public Task<int> GetHeartCountByArticleId(long articleId)
     {
         return GetQueryable().CountAsync(x => x.ArticleId == articleId);
+    }
+
+    public void Remove(IHeart heart)
+    {
+        base.Delete((HeartModel)heart);
     }
 }

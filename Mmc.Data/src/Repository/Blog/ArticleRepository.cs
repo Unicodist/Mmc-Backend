@@ -34,6 +34,6 @@ public class ArticleRepository : BaseRepository<ArticleModel>, IArticleRepositor
     }
     public Task UpdateAsync(IArticle blog)
     {
-        return base.Update((ArticleModel)blog);
+        return base.UpdateAsync((ArticleModel)blog);
     }
 }

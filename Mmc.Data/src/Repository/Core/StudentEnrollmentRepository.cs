@@ -39,7 +39,7 @@ public class StudentEnrollmentRepository : BaseRepository<StudentEnrollmentModel
 
     public Task UpdateAsync(IStudentEnrollment enrollment)
     {
-        return base.Update((StudentEnrollmentModel)enrollment);
+        return base.UpdateAsync((StudentEnrollmentModel)enrollment);
     }
 
     public async Task<ICollection<IStudentEnrollment>> FindBy(Expression<Func<IStudentEnrollment, bool>> expression)
