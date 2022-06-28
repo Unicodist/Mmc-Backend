@@ -5,14 +5,15 @@ namespace Mmc.User.Entity;
 
 public class User : IUser
 {
-    public User(string name, string email, string password, string userName, IPicture picture)
+    public User(string name, string email, string password, string userName,
+        IOrganization organization)
     {
         Name = name;
         Email = email;
         Password = password;
         UserName = userName;
         UserType = UserType.USER;
-        Pictures.Add(picture);
+        Organization = organization;
     }
 
     public long Id { get; set; }
@@ -21,7 +22,8 @@ public class User : IUser
     public string Email { get; set; }
     public string Password { get; set; }
     public string UserName { get; set; }
-    public ICollection<IPicture>? Pictures { get; set; } = new List<IPicture>();
+    public long? PictureId { get; }
+    public IPicture Picture { get; }
 
     public IOrganization Organization { get; set; }
 
@@ -35,7 +37,8 @@ public class User : IUser
         UserType = UserType.USER;
     }
 
-    public void Update(string dtoName, string dtoEmail, IPicture picture, string dtoPassword, string dtoUsername)
+    public void Update(string dtoName, string dtoEmail, IPicture picture, string dtoPassword, string dtoUsername,
+        IOrganization organization)
     {
         throw new NotImplementedException();
     }

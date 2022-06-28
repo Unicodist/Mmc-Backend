@@ -15,7 +15,7 @@ public static class Startup
         services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
         .AddCookie(option =>
         {
-            option.LoginPath = "/Account/Login/";
+            option.LoginPath = "/Login/";
             option.AccessDeniedPath = "/Account/Unauthorized/";
         });
         

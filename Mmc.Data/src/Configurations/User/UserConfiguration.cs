@@ -15,13 +15,15 @@ public class UserConfiguration : IEntityTypeConfiguration<UserModel>
         Email = "ashishneupane999@gmail.com",
         Password = BCrypt.Net.BCrypt.HashPassword("ShineBright"),
         UserType = "Superuser",
-        UserName = "AshuraNep"
+        UserName = "AshuraNep",
+        PictureId = 1
     };
     public void Configure(EntityTypeBuilder<UserModel> builder)
     {
         builder.ToTable("user");
         builder.HasKey(u => u.Id);
         builder.Property(u => u.Id).HasColumnName("user_id").HasColumnType(ColumnTypes.BIGINT);
+        builder.Property(u => u.PictureId).HasColumnName("picture_id").HasColumnType(ColumnTypes.BIGINT);
         builder.Property(u => u.Name).HasColumnName("name").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50).IsRequired();
         builder.Property(u => u.Email).HasColumnName("email").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50).IsRequired();
         builder.Property(u => u.Password).HasColumnName("password").HasColumnType(ColumnTypes.TEXT).IsRequired();
@@ -29,7 +31,7 @@ public class UserConfiguration : IEntityTypeConfiguration<UserModel>
         builder.Property(u => u.UserName).HasColumnName("user_name").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(50).IsRequired();
         builder.Property(u => u.OrganizationId).HasColumnName("organization_id").HasColumnType(ColumnTypes.BIGINT);
 
-        _ = builder.HasMany(a => a.Pictures).WithOne(a=>a.UploadedBy).HasForeignKey(a=>a.UploadedById);
+        _ = builder.HasOne(a => a.Picture).WithMany().HasForeignKey(a=>a.PictureId);
         _ = builder.HasOne(a => a.Organization).WithMany().HasForeignKey(a => a.OrganizationId).OnDelete(DeleteBehavior.Restrict);
 
         builder.HasData(SuperAdmin);

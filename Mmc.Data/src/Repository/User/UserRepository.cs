@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Mmc.Data.Model;
+using Mmc.Data.Model.Core;
 using Mmc.Data.Model.User;
 using Mmc.Notice.Entity.Interface;
 using Mmc.Notice.Exception;
@@ -24,7 +25,7 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IN
     }
     public async Task<IUser> InsertAsync(IUser user)
     {
-        var uModel = new UserModel(user.Name, user.UserType, user.Email, user.Password, user.UserName, (PictureModel)(user.Pictures.First()));
+        var uModel = new UserModel(user.Name, user.UserType, user.Email, user.Password, user.UserName, (OrganizationModel)user.Organization);
         await base.InsertAsync(uModel);
         return uModel;
     }

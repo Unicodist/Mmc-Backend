@@ -67,7 +67,8 @@ public class BlogController : Controller
             Category = blog.Category?.Name,
             Date = blog.PostedDate.ToString(CultureInfo.InvariantCulture),
             Guid = blog.Guid.ToString(),
-            Heart = heartModel
+            Heart = heartModel,
+            Thumbnail = blog.Thumbnail
         };
         if (!User.Identity!.IsAuthenticated)
         {
@@ -83,11 +84,11 @@ public class BlogController : Controller
     {
         return View();
     }
+    [HttpPost]
     public async Task<IActionResult> Create([FromForm]ArticleCreateViewModel model)
     {
         var user = this.GetCurrentBlogUser();
         var filePath = await FileHandler.UploadFile(model.Thumbnail);
-        
         var articleDto = new ArticleCreateDto(model.Title, model.CkEditorBody, user.Id, model.CategoryGuid,filePath);
         var guid = (await _blogService.Create(articleDto)).Guid;
         return Ok(new{Guid=guid.ToString(),Message="Article published successfully"});
@@ -118,7 +119,7 @@ public class BlogController : Controller
                 Body = x.Body,
                 Guid = x.Guid.ToString(),
                 Name = x.User.UserName,
-                Picture = Path.Combine(x.User.GetProfilePicturePath()),
+                Picture = Path.Combine(x.User.Picture.Location),
                 SelfComment = article.User.Id == x.Id
             })
         };
@@ -137,7 +138,7 @@ public class BlogController : Controller
             Body = comment.Body,
             SelfComment = user.Id == comment.UserId,
             Name = user.Name,
-            Picture = user.GetProfilePicturePath()
+            Picture = user.Picture.Location
         };
         return PartialView("PartialViews/Blog/SingleCommentView", model);
     }

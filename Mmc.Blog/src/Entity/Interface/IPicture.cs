@@ -10,7 +10,4 @@ public interface IPicture
     public PictureType Type { get; }
     public string Location { get; }
     public DateTime UploadedDate { get; }
-    IBlogUser UploadedBy { get; }
-    long UploadedById { get; }
-    bool IsProfilePicture { get; }
 }

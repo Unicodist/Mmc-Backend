@@ -21,7 +21,7 @@
         @await Html.PartialAsync("PartialViews/Blog/HeartIcon",Model.Heart)
     </div>
     <!-- Preview image figure-->
-    <figure class="mb-4"><img class="img-fluid rounded" src="~/Assets/Home/Images/mechi5.jpg" alt="..." /></figure>
+    <figure class="mb-4"><img class="img-fluid rounded" src="@Model.Thumbnail" alt="..." /></figure>
     <!-- Post content-->
     <section class="mb-5 fs-5">
         @Html.Raw(Model.Body)

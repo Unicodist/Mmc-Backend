@@ -9,6 +9,7 @@ using Mmc.Data.Repository.Blog;
 
 namespace Mechi.Backend.Controllers.Api;
 
+[Route("api/heart")]
 public class HeartApiController : Controller
 {
     private readonly IArticleRepository _articleRepository;
@@ -27,6 +28,7 @@ public class HeartApiController : Controller
     
     [Authorize]
     [HttpPost]
+    [Route("/heart")]
     public async Task<IActionResult> Heart(string guid)
     {
         var user = this.GetCurrentBlogUser();
@@ -38,13 +40,14 @@ public class HeartApiController : Controller
 
         var heartDto = new HeartDto(user.Id,article.Guid);
         await _heartService.Heart(heartDto);
+        
+        var heartCount = await _heartRepository.Count(guid);
 
-        var like = await _heartRepository.GetByUserIdAndArticleId(user.Id, article.Id);
-        var heartCount = await _heartRepository.Count();
-        return like ? Ok(new {HeartCount = heartCount}) : Problem();
+        return Ok(new {HeartCount = heartCount});
     }
     [Authorize]
     [HttpPost]
+    [Route("/unheart")]
     public async Task<IActionResult> UnHeart(string guid)
     {
         var user = this.GetCurrentBlogUser();
@@ -54,14 +57,7 @@ public class HeartApiController : Controller
         await _heartService.UnHeart(heartDto);
 
         var like = await _heartRepository.GetByUserIdAndArticleId(user.Id, article.Id);
-        var heartCount = await _heartRepository.Count();
-        return !like ? Ok(new {HeartCount = heartCount}) : Problem();
-    }
-
-    public async Task<IActionResult> RemoveLike(string guid)
-    {
-        var user = this.GetCurrentBlogUser();
-        var article = await _articleRepository.GetByGuidAsync(guid);
-        return Ok();
+        var heartCount = await _heartRepository.Count(guid);
+        return Ok(new {HeartCount = heartCount});
     }
 }

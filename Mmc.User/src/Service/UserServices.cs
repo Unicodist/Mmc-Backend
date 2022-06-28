@@ -23,7 +23,9 @@ public class UserServices : IUserService
         var pictures = await _pictureRepo.GetAllAsync();
         var randomNumber = new Random(0).NextInt64(pictures.Count-1);
         var picture = (await _pictureRepo.GetAllAsync()).Skip((int)randomNumber).First();
-        var user = new Entity.User(dto.Name,dto.Email,dto.Password, dto.Username, picture);
+        var organization = await _campusRepository.GetByGuidAsync(dto.CampusGuid)??throw new CampusNotFoundException();
+        var password = BCrypt.Net.BCrypt.HashPassword(dto.Password);
+        var user = new Entity.User(dto.Name,dto.Email,password, dto.Username,organization);
         return await _userUserRepo.InsertAsync(user);
     }
  
@@ -32,7 +34,7 @@ public class UserServices : IUserService
         var user = await _userUserRepo.GetUserUserById(dto.Id);
         var picture = await _pictureRepo.GetByGuidAsync(dto.Picture);
         var college = await _campusRepository.GetByGuidAsync(dto.CampusGuid);
-        user.Update(dto.Name, dto.Email, picture, dto.Password, dto.Username);
+        user.Update(dto.Name, dto.Email, picture, dto.Password, dto.Username,college);
         await _userUserRepo.UpdateAsync(user);
     }
 

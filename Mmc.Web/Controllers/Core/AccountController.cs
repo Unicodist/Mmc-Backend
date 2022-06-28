@@ -1,8 +1,11 @@
 using System.Security.Claims;
+using Mechi.Backend.Helper;
+using Mechi.Backend.ViewModel.User;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Mmc.Blog.Repository;
 using Mmc.User.Dto;
 using Mmc.User.Repository;
 using Mmc.User.Service;
@@ -14,22 +17,45 @@ public class AccountController : Controller
 {
     private readonly IUserService _userServices;
     private readonly IUserUserRepository _userRepository;
+    private readonly IArticleRepository _articleRepository;
+    private readonly ICommentRepository _commentRepository;
 
-    public AccountController(IUserService userServices, IUserUserRepository userRepository)
+    public AccountController(IUserService userServices, IUserUserRepository userRepository, IBlogUserRepository blogUserRepository, IArticleRepository articleRepository, ICommentRepository commentRepository)
     {
         _userServices = userServices;
         _userRepository = userRepository;
+        _articleRepository = articleRepository;
+        _commentRepository = commentRepository;
+        UserHelper.BlogUserRepository = blogUserRepository;
     }
-    [Route("[controller]/{username}")]
+    [Route("/Profile/{username}")]
+    [AllowAnonymous]
     public async Task<IActionResult> Index(string username)
     {
         var user = await _userRepository.GetByUsername(username);
-        return View();
+        var thisUser = this.GetCurrentBlogUser();
+        var articleCount = _articleRepository.GetQueryable().Count(x => x.UserId == user.Id);
+        var commentCount = _commentRepository.GetQueryable().Count(x => x.UserId == user.Id);
+        var model = new UserViewModel()
+        {
+            Name = user.Name,
+            UserName = user.UserName,
+            UserType = user.UserType.ToString(),
+            Email = user.Email,
+            Picture = user.Picture.Location,
+            Campus = user.Organization.Name,
+            CurrentUser = user.Id==thisUser.Id,
+            ArticleCount = articleCount,
+            CommentCount = commentCount
+        };
+        return View(model);
     }
     [Authorize]
-    public IActionResult Index()
+    [Route("/Profile")]
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var user = this.GetCurrentBlogUser();
+        return await Index(user.UserName);
     }
 
     [Route("/Register")]
@@ -78,6 +104,7 @@ public class AccountController : Controller
         }
         return Redirect(model.ReturnUrl);
     }
+    [Route("/logout")]
     public IActionResult Logout()
     {
         HttpContext.SignOutAsync();

@@ -1,4 +1,4 @@
-using Mmc.Blog.Entity.Interface;
+﻿using Mmc.Blog.Entity.Interface;
 using Mmc.Data.Model.Core;
 using Mmc.Notice.Entity.Interface;
 using Mmc.User.Entity.Interface;
@@ -10,20 +10,18 @@ public class UserModel: IUser,
     IBlogUser,
     INoticeUser
 {
-    public UserModel(string name, string userType, string email, string password, string userName,
-        PictureModel pictureModel)
+    public UserModel(string name, string userType, string email, string password, string userName, OrganizationModel organization)
     {
         Name = name;
         UserType = userType;
         Email = email;
         Password = password;
         UserName = userName;
-        Pictures.Add(pictureModel);
+        Organization = organization;
     }
 
     public UserModel()
     {
-        
     }
 
     public long Id { get; set; }
@@ -33,11 +31,6 @@ public class UserModel: IUser,
     public string Email { get; set; }
     public string Password { get; set; }
     public string UserName { get; set; }
-    public virtual ICollection<PictureModel> Pictures { get; set; } = new List<PictureModel>();
-    public string GetProfilePicturePath()=> Pictures.SingleOrDefault(x => x.IsProfilePicture).Location;
-
-    ICollection<IPicture>? IBlogUser.Pictures => Pictures.Cast<IPicture>().ToList();
-    ICollection<Mmc.User.Entity.Interface.IPicture> IUser.Pictures => Pictures.Cast<Mmc.User.Entity.Interface.IPicture>().ToList();
     public virtual OrganizationModel Organization { get; set; }
     IOrganization IUser.Organization => Organization;
     public long OrganizationId
@@ -45,6 +38,11 @@ public class UserModel: IUser,
         get;
         set;
     }
+
+    public long? PictureId { get; set; }
+    public virtual PictureModel Picture { get; set; }
+    Mmc.User.Entity.Interface.IPicture IUser.Picture => Picture;
+    IPicture IBlogUser.Picture => Picture;
 
     public void MakeAdmin()
     {
@@ -56,15 +54,11 @@ public class UserModel: IUser,
         UserType = Mmc.User.Enum.UserType.USER;
     }
 
-    public void Update(string dtoName, string dtoEmail, Mmc.User.Entity.Interface.IPicture picture, string dtoPassword, string dtoUsername)
+    public void Update(string dtoName, string dtoEmail, Mmc.User.Entity.Interface.IPicture picture, string dtoPassword,
+        string dtoUsername, IOrganization organization)
     {
         Name = dtoName;
         Email = dtoEmail;
-        picture.MarkProfilePicture();
-        Pictures.Add((PictureModel)picture);
-        foreach (var VARIABLE in Pictures)
-        {
-            
-        }
+        Picture = (PictureModel)picture;
     }
 }

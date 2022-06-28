@@ -33,7 +33,7 @@ public class HeartService : IHeartService
         var article = await _articleRepository.GetByGuidAsync(heartDto.ArticleGuid) ?? throw new ArticleNotFoundException();
         var user = await _blogUserRepository.GetByIdAsync(heartDto.UserId) ?? throw new UserNotFoundException();
         IHeart? heart = (await _heartRepository.GetAllAsync()).SingleOrDefault(x =>
-            x.ArticleId == user.Id && x.ArticleId == article.Id);
+            x.UserId == user.Id && x.ArticleId == article.Id);
 
         if (heart != null)
         {

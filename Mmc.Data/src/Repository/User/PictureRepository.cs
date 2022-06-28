@@ -14,16 +14,10 @@ public class PictureRepository : BaseRepository<PictureModel>, IPictureRepositor
 
     public async Task<IPicture> InsertAsync(IPicture picture)
     {
-        var model = new PictureModel(picture.Guid,picture.Type.ToString(),picture.Location, picture.UploadedDate,(UserModel)picture.UploadedBy);
+        var model = new PictureModel(picture.Guid,picture.Type.ToString(),picture.Location, picture.UploadedDate);
         await base.InsertAsync(model);
         return model;
     }
-
-    public async Task<IPicture> GetByUsername(string name)
-    {
-        return await GetQueryable().FirstAsync(x => x.UploadedBy.Name == name);
-    }
-
     public async Task<ICollection<IPicture>> GetAllAsync()
     {
         return (await base.GetAllAsync()).Cast<IPicture>().ToList();

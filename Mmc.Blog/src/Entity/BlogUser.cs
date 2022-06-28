@@ -13,9 +13,6 @@ public class BlogUser : IBlogUser
     public long Id { get; }
     public string Name { get; }
     public string UserName { get; }
-    public ICollection<IPicture>? Pictures { get; }
-    public string GetProfilePicturePath()
-    {
-        return Pictures.SingleOrDefault(x => x.IsProfilePicture).Location;
-    }
+    public long? PictureId { get; }
+    public IPicture? Picture { get; }
 }

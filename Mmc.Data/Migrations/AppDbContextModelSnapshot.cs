@@ -485,6 +485,12 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("organization_id");
 
+                    b.Property<string>("Guid")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("guid");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -515,6 +521,7 @@ namespace Mmc.Data.Migrations
                         new
                         {
                             Id = 1L,
+                            Guid = "MechiCampus",
                             Name = "Mechi Multiple Campus",
                             Subtitle = "Bhadrapur",
                             VdcId = 1L,
@@ -644,17 +651,11 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("type");
 
-                    b.Property<long>("UploadedById")
-                        .HasColumnType("bigint")
-                        .HasColumnName("user_id");
-
                     b.Property<DateTime>("UploadedDate")
                         .HasColumnType("datetime")
                         .HasColumnName("uploaded_date");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UploadedById");
 
                     b.ToTable("images", (string)null);
 
@@ -665,8 +666,7 @@ namespace Mmc.Data.Migrations
                             Guid = "GodGuid",
                             Location = "/Assets/Account/Profiles/SuperAdmin.jpg",
                             Type = "Profile",
-                            UploadedById = 1L,
-                            UploadedDate = new DateTime(2022, 6, 28, 9, 27, 17, 361, DateTimeKind.Local).AddTicks(7643)
+                            UploadedDate = new DateTime(2022, 6, 28, 20, 44, 6, 630, DateTimeKind.Local).AddTicks(560)
                         });
                 });
 
@@ -736,6 +736,11 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("text")
                         .HasColumnName("password");
 
+                    b.Property<long?>("PictureId")
+                        .IsRequired()
+                        .HasColumnType("bigint")
+                        .HasColumnName("picture_id");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -752,6 +757,8 @@ namespace Mmc.Data.Migrations
 
                     b.HasIndex("OrganizationId");
 
+                    b.HasIndex("PictureId");
+
                     b.ToTable("user", (string)null);
 
                     b.HasData(
@@ -761,7 +768,8 @@ namespace Mmc.Data.Migrations
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
                             OrganizationId = 1L,
-                            Password = "$2a$11$iHervb9/1Fs5AQLY6j2TgOQ4fgEW/hRDD7jNbDMtwa49kjYO57ewe",
+                            Password = "$2a$11$6YLpOfcPc9CPQb1H83scJuVxGtnpVDPlv4rxDbVIQrSnwcKG0tCC6",
+                            PictureId = 1L,
                             UserName = "AshuraNep",
                             UserType = "Superuser"
                         });
@@ -975,17 +983,6 @@ namespace Mmc.Data.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("Mmc.Data.Model.PictureModel", b =>
-                {
-                    b.HasOne("Mmc.Data.Model.User.UserModel", "UploadedBy")
-                        .WithMany("Pictures")
-                        .HasForeignKey("UploadedById")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UploadedBy");
-                });
-
             modelBuilder.Entity("Mmc.Data.Model.User.NotificationModel", b =>
                 {
                     b.HasOne("Mmc.User.Entity.NotificationTemplate", "Template")
@@ -1013,7 +1010,15 @@ namespace Mmc.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Mmc.Data.Model.PictureModel", "Picture")
+                        .WithMany()
+                        .HasForeignKey("PictureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Organization");
+
+                    b.Navigation("Picture");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Address.CountryModel", b =>
@@ -1041,11 +1046,6 @@ namespace Mmc.Data.Migrations
             modelBuilder.Entity("Mmc.Data.Model.Core.FacultyModel", b =>
                 {
                     b.Navigation("Courses");
-                });
-
-            modelBuilder.Entity("Mmc.Data.Model.User.UserModel", b =>
-                {
-                    b.Navigation("Pictures");
                 });
 #pragma warning restore 612, 618
         }

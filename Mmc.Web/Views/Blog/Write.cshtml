@@ -90,13 +90,14 @@ extraPlugins: [ MyCustomUploadAdapterPlugin ]
 		
     $('#form-post-article').submit(function (e){
         e.preventDefault();
-        const form = $("#form-post-article");
-        const url = form.attr('action');
+        console.log(this);
+        const url = $(this).attr("action");
 
         $.ajax({
         type: "POST",
         url: url,
-        data: form.serialize(), // serializes the form's elements.
+        enctype:"multipart/form-data",
+        data: $(this).serialize(), // serializes the form's elements.
         success: function(data)
         {
           Swal.fire(

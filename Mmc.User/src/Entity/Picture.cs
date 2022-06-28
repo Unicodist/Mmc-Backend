@@ -22,8 +22,8 @@ public class Picture : IPicture
     public PictureType Type { get; }
     public string Location { get; }
     public DateTime UploadedDate { get; }
-    public IUser UploadedBy { get; set; }
-    public long UploadedById { get; set; }
+    public IUser? UploadedBy { get; set; }
+    public long? UploadedById { get; set; }
     public void MarkProfilePicture()
     {
         throw new NotImplementedException();

@@ -46,4 +46,9 @@ public class HeartRepository : BaseRepository<HeartModel>,IHeartRepository
     {
         base.Delete((HeartModel)heart);
     }
+
+    public async Task<int> Count(string guid)
+    {
+        return await GetQueryable().CountAsync(x => x.Article.Guid == guid);
+    }
 }

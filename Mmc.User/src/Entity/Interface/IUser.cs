@@ -9,10 +9,12 @@ public interface IUser
     string Email { get; }
     string Password { get; }
     string UserName { get; }
-    ICollection<IPicture>? Pictures { get; }
+    long? PictureId { get; }
+    IPicture Picture { get; }
     IOrganization Organization { get; }
 
     void MakeAdmin();
     void MakeUser();
-    void Update(string dtoName, string dtoEmail, IPicture picture, string dtoPassword, string dtoUsername);
+    void Update(string dtoName, string dtoEmail, IPicture picture, string dtoPassword, string dtoUsername,
+        IOrganization organization);
 }
