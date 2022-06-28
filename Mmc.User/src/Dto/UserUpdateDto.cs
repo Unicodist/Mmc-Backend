@@ -1,6 +1,6 @@
 namespace Mmc.User.Dto;
 
-public class UserUpdateDto
+public class UserUpdateDto : UserCreateDto
 {
-    
+    public long Id { get; set; }
 }

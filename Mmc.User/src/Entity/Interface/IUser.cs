@@ -14,4 +14,5 @@ public interface IUser
 
     void MakeAdmin();
     void MakeUser();
+    void Update(string dtoName, string dtoEmail, IPicture picture, string dtoPassword, string dtoUsername);
 }

@@ -24,4 +24,8 @@ public class Picture : IPicture
     public DateTime UploadedDate { get; }
     public IUser UploadedBy { get; set; }
     public long UploadedById { get; set; }
+    public void MarkProfilePicture()
+    {
+        throw new NotImplementedException();
+    }
 }

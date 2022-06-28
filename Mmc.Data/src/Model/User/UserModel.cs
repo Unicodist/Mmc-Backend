@@ -55,4 +55,16 @@ public class UserModel: IUser,
     {
         UserType = Mmc.User.Enum.UserType.USER;
     }
+
+    public void Update(string dtoName, string dtoEmail, Mmc.User.Entity.Interface.IPicture picture, string dtoPassword, string dtoUsername)
+    {
+        Name = dtoName;
+        Email = dtoEmail;
+        picture.MarkProfilePicture();
+        Pictures.Add((PictureModel)picture);
+        foreach (var VARIABLE in Pictures)
+        {
+            
+        }
+    }
 }

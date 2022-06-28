@@ -5,7 +5,7 @@ namespace Mmc.User.Entity;
 
 public class User : IUser
 {
-    public User(string name, string email, string password, string userName, Picture picture)
+    public User(string name, string email, string password, string userName, IPicture picture)
     {
         Name = name;
         Email = email;
@@ -33,5 +33,10 @@ public class User : IUser
     public void MakeUser()
     {
         UserType = UserType.USER;
+    }
+
+    public void Update(string dtoName, string dtoEmail, IPicture picture, string dtoPassword, string dtoUsername)
+    {
+        throw new NotImplementedException();
     }
 }

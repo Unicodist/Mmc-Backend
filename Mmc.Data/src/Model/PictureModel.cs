@@ -15,11 +15,24 @@ namespace Mmc.Data.Model;
 
 public class PictureModel : UserPicture, BlogPicture
 {
-    public PictureModel()
+    public PictureModel(string guid, string type, string location, UserModel uploadedBy)
     {
+        Guid = guid;
+        Type = type;
+        Location = location;
+        UploadedBy = uploadedBy;
     }
 
-    public PictureModel(string guid, string type, string location, DateTime uploadedDate)
+    public PictureModel(string guid, string type, string location, DateTime uploadedDate, UserModel uploadedBy)
+    {
+        Guid = guid;
+        Type = type;
+        Location = location;
+        UploadedDate = uploadedDate;
+        UploadedBy = uploadedBy;
+    }
+
+    public PictureModel( string guid, string type, string location,DateTime uploadedDate)
     {
         Guid = guid;
         Type = type;
@@ -31,7 +44,7 @@ public class PictureModel : UserPicture, BlogPicture
     public string Guid { get; set; }
     UserGuidType UserPicture.Guid => new(Guid);
     BlogGuidType BlogPicture.Guid => new(Type);
-    public string Type { get; }
+    public string Type { get; set; }
     UserPictureType UserPicture.Type => Type;
     BlogPictureType BlogPicture.Type => Type;
     public string Location { get; }
@@ -41,4 +54,9 @@ public class PictureModel : UserPicture, BlogPicture
     IBlogUser BlogPicture.UploadedBy => UploadedBy;
     IUser UserPicture.UploadedBy => UploadedBy;
     public bool IsProfilePicture => Type == UserPictureType.ProfilePicture.ToString();
+
+    public void MarkProfilePicture()
+    {
+        Type = UserPictureType.ProfilePicture.ToString();
+    }
 }

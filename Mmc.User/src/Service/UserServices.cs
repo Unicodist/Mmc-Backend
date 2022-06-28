@@ -9,21 +9,29 @@ namespace Mmc.User.Service;
 public class UserServices : IUserService
 {
     private readonly IUserUserRepository _userUserRepo;
+    private readonly IPictureRepository _pictureRepo;
 
-    public UserServices(IUserUserRepository userUserRepo)
+    public UserServices(IUserUserRepository userUserRepo, IPictureRepository pictureRepo)
     {
         _userUserRepo = userUserRepo;
+        _pictureRepo = pictureRepo;
     }
 
     public async Task<IUser> Create(UserCreateDto dto)
     {
-        var user = new Entity.User(dto.Name,dto.Email,dto.Password, dto.Username, new Picture(dto.Picture));
+        var pictures = await _pictureRepo.GetAllAsync();
+        var randomNumber = new Random(0).NextInt64(pictures.Count-1);
+        var picture = (await _pictureRepo.GetAllAsync()).Skip((int)randomNumber).First();
+        var user = new Entity.User(dto.Name,dto.Email,dto.Password, dto.Username, picture);
         return await _userUserRepo.InsertAsync(user);
     }
  
-    public Task<IUser> Update(UserUpdateDto dto)
+    public async Task Update(UserUpdateDto dto)
     {
-        throw new NotImplementedException();
+        var user = await _userUserRepo.GetUserUserById(dto.Id);
+        var picture = await _pictureRepo.GetByGuidAsync(dto.Picture);
+        user.Update(dto.Name, dto.Email, picture, dto.Password, dto.Username);
+        await _userUserRepo.UpdateAsync(user);
     }
 
     public async Task<IUser> ValidateUser(UserLoginDto userLoginDto)

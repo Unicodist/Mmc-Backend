@@ -2,46 +2,61 @@
     Layout = "_Mmc_Layout";
 }
 @model Mmc.User.ViewModel.UserCreateViewModel
+<link rel="stylesheet" href="~/css/dotnet_validation.css">
+<script src="~/lib/jquery/dist/jquery.steps.min.js"></script>
+@using (Html.BeginForm("Register", "Account",FormMethod.Post,new{id="register_form"}))
+{
+<div id="wizard">
+    <h3>Personal information</h3>
+    <fieldset>
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(a => a.FirstName)
+                @Html.TextBoxFor(a => a.FirstName, new {@class = "form-control"})
+                @Html.ValidationMessageFor(a=>a.FirstName)
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(a => a.LastName)
+                @Html.TextBoxFor(a => a.LastName, new {@class = "form-control"})
+                @Html.ValidationMessageFor(a=>a.LastName)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(a => a.Email)
+            @Html.TextBoxFor(a => a.Email, new {@class = "form-control"})
+                @Html.ValidationMessageFor(a=>a.Email)
+        </div>
+    </fieldset>
 
-<div class="d-flex container">
-    <div class="container-fluid">
-        <form>
-            <fieldset>
-                <div class="form-group row">
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(m => m.FirstName)
-                        @Html.TextBoxFor(m => m.FirstName, new {@class = "form-control"})
-                        @Html.ValidationMessageFor(m => m.FirstName, null, new {@class = "text-danger"})
-                    </div>
-                    <div class="form-group col-md-6">
-                        @Html.LabelFor(m => m.LastName)
-                        @Html.TextBoxFor(m => m.LastName, new {@class = "form-control"})
-                        @Html.ValidationMessageFor(m => m.LastName)
-                    </div>
-                </div>
-            </fieldset>
-            
-            <div class="form-group">
-                @Html.LabelFor(m => m.Username)
-                @Html.TextBoxFor(m => m.Username, new {@class = "form-control"})
-                @Html.ValidationMessageFor(m => m.Username)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Email)
-                @Html.TextBoxFor(m => m.Email, new {@class = "form-control", type = "email"})
-                @Html.ValidationMessageFor(m => m.Email)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
-                @Html.ValidationMessageFor(m => m.Password)
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Confirm)
-                @Html.PasswordFor(m => m.Confirm, new {@class = "form-control"})
-                @Html.ValidationMessageFor(m => m.Confirm)
-            </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        </form>
+    <h3>Login information</h3>
+    <fieldset>
+    <div>
+        @Html.LabelFor(a=>a.Username)
+        @Html.TextBoxFor(a=>a.Username,new{@class="form-control"})
+        @Html.ValidationMessageFor(a=>a.Username)
     </div>
+    <div>
+        @Html.LabelFor(a=>a.Password)
+        @Html.PasswordFor(a=>a.Password,new{@class="form-control"})
+                @Html.ValidationMessageFor(a=>a.Password)
+    </div>
+    <div>
+        @Html.LabelFor(a=>a.Confirm)
+        @Html.PasswordFor(a=>a.Confirm,new{@class="form-control"})
+                @Html.ValidationMessageFor(a=>a.Confirm)
+    </div>
+    </fieldset>
 </div>
+}
+<script >
+// Initialize wizard
+var wizard = $("#wizard").steps({
+    bodyTag: "fieldset",
+    headerTag: "h3",
+    onFinished(event, currentIndex){
+        $("#register_form").submit();
+    }
+})
+    
+</script>

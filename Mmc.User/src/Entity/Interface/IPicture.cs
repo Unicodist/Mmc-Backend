@@ -12,4 +12,5 @@ public interface IPicture
     public DateTime UploadedDate { get; }
     IUser UploadedBy { get; }
     long UploadedById { get; }
+    void MarkProfilePicture();
 }

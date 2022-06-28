@@ -32,6 +32,12 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IN
     {
         return await GetQueryable().SingleOrDefaultAsync(x => x.UserName == username);
     }
+
+    public Task UpdateAsync(IUser user)
+    {
+        return base.UpdateAsync((UserModel)user);
+    }
+
     public async Task<ICollection<IUser>> GetByName(string name)
     {
         return await GetQueryable().Where(x=>x.Name==name).Cast<IUser>().ToListAsync();
