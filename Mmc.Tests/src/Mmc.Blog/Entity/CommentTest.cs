@@ -7,33 +7,26 @@ namespace Mmc.Tests.Mmc.Blog.Entity;
 
 public class CommentTest
 {
-    private readonly Comment _comment;
+    private readonly IComment _comment;
     private readonly IBlogUser _bloguser;
 
 
     public CommentTest()
     {
-        _comment = new Comment();
+        _comment = TestRepository.Comment;
         _bloguser = null;
     }
 
     [Fact]
     public void Test_CommentTest_GetsAllNecessaryProperties()
     {
-        Assert.Equal(0,_comment.Id);
-        _comment.Body = "xyz";
-        Assert.Equal("xyz",_comment.Body);
+        Assert.Equal(1,_comment.Id);
+        Assert.Equal(TestRepository.CommentBody,_comment.Body);
         Assert.Equal(0,_comment.UserId);
         Assert.Equal(0,_comment.ArticleId);
-        _comment.Status=Status.Active;
         Assert.Equal(Status.Active,_comment.Status);
-        Assert.Null(_comment.User);
-        Assert.Null(_comment.Article);
-        Assert.Null(_comment.Guid);
-        
-        
-        
-        
+        Assert.Equal(TestRepository.BlogUser,_comment.User);
+        Assert.Equal(TestRepository.Article,_comment.Article);
     }
 
   /*  [Fact]

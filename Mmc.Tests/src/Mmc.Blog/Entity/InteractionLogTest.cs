@@ -8,8 +8,6 @@ public class InteractionLogTest
 {
     private string _blogUserName = "Ashish";
     private string _blogUserUserName = "AshuraNep";
-
-    private string _commentBody = "Hello Fren";
     
     private IPicture _picture;
     private IBlogUser _user;
@@ -26,7 +24,7 @@ public class InteractionLogTest
             TestRepository.ArticleCategory,
             TestRepository.BlogUser,
             TestRepository.ArticleThumbnail);
-        _comment = new Comment(_commentBody, _user, _article);
+        _comment = TestRepository.Comment;
     }
 
     [Fact]
@@ -37,11 +35,11 @@ public class InteractionLogTest
         Assert.Equal(new DateTime(),obj.DateTime);
         Assert.Equal(0,obj.UserId);
         Assert.Null(obj.OldValue);
-        Assert.Null(obj.NewValue);
+        Assert.Equal(obj.NewValue,TestRepository.CommentBody);
         Assert.Null(obj.ArticleId);
         Assert.Null(obj.CommentId);
         Assert.Null(obj.Article);
-        Assert.Null(obj.Comment);
+        Assert.Equal(obj.Comment,TestRepository.Comment);
         
         
     }

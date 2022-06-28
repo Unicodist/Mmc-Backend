@@ -19,7 +19,7 @@ public class BlogUserTest
         Assert.Equal(0,_blogUser.Id);
         Assert.Equal("Pramisa",_blogUser.Name);
         Assert.Equal("Pramisa123",_blogUser.UserName);
-        Assert.Equal(_picture,_blogUser.Pictures.First());
+        Assert.Null(_blogUser.Pictures);
         
 
     }

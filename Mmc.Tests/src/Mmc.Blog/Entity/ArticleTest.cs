@@ -28,7 +28,6 @@ public class ArticleTest
         Assert.Equal(0,_article.CategoryId);
         Assert.Equal(_blogUser,_article.User);
         Assert.Equal("xyz.jpg",_article.Thumbnail);
-        Assert.Equal("mmm",_article.Guid);
     }
     
     
