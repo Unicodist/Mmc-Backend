@@ -1,5 +1,4 @@
 using Mmc.User.Dto;
-using Mmc.User.Entity;
 using Mmc.User.Entity.Interface;
 using Mmc.User.Repository;
 using Mmc.User.UserException;
@@ -10,11 +9,13 @@ public class UserServices : IUserService
 {
     private readonly IUserUserRepository _userUserRepo;
     private readonly IPictureRepository _pictureRepo;
+    private readonly ICampusRepository _campusRepository;
 
-    public UserServices(IUserUserRepository userUserRepo, IPictureRepository pictureRepo)
+    public UserServices(IUserUserRepository userUserRepo, IPictureRepository pictureRepo, ICampusRepository campusRepository)
     {
         _userUserRepo = userUserRepo;
         _pictureRepo = pictureRepo;
+        _campusRepository = campusRepository;
     }
 
     public async Task<IUser> Create(UserCreateDto dto)
@@ -30,6 +31,7 @@ public class UserServices : IUserService
     {
         var user = await _userUserRepo.GetUserUserById(dto.Id);
         var picture = await _pictureRepo.GetByGuidAsync(dto.Picture);
+        var college = await _campusRepository.GetByGuidAsync(dto.CampusGuid);
         user.Update(dto.Name, dto.Email, picture, dto.Password, dto.Username);
         await _userUserRepo.UpdateAsync(user);
     }

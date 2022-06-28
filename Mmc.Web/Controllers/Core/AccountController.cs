@@ -42,7 +42,8 @@ public class AccountController : Controller
             Name = model.FirstName + " " + model.LastName,
             Email = model.Email,
             Password = model.Password,
-            Username = model.Username
+            Username = model.Username,
+            CampusGuid = model.CollegeGuid
         };
         _ = await _userServices.Create(userCreateDto);
 

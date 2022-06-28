@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Mmc.Data.Model;
 using Mmc.Data.Model.User;
-using Mmc.User.Entity;
 using Mmc.User.Entity.Interface;
 using Mmc.User.Repository;
 

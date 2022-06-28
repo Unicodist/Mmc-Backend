@@ -19,6 +19,10 @@ public class UserCreateViewModel
     [DisplayName("Last Name")]
     public string  LastName { get; set; }
     
+    [Required(ErrorMessage = "You cannot leave this empty")]
+    [DisplayName("Select Campus")]
+    public string CollegeGuid { get; set; }
+    
     [Required(ErrorMessage = "This field is required")]
     [DataType(DataType.EmailAddress)]
     [MinLength(4)]

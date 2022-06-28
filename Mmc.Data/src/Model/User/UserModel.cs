@@ -33,7 +33,7 @@ public class UserModel: IUser,
     public string Email { get; set; }
     public string Password { get; set; }
     public string UserName { get; set; }
-    public virtual ICollection<PictureModel> Pictures { get; set; }
+    public virtual ICollection<PictureModel> Pictures { get; set; } = new List<PictureModel>();
     public string GetProfilePicturePath()=> Pictures.SingleOrDefault(x => x.IsProfilePicture).Location;
 
     ICollection<IPicture>? IBlogUser.Pictures => Pictures.Cast<IPicture>().ToList();

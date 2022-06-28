@@ -1,5 +1,6 @@
 ﻿using Mmc.Address.Entity.Interface;
 using Mmc.Data.Model.Address;
+using Mmc.User.BaseType;
 using IOrganization = Mmc.Core.Entity.Interface.IOrganization;
 using UserOrganization = Mmc.User.Entity.Interface.IOrganization;
 using UserCountry = Mmc.User.Entity.Interface.ICountry;
@@ -14,7 +15,7 @@ public class OrganizationModel : UserOrganization, IOrganization
     {
     }
 
-    public OrganizationModel(string name, string subtitle, CountryModel countryModel, VdcModel vdcModel, StateModel stateModel, int ward)
+    public OrganizationModel(string name, string subtitle, VdcModel vdcModel, int ward)
     {
         Name = name;
         Subtitle = subtitle;
@@ -23,6 +24,9 @@ public class OrganizationModel : UserOrganization, IOrganization
     }
 
     public long Id { get; init; }
+    public string Guid { get; set; }
+    GuidType UserOrganization.Guid => new(Guid);
+    Mmc.Core.BaseType.GuidType IOrganization.Guid => new(Guid);
     public string Name { get; set; }
     public string Subtitle { get; set; }
     public virtual VdcModel VdcModel { get; set; }

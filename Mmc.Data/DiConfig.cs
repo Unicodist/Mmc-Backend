@@ -46,6 +46,8 @@ public static class DiConfig
         
         services.AddScoped<IUserUserRepository, UserRepository>();
         services.AddScoped<UserRepository, UserRepository>();
+        services.AddScoped<IPictureRepository, PictureRepository>();
+        services.AddScoped<ICampusRepository, CampusRepository>();
 
         #endregion
     }

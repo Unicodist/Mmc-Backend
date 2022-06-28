@@ -1,7 +1,12 @@
 @{
     Layout = "_Mmc_Layout";
 }
+@using Mmc.User.Repository
+@inject ICampusRepository _campusRepository;
 @model Mmc.User.ViewModel.UserCreateViewModel
+@{
+    var colleges = (await _campusRepository.GetAllAsync()).Select(x=>new{x.Guid,x.Name});
+}
 <link rel="stylesheet" href="~/css/dotnet_validation.css">
 <script src="~/lib/jquery/dist/jquery.steps.min.js"></script>
 @using (Html.BeginForm("Register", "Account",FormMethod.Post,new{id="register_form"}))
@@ -21,7 +26,11 @@
                 @Html.ValidationMessageFor(a=>a.LastName)
             </div>
         </div>
-        
+        <div class="form-group">
+            @Html.LabelFor(a => a.CollegeGuid)
+            @Html.DropDownListFor(a => a.CollegeGuid,new SelectList(colleges,"Guid","Name"), new {@class = "form-control"})
+            @Html.ValidationMessageFor(a=>a.CollegeGuid)
+        </div>
         <div class="form-group">
             @Html.LabelFor(a => a.Email)
             @Html.TextBoxFor(a => a.Email, new {@class = "form-control"})

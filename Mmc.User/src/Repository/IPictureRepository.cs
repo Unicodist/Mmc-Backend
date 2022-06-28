@@ -1,4 +1,3 @@
-using Mmc.User.Entity;
 using Mmc.User.Entity.Interface;
 
 namespace Mmc.User.Repository;

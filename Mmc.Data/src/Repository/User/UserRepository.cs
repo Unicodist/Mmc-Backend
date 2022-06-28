@@ -24,7 +24,7 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IN
     }
     public async Task<IUser> InsertAsync(IUser user)
     {
-        var uModel = new UserModel(user.Name, user.UserType, user.Email, user.Password, user.UserName, (PictureModel)user.Pictures.First());
+        var uModel = new UserModel(user.Name, user.UserType, user.Email, user.Password, user.UserName, (PictureModel)(user.Pictures.First()));
         await base.InsertAsync(uModel);
         return uModel;
     }
