@@ -9,7 +9,7 @@ public interface IUser
     string Email { get; }
     string Password { get; }
     string UserName { get; }
-    IPicture? Picture { get; }
+    ICollection<IPicture>? Pictures { get; }
     IOrganization Organization { get; }
 
     void MakeAdmin();

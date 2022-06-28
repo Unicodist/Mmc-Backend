@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Mmc.Data.Configurations.Address;
 using Mmc.Data.Configurations.Blog;
@@ -40,6 +40,7 @@ public class  AppDbContext : DbContext
 
         _ = modelBuilder.ApplyConfiguration(new CourseConfiguration());
         _ = modelBuilder.ApplyConfiguration(new FacultyConfiguration());
+        _ = modelBuilder.ApplyConfiguration(new OrganizationConfiguration());
         _ = modelBuilder.ApplyConfiguration(new StudentEnrollmentDetailConfiguration());
 
         #endregion

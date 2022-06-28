@@ -7,5 +7,6 @@ public static class ColumnTypes
     public static readonly string TIME = "time";
     public static readonly string VARCHAR = "varchar";
     public static readonly string BIGINT = "bigint";
-    public static readonly string? TEXT = "text";
+    public static readonly string TEXT = "text";
+    public static readonly string INT = "int";
 }

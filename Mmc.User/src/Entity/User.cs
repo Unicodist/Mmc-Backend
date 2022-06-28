@@ -5,14 +5,14 @@ namespace Mmc.User.Entity;
 
 public class User : IUser
 {
-    public User(string name, string email, string password, string userName, IPicture? picture)
+    public User(string name, string email, string password, string userName, Picture picture)
     {
         Name = name;
         Email = email;
         Password = password;
         UserName = userName;
-        Picture = picture;
         UserType = UserType.USER;
+        Pictures.Add(picture);
     }
 
     public long Id { get; set; }
@@ -21,7 +21,7 @@ public class User : IUser
     public string Email { get; set; }
     public string Password { get; set; }
     public string UserName { get; set; }
-    public IPicture? Picture { get; set; }
+    public ICollection<IPicture>? Pictures { get; set; } = new List<IPicture>();
 
     public IOrganization Organization { get; set; }
 

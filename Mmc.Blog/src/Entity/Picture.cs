@@ -21,4 +21,5 @@ public class Picture : IPicture
     public DateTime UploadedDate { get; }
     public IBlogUser UploadedBy { get; }
     public long UploadedById { get; }
+    public bool IsProfilePicture => Type == PictureType.ProfilePicture;
 }

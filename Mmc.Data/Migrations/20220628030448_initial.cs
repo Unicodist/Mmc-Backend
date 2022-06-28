@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Mmc.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,22 +56,19 @@ namespace Mmc.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "images",
+                name: "faculty",
                 columns: table => new
                 {
-                    picture_id = table.Column<long>(type: "bigint", nullable: false)
+                    faculty_id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     guid = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    type = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    location = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    uploaded_date = table.Column<DateTime>(type: "datetime", nullable: false)
+                    name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_images", x => x.picture_id);
+                    table.PrimaryKey("PK_faculty", x => x.faculty_id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -136,31 +133,27 @@ namespace Mmc.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "user",
+                name: "course",
                 columns: table => new
                 {
-                    user_id = table.Column<long>(type: "bigint", nullable: false)
+                    course_id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    guid = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    status = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    user_type = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    email = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    password = table.Column<string>(type: "text", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    user_name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    picture_id = table.Column<long>(type: "bigint", maxLength: 50, nullable: false)
+                    faculty_id = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_user", x => x.user_id);
+                    table.PrimaryKey("PK_course", x => x.course_id);
                     table.ForeignKey(
-                        name: "FK_user_images_picture_id",
-                        column: x => x.picture_id,
-                        principalTable: "images",
-                        principalColumn: "picture_id",
+                        name: "FK_course_faculty_faculty_id",
+                        column: x => x.faculty_id,
+                        principalTable: "faculty",
+                        principalColumn: "faculty_id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -185,6 +178,78 @@ namespace Mmc.Data.Migrations
                         column: x => x.state_id,
                         principalTable: "state",
                         principalColumn: "state_id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "OrganizationModel",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Subtitle = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    StateId = table.Column<long>(type: "bigint", nullable: false),
+                    StateModelId = table.Column<long>(type: "bigint", nullable: false),
+                    CountryId = table.Column<long>(type: "bigint", nullable: false),
+                    CountryModelId = table.Column<long>(type: "bigint", nullable: false),
+                    VdcModelId = table.Column<long>(type: "bigint", nullable: false),
+                    Ward = table.Column<int>(type: "int", nullable: false),
+                    VdcId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrganizationModel", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrganizationModel_country_CountryModelId",
+                        column: x => x.CountryModelId,
+                        principalTable: "country",
+                        principalColumn: "country_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrganizationModel_state_StateModelId",
+                        column: x => x.StateModelId,
+                        principalTable: "state",
+                        principalColumn: "state_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrganizationModel_vdc_VdcModelId",
+                        column: x => x.VdcModelId,
+                        principalTable: "vdc",
+                        principalColumn: "vdc_id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "user",
+                columns: table => new
+                {
+                    user_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    user_type = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    email = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    password = table.Column<string>(type: "text", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    user_name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    organization_id = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_user", x => x.user_id);
+                    table.ForeignKey(
+                        name: "FK_user_OrganizationModel_organization_id",
+                        column: x => x.organization_id,
+                        principalTable: "OrganizationModel",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -255,6 +320,40 @@ namespace Mmc.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "images",
+                columns: table => new
+                {
+                    picture_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    guid = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    type = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    location = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    uploaded_date = table.Column<DateTime>(type: "datetime", nullable: false),
+                    user_id = table.Column<long>(type: "bigint", nullable: false),
+                    IsProfilePicture = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    UserModelId = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_images", x => x.picture_id);
+                    table.ForeignKey(
+                        name: "FK_images_user_user_id",
+                        column: x => x.user_id,
+                        principalTable: "user",
+                        principalColumn: "user_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_images_user_UserModelId",
+                        column: x => x.UserModelId,
+                        principalTable: "user",
+                        principalColumn: "user_id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "notice",
                 columns: table => new
                 {
@@ -268,6 +367,8 @@ namespace Mmc.Data.Migrations
                     picture = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     status = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    severity = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     admin_id = table.Column<long>(type: "bigint", nullable: false),
                     guid = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
@@ -317,6 +418,39 @@ namespace Mmc.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "student_enrollment_detail",
+                columns: table => new
+                {
+                    enrollment_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    guid = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    course_id = table.Column<long>(type: "bigint", nullable: false),
+                    semester = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    user_id = table.Column<long>(type: "bigint", nullable: false),
+                    status = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_student_enrollment_detail", x => x.enrollment_id);
+                    table.ForeignKey(
+                        name: "FK_student_enrollment_detail_course_course_id",
+                        column: x => x.course_id,
+                        principalTable: "course",
+                        principalColumn: "course_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_student_enrollment_detail_user_user_id",
+                        column: x => x.user_id,
+                        principalTable: "user",
+                        principalColumn: "user_id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "comment",
                 columns: table => new
                 {
@@ -354,17 +488,11 @@ namespace Mmc.Data.Migrations
                 columns: table => new
                 {
                     blog_id = table.Column<long>(type: "bigint", nullable: false),
-                    user_id = table.Column<long>(type: "bigint", nullable: false),
-                    ArticleModelId = table.Column<long>(type: "bigint", nullable: true)
+                    user_id = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_upvote", x => new { x.blog_id, x.user_id });
-                    table.ForeignKey(
-                        name: "FK_upvote_blog_posts_ArticleModelId",
-                        column: x => x.ArticleModelId,
-                        principalTable: "blog_posts",
-                        principalColumn: "blog_id");
                     table.ForeignKey(
                         name: "FK_upvote_blog_posts_blog_id",
                         column: x => x.blog_id,
@@ -420,15 +548,52 @@ namespace Mmc.Data.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.CreateTable(
+                name: "toxic_comment",
+                columns: table => new
+                {
+                    toxic_comment_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    comment_id = table.Column<long>(type: "bigint", nullable: false),
+                    status = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_toxic_comment", x => x.toxic_comment_id);
+                    table.ForeignKey(
+                        name: "FK_toxic_comment_comment_comment_id",
+                        column: x => x.comment_id,
+                        principalTable: "comment",
+                        principalColumn: "comment_id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
             migrationBuilder.InsertData(
-                table: "images",
-                columns: new[] { "picture_id", "guid", "location", "type", "uploaded_date" },
-                values: new object[] { 1L, "GodGuid", "/Assets/Account/Profiles/SuperAdmin.jpg", "Avatar", new DateTime(2022, 6, 25, 7, 31, 39, 262, DateTimeKind.Local).AddTicks(3891) });
+                table: "country",
+                columns: new[] { "country_id", "abr", "description", "name", "phone_code" },
+                values: new object[] { 1L, "Np", null, "Nepal", "977" });
 
             migrationBuilder.InsertData(
                 table: "user",
-                columns: new[] { "user_id", "email", "name", "password", "picture_id", "user_name", "user_type" },
-                values: new object[] { 1L, "ashishneupane999@gmail.com", "Ashish Neupane", "$2a$11$krfWfU12SHTXUWwWCVniruoxelXyBsFcRd.yj2Gl..7xdCxIp.wJq", 1L, "AshuraNep", "Superuser" });
+                columns: new[] { "user_id", "email", "name", "organization_id", "password", "user_name", "user_type" },
+                values: new object[] { 1L, "ashishneupane999@gmail.com", "Ashish Neupane", 1L, "$2a$11$MbpjtGLcAHdcbvT.9uF2V.LH4pGJs6.Vt5dEhBPMQ54ac1D6h4c7C", "AshuraNep", "Superuser" });
+
+            migrationBuilder.InsertData(
+                table: "images",
+                columns: new[] { "picture_id", "guid", "IsProfilePicture", "location", "type", "user_id", "uploaded_date", "UserModelId" },
+                values: new object[] { 1L, "GodGuid", false, "/Assets/Account/Profiles/SuperAdmin.jpg", "Avatar", 1L, new DateTime(2022, 6, 28, 8, 49, 47, 226, DateTimeKind.Local).AddTicks(3741), null });
+
+            migrationBuilder.InsertData(
+                table: "state",
+                columns: new[] { "state_id", "country_id", "description", "name" },
+                values: new object[] { 1L, 1L, "Eastern most province", "Province 1" });
+
+            migrationBuilder.InsertData(
+                table: "vdc",
+                columns: new[] { "vdc_id", "description", "name", "state_id" },
+                values: new object[] { 1L, "Near Mechi River", "Bhdrapur", 1L });
 
             migrationBuilder.CreateIndex(
                 name: "IX_blog_posts_admin_id",
@@ -454,6 +619,21 @@ namespace Mmc.Data.Migrations
                 name: "IX_comment_user_id",
                 table: "comment",
                 column: "user_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_course_faculty_id",
+                table: "course",
+                column: "faculty_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_images_user_id",
+                table: "images",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_images_UserModelId",
+                table: "images",
+                column: "UserModelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_interaction_log_article_id",
@@ -486,14 +666,39 @@ namespace Mmc.Data.Migrations
                 column: "user_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrganizationModel_CountryModelId",
+                table: "OrganizationModel",
+                column: "CountryModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrganizationModel_StateModelId",
+                table: "OrganizationModel",
+                column: "StateModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrganizationModel_VdcModelId",
+                table: "OrganizationModel",
+                column: "VdcModelId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_state_country_id",
                 table: "state",
                 column: "country_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_upvote_ArticleModelId",
-                table: "upvote",
-                column: "ArticleModelId");
+                name: "IX_student_enrollment_detail_course_id",
+                table: "student_enrollment_detail",
+                column: "course_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_student_enrollment_detail_user_id",
+                table: "student_enrollment_detail",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_toxic_comment_comment_id",
+                table: "toxic_comment",
+                column: "comment_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_upvote_user_id",
@@ -501,9 +706,9 @@ namespace Mmc.Data.Migrations
                 column: "user_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_user_picture_id",
+                name: "IX_user_organization_id",
                 table: "user",
-                column: "picture_id");
+                column: "organization_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_vdc_state_id",
@@ -515,6 +720,9 @@ namespace Mmc.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "category_subscription");
+
+            migrationBuilder.DropTable(
+                name: "images");
 
             migrationBuilder.DropTable(
                 name: "interaction_log");
@@ -529,25 +737,28 @@ namespace Mmc.Data.Migrations
                 name: "notification");
 
             migrationBuilder.DropTable(
+                name: "student_enrollment_detail");
+
+            migrationBuilder.DropTable(
+                name: "toxic_comment");
+
+            migrationBuilder.DropTable(
                 name: "upvote");
-
-            migrationBuilder.DropTable(
-                name: "vdc");
-
-            migrationBuilder.DropTable(
-                name: "comment");
 
             migrationBuilder.DropTable(
                 name: "notification_template");
 
             migrationBuilder.DropTable(
-                name: "state");
+                name: "course");
+
+            migrationBuilder.DropTable(
+                name: "comment");
+
+            migrationBuilder.DropTable(
+                name: "faculty");
 
             migrationBuilder.DropTable(
                 name: "blog_posts");
-
-            migrationBuilder.DropTable(
-                name: "country");
 
             migrationBuilder.DropTable(
                 name: "category");
@@ -556,7 +767,16 @@ namespace Mmc.Data.Migrations
                 name: "user");
 
             migrationBuilder.DropTable(
-                name: "images");
+                name: "OrganizationModel");
+
+            migrationBuilder.DropTable(
+                name: "vdc");
+
+            migrationBuilder.DropTable(
+                name: "state");
+
+            migrationBuilder.DropTable(
+                name: "country");
         }
     }
 }

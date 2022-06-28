@@ -11,8 +11,8 @@ using Mmc.Data;
 namespace Mmc.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220625032529_CourseAndFaculty")]
-    partial class CourseAndFaculty
+    [Migration("20220628030448_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -59,7 +59,7 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("country_id");
 
-                    b.Property<string>("Abr")
+                    b.Property<string>("Abbreviation")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("varchar(10)")
@@ -84,6 +84,15 @@ namespace Mmc.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("country", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Abbreviation = "Np",
+                            Name = "Nepal",
+                            PhoneCode = "977"
+                        });
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Address.StateModel", b =>
@@ -114,6 +123,15 @@ namespace Mmc.Data.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("state", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CountryId = 1L,
+                            Description = "Eastern most province",
+                            Name = "Province 1"
+                        });
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Address.VdcModel", b =>
@@ -142,6 +160,15 @@ namespace Mmc.Data.Migrations
                     b.HasIndex("StateId");
 
                     b.ToTable("vdc", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Description = "Near Mechi River",
+                            Name = "Bhdrapur",
+                            StateId = 1L
+                        });
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Blog.ArticleModel", b =>
@@ -301,6 +328,23 @@ namespace Mmc.Data.Migrations
                     b.ToTable("comment", (string)null);
                 });
 
+            modelBuilder.Entity("Mmc.Data.Model.Blog.HeartModel", b =>
+                {
+                    b.Property<long>("ArticleId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("blog_id");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("ArticleId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("upvote", (string)null);
+                });
+
             modelBuilder.Entity("Mmc.Data.Model.Blog.InteractionLogModel", b =>
                 {
                     b.Property<long>("Id")
@@ -352,26 +396,28 @@ namespace Mmc.Data.Migrations
                     b.ToTable("interaction_log", (string)null);
                 });
 
-            modelBuilder.Entity("Mmc.Data.Model.Blog.UpvoteModel", b =>
+            modelBuilder.Entity("Mmc.Data.Model.Blog.ToxicCommentModel", b =>
                 {
-                    b.Property<long>("ArticleId")
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
-                        .HasColumnName("blog_id");
+                        .HasColumnName("toxic_comment_id");
 
-                    b.Property<long>("UserId")
+                    b.Property<long>("CommentId")
                         .HasColumnType("bigint")
-                        .HasColumnName("user_id");
+                        .HasColumnName("comment_id");
 
-                    b.Property<long?>("ArticleModelId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("status");
 
-                    b.HasKey("ArticleId", "UserId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ArticleModelId");
+                    b.HasIndex("CommentId");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("upvote", (string)null);
+                    b.ToTable("toxic_comment", (string)null);
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Core.CourseModel", b =>
@@ -434,6 +480,94 @@ namespace Mmc.Data.Migrations
                     b.ToTable("faculty", (string)null);
                 });
 
+            modelBuilder.Entity("Mmc.Data.Model.Core.OrganizationModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CountryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CountryModelId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<long>("StateId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("StateModelId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Subtitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<long>("VdcId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("VdcModelId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Ward")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryModelId");
+
+                    b.HasIndex("StateModelId");
+
+                    b.HasIndex("VdcModelId");
+
+                    b.ToTable("OrganizationModel");
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.Core.StudentEnrollmentModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("enrollment_id");
+
+                    b.Property<long>("CourseId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("course_id");
+
+                    b.Property<string>("Guid")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("guid");
+
+                    b.Property<string>("Semester")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("semester");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("status");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("student_enrollment_detail", (string)null);
+                });
+
             modelBuilder.Entity("Mmc.Data.Model.Notice.NoticeModel", b =>
                 {
                     b.Property<long>("Id")
@@ -463,6 +597,12 @@ namespace Mmc.Data.Migrations
                     b.Property<DateTime>("PostedOn")
                         .HasColumnType("datetime")
                         .HasColumnName("date");
+
+                    b.Property<string>("Severity")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("varchar(40)")
+                        .HasColumnName("severity");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -496,6 +636,9 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("guid");
 
+                    b.Property<bool>("IsProfilePicture")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -508,11 +651,22 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("type");
 
+                    b.Property<long>("UploadedById")
+                        .HasColumnType("bigint")
+                        .HasColumnName("user_id");
+
                     b.Property<DateTime>("UploadedDate")
                         .HasColumnType("datetime")
                         .HasColumnName("uploaded_date");
 
+                    b.Property<long?>("UserModelId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UploadedById");
+
+                    b.HasIndex("UserModelId");
 
                     b.ToTable("images", (string)null);
 
@@ -521,9 +675,11 @@ namespace Mmc.Data.Migrations
                         {
                             Id = 1L,
                             Guid = "GodGuid",
+                            IsProfilePicture = false,
                             Location = "/Assets/Account/Profiles/SuperAdmin.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 25, 9, 10, 28, 64, DateTimeKind.Local).AddTicks(3261)
+                            UploadedById = 1L,
+                            UploadedDate = new DateTime(2022, 6, 28, 8, 49, 47, 226, DateTimeKind.Local).AddTicks(3741)
                         });
                 });
 
@@ -584,15 +740,14 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("name");
 
+                    b.Property<long>("OrganizationId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("organization_id");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("password");
-
-                    b.Property<long>("PictureId")
-                        .HasMaxLength(50)
-                        .HasColumnType("bigint")
-                        .HasColumnName("picture_id");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -608,7 +763,7 @@ namespace Mmc.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PictureId");
+                    b.HasIndex("OrganizationId");
 
                     b.ToTable("user", (string)null);
 
@@ -618,8 +773,8 @@ namespace Mmc.Data.Migrations
                             Id = 1L,
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
-                            Password = "$2a$11$HGDX1lRv8uqKa5Xp1bFz5OzMRsrfnCACm4DtUJ2SM7A0eOc.jIlaO",
-                            PictureId = 1L,
+                            OrganizationId = 1L,
+                            Password = "$2a$11$MbpjtGLcAHdcbvT.9uF2V.LH4pGJs6.Vt5dEhBPMQ54ac1D6h4c7C",
                             UserName = "AshuraNep",
                             UserType = "Superuser"
                         });
@@ -662,13 +817,13 @@ namespace Mmc.Data.Migrations
 
             modelBuilder.Entity("Mmc.Data.Model.Address.VdcModel", b =>
                 {
-                    b.HasOne("Mmc.Data.Model.Address.StateModel", "State")
+                    b.HasOne("Mmc.Data.Model.Address.StateModel", "StateModel")
                         .WithMany("Vdcs")
                         .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("State");
+                    b.Navigation("StateModel");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Blog.ArticleModel", b =>
@@ -727,6 +882,25 @@ namespace Mmc.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Mmc.Data.Model.Blog.HeartModel", b =>
+                {
+                    b.HasOne("Mmc.Data.Model.Blog.ArticleModel", "Article")
+                        .WithMany("Likes")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mmc.Data.Model.User.UserModel", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Article");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Mmc.Data.Model.Blog.InteractionLogModel", b =>
                 {
                     b.HasOne("Mmc.Data.Model.Blog.ArticleModel", "Article")
@@ -751,27 +925,15 @@ namespace Mmc.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Mmc.Data.Model.Blog.UpvoteModel", b =>
+            modelBuilder.Entity("Mmc.Data.Model.Blog.ToxicCommentModel", b =>
                 {
-                    b.HasOne("Mmc.Data.Model.Blog.ArticleModel", "Article")
+                    b.HasOne("Mmc.Data.Model.Blog.CommentModel", "Comment")
                         .WithMany()
-                        .HasForeignKey("ArticleId")
+                        .HasForeignKey("CommentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Mmc.Data.Model.Blog.ArticleModel", null)
-                        .WithMany("Likes")
-                        .HasForeignKey("ArticleModelId");
-
-                    b.HasOne("Mmc.Data.Model.User.UserModel", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Article");
-
-                    b.Navigation("User");
+                    b.Navigation("Comment");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Core.CourseModel", b =>
@@ -785,6 +947,52 @@ namespace Mmc.Data.Migrations
                     b.Navigation("Faculty");
                 });
 
+            modelBuilder.Entity("Mmc.Data.Model.Core.OrganizationModel", b =>
+                {
+                    b.HasOne("Mmc.Data.Model.Address.CountryModel", "CountryModel")
+                        .WithMany()
+                        .HasForeignKey("CountryModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mmc.Data.Model.Address.StateModel", "StateModel")
+                        .WithMany()
+                        .HasForeignKey("StateModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mmc.Data.Model.Address.VdcModel", "VdcModel")
+                        .WithMany()
+                        .HasForeignKey("VdcModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CountryModel");
+
+                    b.Navigation("StateModel");
+
+                    b.Navigation("VdcModel");
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.Core.StudentEnrollmentModel", b =>
+                {
+                    b.HasOne("Mmc.Data.Model.Core.CourseModel", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mmc.Data.Model.User.UserModel", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Mmc.Data.Model.Notice.NoticeModel", b =>
                 {
                     b.HasOne("Mmc.Data.Model.User.UserModel", "Author")
@@ -794,6 +1002,21 @@ namespace Mmc.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Author");
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.PictureModel", b =>
+                {
+                    b.HasOne("Mmc.Data.Model.User.UserModel", "UploadedBy")
+                        .WithMany()
+                        .HasForeignKey("UploadedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mmc.Data.Model.User.UserModel", null)
+                        .WithMany("Pictures")
+                        .HasForeignKey("UserModelId");
+
+                    b.Navigation("UploadedBy");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.User.NotificationModel", b =>
@@ -817,13 +1040,13 @@ namespace Mmc.Data.Migrations
 
             modelBuilder.Entity("Mmc.Data.Model.User.UserModel", b =>
                 {
-                    b.HasOne("Mmc.Data.Model.PictureModel", "Picture")
+                    b.HasOne("Mmc.Data.Model.Core.OrganizationModel", "Organization")
                         .WithMany()
-                        .HasForeignKey("PictureId")
+                        .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Picture");
+                    b.Navigation("Organization");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Address.CountryModel", b =>
@@ -851,6 +1074,11 @@ namespace Mmc.Data.Migrations
             modelBuilder.Entity("Mmc.Data.Model.Core.FacultyModel", b =>
                 {
                     b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.User.UserModel", b =>
+                {
+                    b.Navigation("Pictures");
                 });
 #pragma warning restore 612, 618
         }

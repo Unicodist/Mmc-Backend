@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Mmc.Address.Entity;
 using Mmc.Data.Model.Address;
 
 namespace Mmc.Data.Configurations.Address;
 
 public class StateConfiguration : IEntityTypeConfiguration<StateModel>
 {
+    public static StateModel StateModel =
+        new() {Name = "Province 1", Id = 1, CountryId = 1, Description = "Eastern most province"};
     public void Configure(EntityTypeBuilder<StateModel> builder)
     {
         _ = builder.ToTable("state");
@@ -17,5 +18,7 @@ public class StateConfiguration : IEntityTypeConfiguration<StateModel>
         _ = builder.Property(a => a.CountryId).HasColumnName("country_id").HasColumnType(ColumnTypes.BIGINT);
 
         _ = builder.HasOne(a => a.Country).WithMany(c => c.States).HasForeignKey(a => a.CountryId);
+
+        _ = builder.HasData(StateModel);
     }
 }

@@ -1,4 +1,3 @@
-using Mmc.Address.Entity;
 using Mmc.Address.Entity.Interface;
 using UserCountry = Mmc.User.Entity.Interface.ICountry;
 using UserState = Mmc.User.Entity.Interface.IState;

@@ -12,4 +12,5 @@ public interface IPicture
     public DateTime UploadedDate { get; }
     IBlogUser UploadedBy { get; }
     long UploadedById { get; }
+    bool IsProfilePicture { get; }
 }

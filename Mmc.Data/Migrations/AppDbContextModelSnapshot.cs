@@ -82,6 +82,15 @@ namespace Mmc.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("country", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Abbreviation = "Np",
+                            Name = "Nepal",
+                            PhoneCode = "977"
+                        });
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Address.StateModel", b =>
@@ -112,6 +121,15 @@ namespace Mmc.Data.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("state", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CountryId = 1L,
+                            Description = "Eastern most province",
+                            Name = "Province 1"
+                        });
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Address.VdcModel", b =>
@@ -140,6 +158,15 @@ namespace Mmc.Data.Migrations
                     b.HasIndex("StateId");
 
                     b.ToTable("vdc", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Description = "Near Mechi River",
+                            Name = "Bhdrapur",
+                            StateId = 1L
+                        });
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Blog.ArticleModel", b =>
@@ -451,6 +478,52 @@ namespace Mmc.Data.Migrations
                     b.ToTable("faculty", (string)null);
                 });
 
+            modelBuilder.Entity("Mmc.Data.Model.Core.OrganizationModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CountryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CountryModelId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<long>("StateId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("StateModelId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Subtitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<long>("VdcId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("VdcModelId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Ward")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryModelId");
+
+                    b.HasIndex("StateModelId");
+
+                    b.HasIndex("VdcModelId");
+
+                    b.ToTable("OrganizationModel");
+                });
+
             modelBuilder.Entity("Mmc.Data.Model.Core.StudentEnrollmentModel", b =>
                 {
                     b.Property<long>("Id")
@@ -561,6 +634,9 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("guid");
 
+                    b.Property<bool>("IsProfilePicture")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -581,9 +657,14 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("uploaded_date");
 
+                    b.Property<long?>("UserModelId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UploadedById");
+
+                    b.HasIndex("UserModelId");
 
                     b.ToTable("images", (string)null);
 
@@ -592,10 +673,11 @@ namespace Mmc.Data.Migrations
                         {
                             Id = 1L,
                             Guid = "GodGuid",
+                            IsProfilePicture = false,
                             Location = "/Assets/Account/Profiles/SuperAdmin.jpg",
                             Type = "Avatar",
                             UploadedById = 1L,
-                            UploadedDate = new DateTime(2022, 6, 27, 21, 26, 20, 354, DateTimeKind.Local).AddTicks(9473)
+                            UploadedDate = new DateTime(2022, 6, 28, 8, 51, 14, 29, DateTimeKind.Local).AddTicks(8173)
                         });
                 });
 
@@ -656,15 +738,14 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("name");
 
+                    b.Property<long>("OrganizationId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("organization_id");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("password");
-
-                    b.Property<long>("PictureId")
-                        .HasMaxLength(50)
-                        .HasColumnType("bigint")
-                        .HasColumnName("picture_id");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -680,7 +761,7 @@ namespace Mmc.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PictureId");
+                    b.HasIndex("OrganizationId");
 
                     b.ToTable("user", (string)null);
 
@@ -690,8 +771,8 @@ namespace Mmc.Data.Migrations
                             Id = 1L,
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
-                            Password = "$2a$11$H5vh/2Nfva/28RLrrg3MpehSGPbKBDVU1SojREDqD9K2Y/Kurdlmq",
-                            PictureId = 1L,
+                            OrganizationId = 1L,
+                            Password = "$2a$11$SxaLWe2PKgZntTzzQ5rljexTfpEHexJZ.Je0wkwnKk/3WXln/pyOS",
                             UserName = "AshuraNep",
                             UserType = "Superuser"
                         });
@@ -864,6 +945,33 @@ namespace Mmc.Data.Migrations
                     b.Navigation("Faculty");
                 });
 
+            modelBuilder.Entity("Mmc.Data.Model.Core.OrganizationModel", b =>
+                {
+                    b.HasOne("Mmc.Data.Model.Address.CountryModel", "CountryModel")
+                        .WithMany()
+                        .HasForeignKey("CountryModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mmc.Data.Model.Address.StateModel", "StateModel")
+                        .WithMany()
+                        .HasForeignKey("StateModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mmc.Data.Model.Address.VdcModel", "VdcModel")
+                        .WithMany()
+                        .HasForeignKey("VdcModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CountryModel");
+
+                    b.Navigation("StateModel");
+
+                    b.Navigation("VdcModel");
+                });
+
             modelBuilder.Entity("Mmc.Data.Model.Core.StudentEnrollmentModel", b =>
                 {
                     b.HasOne("Mmc.Data.Model.Core.CourseModel", "Course")
@@ -902,6 +1010,10 @@ namespace Mmc.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Mmc.Data.Model.User.UserModel", null)
+                        .WithMany("Pictures")
+                        .HasForeignKey("UserModelId");
+
                     b.Navigation("UploadedBy");
                 });
 
@@ -926,13 +1038,13 @@ namespace Mmc.Data.Migrations
 
             modelBuilder.Entity("Mmc.Data.Model.User.UserModel", b =>
                 {
-                    b.HasOne("Mmc.Data.Model.PictureModel", "Picture")
+                    b.HasOne("Mmc.Data.Model.Core.OrganizationModel", "Organization")
                         .WithMany()
-                        .HasForeignKey("PictureId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Picture");
+                    b.Navigation("Organization");
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Address.CountryModel", b =>
@@ -960,6 +1072,11 @@ namespace Mmc.Data.Migrations
             modelBuilder.Entity("Mmc.Data.Model.Core.FacultyModel", b =>
                 {
                     b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("Mmc.Data.Model.User.UserModel", b =>
+                {
+                    b.Navigation("Pictures");
                 });
 #pragma warning restore 612, 618
         }

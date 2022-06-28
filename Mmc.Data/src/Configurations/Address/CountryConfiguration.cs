@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Mmc.Address.Entity;
+using Mmc.Data.Model.Address;
 
 namespace Mmc.Data.Configurations.Address;
 
 public class CountryConfiguration : IEntityTypeConfiguration<Model.Address.CountryModel>
 {
+    public static CountryModel CountryModel = new() {Id = 1,Name = "Nepal",Abbreviation = "Np",PhoneCode = "977"};
     public void Configure(EntityTypeBuilder<Model.Address.CountryModel> builder)
     {
         _ = builder.ToTable("country");
@@ -17,5 +18,7 @@ public class CountryConfiguration : IEntityTypeConfiguration<Model.Address.Count
         _ = builder.Property(a => a.PhoneCode).HasColumnName("phone_code").HasColumnType(ColumnTypes.VARCHAR).HasMaxLength(40);
 
         _ = builder.HasMany(a => a.States).WithOne(s => s.Country).HasForeignKey(s => s.CountryId);
+
+        _ = builder.HasData(CountryModel);
     }
 }

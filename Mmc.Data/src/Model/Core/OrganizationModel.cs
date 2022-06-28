@@ -1,11 +1,14 @@
-using Mmc.Address.Entity;
+﻿using Mmc.Address.Entity.Interface;
 using Mmc.Data.Model.Address;
-using Mmc.User.Entity.Interface;
+using IOrganization = Mmc.Core.Entity.Interface.IOrganization;
 using UserOrganization = Mmc.User.Entity.Interface.IOrganization;
+using UserCountry = Mmc.User.Entity.Interface.ICountry;
+using UserState = Mmc.User.Entity.Interface.IState;
+using UserVdc = Mmc.User.Entity.Interface.IVdc;
 
 namespace Mmc.Data.Model.Core;
 
-public class OrganizationModel : UserOrganization
+public class OrganizationModel : UserOrganization, IOrganization
 {
     public OrganizationModel()
     {
@@ -15,20 +18,16 @@ public class OrganizationModel : UserOrganization
     {
         Name = name;
         Subtitle = subtitle;
-        CountryModel = countryModel;
         VdcModel = vdcModel;
-        StateModel = stateModel;
         Ward = ward;
     }
 
-    public long Id { get; protected set; }
+    public long Id { get; init; }
     public string Name { get; set; }
     public string Subtitle { get; set; }
-    public virtual StateModel StateModel { get; set; }
-    IState UserOrganization.State => StateModel;
-    public virtual CountryModel CountryModel { get; set; }
-    ICountry UserOrganization.Country => CountryModel;
     public virtual VdcModel VdcModel { get; set; }
-    IVdc UserOrganization.Vdc => VdcModel;
+    UserVdc UserOrganization.Vdc => VdcModel;
+    IVdc IOrganization.Vdc => VdcModel;
     public int Ward { get; set; }
+    public long VdcId { get; internal set; }
 }

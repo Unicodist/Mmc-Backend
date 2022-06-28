@@ -118,7 +118,7 @@ public class BlogController : Controller
                 Body = x.Body,
                 Guid = x.Guid.ToString(),
                 Name = x.User.UserName,
-                Picture = Path.Combine(x.User.Picture.Location),
+                Picture = Path.Combine(x.User.GetProfilePicturePath()),
                 SelfComment = article.User.Id == x.Id
             })
         };
@@ -137,7 +137,7 @@ public class BlogController : Controller
             Body = comment.Body,
             SelfComment = user.Id == comment.UserId,
             Name = user.Name,
-            Picture = user.Picture.Location
+            Picture = user.GetProfilePicturePath()
         };
         return PartialView("PartialViews/Blog/SingleCommentView", model);
     }

@@ -17,7 +17,6 @@ public class UserServices : IUserService
 
     public async Task<IUser> Create(UserCreateDto dto)
     {
-        
         var user = new Entity.User(dto.Name,dto.Email,dto.Password, dto.Username, new Picture(dto.Picture));
         return await _userUserRepo.InsertAsync(user);
     }

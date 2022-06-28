@@ -5,5 +5,6 @@ public interface IBlogUser
     public long Id { get; }
     string Name { get; }
     string UserName { get; }
-    IPicture Picture { get; }
+    ICollection<IPicture>? Pictures { get; }
+    string GetProfilePicturePath();
 }

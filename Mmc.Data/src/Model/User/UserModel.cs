@@ -10,14 +10,15 @@ public class UserModel: IUser,
     IBlogUser,
     INoticeUser
 {
-    public UserModel(string name, string userType, string email, string password, string userName,Mmc.User.Entity.Interface.IPicture picture)
+    public UserModel(string name, string userType, string email, string password, string userName,
+        PictureModel pictureModel)
     {
         Name = name;
         UserType = userType;
         Email = email;
         Password = password;
         UserName = userName;
-        Picture = (PictureModel)picture;
+        Pictures.Add(pictureModel);
     }
 
     public UserModel()
@@ -32,15 +33,13 @@ public class UserModel: IUser,
     public string Email { get; set; }
     public string Password { get; set; }
     public string UserName { get; set; }
-    public virtual PictureModel Picture { get; set; }
+    public virtual ICollection<PictureModel> Pictures { get; set; }
+    public string GetProfilePicturePath()=> Pictures.SingleOrDefault(x => x.IsProfilePicture).Location;
 
+    ICollection<IPicture>? IBlogUser.Pictures => Pictures.Cast<IPicture>().ToList();
+    ICollection<Mmc.User.Entity.Interface.IPicture> IUser.Pictures => Pictures.Cast<Mmc.User.Entity.Interface.IPicture>().ToList();
     public virtual OrganizationModel Organization { get; set; }
     IOrganization IUser.Organization => Organization;
-
-    IPicture IBlogUser.Picture => Picture;
-    Mmc.User.Entity.Interface.IPicture IUser.Picture => Picture;
-    public long PictureId { get; set; }
-
     public long OrganizationId
     {
         get;

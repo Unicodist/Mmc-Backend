@@ -40,4 +40,5 @@ public class PictureModel : UserPicture, BlogPicture
     public long UploadedById { get; init; }
     IBlogUser BlogPicture.UploadedBy => UploadedBy;
     IUser UserPicture.UploadedBy => UploadedBy;
+    public bool IsProfilePicture { get; set; }
 }
