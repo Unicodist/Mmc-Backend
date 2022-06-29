@@ -43,7 +43,7 @@ public class BlogController : Controller
         {
             return View("Errors/_No_Articles");
         }
-        var modelArticles = articles.Select(x => new ArticleViewModel {Guid = x.Guid, Body = x.Body, DateTime = DateHelper.GetDateTime(x.PostedDate,x.PostedTime), Image = "abc", Title = x.Title});
+        var modelArticles = articles.Select(x => new ArticleViewModel {Guid = x.Guid, Body = x.Body, DateTime = DateHelper.GetDateTime(x.PostedDate,x.PostedTime), Image = "abc", Title = x.Title,Thumbnail = x.Thumbnail});
         var pinned = modelArticles.First();
         modelArticles.ToList().Remove(pinned);
         var model = new BlogHomeViewModel
@@ -88,7 +88,7 @@ public class BlogController : Controller
     public async Task<IActionResult> Create([FromForm]ArticleCreateViewModel model)
     {
         var user = this.GetCurrentBlogUser();
-        var filePath = await FileHandler.UploadFile(model.Thumbnail);
+        var filePath = await FileHandler.UploadFile(model.Thumbnail,_webHostEnvironment);
         var articleDto = new ArticleCreateDto(model.Title, model.CkEditorBody, user.Id, model.CategoryGuid,filePath);
         var guid = (await _blogService.Create(articleDto)).Guid;
         return Ok(new{Guid=guid.ToString(),Message="Article published successfully"});

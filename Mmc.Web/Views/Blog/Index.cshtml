@@ -8,7 +8,7 @@
 <!-- Blog entries-->
 <!-- Featured blog post-->
 <div class="card mb-4"> 
-    <a asp-action="Read" asp-route-guid="@Model.Pinned.Guid"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+    <a asp-action="Read" asp-route-guid="@Model.Pinned.Guid"><img class="card-img-top" src="@Model.Pinned.Thumbnail" alt="..." /></a>
     <div class="card-body">
         <div class="small text-muted">@Model.Pinned.DateTime.ToString(CultureInfo.InvariantCulture)</div>
         <h2 class="card-title">@Model.Pinned.Title</h2>
@@ -21,7 +21,7 @@
     @foreach (var item in Model.Articles)
     {
         <div class="col-lg-6 card mb-4">
-            <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..."/></a>
+            <a href="#!"><img class="card-img-top" src="@item.Thumbnail" alt="..."/></a>
             <div class="card-body">
                 <div class="small text-muted">@item.DateTime</div>
                 <h2 class="card-title h4">@item.Title</h2>

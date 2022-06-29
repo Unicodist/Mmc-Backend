@@ -1,0 +1,23 @@
+@model Mechi.Backend.ViewModel.Blog.CategoryViewModel;
+
+@using (Html.BeginForm("Create","CategoryApi",FormMethod.Post))
+{
+    @Html.HiddenFor(a=>a.Guid)
+    <section class="form-group">
+        @Html.LabelFor(a=>a.Name)
+        @Html.TextBoxFor(a=>a.Name,new{@class="form-control"})
+    </section>
+    <section class="form-group">
+        @Html.LabelFor(a=>a.Description)
+        @Html.TextBoxFor(a=>a.Description,new{@class="form-control"})
+    </section>
+    @Html.ValidationSummary()
+    @if (Model.IsNew)
+    {
+        <button class="btn btn-primary">Insert</button>
+    }
+    else
+    {
+        <div class="btn-group"><button class="btn" type="submit">Update</button><button class="btn">Delete</button></div>
+    }
+}

@@ -7,4 +7,5 @@ public class ArticleViewModel
     public DateTime DateTime { get; set; }
     public string Guid { get; set; }
     public string Image { get; set; }
+    public string Thumbnail { get; set; }
 }

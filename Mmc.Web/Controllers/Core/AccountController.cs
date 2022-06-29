@@ -58,6 +58,11 @@ public class AccountController : Controller
         return await Index(user.UserName);
     }
 
+    public IActionResult Edit(UserUpdateViewModel model)
+    {
+        return Ok();
+    }
+
     [Route("/Register")]
     public async Task<IActionResult> Register(UserCreateViewModel? model)
     {

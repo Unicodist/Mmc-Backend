@@ -21,4 +21,8 @@ public class Category : ICategory
     public Status Status { get; }
     public ICollection<IArticle> BlogPosts { get; }
     public GuidType Guid { get; set; }
+    public void Update(string dtoName, string dtoDescription)
+    {
+        throw new NotImplementedException();
+    }
 }

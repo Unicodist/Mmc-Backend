@@ -8,4 +8,5 @@ public interface ICategoryRepository
     public Task InsertAsync(ICategory category);
     public Task<ICollection<ICategory>?> GetAllAsync();
     Task<ICategory?> GetByGuid(string dtoCategoryGuid);
+    Task UpdateAsync(ICategory category);
 }

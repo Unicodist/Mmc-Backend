@@ -15,12 +15,14 @@ public class NoticeController : Controller
     private readonly INoticeRepository _noticeRepository;
     private readonly ICourseRepository _courseRepository;
     private readonly INoticeService _noticeService;
+    private IWebHostEnvironment _webHostEnvironment;
 
-    public NoticeController(INoticeRepository noticeRepository, ICourseRepository courseRepository, INoticeService noticeService, INoticeUserRepository noticeUserRepository)
+    public NoticeController(INoticeRepository noticeRepository, ICourseRepository courseRepository, INoticeService noticeService, INoticeUserRepository noticeUserRepository, IWebHostEnvironment webHostEnvironment)
     {
         _noticeRepository = noticeRepository;
         _courseRepository = courseRepository;
         _noticeService = noticeService;
+        _webHostEnvironment = webHostEnvironment;
         UserHelper.NoticeUserRepository= noticeUserRepository;
     }
 
@@ -29,7 +31,7 @@ public class NoticeController : Controller
         return View();
     }
     [Authorize]
-    public async Task<IActionResult> Create(NoticeCreateViewModel model)
+    public async Task<IActionResult> Create([FromForm]NoticeCreateViewModel model)
     {
         if (!ModelState.IsValid)
             return View(model);
@@ -38,7 +40,7 @@ public class NoticeController : Controller
             courses = courses!.Where(x => model.CourseGuids.Contains(x.Guid)).ToList();
         var severity = BaseEnum.GetAll<NoticeSeverity>().SingleOrDefault(x => x.Id == model.SeverityId) ??
                        throw new UnknownSeverityLevelException();
-        var image = await FileHandler.UploadFile(model.Image);
+        var image = await FileHandler.UploadFile(model.Image,_webHostEnvironment);
         var user = this.GetCurrentNoticeUser();
         var noticeCreateDto = new NoticeCreateDto(model.Title,model.Body,image,severity,user);
         await _noticeService.Create(noticeCreateDto);

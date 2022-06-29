@@ -6,17 +6,30 @@ namespace Mmc.Data.Model.Blog;
 
 public class CategoryModel : ICategory
 {
-    public CategoryModel(string name, string description)
+    public CategoryModel()
     {
-        Name = name;
-        Description = description;
-        Status = Status.Active;
+        
     }
+
+    public CategoryModel(string categoryName, string categoryDescription, GuidType categoryGuid, Status categoryStatus)
+    {
+        Name = categoryName;
+        Description = categoryDescription;
+        Guid = categoryGuid;
+        Status = categoryStatus;
+    }
+
     public long Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public Status Status { get; set; }
     public virtual ICollection<ArticleModel> BlogPosts { get; set; }
     public GuidType Guid { get; set; }
+    public void Update(string dtoName, string dtoDescription)
+    {
+        Name = dtoName;
+        Description = dtoDescription;
+    }
+
     ICollection<IArticle> ICategory.BlogPosts => BlogPosts.Cast<IArticle>().ToList();
 }

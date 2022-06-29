@@ -1,6 +1,6 @@
-namespace Mechi.Backend.Helper;
+namespace Mechi.Backend.Helper.Blog;
 
-public class FileHandler
+public class ThumbnailHandler
 {
     public static async Task<string> UploadFile(IFormFile? file, IWebHostEnvironment webHostEnvironment)
     {

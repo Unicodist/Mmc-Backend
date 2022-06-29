@@ -12,4 +12,5 @@ public interface ICategory
 
     public ICollection<IArticle> BlogPosts { get; }
     GuidType Guid { get; set; }
+    void Update(string dtoName, string dtoDescription);
 }

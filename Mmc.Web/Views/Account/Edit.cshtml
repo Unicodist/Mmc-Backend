@@ -1,0 +1,11 @@
+@model Mechi.Backend.ViewModel.User.UserUpdateViewModel;
+
+@using (Html.BeginForm("Edit","Account",FormMethod.Post,new{id="user_update_form"}))
+{
+    <div class="row">
+        <div class="col-md-4 d-flex justify-content-center">
+            <img src="@Model.ProfilePicture" alt="">
+        </div>
+        <div class="col-md-8"></div>
+    </div>
+}

@@ -1,0 +1,33 @@
+@using Mechi.Backend.ViewModel.Blog
+<style>
+    #category_list li:hover{
+        background-color: #ece1be;
+    }
+</style>
+<div class="row">
+    <div class="col-sm-4">
+    <ul id="category_list" class="list-group">
+        
+    </ul>
+</div>
+<div class="col-sm-8" id="category_form_container">
+    @await Html.PartialAsync("PartialViews/Setup/CategoryForm",CategoryViewModel.GetNew())
+</div>
+</div>
+<script>
+$.get( '@Url.Action("GetCategoryList","CategoryApi")', function( data ) {
+    for(var x = 0; x < data.length; x++){
+        addCategoryItem(data[x].guid,data[x].name);
+    }
+});
+
+function addCategoryItem(guid,name) {
+    let item = $('#category_list');
+    item.append(`<li value='${guid}' class="list-group-item category_list_item">${name}</li>`);
+}
+
+$('.category_list_item').on("click",function() {
+  alert('clicked');
+})
+
+</script>

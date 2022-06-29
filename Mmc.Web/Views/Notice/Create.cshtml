@@ -5,7 +5,7 @@
 @using Mmc.Core.Repository
 @using Mmc.Notice.Enum
 @model Mechi.Backend.ViewModel.Notice.NoticeCreateViewModel;
-@using (Html.BeginForm("Create", "Notice", FormMethod.Post))
+@using (Html.BeginForm("Create", "Notice", FormMethod.Post,new {enctype="multipart/form-data"}))
 {
     <div class="form-group">
         @Html.LabelFor(m=>m.Title)

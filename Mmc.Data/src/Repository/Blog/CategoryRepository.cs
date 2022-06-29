@@ -18,6 +18,7 @@ public class CategoryRepository :BaseRepository<CategoryModel>, ICategoryReposit
 
     public Task InsertAsync(ICategory category)
     {
+        var model = new CategoryModel(category.Name,category.Description,category.Guid,category.Status);
         return base.InsertAsync((CategoryModel) category);
     }
 
@@ -29,5 +30,10 @@ public class CategoryRepository :BaseRepository<CategoryModel>, ICategoryReposit
     public async Task<ICategory?> GetByGuid(string dtoCategoryGuid)
     {
         return await GetQueryable().SingleOrDefaultAsync(x => x.Guid == dtoCategoryGuid);
+    }
+
+    public Task UpdateAsync(ICategory category)
+    {
+        return base.UpdateAsync((CategoryModel)category);
     }
 }

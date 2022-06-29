@@ -18,13 +18,15 @@ public class BlogApiController : ControllerBase
     private readonly IBlogService _blogService;
     private readonly ICommentService _commentService;
     private readonly IHeartService _heartService;
+    private IWebHostEnvironment _webHostEnvironment;
 
-    public BlogApiController(IArticleRepository articleRepository, IBlogService blogService, ICommentService commentService, IHeartService heartService)
+    public BlogApiController(IArticleRepository articleRepository, IBlogService blogService, ICommentService commentService, IHeartService heartService, IWebHostEnvironment webHostEnvironment)
     {
         _articleRepository = articleRepository;
         _blogService = blogService;
         _commentService = commentService;
         _heartService = heartService;
+        _webHostEnvironment = webHostEnvironment;
     }
     [HttpGet]
     public async Task<IActionResult> Get()
@@ -51,7 +53,7 @@ public class BlogApiController : ControllerBase
     public async Task<IActionResult> Create([FromBody]ArticleCreateViewModel model)
     {
         var user = this.GetCurrentBlogUser();
-        var filePath = await FileHandler.UploadFile(model.Thumbnail);
+        var filePath = await FileHandler.UploadFile(model.Thumbnail,_webHostEnvironment);
         
         var articleDto = new ArticleCreateDto(model.Title, model.CkEditorBody, user.Id, model.CategoryGuid,filePath);
         var article = await _blogService.Create(articleDto);
