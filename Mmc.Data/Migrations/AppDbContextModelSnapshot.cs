@@ -666,7 +666,7 @@ namespace Mmc.Data.Migrations
                             Guid = "GodGuid",
                             Location = "/Assets/Account/Profiles/SuperAdmin.jpg",
                             Type = "Profile",
-                            UploadedDate = new DateTime(2022, 6, 28, 20, 44, 6, 630, DateTimeKind.Local).AddTicks(560)
+                            UploadedDate = new DateTime(2022, 6, 29, 19, 44, 3, 622, DateTimeKind.Local).AddTicks(7474)
                         });
                 });
 
@@ -768,7 +768,7 @@ namespace Mmc.Data.Migrations
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
                             OrganizationId = 1L,
-                            Password = "$2a$11$6YLpOfcPc9CPQb1H83scJuVxGtnpVDPlv4rxDbVIQrSnwcKG0tCC6",
+                            Password = "$2a$11$Is2GOSFOEszizydEt4TLGOvnXK3WJRHXQ9vcY77Ho35qdDsW.ZsJW",
                             PictureId = 1L,
                             UserName = "AshuraNep",
                             UserType = "Superuser"

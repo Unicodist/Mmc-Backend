@@ -6,7 +6,7 @@
     ViewData["Title"] = "Write a new Blog";
     var categories = (await _categoryRepository.GetAllAsync()).Select(x=>new{x.Guid,x.Name});
 }
-@using(Html.BeginForm("Create","Blog","",FormMethod.Post,null,new{enctype="multipart/form-data",id="form-post-article"})){
+@using(Html.BeginForm("Write","Blog","",FormMethod.Post,null,new{enctype="multipart/form-data",id="form-post-article"})){
 <div class="form-group">
 		@Html.TextBoxFor(m => m.Title, null, new {@class = "form-control mb-3", @placeholder = "Title"})
 		@Html.ValidationMessageFor(m => m.Title)
@@ -89,37 +89,5 @@ extraPlugins: [ MyCustomUploadAdapterPlugin ]
 } )
 .catch( err => {
     console.error( err.stack );
-});
-		
-    $('#form-post-article').submit(function (e){
-        e.preventDefault();
-        console.log(this);
-        const url = $(this).attr("action");
-
-        $.ajax({
-        type: "POST",
-        url: url,
-        enctype:"multipart/form-data",
-        data: $(this).serialize(), // serializes the form's elements.
-        success: function(data)
-        {
-          Swal.fire(
-            'Hooray!!!',
-            data.message,
-            'success'
-          );
-          window.location.replace("@Url.Action("Read","Blog")/"+data.guid);
-        },
-        error:function(data) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'We have a problem publishing that article. Contact you service provider',
-            footer: '<a href="">Why do I have this issue?</a>'
-          });
-          console.log(data);
-        }
-        });
-    });
-		
+});		
 </script>

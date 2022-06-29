@@ -1,4 +1,5 @@
 using Mechi.Backend.Helper;
+using Mechi.Backend.Helper.Notice;
 using Mechi.Backend.ViewModel.Notice;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -40,7 +41,7 @@ public class NoticeController : Controller
             courses = courses!.Where(x => model.CourseGuids.Contains(x.Guid)).ToList();
         var severity = BaseEnum.GetAll<NoticeSeverity>().SingleOrDefault(x => x.Id == model.SeverityId) ??
                        throw new UnknownSeverityLevelException();
-        var image = await FileHandler.UploadFile(model.Image,_webHostEnvironment);
+        var image = await NoticeHelper.UploadFile(model.Image,_webHostEnvironment);
         var user = this.GetCurrentNoticeUser();
         var noticeCreateDto = new NoticeCreateDto(model.Title,model.Body,image,severity,user);
         await _noticeService.Create(noticeCreateDto);

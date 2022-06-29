@@ -1,6 +1,7 @@
 using System.Globalization;
 using Mechi.Backend.ApiModel.Blog;
 using Mechi.Backend.Helper;
+using Mechi.Backend.Helper.Blog;
 using Mechi.Backend.ViewModel.Blog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -53,7 +54,7 @@ public class BlogApiController : ControllerBase
     public async Task<IActionResult> Create([FromBody]ArticleCreateViewModel model)
     {
         var user = this.GetCurrentBlogUser();
-        var filePath = await FileHandler.UploadFile(model.Thumbnail,_webHostEnvironment);
+        var filePath = await BlogHelper.UploadFile(model.Thumbnail,_webHostEnvironment);
         
         var articleDto = new ArticleCreateDto(model.Title, model.CkEditorBody, user.Id, model.CategoryGuid,filePath);
         var article = await _blogService.Create(articleDto);

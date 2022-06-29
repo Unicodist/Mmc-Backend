@@ -1,6 +1,7 @@
 using System.Globalization;
 using Mechi.Backend.ApiModel.Comment;
 using Mechi.Backend.Helper;
+using Mechi.Backend.Helper.Blog;
 using Mechi.Backend.Helper.DateHelper;
 using Mechi.Backend.ViewModel;
 using Mechi.Backend.ViewModel.Blog;
@@ -44,6 +45,7 @@ public class BlogController : Controller
             return View("Errors/_No_Articles");
         }
         var modelArticles = articles.Select(x => new ArticleViewModel {Guid = x.Guid, Body = x.Body, DateTime = DateHelper.GetDateTime(x.PostedDate,x.PostedTime), Image = "abc", Title = x.Title,Thumbnail = x.Thumbnail});
+        modelArticles = modelArticles.Reverse();
         var pinned = modelArticles.First();
         modelArticles.ToList().Remove(pinned);
         var model = new BlogHomeViewModel
@@ -80,18 +82,15 @@ public class BlogController : Controller
     }
     [Authorize]
     [Route("Write")]
-    public IActionResult Write()
+    public async Task<IActionResult> Write(ArticleCreateViewModel model)
     {
-        return View();
-    }
-    [HttpPost]
-    public async Task<IActionResult> Create([FromForm]ArticleCreateViewModel model)
-    {
+        if (!ModelState.IsValid)
+            return View(model);
         var user = this.GetCurrentBlogUser();
-        var filePath = await FileHandler.UploadFile(model.Thumbnail,_webHostEnvironment);
+        var filePath = await BlogHelper.UploadFile(model.Thumbnail,_webHostEnvironment);
         var articleDto = new ArticleCreateDto(model.Title, model.CkEditorBody, user.Id, model.CategoryGuid,filePath);
         var guid = (await _blogService.Create(articleDto)).Guid;
-        return Ok(new{Guid=guid.ToString(),Message="Article published successfully"});
+        return RedirectToAction("Index");
     }
     [Route("[controller]/GetBlogPaginationView/{page}")]
     public PartialViewResult GetBlogPaginationView(int page=1)

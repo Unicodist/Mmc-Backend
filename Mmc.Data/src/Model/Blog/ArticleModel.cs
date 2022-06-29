@@ -42,7 +42,7 @@ public class ArticleModel : IArticle
     public virtual UserModel AuthorAdmin { get; } = null!;
     IBlogUser IArticle.User => AuthorAdmin;
     public virtual CategoryModel? Category { get; protected set; }
-    public virtual ICollection<HeartModel> Likes { get; }
+    public virtual ICollection<HeartModel> Likes { get; } = new List<HeartModel>();
     ICollection<IHeart> IArticle.Likes => Likes.Cast<IHeart>().ToList();
     public virtual ICollection<InteractionLogModel> Interactions { get; set; }
     ICollection<IInteractionLog> IArticle.Interactions => Interactions.Cast<IInteractionLog>().ToList();
