@@ -17,7 +17,7 @@ public class NoticeGridController : ControllerBase
         _noticeService = noticeService;
     }
     [HttpGet]
-    public Task<IActionResult> Read(NoticeGridQueryModel model)
+    public Task<IActionResult> Read(GridQueryModel model)
     {
         var noticeMasters = _noticeRepository.GetQueryable().Where(x=>x.Status==Status.Active.ToString());
         if (model.current > 1)

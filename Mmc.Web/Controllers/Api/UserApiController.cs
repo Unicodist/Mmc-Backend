@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Mechi.Backend.ViewModel.Notice;
+using Microsoft.AspNetCore.Mvc;
 using Mmc.User.Enum;
 using Mmc.User.Repository;
 using Mmc.User.UserException;
@@ -42,9 +43,9 @@ public class UserApiController : Controller
         return Ok();
     }
 
-    public async Task<IActionResult> GetUserGrid()
+    public async Task<IActionResult> GetUserGrid(GridQueryModel model)
     {
-        var users = (await _userRepository.GetAllAsync()).Select(x=>new{x.Name,x.UserName,Type=x.UserType.ToString()});
-        return Ok(users);
+        var users = (await _userRepository.GetAllAsync()).Select(x=>new{x.Name,x.UserName,Type=x.UserType.ToString()}).ToList();
+        return Ok(model.Fill(users));
     }
 }

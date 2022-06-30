@@ -1,3 +1,5 @@
+using Mmc.Blog.BaseType;
+
 namespace Mechi.Backend.Helper.Blog;
 
 public class BlogHelper
@@ -6,11 +8,13 @@ public class BlogHelper
     {
         var filePath = "/Assets/Thumbnail/first.jpg";
         if (file is not {Length: > 0}) return filePath;
-        var root = Directory.GetCurrentDirectory();
-        filePath = Path.Combine(root,"wwwroot/Assets/Notices",file.FileName);
-        await using var stream = new FileStream(filePath, FileMode.Create);
-        await file.CopyToAsync(stream);
 
-        return filePath;
+        var relative = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+        string guid = Guid.NewGuid().ToString();
+        var physical = Path.Combine("Assets/Thumbnail",$"{guid}{Path.GetExtension(file.FileName)}");
+        filePath = Path.Combine(relative, physical);
+        var stream = new FileStream(filePath, FileMode.Create);
+        await file.CopyToAsync(stream);
+        return physical;
     }
 }
