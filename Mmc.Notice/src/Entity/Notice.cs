@@ -14,6 +14,7 @@ public class Notice : INotice
         Guid = new GuidType();
         Status = Status.Active;
         Severity = severity;
+        Picture = picture;
     }
 
     public long Id { get; set; }

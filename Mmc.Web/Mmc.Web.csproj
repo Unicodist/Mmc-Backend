@@ -293,7 +293,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Helper\ViewHelpers\Blog" />
       <Folder Include="logs" />
       <Folder Include="wwwroot\Assets\notices" />
       <Folder Include="wwwroot\lib\bootstrap" />
