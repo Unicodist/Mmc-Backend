@@ -9,4 +9,5 @@ public interface IUserUserRepository
     Task<ICollection<IUser>> GetByName(string name);
     Task<IUser?> GetByUsername(string username);
     Task UpdateAsync(IUser user);
+    Task<ICollection<IUser>> GetAllAsync();
 }

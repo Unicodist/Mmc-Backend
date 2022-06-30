@@ -61,4 +61,9 @@ public class UserModel: IUser,
         Email = dtoEmail;
         Picture = (PictureModel)picture;
     }
+
+    public void AddProfilePicture(Mmc.User.Entity.Interface.IPicture picture)
+    {
+        Picture = (PictureModel)picture;
+    }
 }

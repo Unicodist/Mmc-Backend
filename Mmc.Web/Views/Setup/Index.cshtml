@@ -6,27 +6,17 @@
 <div id="tabs">
     <ul>
         <li><a href="#category_tab">Category</a></li>
-        <li><a href="#two_tab">Category</a></li>
-        <li><a href="#three_tab">Category</a></li>
+        <li><a href="#two_tab">User</a></li>
+        <li><a href="#three_tab">Course</a></li>
     </ul>
     <div class="row" id="category_tab">
         @await Html.PartialAsync("PartialViews/Setup/CategorySetup")
     </div>
     <div id="two_tab">
-        <p>
-            Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-            purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-            velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-            suscipit faucibus urna.
-        </p>
+        @await Html.PartialAsync("PartialViews/Setup/UserSetup")
     </div>
     <div id="three_tab">
-        <p>
-            Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
-            Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
-            ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
-            lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
-        </p>
+        @await Html.PartialAsync("PartialViews/Setup/CourseSetup")
     </div>
 </div>
 <script >

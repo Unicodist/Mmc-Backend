@@ -31,8 +31,9 @@ public class CategoryApiController : ControllerBase
         });
         return Ok(model);
     }
-    
-    public IActionResult Create(CategoryViewModel viewModel)
+    [Route("create")]
+    [HttpPost]
+    public IActionResult Create([FromBody]CategoryViewModel viewModel)
     {
         var categorydto = new CategoryDto()
         {
@@ -42,6 +43,7 @@ public class CategoryApiController : ControllerBase
         _categoryService.Create(categorydto);
         return Ok();
     }
+    [Route("update")]
     public IActionResult Update(CategoryViewModel viewModel)
     {
         var categorydto = new CategoryDto()

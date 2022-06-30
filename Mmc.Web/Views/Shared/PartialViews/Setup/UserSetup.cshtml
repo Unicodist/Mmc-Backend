@@ -1,0 +1,107 @@
+<table id="grid_data" class="table table-condensed table-hover table-striped text-light">
+    <thead>
+    <tr>
+        <th data-column-id="name">Name</th>
+        <th data-column-id="username">Username</th>
+        <th data-column-id="type">Type</th>
+        <th data-column-id="action" data-formatter="commands" data-sortable="false">actions</th>
+    </tr>
+    </thead>
+</table>
+<script>
+    let grid = $("#grid_data").bootgrid({
+        ajax: true,
+        ajaxSettings:{
+            method : "GET"
+            },
+        post: function ()
+        {
+            return {
+                id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
+            };
+        },
+        url: "@Url.Action("GetUserGrid","UserApi")",
+        formatters: {
+            "commands": function(column, row)
+            {
+                return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.username + "\">Admin</button> " + 
+                    "<button type=\"button\" class=\"btn btn-xs btn-default command-make-user\" data-row-id=\"" + row.username + "\">User</button>";
+            }
+        }
+    }).on("loaded.rs.jquery.bootgrid", function()
+      {
+          $("a.button").addClass("btn");
+          grid.find(".command-edit").on("click", function(e)
+          {
+              Swal.fire({
+                  title: 'Are you sure?',
+                  text: "Do you want want to change the role for this user to Staff?",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Nike!'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                      let rowGuid = $(this).data("username");
+                      $.ajax('@Url.Action("MakeStaff","UserApi")', {
+                          type: 'POST', 
+                          data: { username: rowGuid }, 
+                          success: function (data, status, xhr) {
+                              Swal.fire(
+                                  'Done',
+                                  'The user is now Staff.',
+                                  'success'
+                                );
+                              $('#grid_data').bootgrid('reload');
+                          },
+                          error: function (jqXhr, textStatus, errorMessage) {
+                              Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: "Something went wrong! Contact your administration",
+                                footer: '@Html.ActionLink("See More Info","UserChange","Documentation")'
+                              })
+                          }
+                      });
+                  }
+                })
+          }).end().find(".command-make-user").on("click", function(e)
+          {
+              Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want want to change the role for this user to student?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Nike!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    let rowGuid = $(this).data("username");
+                    $.ajax('@Url.Action("MakeUser","UserApi")', {
+                        type: 'POST', 
+                        data: { username: rowGuid }, 
+                        success: function (data, status, xhr) {
+                            Swal.fire(
+                                'Done',
+                                'The user is now Student.',
+                                'success'
+                              );
+                            $('#grid_data').bootgrid('reload');
+                        },
+                        error: function (jqXhr, textStatus, errorMessage) {
+                            Swal.fire({
+                              icon: 'error',
+                              title: 'Oops...',
+                              text: "Something went wrong! Contact your administration",
+                              footer: '@Html.ActionLink("See More Info","UserChange","Documentation")'
+                            })
+                        }
+                    });
+                }
+              })
+          });
+      });
+</script>
+

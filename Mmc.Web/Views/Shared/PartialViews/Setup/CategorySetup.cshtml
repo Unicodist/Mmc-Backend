@@ -5,8 +5,8 @@
     }
 </style>
 <div class="row">
-    <div class="col-sm-4">
-    <ul id="category_list" class="list-group">
+    <div class="col-sm-4 d-flex justify-content-center">
+    <ul id="category_list" class="btn-group btn-group-vertical">
         
     </ul>
 </div>
@@ -23,7 +23,7 @@ $.get( '@Url.Action("GetCategoryList","CategoryApi")', function( data ) {
 
 function addCategoryItem(guid,name) {
     let item = $('#category_list');
-    item.append(`<li value='${guid}' class="list-group-item category_list_item">${name}</li>`);
+    item.append(`<button value='${guid}' class="btn btn-primary">${name}</button>`);
 }
 
 $('.category_list_item').on("click",function() {

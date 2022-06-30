@@ -27,4 +27,9 @@ public class PictureRepository : BaseRepository<PictureModel>, IPictureRepositor
     {
         return await GetQueryable().FirstAsync(x => x.Guid == guid);
     }
+
+    public IQueryable<IPicture> GetQueryable()
+    {
+        return base.GetQueryable();
+    }
 }

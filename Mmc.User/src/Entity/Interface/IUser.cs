@@ -17,4 +17,6 @@ public interface IUser
     void MakeUser();
     void Update(string dtoName, string dtoEmail, IPicture picture, string dtoPassword, string dtoUsername,
         IOrganization organization);
+
+    void AddProfilePicture(IPicture picture);
 }

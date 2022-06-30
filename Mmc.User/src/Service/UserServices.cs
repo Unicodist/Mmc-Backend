@@ -22,10 +22,11 @@ public class UserServices : IUserService
     {
         var pictures = await _pictureRepo.GetAllAsync();
         var randomNumber = new Random(0).NextInt64(pictures.Count-1);
-        var picture = (await _pictureRepo.GetAllAsync()).Skip((int)randomNumber).First();
+        var picture = pictures.ElementAt((int)randomNumber);
         var organization = await _campusRepository.GetByGuidAsync(dto.CampusGuid)??throw new CampusNotFoundException();
         var password = BCrypt.Net.BCrypt.HashPassword(dto.Password);
-        var user = new Entity.User(dto.Name,dto.Email,password, dto.Username,organization);
+        IUser user = new Entity.User(dto.Name,dto.Email,password, dto.Username,organization);
+        user.AddProfilePicture(picture);
         return await _userUserRepo.InsertAsync(user);
     }
  

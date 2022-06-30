@@ -26,6 +26,7 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IN
     public async Task<IUser> InsertAsync(IUser user)
     {
         var uModel = new UserModel(user.Name, user.UserType, user.Email, user.Password, user.UserName, (OrganizationModel)user.Organization);
+        uModel.AddProfilePicture(user.Picture);
         await base.InsertAsync(uModel);
         return uModel;
     }
@@ -37,6 +38,11 @@ public class UserRepository : BaseRepository<UserModel>, IUserUserRepository, IN
     public Task UpdateAsync(IUser user)
     {
         return base.UpdateAsync((UserModel)user);
+    }
+
+    public async Task<ICollection<IUser>> GetAllAsync()
+    {
+        return (await base.GetAllAsync()).Cast<IUser>().ToList();
     }
 
     public async Task<ICollection<IUser>> GetByName(string name)

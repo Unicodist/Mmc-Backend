@@ -23,7 +23,7 @@ public class User : IUser
     public string Password { get; set; }
     public string UserName { get; set; }
     public long? PictureId { get; }
-    public IPicture Picture { get; }
+    public IPicture Picture { get; set; }
 
     public IOrganization Organization { get; set; }
 
@@ -41,5 +41,10 @@ public class User : IUser
         IOrganization organization)
     {
         throw new NotImplementedException();
+    }
+
+    public void AddProfilePicture(IPicture picture)
+    {
+        Picture = picture;
     }
 }
