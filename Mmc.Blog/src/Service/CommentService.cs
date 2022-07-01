@@ -16,14 +16,16 @@ namespace Mmc.Blog.src.Service
         private readonly IArticleRepository _articleRepository;
         private readonly IInteractionLogService _interactionLogService;
         private readonly IToxicCommentService _toxicCommentService;
+        private readonly INotificationService _notificationService;
 
-        public CommentService(ICommentRepository commentRepository, IBlogUserRepository userRepository, IArticleRepository articleRepository, IInteractionLogService interactionLogService, IToxicCommentService toxicCommentService)
+        public CommentService(ICommentRepository commentRepository, IBlogUserRepository userRepository, IArticleRepository articleRepository, IInteractionLogService interactionLogService, IToxicCommentService toxicCommentService, INotificationService notificationService)
         {
             _commentRepository = commentRepository;
             _userRepository = userRepository;
             _articleRepository = articleRepository;
             _interactionLogService = interactionLogService;
             _toxicCommentService = toxicCommentService;
+            _notificationService = notificationService;
         }
 
         public async Task<IComment> Create(CommentCreateDto c)
@@ -32,8 +34,8 @@ namespace Mmc.Blog.src.Service
             var article = await _articleRepository.GetByGuidAsync(c.ArticleGuid)??throw new ArticleNotFoundException();
             var comment = new Comment(c.Body,user,article);
             var commentModel = await _commentRepository.InsertAsync(comment).ConfigureAwait(false);
-            await _interactionLogService.Create(commentModel).ConfigureAwait(false);
             await ValidateComment(commentModel);
+            await _interactionLogService.Create(commentModel).ConfigureAwait(false);
             return commentModel;
         }
 
@@ -47,6 +49,8 @@ namespace Mmc.Blog.src.Service
             var predicted = ToxiCommentFilter.Predict(sampleData);
             if (predicted.Prediction  > 0)
             {
+                comment.FlagAsSuspicious();
+                await _notificationService.CreateToxicComment(comment);
                 await _toxicCommentService.Create(comment);
             }
         }

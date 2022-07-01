@@ -18,4 +18,8 @@
       <ProjectReference Include="..\Mmc.User\Mmc.User.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="src\Service\User" />
+    </ItemGroup>
+
 </Project>

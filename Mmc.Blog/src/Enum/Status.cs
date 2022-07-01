@@ -13,4 +13,13 @@ public class Status : BaseEnum
     protected Status(int id, string? value) : base(id, value)
     {
     }
+
+    public static implicit operator Status(string s)
+    {
+        return GetAll<Status>().SingleOrDefault(x => x.Value == s)!;
+    }
+    public static implicit operator string(Status s)
+    {
+        return s.Value;
+    }
 }

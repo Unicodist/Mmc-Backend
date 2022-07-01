@@ -15,6 +15,6 @@ public class BlogHelper
         filePath = Path.Combine(relative, physical);
         var stream = new FileStream(filePath, FileMode.Create);
         await file.CopyToAsync(stream);
-        return physical;
+        return "/"+physical;
     }
 }

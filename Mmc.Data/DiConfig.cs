@@ -32,6 +32,8 @@ public static class DiConfig
         _ = services.AddScoped<HeartRepository,HeartRepository>();
         _ = services.AddScoped<IInteractionLogRepository, InteractionLogRepository>();
         _ = services.AddScoped<ISuspiciousCommentRepository, SuspiciousCommentRepository>();
+        _ = services.AddScoped<INotificationTemplateRepository, NotificationTemplateRepository>();
+        _ = services.AddScoped<INotificationRepository, NotificationRepository>();
 
         #endregion
 
