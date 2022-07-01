@@ -1,3 +1,4 @@
+@using Mechi.Backend.Helper
 @model Mechi.Backend.ViewModel.Blog.CommentSectionViewModel
 @foreach (var item in Model.Comments)
 {
@@ -7,6 +8,10 @@
         <div class="fw-bold">@item.Name</div>
         @item.Body
     </div>
+    @if (User.GetRole() == "SuperAdmin" || User.GetRole() == "Admin")
+    {
+        <span>Delete</span>
+    }
 </div>
 }
 

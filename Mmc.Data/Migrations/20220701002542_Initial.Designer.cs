@@ -11,7 +11,7 @@ using Mmc.Data;
 namespace Mmc.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220629135904_Initial")]
+    [Migration("20220701002542_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -668,7 +668,127 @@ namespace Mmc.Data.Migrations
                             Guid = "GodGuid",
                             Location = "/Assets/Account/Profiles/SuperAdmin.jpg",
                             Type = "Profile",
-                            UploadedDate = new DateTime(2022, 6, 29, 19, 44, 3, 622, DateTimeKind.Local).AddTicks(7474)
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9620)
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Guid = "Avatar1",
+                            Location = "/Assets/Account/Profiles/Avatar1.jpg",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9646)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Guid = "Avatar2",
+                            Location = "/Assets/Account/Profiles/Avatar2.jpg",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9648)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Guid = "Avatar3",
+                            Location = "/Assets/Account/Profiles/Avatar3.jpg",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9649)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            Guid = "Avatar4",
+                            Location = "/Assets/Account/Profiles/Avatar4.jpg",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9650)
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            Guid = "Avatar5",
+                            Location = "/Assets/Account/Profiles/Avatar5.jpg",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9653)
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            Guid = "Avatar6",
+                            Location = "/Assets/Account/Profiles/Avatar6.jpg",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9654)
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            Guid = "Avatar7",
+                            Location = "/Assets/Account/Profiles/Avatar7.jpg",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9655)
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            Guid = "Avatar8",
+                            Location = "/Assets/Account/Profiles/Avatar8.jpg",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9656)
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            Guid = "Avatar9",
+                            Location = "/Assets/Account/Profiles/Avatar9.jpg",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9668)
+                        },
+                        new
+                        {
+                            Id = 11L,
+                            Guid = "Avatar10",
+                            Location = "/Assets/Account/Profiles/Avatar10.jpg",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9669)
+                        },
+                        new
+                        {
+                            Id = 12L,
+                            Guid = "Avatar11",
+                            Location = "/Assets/Account/Profiles/Avatar11.jpg",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9670)
+                        },
+                        new
+                        {
+                            Id = 13L,
+                            Guid = "Avatar12",
+                            Location = "/Assets/Account/Profiles/Avatar12.jpg",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9672)
+                        },
+                        new
+                        {
+                            Id = 14L,
+                            Guid = "Avatar13",
+                            Location = "/Assets/Account/Profiles/Avatar13.jpg",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9673)
+                        },
+                        new
+                        {
+                            Id = 15L,
+                            Guid = "Avatar14",
+                            Location = "/Assets/Account/Profiles/Avatar14.jpg",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9674)
+                        },
+                        new
+                        {
+                            Id = 16L,
+                            Guid = "Avatar15",
+                            Location = "/Assets/Account/Profiles/Avatar15.jpg",
+                            Type = "Avatar",
+                            UploadedDate = new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9675)
                         });
                 });
 
@@ -770,7 +890,7 @@ namespace Mmc.Data.Migrations
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
                             OrganizationId = 1L,
-                            Password = "$2a$11$Is2GOSFOEszizydEt4TLGOvnXK3WJRHXQ9vcY77Ho35qdDsW.ZsJW",
+                            Password = "$2a$11$J3BI.QaQy7RGJOgDM6He6.cuBsOCqREGdy4pWA2VCJG7vG.c7lMMa",
                             PictureId = 1L,
                             UserName = "AshuraNep",
                             UserType = "Superuser"

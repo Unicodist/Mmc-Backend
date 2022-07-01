@@ -19,7 +19,7 @@ public class CategoryRepository :BaseRepository<CategoryModel>, ICategoryReposit
     public Task InsertAsync(ICategory category)
     {
         var model = new CategoryModel(category.Name,category.Description,category.Guid,category.Status);
-        return base.InsertAsync((CategoryModel) category);
+        return base.InsertAsync(model);
     }
 
     public new async Task<ICollection<ICategory>?> GetAllAsync()

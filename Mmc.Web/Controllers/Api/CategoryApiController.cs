@@ -1,5 +1,6 @@
 using Mechi.Backend.ApiModel.Category;
 using Mechi.Backend.ViewModel.Blog;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Blog.Dto;
 using Mmc.Blog.Repository;
@@ -32,19 +33,20 @@ public class CategoryApiController : ControllerBase
         return Ok(model);
     }
     [Route("create")]
+    [Authorize]
     [HttpPost]
-    public IActionResult Create([FromBody]CategoryViewModel viewModel)
+    public async Task<IActionResult> Create([FromForm]CategoryViewModel viewModel)
     {
         var categorydto = new CategoryDto()
         {
             Name = viewModel.Name,
             Description = viewModel.Description
         };
-        _categoryService.Create(categorydto);
+        await _categoryService.Create(categorydto);
         return Ok();
     }
     [Route("update")]
-    public IActionResult Update(CategoryViewModel viewModel)
+    public async Task<IActionResult> Update(CategoryViewModel viewModel)
     {
         var categorydto = new CategoryDto()
         {
@@ -52,7 +54,7 @@ public class CategoryApiController : ControllerBase
             Name = viewModel.Name,
             Description = viewModel.Description
         };
-        _categoryService.Update(categorydto);
+        await _categoryService.Update(categorydto);
         return Ok();
     }
 }

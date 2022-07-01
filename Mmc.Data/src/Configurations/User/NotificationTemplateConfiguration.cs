@@ -6,6 +6,10 @@ namespace Mmc.Data.Configurations.User;
 
 public class NotificationTemplateConfiguration : IEntityTypeConfiguration<NotificationTemplate>
 {
+    private static ICollection<NotificationTemplate> _templates = new List<NotificationTemplate>()
+    {
+        new NotificationTemplate("Review Comment","System has detected a bad comment from {0}. Please review it")
+    };
     public void Configure(EntityTypeBuilder<NotificationTemplate> builder)
     {
         _ = builder.ToTable("notification_template");

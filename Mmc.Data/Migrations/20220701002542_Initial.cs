@@ -556,7 +556,25 @@ namespace Mmc.Data.Migrations
             migrationBuilder.InsertData(
                 table: "images",
                 columns: new[] { "picture_id", "guid", "location", "type", "uploaded_date" },
-                values: new object[] { 1L, "GodGuid", "/Assets/Account/Profiles/SuperAdmin.jpg", "Profile", new DateTime(2022, 6, 29, 19, 44, 3, 622, DateTimeKind.Local).AddTicks(7474) });
+                values: new object[,]
+                {
+                    { 1L, "GodGuid", "/Assets/Account/Profiles/SuperAdmin.jpg", "Profile", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9620) },
+                    { 2L, "Avatar1", "/Assets/Account/Profiles/Avatar1.jpg", "Avatar", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9646) },
+                    { 3L, "Avatar2", "/Assets/Account/Profiles/Avatar2.jpg", "Avatar", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9648) },
+                    { 4L, "Avatar3", "/Assets/Account/Profiles/Avatar3.jpg", "Avatar", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9649) },
+                    { 5L, "Avatar4", "/Assets/Account/Profiles/Avatar4.jpg", "Avatar", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9650) },
+                    { 6L, "Avatar5", "/Assets/Account/Profiles/Avatar5.jpg", "Avatar", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9653) },
+                    { 7L, "Avatar6", "/Assets/Account/Profiles/Avatar6.jpg", "Avatar", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9654) },
+                    { 8L, "Avatar7", "/Assets/Account/Profiles/Avatar7.jpg", "Avatar", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9655) },
+                    { 9L, "Avatar8", "/Assets/Account/Profiles/Avatar8.jpg", "Avatar", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9656) },
+                    { 10L, "Avatar9", "/Assets/Account/Profiles/Avatar9.jpg", "Avatar", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9668) },
+                    { 11L, "Avatar10", "/Assets/Account/Profiles/Avatar10.jpg", "Avatar", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9669) },
+                    { 12L, "Avatar11", "/Assets/Account/Profiles/Avatar11.jpg", "Avatar", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9670) },
+                    { 13L, "Avatar12", "/Assets/Account/Profiles/Avatar12.jpg", "Avatar", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9672) },
+                    { 14L, "Avatar13", "/Assets/Account/Profiles/Avatar13.jpg", "Avatar", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9673) },
+                    { 15L, "Avatar14", "/Assets/Account/Profiles/Avatar14.jpg", "Avatar", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9674) },
+                    { 16L, "Avatar15", "/Assets/Account/Profiles/Avatar15.jpg", "Avatar", new DateTime(2022, 7, 1, 6, 10, 41, 990, DateTimeKind.Local).AddTicks(9675) }
+                });
 
             migrationBuilder.InsertData(
                 table: "state",
@@ -576,7 +594,7 @@ namespace Mmc.Data.Migrations
             migrationBuilder.InsertData(
                 table: "user",
                 columns: new[] { "user_id", "email", "name", "organization_id", "password", "picture_id", "user_name", "user_type" },
-                values: new object[] { 1L, "ashishneupane999@gmail.com", "Ashish Neupane", 1L, "$2a$11$Is2GOSFOEszizydEt4TLGOvnXK3WJRHXQ9vcY77Ho35qdDsW.ZsJW", 1L, "AshuraNep", "Superuser" });
+                values: new object[] { 1L, "ashishneupane999@gmail.com", "Ashish Neupane", 1L, "$2a$11$J3BI.QaQy7RGJOgDM6He6.cuBsOCqREGdy4pWA2VCJG7vG.c7lMMa", 1L, "AshuraNep", "Superuser" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_blog_posts_admin_id",

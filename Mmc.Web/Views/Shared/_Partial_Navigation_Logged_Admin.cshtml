@@ -15,10 +15,5 @@
 <li class="nav-item">@Html.ActionLink("Notices", "Index", "Notice", null, new {@class = "nav-link"})</li>
 <li class="nav-item">@Html.ActionLink("Logout", "Logout", "Account", null, new {@class = "nav-link"})</li>
 <li class="nav-item">@Html.ActionLink("Setup","Index", "Setup", null, new {@class = "nav-link"})</li>
-<li class="nav-item">
-    <button class="btn">
-        <i class="fa-solid fa-bell fa-lg"></i>
-        <sup id="navbar_notification_badge"><span class="badge">@Model.NotificationCount?0</span></sup>
-    </button>
-</li>
+<li class="nav-item">@Html.ActionLink("Notifications","#","",null,new{id="notification-dropdown"})</li>
 

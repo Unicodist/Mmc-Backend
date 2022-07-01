@@ -2,7 +2,7 @@
     <thead>
     <tr>
         <th data-column-id="name">Name</th>
-        <th data-column-id="username">Username</th>
+        <th data-column-id="userName">Username</th>
         <th data-column-id="type">Type</th>
         <th data-column-id="action" data-formatter="commands" data-sortable="false">actions</th>
     </tr>
@@ -24,8 +24,8 @@
         formatters: {
             "commands": function(column, row)
             {
-                return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.username + "\">Admin</button> " + 
-                    "<button type=\"button\" class=\"btn btn-xs btn-default command-make-user\" data-row-id=\"" + row.username + "\">User</button>";
+                return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.userName + "\">Admin</button> " + 
+                    "<button type=\"button\" class=\"btn btn-xs btn-default command-make-user\" data-row-id=\"" + row.userName + "\">User</button>";
             }
         }
     }).on("loaded.rs.jquery.bootgrid", function()
@@ -43,10 +43,10 @@
                   confirmButtonText: 'Nike!'
                 }).then((result) => {
                   if (result.isConfirmed) {
-                      let rowGuid = $(this).data("username");
+                      let rowGuid = $(this).data("row-id");
                       $.ajax('@Url.Action("MakeStaff","UserApi")', {
                           type: 'POST', 
-                          data: { username: rowGuid }, 
+                          data: { UserName: rowGuid }, 
                           success: function (data, status, xhr) {
                               Swal.fire(
                                   'Done',
@@ -78,10 +78,11 @@
                 confirmButtonText: 'Nike!'
               }).then((result) => {
                 if (result.isConfirmed) {
-                    let rowGuid = $(this).data("username");
+                    let rowGuid = $(this).data("row-id");
+                    console.log(rowGuid);
                     $.ajax('@Url.Action("MakeUser","UserApi")', {
                         type: 'POST', 
-                        data: { username: rowGuid }, 
+                        data: { UserName: rowGuid }, 
                         success: function (data, status, xhr) {
                             Swal.fire(
                                 'Done',

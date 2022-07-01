@@ -1,14 +1,11 @@
 @using Mechi.Backend.ViewModel.Blog
-<style>
-    #category_list li:hover{
-        background-color: #ece1be;
-    }
-</style>
+<link rel="stylesheet" href="~/lib/bootstrap-select/css/bootstrap-select.min.css">
+<script src="~/lib/bootstrap-select/js/bootstrap-select.min.js"></script>
 <div class="row">
-    <div class="col-sm-4 d-flex justify-content-center">
-    <ul id="category_list" class="btn-group btn-group-vertical">
+    <div class="col-sm-4">
+    <select class="form-control selectpicker" data-live-search="true">
         
-    </ul>
+    </select>
 </div>
 <div class="col-sm-8" id="category_form_container">
     @await Html.PartialAsync("PartialViews/Setup/CategoryForm",CategoryViewModel.GetNew())
@@ -22,12 +19,16 @@ $.get( '@Url.Action("GetCategoryList","CategoryApi")', function( data ) {
 });
 
 function addCategoryItem(guid,name) {
-    let item = $('#category_list');
-    item.append(`<button value='${guid}' class="btn btn-primary">${name}</button>`);
+    let item = $('#select-category');
+    item.append(`<option value='${guid}' data-tokens="${name}">${name}</option>`);
 }
 
 $('.category_list_item').on("click",function() {
-  alert('clicked');
+  
 })
+
+$(function() {
+  $('select').selectpicker();
+});
 
 </script>

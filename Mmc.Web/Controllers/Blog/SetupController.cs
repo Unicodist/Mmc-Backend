@@ -1,3 +1,4 @@
+using Mechi.Backend.Helper;
 using Mechi.Backend.ViewModel.Blog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,10 @@ public class SetupController : Controller
     [Authorize]
     public IActionResult Index()
     {
+        if (User.GetRole()!="SuperAdmin")
+        {
+            return Problem("You are not authorized");
+        }
         return View();
     }
 
