@@ -8,6 +8,7 @@ using Mechi.Backend.ViewModel.Blog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Blog.Dto;
+using Mmc.Blog.Enum;
 using Mmc.Blog.Exception;
 using Mmc.Blog.Repository;
 using Mmc.Blog.Service.Interface;
@@ -113,7 +114,7 @@ public class BlogController : Controller
         var comments = await _commentRepository.GetByArticleIdAsync(article.Id);
         var model = new CommentSectionViewModel
         {
-            Comments = comments.Take(page*10).Reverse().Select(x => new CommentItemViewModel
+            Comments = comments.Take(page*10).Where(x=>x.Status==Status.Active.Value).Reverse().Select(x => new CommentItemViewModel
             {
                 Body = x.Body,
                 Guid = x.Guid.ToString(),
@@ -139,6 +140,11 @@ public class BlogController : Controller
             Name = user.Name,
             Picture = user.Picture.Location
         };
+        if (comment.Status == Status.Pending)
+        {
+            model.Name = "Review in progress";
+            model.Body = "The comment seems to break our community guidelines. It is submitted for review";
+        }
         return PartialView("PartialViews/Blog/SingleCommentView", model);
     }
     [HttpPost]
@@ -149,12 +155,22 @@ public class BlogController : Controller
         var user = this.GetCurrentBlogUser();
         var commentDto = new CommentCreateDto(model.ArticleGuid,model.Body,user.Id);
         var comment = await _commentService.Create(commentDto);
-        var commentModel = new CommentResponseApiModel
+        var commentModel = new CommentResponseApiModel();
+        commentModel = new CommentResponseApiModel
         {
             Body = comment.Body,
             Guid = comment.Guid.ToString(),
             SelfAuthor = comment.UserId == user.Id
         };
+        if (comment.Status==Status.Pending)
+        {
+            commentModel = new CommentResponseApiModel
+            {
+                Body = "The system has detected bad language in the comment. It is submitted for review.",
+                Guid = comment.Guid.ToString(),
+                SelfAuthor = comment.UserId == user.Id
+            };
+        }
         return Json(commentModel);
     }
 }

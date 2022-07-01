@@ -1,6 +1,6 @@
 @model Mechi.Backend.ViewModel.Blog.CategoryViewModel;
 
-@using (Html.BeginForm("Create","CategoryApi",FormMethod.Post))
+@using (Html.BeginForm("Create","CategoryApi",FormMethod.Post,new{id = "category-form"}))
 {
     @Html.HiddenFor(a=>a.Guid)
     <section class="form-group">
@@ -21,3 +21,21 @@
         <div class="btn-group"><button class="btn" type="submit">Update</button><button class="btn">Delete</button></div>
     }
 }
+<script >
+$(document).ready(function() {
+  $("#category-form").submit(function(e) {
+      let form = $("#category-form");
+    e.preventDefault();
+    $.ajax('@Url.Action("Create","CategoryApi")', {
+        type: 'POST',  // http method
+        data: form.serialize(),  // data to submit
+        success: function (data, status, xhr) {
+            $('p').append('status: ' + status + ', data: ' + data);
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+                $('p').append('Error' + errorMessage);
+        }
+    });
+  });
+});
+</script>

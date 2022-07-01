@@ -365,37 +365,6 @@ namespace Mmc.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "notification",
-                columns: table => new
-                {
-                    notification_id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    status = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    user_id = table.Column<long>(type: "bigint", nullable: false),
-                    date = table.Column<DateOnly>(type: "date", nullable: false),
-                    time = table.Column<TimeOnly>(type: "time", nullable: false),
-                    template_id = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_notification", x => x.notification_id);
-                    table.ForeignKey(
-                        name: "FK_notification_notification_template_template_id",
-                        column: x => x.template_id,
-                        principalTable: "notification_template",
-                        principalColumn: "notificatoin_template_id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_notification_user_user_id",
-                        column: x => x.user_id,
-                        principalTable: "user",
-                        principalColumn: "user_id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "student_enrollment_detail",
                 columns: table => new
                 {
@@ -454,6 +423,47 @@ namespace Mmc.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_comment_user_user_id",
+                        column: x => x.user_id,
+                        principalTable: "user",
+                        principalColumn: "user_id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "notification",
+                columns: table => new
+                {
+                    notification_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    status = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Body = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    user_id = table.Column<long>(type: "bigint", nullable: false),
+                    date = table.Column<DateOnly>(type: "date", nullable: false),
+                    time = table.Column<TimeOnly>(type: "time", nullable: false),
+                    template_id = table.Column<long>(type: "bigint", nullable: false),
+                    article_id = table.Column<long>(type: "bigint", nullable: true),
+                    UserType = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_notification", x => x.notification_id);
+                    table.ForeignKey(
+                        name: "FK_notification_blog_posts_article_id",
+                        column: x => x.article_id,
+                        principalTable: "blog_posts",
+                        principalColumn: "blog_id");
+                    table.ForeignKey(
+                        name: "FK_notification_notification_template_template_id",
+                        column: x => x.template_id,
+                        principalTable: "notification_template",
+                        principalColumn: "notificatoin_template_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_notification_user_user_id",
                         column: x => x.user_id,
                         principalTable: "user",
                         principalColumn: "user_id",
@@ -556,7 +566,30 @@ namespace Mmc.Data.Migrations
             migrationBuilder.InsertData(
                 table: "images",
                 columns: new[] { "picture_id", "guid", "location", "type", "uploaded_date" },
-                values: new object[] { 1L, "GodGuid", "/Assets/Account/Profiles/SuperAdmin.jpg", "Profile", new DateTime(2022, 6, 29, 19, 44, 3, 622, DateTimeKind.Local).AddTicks(7474) });
+                values: new object[,]
+                {
+                    { 1L, "GodGuid", "/Assets/Account/Profiles/SuperAdmin.jpg", "Profile", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3080) },
+                    { 2L, "Avatar1", "/Assets/Account/Profiles/Avatar1.jpg", "Avatar", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3096) },
+                    { 3L, "Avatar2", "/Assets/Account/Profiles/Avatar2.jpg", "Avatar", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3097) },
+                    { 4L, "Avatar3", "/Assets/Account/Profiles/Avatar3.jpg", "Avatar", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3098) },
+                    { 5L, "Avatar4", "/Assets/Account/Profiles/Avatar4.jpg", "Avatar", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3099) },
+                    { 6L, "Avatar5", "/Assets/Account/Profiles/Avatar5.jpg", "Avatar", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3102) },
+                    { 7L, "Avatar6", "/Assets/Account/Profiles/Avatar6.jpg", "Avatar", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3103) },
+                    { 8L, "Avatar7", "/Assets/Account/Profiles/Avatar7.jpg", "Avatar", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3104) },
+                    { 9L, "Avatar8", "/Assets/Account/Profiles/Avatar8.jpg", "Avatar", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3105) },
+                    { 10L, "Avatar9", "/Assets/Account/Profiles/Avatar9.jpg", "Avatar", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3106) },
+                    { 11L, "Avatar10", "/Assets/Account/Profiles/Avatar10.jpg", "Avatar", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3107) },
+                    { 12L, "Avatar11", "/Assets/Account/Profiles/Avatar11.jpg", "Avatar", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3108) },
+                    { 13L, "Avatar12", "/Assets/Account/Profiles/Avatar12.jpg", "Avatar", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3109) },
+                    { 14L, "Avatar13", "/Assets/Account/Profiles/Avatar13.jpg", "Avatar", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3110) },
+                    { 15L, "Avatar14", "/Assets/Account/Profiles/Avatar14.jpg", "Avatar", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3111) },
+                    { 16L, "Avatar15", "/Assets/Account/Profiles/Avatar15.jpg", "Avatar", new DateTime(2022, 7, 1, 8, 11, 17, 807, DateTimeKind.Local).AddTicks(3111) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "notification_template",
+                columns: new[] { "notificatoin_template_id", "body", "title" },
+                values: new object[] { 1L, "System has detected a bad comment from {0}. Please review it", "Review Comment" });
 
             migrationBuilder.InsertData(
                 table: "state",
@@ -576,7 +609,7 @@ namespace Mmc.Data.Migrations
             migrationBuilder.InsertData(
                 table: "user",
                 columns: new[] { "user_id", "email", "name", "organization_id", "password", "picture_id", "user_name", "user_type" },
-                values: new object[] { 1L, "ashishneupane999@gmail.com", "Ashish Neupane", 1L, "$2a$11$Is2GOSFOEszizydEt4TLGOvnXK3WJRHXQ9vcY77Ho35qdDsW.ZsJW", 1L, "AshuraNep", "Superuser" });
+                values: new object[] { 1L, "ashishneupane999@gmail.com", "Ashish Neupane", 1L, "$2a$11$piKZ4IgkeEiR7h6Mn2dVI.7BBu0jz5BxufeHUpReReFAHBxf6LXwe", 1L, "AshuraNep", "Superuser" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_blog_posts_admin_id",
@@ -627,6 +660,11 @@ namespace Mmc.Data.Migrations
                 name: "IX_notice_admin_id",
                 table: "notice",
                 column: "admin_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_notification_article_id",
+                table: "notification",
+                column: "article_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_notification_template_id",

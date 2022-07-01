@@ -9,7 +9,7 @@
 <script type="text/javascript">
     function appendComment(commentGuid) {
       $.ajax('@Url.Action("GetCommentView","Blog")', {
-          type: 'POST', 
+          type: 'POST',
           data: {guid:commentGuid},
           success: function (data, status, xhr) {
               $('#comment-section-container').prepend(data)

@@ -4,6 +4,7 @@ using Mmc.Blog.Repository;
 using Mmc.Blog.Service;
 using Mmc.Blog.Service.Interface;
 using Mmc.Blog.src.Service;
+using Mmc.Notice.Service.Interface;
 using Moq;
 
 namespace Mmc.Tests.Mmc.Blog;
@@ -32,6 +33,7 @@ public static class TestRepository
     public static readonly Mock<IArticleRepository> ArticleRepositoryMock = new();
     public static readonly Mock<IInteractionLogRepository> InteractionLogRepositoryMock = new();
     public static readonly Mock<IToxicCommentService> SuspiciousCommentServiceMock = new();
+    public static readonly Mock<INotificationService> NotificationServiceMock = new();
 
     #endregion
 
@@ -66,7 +68,7 @@ public static class TestRepository
         IInteractionLogService =
             new InteractionLogService(InteractionLogRepositoryMock.Object, ArticleRepositoryMock.Object,CommentRepositoryMock.Object);
         CommentService = new CommentService(CommentRepositoryMock.Object, BlogUserRepositoryMock.Object,
-            ArticleRepositoryMock.Object, IInteractionLogService,SuspiciousCommentServiceMock.Object);
+            ArticleRepositoryMock.Object, IInteractionLogService,SuspiciousCommentServiceMock.Object,NotificationServiceMock.Object);
 
     }
 }

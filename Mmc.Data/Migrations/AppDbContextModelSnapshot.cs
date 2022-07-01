@@ -626,6 +626,38 @@ namespace Mmc.Data.Migrations
                     b.ToTable("notice", (string)null);
                 });
 
+            modelBuilder.Entity("Mmc.Data.Model.NotificationTemplateModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("notificatoin_template_id");
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("body");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("notification_template", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Body = "System has detected a bad comment from {0}. Please review it",
+                            Title = "Review Comment"
+                        });
+                });
+
             modelBuilder.Entity("Mmc.Data.Model.PictureModel", b =>
                 {
                     b.Property<long>("Id")
@@ -666,7 +698,7 @@ namespace Mmc.Data.Migrations
                             Guid = "GodGuid",
                             Location = "/Assets/Account/Profiles/SuperAdmin.jpg",
                             Type = "Profile",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8051)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4441)
                         },
                         new
                         {
@@ -674,7 +706,7 @@ namespace Mmc.Data.Migrations
                             Guid = "Avatar1",
                             Location = "/Assets/Account/Profiles/Avatar1.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8068)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4452)
                         },
                         new
                         {
@@ -682,7 +714,7 @@ namespace Mmc.Data.Migrations
                             Guid = "Avatar2",
                             Location = "/Assets/Account/Profiles/Avatar2.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8069)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4453)
                         },
                         new
                         {
@@ -690,7 +722,7 @@ namespace Mmc.Data.Migrations
                             Guid = "Avatar3",
                             Location = "/Assets/Account/Profiles/Avatar3.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8070)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4454)
                         },
                         new
                         {
@@ -698,7 +730,7 @@ namespace Mmc.Data.Migrations
                             Guid = "Avatar4",
                             Location = "/Assets/Account/Profiles/Avatar4.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8071)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4455)
                         },
                         new
                         {
@@ -706,7 +738,7 @@ namespace Mmc.Data.Migrations
                             Guid = "Avatar5",
                             Location = "/Assets/Account/Profiles/Avatar5.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8073)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4457)
                         },
                         new
                         {
@@ -714,7 +746,7 @@ namespace Mmc.Data.Migrations
                             Guid = "Avatar6",
                             Location = "/Assets/Account/Profiles/Avatar6.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8074)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4458)
                         },
                         new
                         {
@@ -722,7 +754,7 @@ namespace Mmc.Data.Migrations
                             Guid = "Avatar7",
                             Location = "/Assets/Account/Profiles/Avatar7.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8075)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4459)
                         },
                         new
                         {
@@ -730,7 +762,7 @@ namespace Mmc.Data.Migrations
                             Guid = "Avatar8",
                             Location = "/Assets/Account/Profiles/Avatar8.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8075)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4460)
                         },
                         new
                         {
@@ -738,7 +770,7 @@ namespace Mmc.Data.Migrations
                             Guid = "Avatar9",
                             Location = "/Assets/Account/Profiles/Avatar9.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8077)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4462)
                         },
                         new
                         {
@@ -746,7 +778,7 @@ namespace Mmc.Data.Migrations
                             Guid = "Avatar10",
                             Location = "/Assets/Account/Profiles/Avatar10.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8078)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4463)
                         },
                         new
                         {
@@ -754,7 +786,7 @@ namespace Mmc.Data.Migrations
                             Guid = "Avatar11",
                             Location = "/Assets/Account/Profiles/Avatar11.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8079)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4464)
                         },
                         new
                         {
@@ -762,7 +794,7 @@ namespace Mmc.Data.Migrations
                             Guid = "Avatar12",
                             Location = "/Assets/Account/Profiles/Avatar12.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8080)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4465)
                         },
                         new
                         {
@@ -770,7 +802,7 @@ namespace Mmc.Data.Migrations
                             Guid = "Avatar13",
                             Location = "/Assets/Account/Profiles/Avatar13.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8081)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4466)
                         },
                         new
                         {
@@ -778,7 +810,7 @@ namespace Mmc.Data.Migrations
                             Guid = "Avatar14",
                             Location = "/Assets/Account/Profiles/Avatar14.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8082)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4466)
                         },
                         new
                         {
@@ -786,7 +818,7 @@ namespace Mmc.Data.Migrations
                             Guid = "Avatar15",
                             Location = "/Assets/Account/Profiles/Avatar15.jpg",
                             Type = "Avatar",
-                            UploadedDate = new DateTime(2022, 6, 30, 9, 46, 47, 963, DateTimeKind.Local).AddTicks(8083)
+                            UploadedDate = new DateTime(2022, 7, 1, 8, 17, 55, 219, DateTimeKind.Local).AddTicks(4467)
                         });
                 });
 
@@ -796,6 +828,14 @@ namespace Mmc.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasColumnName("notification_id");
+
+                    b.Property<long?>("ArticleId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("article_id");
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<DateOnly>("Date")
                         .HasColumnType("date")
@@ -815,11 +855,16 @@ namespace Mmc.Data.Migrations
                         .HasColumnType("time")
                         .HasColumnName("time");
 
-                    b.Property<long>("UserId")
+                    b.Property<long?>("UserId")
                         .HasColumnType("bigint")
                         .HasColumnName("user_id");
 
+                    b.Property<string>("UserType")
+                        .HasColumnType("longtext");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
 
                     b.HasIndex("TemplateId");
 
@@ -888,35 +933,11 @@ namespace Mmc.Data.Migrations
                             Email = "ashishneupane999@gmail.com",
                             Name = "Ashish Neupane",
                             OrganizationId = 1L,
-                            Password = "$2a$11$QXKUsOGdVZ0EREbLsbsOj.8qzMpq3Dx5kaqfTsF204vU7sru2Enry",
+                            Password = "$2a$11$s5fdypG0naeU0Er6TCaZ4.K2XWEXWy8ITItVZB5Y7C5xn8Yf.GECm",
                             PictureId = 1L,
                             UserName = "AshuraNep",
                             UserType = "Superuser"
                         });
-                });
-
-            modelBuilder.Entity("Mmc.User.Entity.NotificationTemplate", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("notificatoin_template_id");
-
-                    b.Property<string>("Body")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("body");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("title");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("notification_template", (string)null);
                 });
 
             modelBuilder.Entity("Mmc.Data.Model.Address.StateModel", b =>
@@ -1105,7 +1126,11 @@ namespace Mmc.Data.Migrations
 
             modelBuilder.Entity("Mmc.Data.Model.User.NotificationModel", b =>
                 {
-                    b.HasOne("Mmc.User.Entity.NotificationTemplate", "Template")
+                    b.HasOne("Mmc.Data.Model.Blog.ArticleModel", "Article")
+                        .WithMany()
+                        .HasForeignKey("ArticleId");
+
+                    b.HasOne("Mmc.Data.Model.NotificationTemplateModel", "Template")
                         .WithMany()
                         .HasForeignKey("TemplateId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1113,9 +1138,9 @@ namespace Mmc.Data.Migrations
 
                     b.HasOne("Mmc.Data.Model.User.UserModel", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Article");
 
                     b.Navigation("Template");
 

@@ -16,7 +16,7 @@ public class NoticeController : Controller
     private readonly INoticeRepository _noticeRepository;
     private readonly ICourseRepository _courseRepository;
     private readonly INoticeService _noticeService;
-    private IWebHostEnvironment _webHostEnvironment;
+    private readonly IWebHostEnvironment _webHostEnvironment;
 
     public NoticeController(INoticeRepository noticeRepository, ICourseRepository courseRepository, INoticeService noticeService, INoticeUserRepository noticeUserRepository, IWebHostEnvironment webHostEnvironment)
     {
@@ -36,7 +36,7 @@ public class NoticeController : Controller
     {
         if (!ModelState.IsValid)
             return View(model);
-        var courses = await _noticeRepository.GetAllAsync();
+        var courses = await _courseRepository.GetAllAsync();
         if (model.CourseGuids!=null)
             courses = courses!.Where(x => model.CourseGuids.Contains(x.Guid)).ToList();
         var severity = BaseEnum.GetAll<NoticeSeverity>().SingleOrDefault(x => x.Id == model.SeverityId) ??
@@ -57,10 +57,20 @@ public class NoticeController : Controller
             Guid = x.Guid.ToString(),
             Title = x.Title,
             Body = x.Body,
-            Date = x.PostedOn,
+            Date = x.PostedOn.ToString(),
             Image = x.Picture,
             User = x.Author.Name
         });
         return Json(noticeModel);
+    }
+
+    public async Task<IActionResult> View(string noticeId)
+    {
+        var notice = await _noticeRepository.GetByGuidAsync(noticeId);
+        var model = new NoticeViewModel()
+        {
+            Body = notice.Body, Date = notice.PostedOn.ToString(), Image = notice.Picture, Title = notice.Title,
+        };
+        return View(model);
     }
 }

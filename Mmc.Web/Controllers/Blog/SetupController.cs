@@ -1,7 +1,9 @@
+using Mechi.Backend.Helper;
 using Mechi.Backend.ViewModel.Blog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mmc.Blog.Repository;
+using Mmc.User.Enum;
 
 namespace Mechi.Backend.Controllers.Blog;
 
@@ -18,6 +20,10 @@ public class SetupController : Controller
     [Authorize]
     public IActionResult Index()
     {
+        if (User.GetRole()==UserType.USER)
+        {
+            return Problem("You are not authorized");
+        }
         return View();
     }
 
