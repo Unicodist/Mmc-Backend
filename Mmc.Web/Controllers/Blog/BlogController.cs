@@ -38,12 +38,17 @@ public class BlogController : Controller
         _heartRepository = heartRepository;
         UserHelper.BlogUserRepository = blogUserRepository;
     }
-    public async Task<IActionResult> Index(int? page = 1)
+    public async Task<IActionResult> Index(string? searchquery, int? page = 1)
     {
         var articles = (await _blogRepo.GetAllBlogAsync().ConfigureAwait(false));
         if (articles != null && !articles.Any())
         {
             return View("Errors/_No_Articles");
+        }
+
+        if (searchquery!=string.Empty)
+        {
+            articles = articles.Where(x => x.Body.Contains(searchquery) || x.Title.Contains(searchquery)).ToList();
         }
         var modelArticles = articles.Select(x => new ArticleViewModel {Guid = x.Guid, Body = x.Body, DateTime = DateHelper.GetDateTime(x.PostedDate,x.PostedTime), Image = "abc", Title = x.Title,Thumbnail = x.Thumbnail});
         modelArticles = modelArticles.Reverse();
